@@ -1,0 +1,16 @@
+{
+  "name": "baatarshipping",
+  "version": "1.0.0",
+  "description": "Baatar Shipping full-stack site with a lightweight API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "shipping",
+    "logistics"
+  ],
+  "author": "Baatar Shipping",
+  "license": "MIT"
+}
