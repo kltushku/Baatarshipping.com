@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Baatar Shipping — Moving Trade Forward</title>
+  <meta name="description" content="Baatar Shipping — Mongolia ↔ China ↔ Global logistics. Moving Trade Forward." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-name">BAATAR SHIPPING</div>
+        <div class="brand-tagline" data-i18n="tagline">Moving Trade Forward</div>
+      </div>
+
+      <nav class="nav">
+        <a href="#services" data-i18n="navServices">Services</a>
+        <a href="#coverage" data-i18n="navCoverage">Coverage</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="lang">
+        <button class="lang-btn active" id="btn-en" type="button">EN</button>
+        <button class="lang-btn" id="btn-mn" type="button">MN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 data-i18n="heroTitle">Mongolia ↔ China ↔ Global Logistics</h1>
+          <p class="lead" data-i18n="heroLead">
+            Reliable logistics coordination for cross-border and international trade — clear communication, fast execution, trusted partners.
+          </p>
+          <div class="hero-points">
+            <div class="pill" data-i18n="pill1">Fast response</div>
+            <div class="pill" data-i18n="pill2">Clear coordination</div>
+            <div class="pill" data-i18n="pill3">Trusted network</div>
+          </div>
+        </div>
+
+        <!-- Visual (no external images needed) -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-card">
+            <div class="globe"></div>
+            <div class="motion motion-1"></div>
+            <div class="motion motion-2"></div>
+            <div class="motion motion-3"></div>
+            <div class="arrow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <h2 data-i18n="servicesTitle">Services</h2>
+        <p class="sub" data-i18n="servicesSub">
+          Practical logistics support for trade flows between Mongolia, China, and global markets.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3 data-i18n="svc1Title">Freight Coordination</h3>
+            <p data-i18n="svc1Body">Route planning and shipment coordination based on your timeline and requirements.</p>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="svc2Title">Cross-border Execution</h3>
+            <p data-i18n="svc2Body">Smooth Mongolia ↔ China shipments with clear handover and operational support.</p>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="svc3Title">Status & Communication</h3>
+            <p data-i18n="svc3Body">Fast, transparent updates so you always know the next step.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COVERAGE -->
+    <section class="section muted" id="coverage">
+      <div class="container">
+        <h2 data-i18n="coverageTitle">Coverage</h2>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 data-i18n="cov1Title">Core Routes</h3>
+            <p data-i18n="cov1Body">Mongolia ↔ China with flexible routing options.</p>
+          </div>
+
+          <div class="card">
+            <h3 data-i18n="cov2Title">Global Reach</h3>
+            <p data-i18n="cov2Body">International coordination through trusted partners for wider global coverage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 data-i18n="contactTitle">Contact</h2>
+        <p class="lead" data-i18n="contactLead">
+          Message us on WhatsApp or Viber. Share your route, cargo details, and timeline — we’ll reply quickly.
+        </p>
+
+        <div class="contact-cards">
+          <a class="contact-card" href="https://wa.me/97699887055" target="_blank" rel="noopener">
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">+976 99887055</div>
+            <div class="contact-hint" data-i18n="contactHint">Tap to message</div>
+          </a>
+
+          <a class="contact-card" href="viber://chat?number=%2B97699887055">
+            <div class="contact-label">Viber</div>
+            <div class="contact-value">+976 99887055</div>
+            <div class="contact-hint" data-i18n="contactHint">Tap to message</div>
+          </a>
+        </div>
+
+        <div class="note" data-i18n="contactNote">
+          Recommended message: “Route: ___ | Cargo: ___ | Weight/Volume: ___ | Deadline: ___”
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Baatar Shipping. All rights reserved.</div>
+      <div class="footer-right" data-i18n="footerLine">Moving Trade Forward</div>
+    </div>
+  </footer>
+
+  <script>
+    const dict = {
+      en: {
+        tagline: "Moving Trade Forward",
+        navServices: "Services",
+        navCoverage: "Coverage",
+        navContact: "Contact",
+
+        heroTitle: "Mongolia ↔ China ↔ Global Logistics",
+        heroLead: "Reliable logistics coordination for cross-border and international trade — clear communication, fast execution, trusted partners.",
+        pill1: "Fast response",
+        pill2: "Clear coordination",
+        pill3: "Trusted network",
+
+        servicesTitle: "Services",
+        servicesSub: "Practical logistics support for trade flows between Mongolia, China, and global markets.",
+        svc1Title: "Freight Coordination",
+        svc1Body: "Route planning and shipment coordination based on your timeline and requirements.",
+        svc2Title: "Cross-border Execution",
+        svc2Body: "Smooth Mongolia ↔ China shipments with clear handover and operational support.",
+        svc3Title: "Status & Communication",
+        svc3Body: "Fast, transparent updates so you always know the next step.",
+
+        coverageTitle: "Coverage",
+        cov1Title: "Core Routes",
+        cov1Body: "Mongolia ↔ China with flexible routing options.",
+        cov2Title: "Global Reach",
+        cov2Body: "International coordination through trusted partners for wider global coverage.",
+
+        contactTitle: "Contact",
+        contactLead: "Message us on WhatsApp or Viber. Share your route, cargo details, and timeline — we’ll reply quickly.",
+        contactHint: "Tap to message",
+        contactNote: "Recommended message: “Route: ___ | Cargo: ___ | Weight/Volume: ___ | Deadline: ___”",
+        footerLine: "Moving Trade Forward",
+      },
+      mn: {
+        tagline: "Худалдааг урагшлуулна",
+        navServices: "Үйлчилгээ",
+        navCoverage: "Хамрах хүрээ",
+        navContact: "Холбоо барих",
+
+        heroTitle: "Монгол ↔ Хятад ↔ Дэлхийн логистик",
+        heroLead: "Хил дамнасан болон олон улсын тээвэрт найдвартай зохицуулалт — тод харилцаа, түргэн гүйцэтгэл, итгэлтэй түншлэл.",
+        pill1: "Түргэн хариу",
+        pill2: "Тод зохицуулалт",
+        pill3: "Итгэлтэй сүлжээ",
+
+        servicesTitle: "Үйлчилгээ",
+        servicesSub: "Монгол, Хятад болон дэлхийн зах зээл хоорондын худалдаанд зориулсан практик логистикийн дэмжлэг.",
+        svc1Title: "Тээврийн зохицуулалт",
+        svc1Body: "Хугацаа, шаардлагад тань тулгуурлан чиглэл төлөвлөлт ба тээврийн зохицуулалт.",
+        svc2Title: "Хил дамнасан гүйцэтгэл",
+        svc2Body: "Монгол ↔ Хятад чиглэлд жигд уялдаа, ойлгомжтой шилжүүлэлт, ажиллагааны дэмжлэг.",
+        svc3Title: "Мэдээлэл ба харилцаа",
+        svc3Body: "Дараагийн алхмыг ойлгомжтой, түргэн мэдээлж холбоотой байлгана.",
+
+        coverageTitle: "Хамрах хүрээ",
+        cov1Title: "Үндсэн чиглэл",
+        cov1Body: "Монгол ↔ Хятад чиглэлд уян хатан маршрутын сонголттой.",
+        cov2Title: "Дэлхийн хүрээ",
+        cov2Body: "Итгэлтэй түншүүдээр дамжуулан олон улсын зохицуулалт, өргөн хүрээний хамрах боломж.",
+
+        contactTitle: "Холбоо барих",
+        contactLead: "WhatsApp эсвэл Viber-ээр бичээрэй. Чиглэл, ачааны мэдээлэл, хугацаагаа илгээнэ үү — бид хурдан хариу өгнө.",
+        contactHint: "Дараад бичих",
+        contactNote: "Жишиг мессеж: “Чиглэл: ___ | Ачаа: ___ | Жин/хэмжээ: ___ | Хугацаа: ___”",
+        footerLine: "Худалдааг урагшлуулна",
+      }
+    };
+
+    const yearEl = document.getElementById("year");
+    yearEl.textContent = new Date().getFullYear();
+
+    const btnEn = document.getElementById("btn-en");
+    const btnMn = document.getElementById("btn-mn");
+
+    function setLang(lang) {
+      document.documentElement.lang = lang === "mn" ? "mn" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        el.textContent = dict[lang][key] || el.textContent;
+      });
+      btnEn.classList.toggle("active", lang === "en");
+      btnMn.classList.toggle("active", lang === "mn");
+      localStorage.setItem("lang", lang);
+    }
+
+    btnEn.addEventListener("click", () => setLang("en"));
+    btnMn.addEventListener("click", () => setLang("mn"));
+
+    setLang(localStorage.getItem("lang") || "en");
+  </script>
+</body>
+</html>
