@@ -384,5 +384,22 @@ h2{
   opacity:1;
   transform: translateY(0);
 }
+/* Stagger animation for cards */
+.reveal .card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.reveal.in .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal.in .card:nth-child(1) { transition-delay: .05s; }
+.reveal.in .card:nth-child(2) { transition-delay: .15s; }
+.reveal.in .card:nth-child(3) { transition-delay: .25s; }
+.reveal.in .card:nth-child(4) { transition-delay: .35s; }
+
 
 
