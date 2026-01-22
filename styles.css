@@ -371,4 +371,18 @@ h2{
     transform: none;
   }
 }
+/* =========================
+   SCROLL REVEAL (makes it feel alive)
+   ========================= */
+.reveal{
+  opacity:0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+.reveal.in{
+  opacity:1;
+  transform: translateY(0);
+}
+
 
