@@ -1679,6 +1679,349 @@ Notes: ${notesTxt}`.trim();
 
       /* ---------------- NEW FEATURE: Animated Globe ---------------- */
       function initGlobe(){
+
+        function initGlobe(){
+  const canvas = document.getElementById("globe");
+  const wrap = document.getElementById("globeWrap");
+  if(!canvas || !wrap) return;
+
+  const ctx = canvas.getContext("2d", { alpha:true });
+
+  // Tooltip elements
+  const tip = document.getElementById("globeTip");
+  const tipTitle = document.getElementById("tipTitle");
+  const tipSub = document.getElementById("tipSub");
+  const tipTag1 = document.getElementById("tipTag1");
+  const tipTag2 = document.getElementById("tipTag2");
+  const tipClose = document.getElementById("tipClose");
+
+  tipClose?.addEventListener("click", ()=>{
+    tip.style.display = "none";
+  });
+
+  // HiDPI fit
+  function fit(){
+    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    const css = canvas.getBoundingClientRect();
+    const s = Math.floor(Math.min(css.width, css.height));
+    canvas.width = Math.floor(s * dpr);
+    canvas.height = Math.floor(s * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  fit();
+  window.addEventListener("resize", fit);
+
+  const state = {
+    route: localStorage.getItem("bs_route") || "mngchn",
+    t: 0,
+    rotDrag: 0,       // degrees
+    isDown: false,
+    downX: 0,
+    downRot: 0,
+    moved: false,
+    selectedCity: localStorage.getItem("bs_city") || "Ulaanbaatar"
+  };
+
+  // Cities (requested)
+  const points = [
+    {name:"Ulaanbaatar", labelEN:"Ulaanbaatar (UB)", labelMN:"Улаанбаатар (УБ)", lat:47.9, lon:106.9, kind:"Hub"},
+    {name:"Beijing",     labelEN:"Beijing",          labelMN:"Бээжин",         lat:39.9042, lon:116.4074, kind:"Hub"},
+    {name:"Tianjin",     labelEN:"Tianjin",          labelMN:"Тяньжин",        lat:39.0851, lon:117.1994, kind:"Port"},
+    {name:"Istanbul",    labelEN:"Istanbul",         labelMN:"Истанбул",       lat:41.0082, lon:28.9784,  kind:"Hub"},
+    {name:"New York",    labelEN:"New York",         labelMN:"Нью-Йорк",       lat:40.7128, lon:-74.0060, kind:"Hub"},
+    {name:"Berlin",      labelEN:"Berlin",           labelMN:"Берлин",         lat:52.5200, lon:13.4050,  kind:"Hub"},
+    {name:"Seoul",       labelEN:"Seoul",            labelMN:"Сөүл",           lat:37.5665, lon:126.9780, kind:"Hub"},
+    {name:"Cape Town",   labelEN:"Cape Town",        labelMN:"Кейптаун",       lat:-33.9249, lon:18.4241, kind:"Port"},
+    {name:"Melbourne",   labelEN:"Melbourne",        labelMN:"Мельбурн",       lat:-37.8136, lon:144.9631, kind:"Port"}
+  ];
+
+  // Lanes (simple demo lanes)
+  const routes = {
+    mngchn: [
+      ["Ulaanbaatar","Beijing"],
+      ["Beijing","Tianjin"],
+      ["Ulaanbaatar","Tianjin"]
+    ],
+    asiaeu: [
+      ["Seoul","Beijing"],
+      ["Beijing","Istanbul"],
+      ["Istanbul","Berlin"]
+    ],
+    global: [
+      ["Ulaanbaatar","Seoul"],
+      ["Berlin","New York"],
+      ["Istanbul","Cape Town"],
+      ["Seoul","Melbourne"]
+    ]
+  };
+
+  function findPoint(name){
+    return points.find(p=>p.name===name);
+  }
+
+  // lat/lon -> 3D unit sphere
+  function project3(lat, lon, rotDeg){
+    const phi = (90 - lat) * Math.PI/180;
+    const theta = (lon + rotDeg) * Math.PI/180;
+    const x = Math.sin(phi) * Math.cos(theta);
+    const y = Math.cos(phi);
+    const z = Math.sin(phi) * Math.sin(theta);
+    return {x,y,z};
+  }
+
+  // Store latest 2D projections so click can pick nearest point
+  let latest2D = [];
+
+  function showTip(cityName){
+    const lang = localStorage.getItem("bs_lang") || "en";
+    const p = findPoint(cityName);
+    if(!p || !tip) return;
+
+    const title = (lang==="mn") ? p.labelMN : p.labelEN;
+    tipTitle.textContent = title;
+    tipSub.textContent =
+      (lang==="mn")
+        ? `Координат: ${p.lat.toFixed(2)}, ${p.lon.toFixed(2)}`
+        : `Coordinates: ${p.lat.toFixed(2)}, ${p.lon.toFixed(2)}`;
+
+    tipTag1.textContent = (lang==="mn") ? "Сүлжээ" : "Lane";
+    tipTag2.textContent = (lang==="mn") ? p.kind==="Port" ? "Боомт" : "Төв цэг" : p.kind;
+
+    tip.style.display = "block";
+  }
+
+  function draw(){
+    const w = canvas.getBoundingClientRect().width;
+    const h = canvas.getBoundingClientRect().height;
+    const cx = w/2, cy = h/2;
+    const R = Math.min(w,h)*0.38;
+
+    ctx.clearRect(0,0,w,h);
+
+    // Background glow
+    const grd = ctx.createRadialGradient(cx, cy, R*0.2, cx, cy, R*1.25);
+    grd.addColorStop(0, "rgba(71,230,177,.14)");
+    grd.addColorStop(0.45, "rgba(200,155,60,.10)");
+    grd.addColorStop(1, "rgba(255,79,216,0)");
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.arc(cx,cy,R*1.25,0,Math.PI*2);
+    ctx.fill();
+
+    // Globe body
+    const dark = document.documentElement.getAttribute("data-theme")==="dark";
+    const g2 = ctx.createRadialGradient(cx - R*0.25, cy - R*0.25, R*0.2, cx, cy, R);
+    g2.addColorStop(0, dark ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.75)");
+    g2.addColorStop(1, dark ? "rgba(255,255,255,.03)" : "rgba(255,255,255,.38)");
+    ctx.fillStyle = g2;
+    ctx.strokeStyle = dark ? "rgba(255,255,255,.18)" : "rgba(11,28,45,.10)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Clip to globe for grid + lanes
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.clip();
+
+    // Lat lines
+    ctx.strokeStyle = dark ? "rgba(255,255,255,.10)" : "rgba(11,28,45,.08)";
+    for(let i=-60;i<=60;i+=20){
+      const yy = cy + (i/90)*R*0.9;
+      ctx.beginPath();
+      ctx.ellipse(cx, yy, R*0.95, R*0.25, 0, 0, Math.PI*2);
+      ctx.stroke();
+    }
+    // Lon lines (animated)
+    for(let i=0;i<12;i++){
+      const ang = (i/12)*Math.PI*2 + state.t*0.15;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, R*Math.abs(Math.cos(ang)), R, 0, 0, Math.PI*2);
+      ctx.stroke();
+    }
+
+    const rot = (state.t*18) + state.rotDrag;
+
+    // Convert 3D to 2D
+    function to2D(p3){
+      const x = cx + p3.x * R;
+      const y = cy + p3.y * R;
+      const front = p3.z > 0;
+      const a = front ? 1 : 0.20;
+      return {x,y,front,a,z:p3.z};
+    }
+
+    // Draw lanes
+    const lane = routes[state.route] || [];
+    lane.forEach(([aName,bName], idx)=>{
+      const a = findPoint(aName), b = findPoint(bName);
+      if(!a || !b) return;
+
+      const A = to2D(project3(a.lat,a.lon,rot));
+      const B = to2D(project3(b.lat,b.lon,rot));
+      const alpha = Math.min(A.a, B.a);
+
+      const mx = (A.x+B.x)/2;
+      const my = (A.y+B.y)/2 - R*0.18;
+
+      ctx.strokeStyle = `rgba(200,155,60,${0.20 + alpha*0.55})`;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(A.x,A.y);
+      ctx.quadraticCurveTo(mx,my,B.x,B.y);
+      ctx.stroke();
+
+      ctx.strokeStyle = `rgba(71,230,177,${0.10 + alpha*0.30})`;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(A.x,A.y);
+      ctx.quadraticCurveTo(mx,my,B.x,B.y);
+      ctx.stroke();
+
+      // moving dot
+      const tt = (state.t*0.28 + idx*0.22) % 1;
+      const qx = (1-tt)*(1-tt)*A.x + 2*(1-tt)*tt*mx + tt*tt*B.x;
+      const qy = (1-tt)*(1-tt)*A.y + 2*(1-tt)*tt*my + tt*tt*B.y;
+
+      ctx.fillStyle = `rgba(255,79,216,${0.25 + alpha*0.60})`;
+      ctx.beginPath();
+      ctx.arc(qx,qy,3.2,0,Math.PI*2);
+      ctx.fill();
+    });
+
+    // Cities (store projected positions for click picking)
+    latest2D = points.map(p=>{
+      const P = to2D(project3(p.lat,p.lon,rot));
+      const isSel = (p.name === state.selectedCity);
+      const r = isSel ? (P.front ? 5.2 : 3.2) : (P.front ? 4.0 : 2.6);
+
+      // city dot
+      ctx.fillStyle = isSel
+        ? `rgba(200,155,60,${0.35 + P.a*0.65})`
+        : `rgba(74,111,165,${0.22 + P.a*0.70})`;
+
+      ctx.beginPath();
+      ctx.arc(P.x,P.y,r,0,Math.PI*2);
+      ctx.fill();
+
+      // city halo
+      if(P.front){
+        ctx.strokeStyle = isSel
+          ? `rgba(200,155,60,${0.16 + P.a*0.30})`
+          : `rgba(255,79,216,${0.08 + P.a*0.22})`;
+        ctx.beginPath();
+        ctx.arc(P.x,P.y,r+6,0,Math.PI*2);
+        ctx.stroke();
+      }
+
+      return {name:p.name, x:P.x, y:P.y, front:P.front, alpha:P.a};
+    });
+
+    ctx.restore();
+
+    // If tooltip is open, gently keep it anchored near selected city (when visible & front)
+    if(tip && tip.style.display !== "none"){
+      const target = latest2D.find(x=>x.name===state.selectedCity && x.front);
+      if(target){
+        // position inside wrap
+        const pad = 12;
+        const tw = 270; // approximate
+        const th = 130; // approximate
+        let left = target.x + 14;
+        let top = target.y - 12;
+
+        // clamp
+        left = Math.max(pad, Math.min(left, w - tw - pad));
+        top = Math.max(pad, Math.min(top, h - th - pad));
+
+        tip.style.left = left + "px";
+        tip.style.top = top + "px";
+      }
+    }
+
+    state.t += 0.0125;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  // Route pills
+  const root = document.getElementById("routePills");
+  if(root){
+    root.addEventListener("click",(e)=>{
+      const pill = e.target.closest(".routePill");
+      if(!pill) return;
+      root.querySelectorAll(".routePill").forEach(x=>x.classList.remove("active"));
+      pill.classList.add("active");
+      state.route = pill.getAttribute("data-route");
+      localStorage.setItem("bs_route", state.route);
+      refreshRouteNote(localStorage.getItem("bs_lang") || "en");
+    });
+  }
+
+  // Drag rotate
+  wrap.addEventListener("pointerdown",(e)=>{
+    state.isDown = true;
+    state.downX = e.clientX;
+    state.downRot = state.rotDrag;
+    state.moved = false;
+    wrap.setPointerCapture?.(e.pointerId);
+  });
+
+  wrap.addEventListener("pointermove",(e)=>{
+    if(!state.isDown) return;
+    const dx = e.clientX - state.downX;
+    state.rotDrag = state.downRot + (dx * 0.25); // degrees per px
+    if(Math.abs(dx) > 6) state.moved = true;
+  });
+
+  wrap.addEventListener("pointerup",(e)=>{
+    state.isDown = false;
+
+    // Treat as click if not moved much
+    if(!state.moved){
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Pick nearest FRONT city within threshold
+      let best = null;
+      let bestD = Infinity;
+      latest2D.forEach(p=>{
+        if(!p.front) return;
+        const dx = p.x - x, dy = p.y - y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if(d < bestD){
+          bestD = d;
+          best = p;
+        }
+      });
+
+      // threshold: scale with globe size
+      const thr = Math.max(14, rect.width * 0.045);
+
+      if(best && bestD <= thr){
+        state.selectedCity = best.name;
+        localStorage.setItem("bs_city", best.name);
+        showTip(best.name);
+      } else {
+        // click empty -> hide tip
+        tip.style.display = "none";
+      }
+    }
+
+    state.moved = false;
+  });
+
+  // On load: show selected city tooltip once
+  setTimeout(()=>{
+    showTip(state.selectedCity);
+  }, 250);
+}
+
         const canvas = document.getElementById("globe");
         if(!canvas) return;
         const ctx = canvas.getContext("2d", { alpha:true });
