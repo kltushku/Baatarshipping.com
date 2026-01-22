@@ -1,71 +1,329 @@
-<section class="section">
-  <h2 class="section-title">What we do</h2>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Baatar Shipping | Services</title>
 
-  <div class="service-grid">
-    <div class="service-card">
-      <div class="service-front">
-        <div class="icon"></div>
-        <h3>Freight</h3>
-        <span>Coordination</span>
+  <style>
+    :root{
+      --navy:#0b1c2d;
+      --gold:#c89b3c;
+      --steel:#4a6fa5;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#0b1c2d;
+      --muted:#5b6677;
+      --shadow:0 20px 45px rgba(11,28,45,.14);
+      --shadow2:0 35px 90px rgba(11,28,45,.22);
+      --r:22px;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* Top nav */
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 70px;}
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{display:flex; flex-direction:column; gap:4px;}
+    .brand b{letter-spacing:.08em; text-transform:uppercase; font-size:13px;}
+    .brand span{color:var(--muted); font-size:12px;}
+    nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+    nav a{
+      color:var(--muted); text-decoration:none; font-size:13px;
+      padding:8px 10px; border-radius:999px; border:1px solid transparent;
+      transition:.2s ease;
+    }
+    nav a:hover{border-color:rgba(11,28,45,.15); background:#fff;}
+    nav a.active{color:var(--text); border-color:rgba(11,28,45,.18); background:#fff;}
+
+    /* Hero */
+    .hero{
+      margin-top:18px;
+      border-radius:26px;
+      padding:44px 26px;
+      background: radial-gradient(1200px 500px at 10% 0%, rgba(200,155,60,.22), transparent 55%),
+                  radial-gradient(900px 450px at 95% 20%, rgba(74,111,165,.22), transparent 55%),
+                  linear-gradient(135deg, #ffffff 0%, #f6f9ff 100%);
+      box-shadow: var(--shadow);
+      border:1px solid rgba(11,28,45,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero h1{margin:0 0 10px; font-size:44px; letter-spacing:-.02em;}
+    .hero p{margin:0; max-width:62ch; color:var(--muted); font-size:15px;}
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+    .chip{
+      padding:8px 12px; border-radius:999px;
+      background:rgba(11,28,45,.06);
+      border:1px solid rgba(11,28,45,.10);
+      font-size:12px; color:var(--text);
+    }
+    .ctaRow{margin-top:22px; display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px; border-radius:999px; text-decoration:none;
+      font-weight:600; font-size:13px;
+      border:1px solid rgba(11,28,45,.18);
+      transition:.2s ease;
+    }
+    .btn.primary{background:var(--navy); color:#fff; border-color:transparent;}
+    .btn.primary:hover{filter:brightness(1.05); transform:translateY(-1px);}
+    .btn.ghost{background:#fff; color:var(--text);}
+    .btn.ghost:hover{transform:translateY(-1px); box-shadow:0 10px 25px rgba(11,28,45,.12);}
+
+    /* Section title */
+    .section{margin-top:48px;}
+    .section h2{margin:0 0 16px; font-size:22px;}
+    .sub{margin:0 0 18px; color:var(--muted); font-size:14px; max-width:70ch;}
+
+    /* Interactive service cards: front -> back on hover */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
+    .svc{
+      position:relative;
+      height:240px;
+      border-radius:var(--r);
+      background:var(--card);
+      border:1px solid rgba(11,28,45,.10);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      cursor:pointer;
+      transition:.35s ease;
+    }
+    .svc:hover{
+      transform:translateY(-10px) scale(1.01);
+      box-shadow:var(--shadow2);
+      border-color:rgba(200,155,60,.35);
+    }
+
+    .front,.back{
+      position:absolute; inset:0;
+      padding:22px;
+      display:flex; flex-direction:column;
+      justify-content:center; align-items:flex-start;
+      transition:.35s ease;
+    }
+    .front{gap:8px;}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; color:rgba(11,28,45,.70);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(135deg, var(--steel), var(--gold));
+      box-shadow:0 8px 18px rgba(200,155,60,.25);
+    }
+    .front h3{margin:0; font-size:18px;}
+    .front p{margin:0; color:var(--muted); font-size:13px; max-width:40ch;}
+
+    .back{
+      background:linear-gradient(135deg, var(--navy), #183a5c);
+      color:#fff;
+      opacity:0;
+      transform:translateY(18px);
+      gap:10px;
+    }
+    .back b{font-size:14px;}
+    .back ul{margin:0; padding-left:18px; opacity:.92; font-size:13px;}
+    .back li{margin:7px 0;}
+    .svc:hover .front{opacity:0; transform:translateY(-16px);}
+    .svc:hover .back{opacity:1; transform:translateY(0);}
+
+    /* Mobile: show both (no hover) */
+    @media (max-width: 820px){
+      .svc{height:auto;}
+      .front,.back{position:relative; inset:auto;}
+      .back{opacity:1; transform:none; border-radius:18px; margin-top:10px;}
+      .svc:hover .front{opacity:1; transform:none;}
+    }
+
+    /* CTA band */
+    .band{
+      margin-top:50px;
+      border-radius:26px;
+      padding:28px 22px;
+      background:linear-gradient(135deg, var(--navy), #14365a);
+      color:#fff;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      flex-wrap:wrap;
+      box-shadow:var(--shadow);
+    }
+    .band b{font-size:16px;}
+    .band span{opacity:.9; font-size:13px;}
+    .band .btn{border:1px solid rgba(255,255,255,.18);}
+    .band .btn.primary{background:var(--gold); color:#111;}
+    .band .btn.primary:hover{filter:brightness(1.03); transform:translateY(-1px);}
+
+    footer{
+      margin-top:48px;
+      color:var(--muted);
+      font-size:12px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <b>BAATAR SHIPPING</b>
+        <span>Moving Trade Forward</span>
       </div>
-      <div class="service-back">
-        Smart routing, partner alignment, and timeline control across borders.
-      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="services.html">Services</a>
+        <a href="index.html#coverage">Coverage</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
 
-    <div class="service-card">
-      <div class="service-front">
-        <div class="icon"></div>
-        <h3>Cross-Border</h3>
-        <span>Execution</span>
+    <section class="hero">
+      <h1>Services that feel fast</h1>
+      <p>Less reading, more clarity. Hover a card to reveal what we handle — designed for Mongolia ↔ China ↔ global movement.</p>
+      <div class="chips">
+        <div class="chip">Mongolia</div>
+        <div class="chip">China</div>
+        <div class="chip">Global partners</div>
       </div>
-      <div class="service-back">
-        Clean handovers between Mongolia, China, and global partners.
+      <div class="ctaRow">
+        <a class="btn primary" href="#quote">Request a quote</a>
+        <a class="btn ghost" href="https://wa.me/97699887055" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn ghost" href="viber://chat?number=%2B97699887055">Viber</a>
       </div>
-    </div>
+    </section>
 
-    <div class="service-card">
-      <div class="service-front">
-        <div class="icon"></div>
-        <h3>Status</h3>
-        <span>Updates</span>
-      </div>
-      <div class="service-back">
-        Proactive updates so you always know the next move.
-      </div>
-    </div>
+    <section class="section">
+      <h2>What we do</h2>
+      <p class="sub">Hover to reveal details. On mobile, details show automatically.</p>
 
-    <div class="service-card">
-      <div class="service-front">
-        <div class="icon"></div>
-        <h3>Documents</h3>
-        <span>Support</span>
-      </div>
-      <div class="service-back">
-        We help prevent delays caused by missing or incorrect documents.
-      </div>
-    </div>
+      <div class="grid">
+        <div class="svc">
+          <div class="front">
+            <div class="kicker"><span class="dot"></span> Core</div>
+            <h3>Freight coordination</h3>
+            <p>Route planning + partner alignment.</p>
+          </div>
+          <div class="back">
+            <b>We handle:</b>
+            <ul>
+              <li>Routing options (Mongolia ↔ China)</li>
+              <li>Partner / carrier coordination</li>
+              <li>Timeline & risk checks</li>
+            </ul>
+          </div>
+        </div>
 
-    <div class="service-card">
-      <div class="service-front">
-        <div class="icon"></div>
-        <h3>Smart</h3>
-        <span>Consolidation</span>
-      </div>
-      <div class="service-back">
-        Reduce cost through batching and timing optimization.
-      </div>
-    </div>
+        <div class="svc">
+          <div class="front">
+            <div class="kicker"><span class="dot"></span> Border</div>
+            <h3>Cross-border execution</h3>
+            <p>Clean handover, fewer surprises.</p>
+          </div>
+          <div class="back">
+            <b>We handle:</b>
+            <ul>
+              <li>Border handover coordination</li>
+              <li>Loading / unloading alignment</li>
+              <li>Exception handling</li>
+            </ul>
+          </div>
+        </div>
 
-    <div class="service-card">
-      <div class="service-front">
-        <div class="icon"></div>
-        <h3>Global</h3>
-        <span>Partners</span>
+        <div class="svc">
+          <div class="front">
+            <div class="kicker"><span class="dot"></span> Updates</div>
+            <h3>Status & communication</h3>
+            <p>Always know the next step.</p>
+          </div>
+          <div class="back">
+            <b>We handle:</b>
+            <ul>
+              <li>Milestone updates</li>
+              <li>Issue alerts + resolution plan</li>
+              <li>Delivery confirmation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="svc">
+          <div class="front">
+            <div class="kicker"><span class="dot"></span> Docs</div>
+            <h3>Documentation support</h3>
+            <p>Reduce delays from mistakes.</p>
+          </div>
+          <div class="back">
+            <b>We handle:</b>
+            <ul>
+              <li>Document checklist per route</li>
+              <li>Data validation (weights, codes)</li>
+              <li>Handover packs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="svc">
+          <div class="front">
+            <div class="kicker"><span class="dot"></span> Cost</div>
+            <h3>Consolidation planning</h3>
+            <p>Smarter batching + timing.</p>
+          </div>
+          <div class="back">
+            <b>We handle:</b>
+            <ul>
+              <li>Consolidation strategy</li>
+              <li>Cut-off and scheduling</li>
+              <li>Priority split options</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="svc">
+          <div class="front">
+            <div class="kicker"><span class="dot"></span> Global</div>
+            <h3>Partner logistics</h3>
+            <p>Extended reach via partners.</p>
+          </div>
+          <div class="back">
+            <b>We handle:</b>
+            <ul>
+              <li>Overseas pickup / delivery coordination</li>
+              <li>Cross-trade support</li>
+              <li>Multi-leg tracking alignment</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="service-back">
-        Extended reach via trusted overseas logistics partners.
+    </section>
+
+    <section class="band" id="quote">
+      <div>
+        <b>Need a quick quote?</b><br/>
+        <span>Send route + cargo details — we reply fast.</span>
       </div>
-    </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn primary" href="https://wa.me/97699887055" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn ghost" href="viber://chat?number=%2B97699887055">Viber</a>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 Baatar Shipping. All rights reserved.</div>
+      <div>Moving Trade Forward</div>
+    </footer>
   </div>
-</section>
+</body>
+</html>
