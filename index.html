@@ -202,18 +202,16 @@
       position:relative;
       overflow:hidden;
       will-change: transform;
+      color: var(--text);
+      background: rgba(255,255,255,.85);
     }
+    [data-theme="dark"] .btn{ background: rgba(255,255,255,.10); }
     .btn.primary{
       background: linear-gradient(135deg, var(--navy), var(--navy2));
       border-color:transparent;
       color:#fff;
     }
     .btn.primary:hover{ transform:translateY(-2px); box-shadow:0 18px 50px rgba(11,28,45,.20); filter:brightness(1.05) }
-    .btn.ghost{
-      background: rgba(255,255,255,.85);
-      color: var(--text);
-    }
-    [data-theme="dark"] .btn.ghost{ background: rgba(255,255,255,.10); }
     .btn.ghost:hover{ transform:translateY(-2px); box-shadow:0 18px 50px rgba(11,28,45,.12) }
 
     /* Ripple on click */
@@ -233,6 +231,8 @@
       width: 260px; height: 260px;
       transition: width .35s ease, height .35s ease;
     }
+
+    .mini{ margin-top:10px; color:var(--muted); font-size:12.5px; }
 
     /* Right visual */
     .heroVisual{
@@ -579,7 +579,236 @@
       margin-top:4px;
     }
 
-    /* Responsive */
+    /* ---------------- NEW: GLOBE + LEARNING + CBM ---------------- */
+    .learnGrid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:stretch;
+    }
+
+    .globeCard{
+      border-radius:22px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      padding:16px;
+      box-shadow:0 14px 34px rgba(11,28,45,.07);
+      overflow:hidden;
+      position:relative;
+    }
+    [data-theme="dark"] .globeCard{ background: rgba(255,255,255,.06); }
+
+    .globeTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .globeTop h3{margin:0; font-size:14px}
+    .globeHint{margin:6px 0 0; color:var(--muted); font-size:12.5px; max-width:58ch}
+    .globeWrap{
+      margin-top:10px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:
+        radial-gradient(520px 240px at 15% 20%, rgba(255,79,216,.11), transparent 60%),
+        radial-gradient(520px 240px at 90% 20%, rgba(71,230,177,.10), transparent 60%),
+        radial-gradient(420px 240px at 55% 10%, rgba(200,155,60,.09), transparent 60%),
+        rgba(255,255,255,.55);
+      overflow:hidden;
+      position:relative;
+      aspect-ratio: 1 / 1;
+      display:flex; align-items:center; justify-content:center;
+    }
+    [data-theme="dark"] .globeWrap{ background: rgba(255,255,255,.05); }
+
+    #globe{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    .routePills{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .routePill{
+      font-size:12px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(11,28,45,.04);
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      user-select:none;
+    }
+    [data-theme="dark"] .routePill{ background: rgba(255,255,255,.06); }
+    .routePill:hover{ transform: translateY(-2px); box-shadow:0 14px 28px rgba(11,28,45,.10) }
+    .routePill.active{
+      background: rgba(200,155,60,.16);
+      border-color: rgba(200,155,60,.50);
+      box-shadow:0 16px 34px rgba(200,155,60,.12);
+    }
+
+    .incotermsGrid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .termRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .termBtn{
+      font-size:12px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.85);
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      color: var(--text);
+    }
+    [data-theme="dark"] .termBtn{ background: rgba(255,255,255,.08); }
+    .termBtn:hover{ transform: translateY(-2px); box-shadow:0 14px 28px rgba(11,28,45,.10) }
+    .termBtn.active{
+      background: rgba(71,230,177,.14);
+      border-color: rgba(71,230,177,.45);
+      box-shadow:0 16px 34px rgba(71,230,177,.10);
+    }
+
+    .termPanel{
+      border-radius:22px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.86);
+      padding:16px;
+    }
+    [data-theme="dark"] .termPanel{ background: rgba(255,255,255,.06); }
+
+    .termTitle{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .termTitle b{font-size:14px}
+    .termTitle .tag{ margin:0; }
+
+    .termExplain{
+      margin:8px 0 0;
+      color: var(--muted);
+      font-size:12.5px;
+      line-height:1.45;
+      max-width:78ch;
+    }
+
+    .timeline{
+      margin-top:12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(11,28,45,.03);
+      padding:12px;
+    }
+    [data-theme="dark"] .timeline{ background: rgba(255,255,255,.05); }
+
+    .tlHead{
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      font-size:11px; color: var(--muted);
+      margin-bottom:8px;
+    }
+
+    .bar{
+      height:12px;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.55);
+      display:flex;
+    }
+    [data-theme="dark"] .bar{ background: rgba(255,255,255,.06); }
+
+    .seg{ height:100%; }
+    .seg.seller{ background: linear-gradient(90deg, rgba(74,111,165,.65), rgba(200,155,60,.55)); }
+    .seg.buyer{ background: linear-gradient(90deg, rgba(255,79,216,.45), rgba(71,230,177,.40)); opacity:.92; }
+
+    .legend{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:10px; font-size:11px; color: var(--muted);
+    }
+    .lg{
+      display:inline-flex; align-items:center; gap:7px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.60);
+    }
+    [data-theme="dark"] .lg{ background: rgba(255,255,255,.06); }
+    .sw{width:10px;height:10px;border-radius:50%}
+    .sw.seller{ background: rgba(74,111,165,.75); }
+    .sw.buyer{ background: rgba(255,79,216,.55); }
+
+    .steps{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap:8px;
+    }
+    .step{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:10px 10px;
+      background: rgba(255,255,255,.62);
+      min-height:66px;
+    }
+    [data-theme="dark"] .step{ background: rgba(255,255,255,.06); }
+    .step b{ font-size:11px; display:block; }
+    .step span{ font-size:11px; color: var(--muted); display:block; margin-top:4px; line-height:1.35; }
+
+    /* CBM */
+    .cbmGrid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap:10px;
+    }
+    .cbmGrid .full{ grid-column: 1 / -1; }
+    .cbmGrid .span2{ grid-column: span 2; }
+    .cbmGrid .span3{ grid-column: span 3; }
+    .cbmGrid .span1{ grid-column: span 1; }
+
+    .resultBox{
+      margin-top:12px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      padding:14px;
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    [data-theme="dark"] .resultBox{ background: rgba(255,255,255,.06); }
+
+    .bigNum{
+      font-size:24px;
+      font-weight:800;
+      letter-spacing:-.02em;
+      background: linear-gradient(135deg, var(--navy), var(--steel));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    [data-theme="dark"] .bigNum{
+      background: linear-gradient(135deg, rgba(71,230,177,.85), rgba(255,79,216,.75));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .smallNums{
+      display:flex; gap:10px; flex-wrap:wrap;
+      color: var(--muted);
+      font-size:12px;
+    }
+    .smallNums .tag{ background: rgba(11,28,45,.03); }
+    [data-theme="dark"] .smallNums .tag{ background: rgba(255,255,255,.06); }
+
     @media (max-width: 980px){
       .heroGrid{grid-template-columns:1fr; padding:32px 18px}
       .heroVisual{height:240px}
@@ -587,6 +816,10 @@
       .coverageGrid{grid-template-columns:1fr}
       .panelGrid{grid-template-columns:1fr}
       .form{grid-template-columns:1fr}
+      .learnGrid{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr; }
+      .cbmGrid{ grid-template-columns: 1fr 1fr; }
+      .cbmGrid .span2, .cbmGrid .span3, .cbmGrid .span1{ grid-column: auto; }
     }
   </style>
 </head>
@@ -603,6 +836,7 @@
       <div class="nav" aria-label="Primary navigation">
         <a href="#services" data-i18n="navServices">Services</a>
         <a href="#coverage" data-i18n="navCoverage">Coverage</a>
+        <a href="#learning" data-i18n="navLearning">Learning</a>
         <a href="#contact" data-i18n="navContact">Contact</a>
         <a href="about.html" data-i18n="navAbout">About</a>
         <a href="services.html" data-i18n="navServicesPage">Services Page</a>
@@ -759,7 +993,7 @@
       </div>
     </section>
 
-    <!-- COVERAGE -->
+    <!-- COVERAGE (now includes animated globe) -->
     <section class="section reveal" id="coverage">
       <div class="sectionCard">
         <div class="headRow">
@@ -769,33 +1003,173 @@
           </div>
         </div>
 
-        <div class="coverageGrid stagger">
-          <div class="covCard">
-            <div class="covTop">
-              <h3 data-i18n="covCoreTitle">Core Routes</h3>
-              <span class="tag" data-i18n="covCoreTag">MNG ↔ CHN</span>
+        <div class="learnGrid stagger" style="margin-top:16px;">
+          <!-- LEFT: your existing coverage cards -->
+          <div>
+            <div class="coverageGrid" style="margin-top:0;">
+              <div class="covCard">
+                <div class="covTop">
+                  <h3 data-i18n="covCoreTitle">Core Routes</h3>
+                  <span class="tag" data-i18n="covCoreTag">MNG ↔ CHN</span>
+                </div>
+                <div class="covChips" id="coreChips">
+                  <div class="covChip active" data-note="core1" data-i18n="covChip1">UB ↔ Erenhot</div>
+                  <div class="covChip" data-note="core2" data-i18n="covChip2">Zamiin-Uud ↔ China</div>
+                  <div class="covChip" data-note="core3" data-i18n="covChip3">Rail / Road options</div>
+                </div>
+                <div class="covNote" id="coreNote"></div>
+              </div>
+
+              <div class="covCard">
+                <div class="covTop">
+                  <h3 data-i18n="covGlobalTitle">Global Reach</h3>
+                  <span class="tag" data-i18n="covGlobalTag">Partners</span>
+                </div>
+                <div class="covChips" id="globalChips">
+                  <div class="covChip active" data-note="g1" data-i18n="covChip4">Overseas pickup</div>
+                  <div class="covChip" data-note="g2" data-i18n="covChip5">Cross-trade</div>
+                  <div class="covChip" data-note="g3" data-i18n="covChip6">Multi-leg tracking</div>
+                </div>
+                <div class="covNote" id="globalNote"></div>
+              </div>
             </div>
-            <div class="covChips" id="coreChips">
-              <div class="covChip active" data-note="core1" data-i18n="covChip1">UB ↔ Erenhot</div>
-              <div class="covChip" data-note="core2" data-i18n="covChip2">Zamiin-Uud ↔ China</div>
-              <div class="covChip" data-note="core3" data-i18n="covChip3">Rail / Road options</div>
-            </div>
-            <div class="covNote" id="coreNote"></div>
           </div>
 
-          <div class="covCard">
-            <div class="covTop">
-              <h3 data-i18n="covGlobalTitle">Global Reach</h3>
-              <span class="tag" data-i18n="covGlobalTag">Partners</span>
+          <!-- RIGHT: animated globe -->
+          <div class="globeCard">
+            <div class="globeTop">
+              <div>
+                <h3 data-i18n="globeTitle">Live Coverage Map</h3>
+                <div class="globeHint" data-i18n="globeSub">
+                  A lightweight animated globe. Select routes to highlight trade lanes.
+                </div>
+              </div>
+              <span class="tag" data-i18n="globeTag">Interactive</span>
             </div>
-            <div class="covChips" id="globalChips">
-              <div class="covChip active" data-note="g1" data-i18n="covChip4">Overseas pickup</div>
-              <div class="covChip" data-note="g2" data-i18n="covChip5">Cross-trade</div>
-              <div class="covChip" data-note="g3" data-i18n="covChip6">Multi-leg tracking</div>
+
+            <div class="globeWrap" aria-hidden="true">
+              <canvas id="globe" width="640" height="640"></canvas>
             </div>
-            <div class="covNote" id="globalNote"></div>
+
+            <div class="routePills" id="routePills">
+              <div class="routePill active" data-route="mngchn" data-i18n="route1">MNG ↔ CHN</div>
+              <div class="routePill" data-route="asiaeu" data-i18n="route2">Asia ↔ EU</div>
+              <div class="routePill" data-route="global" data-i18n="route3">Global network</div>
+            </div>
+
+            <div class="covNote" id="routeNote" style="margin-top:10px;"></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- NEW: LEARNING (Incoterms + CBM) -->
+    <section class="section reveal" id="learning">
+      <div class="sectionCard">
+        <div class="headRow">
+          <div>
+            <h2 data-i18n="learningTitle">Learning Tools</h2>
+            <p class="sub" data-i18n="learningSub">Incoterms® 2020 comparison + quick CBM calculator for faster quoting.</p>
+          </div>
+        </div>
+
+        <!-- Incoterms -->
+        <div class="incotermsGrid">
+          <div class="termPanel">
+            <div class="termTitle">
+              <b data-i18n="incTitle">Incoterms® 2020 — responsibility split</b>
+              <span class="tag" data-i18n="incTag">Clear visual</span>
+            </div>
+            <div class="termExplain" data-i18n="incSub">
+              Select a term. The timeline shows who handles each stage (Seller vs Buyer). Use this as a learning guide (always confirm contract specifics).
+            </div>
+
+            <div class="termRow" id="termRow">
+              <button class="termBtn active" type="button" data-term="EXW">EXW</button>
+              <button class="termBtn" type="button" data-term="FOB">FOB</button>
+              <button class="termBtn" type="button" data-term="CIF">CIF</button>
+              <button class="termBtn" type="button" data-term="DAP">DAP</button>
+              <button class="termBtn" type="button" data-term="DDP">DDP</button>
+            </div>
+
+            <div class="timeline" id="termPanel">
+              <div class="tlHead">
+                <span data-i18n="tlSeller">Seller</span>
+                <span data-i18n="tlBuyer">Buyer</span>
+              </div>
+
+              <div class="bar" aria-label="Responsibility bar">
+                <div class="seg seller" id="segSeller" style="width:40%"></div>
+                <div class="seg buyer" id="segBuyer" style="width:60%"></div>
+              </div>
+
+              <div class="legend">
+                <span class="lg"><span class="sw seller"></span><span data-i18n="legendSeller">Seller handles</span></span>
+                <span class="lg"><span class="sw buyer"></span><span data-i18n="legendBuyer">Buyer handles</span></span>
+              </div>
+
+              <div class="steps" id="termSteps" aria-label="Steps breakdown">
+                <!-- Filled by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- CBM Calculator -->
+          <div class="termPanel">
+            <div class="termTitle">
+              <b data-i18n="cbmTitle">CBM Calculator</b>
+              <span class="tag" data-i18n="cbmTag">Instant</span>
+            </div>
+            <div class="termExplain" data-i18n="cbmSub">
+              Enter dimensions for one carton, then cartons count. Switch units as needed.
+            </div>
+
+            <div class="cbmGrid" id="cbmForm" style="margin-top:12px;">
+              <div class="span1">
+                <label data-i18n="cbmL">Length</label>
+                <input id="cbmL" type="number" inputmode="decimal" placeholder="0" />
+              </div>
+              <div class="span1">
+                <label data-i18n="cbmW">Width</label>
+                <input id="cbmW" type="number" inputmode="decimal" placeholder="0" />
+              </div>
+              <div class="span1">
+                <label data-i18n="cbmH">Height</label>
+                <input id="cbmH" type="number" inputmode="decimal" placeholder="0" />
+              </div>
+              <div class="span1">
+                <label data-i18n="cbmC">Cartons</label>
+                <input id="cbmC" type="number" inputmode="numeric" value="1" min="1"/>
+              </div>
+
+              <div class="span2">
+                <label data-i18n="cbmUnit">Unit</label>
+                <select id="cbmUnit">
+                  <option value="cm" data-i18n="uCM">Centimeters (cm)</option>
+                  <option value="m" data-i18n="uM">Meters (m)</option>
+                  <option value="in" data-i18n="uIN">Inches (in)</option>
+                </select>
+              </div>
+
+              <div class="full resultBox">
+                <div>
+                  <div class="bigNum" id="cbmOut">0.000 CBM</div>
+                  <div class="smallNote" data-i18n="cbmNote">CBM = (L × W × H) × cartons</div>
+                </div>
+                <div class="smallNums">
+                  <span class="tag" id="cbmEach">Each: 0.000</span>
+                  <span class="tag" id="cbmCft">0.00 ft³</span>
+                </div>
+              </div>
+
+              <div class="full smallNote" data-i18n="cbmHint">
+                Tip: For air freight, volumetric weight is often based on cm³ / 6000 (carrier rules vary).
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -901,7 +1275,7 @@
       const dict = {
         en: {
           tagline:"Moving Trade Forward",
-          navServices:"Services", navCoverage:"Coverage", navContact:"Contact", navAbout:"About", navServicesPage:"Services Page",
+          navServices:"Services", navCoverage:"Coverage", navLearning:"Learning", navContact:"Contact", navAbout:"About", navServicesPage:"Services Page",
           heroKicker:"Cross-border logistics coordination",
           heroTitle:"Mongolia ↔ China ↔ Global Logistics",
           heroSub:"Reliable logistics coordination for cross-border and international trade — clear communication, fast execution, trusted partners.",
@@ -909,6 +1283,7 @@
           ctaPrimary:"Request a quote",
           heroMini:"Practical, calm, dependable — built for long-term trade.",
           heroBadge:"Mongolia ↔ China ↔ Global",
+
           servicesTitle:"Services",
           servicesSub:"Tap a service to see what’s included — designed to reduce risk and increase speed.",
           tab1:"Freight", tab2:"Cross-border", tab3:"Documents",
@@ -921,15 +1296,46 @@
           p3Title:"Documentation support (reduce preventable delays)",
           p3aTitle:"Checklist by route", p3aText:"Simple checklist to avoid missing or wrong docs.",
           p3bTitle:"Validation", p3bText:"Weights, codes, names — confirm before shipment.",
+
           svcCard1:"See full Services page", svcCard1Sub:"Interactive details, quote shortcuts, and process overview.",
           svcCard2:"Fast quoting", svcCard2Sub:"Send route + cargo details — we reply quickly with next steps.",
           svcCard3:"Clean communication", svcCard3Sub:"No confusion, no silence — clear updates at every stage.",
+          tagPlanning:"Planning", tagCoordination:"Coordination", tagSpeed:"Speed", tagRisk:"Risk", tagAccuracy:"Accuracy", tagClarity:"Clarity",
+          tagExplore:"Explore", tagUpdates:"Updates", tagTrusted:"Trusted",
+
           coverageTitle:"Coverage",
           coverageSub:"Tap a route chip. We’ll show what that coverage means.",
           covCoreTitle:"Core Routes", covCoreTag:"MNG ↔ CHN",
           covGlobalTitle:"Global Reach", covGlobalTag:"Partners",
           covChip1:"UB ↔ Erenhot", covChip2:"Zamiin-Uud ↔ China", covChip3:"Rail / Road options",
           covChip4:"Overseas pickup", covChip5:"Cross-trade", covChip6:"Multi-leg tracking",
+
+          globeTitle:"Live Coverage Map",
+          globeSub:"A lightweight animated globe. Select routes to highlight trade lanes.",
+          globeTag:"Interactive",
+          route1:"MNG ↔ CHN",
+          route2:"Asia ↔ EU",
+          route3:"Global network",
+
+          learningTitle:"Learning Tools",
+          learningSub:"Incoterms® 2020 comparison + quick CBM calculator for faster quoting.",
+
+          incTitle:"Incoterms® 2020 — responsibility split",
+          incTag:"Clear visual",
+          incSub:"Select a term. The timeline shows who handles each stage (Seller vs Buyer). Use this as a learning guide (always confirm contract specifics).",
+          tlSeller:"Seller",
+          tlBuyer:"Buyer",
+          legendSeller:"Seller handles",
+          legendBuyer:"Buyer handles",
+
+          cbmTitle:"CBM Calculator",
+          cbmTag:"Instant",
+          cbmSub:"Enter dimensions for one carton, then cartons count. Switch units as needed.",
+          cbmL:"Length", cbmW:"Width", cbmH:"Height", cbmC:"Cartons", cbmUnit:"Unit",
+          uCM:"Centimeters (cm)", uM:"Meters (m)", uIN:"Inches (in)",
+          cbmNote:"CBM = (L × W × H) × cartons",
+          cbmHint:"Tip: For air freight, volumetric weight is often based on cm³ / 6000 (carrier rules vary).",
+
           contactTitle:"Contact",
           contactSub:"Message us with route + cargo details + timeline. We reply quickly.",
           contactBandTitle:"Need a quick quote?",
@@ -943,9 +1349,10 @@
           send:"Send request",
           privacy:"We only use this info to reply to your request."
         },
+
         mn: {
           tagline:"Худалдааг урагшлуулна",
-          navServices:"Үйлчилгээ", navCoverage:"Хамрах хүрээ", navContact:"Холбоо барих", navAbout:"Бидний тухай", navServicesPage:"Үйлчилгээ (хуудас)",
+          navServices:"Үйлчилгээ", navCoverage:"Хамрах хүрээ", navLearning:"Суралцах", navContact:"Холбоо барих", navAbout:"Бидний тухай", navServicesPage:"Үйлчилгээ (хуудас)",
           heroKicker:"Хил дамнасан ложистикийн зохицуулалт",
           heroTitle:"Монгол ↔ Хятад ↔ Дэлхий Ложистик",
           heroSub:"Хил дамнасан болон олон улсын тээвэрт — ойлгомжтой харилцаа, хурдан гүйцэтгэл, найдвартай түншлэл.",
@@ -953,6 +1360,7 @@
           ctaPrimary:"Үнийн санал авах",
           heroMini:"Практик, тайван, найдвартай — урт хугацааны худалдаанд.",
           heroBadge:"Монгол ↔ Хятад ↔ Дэлхий",
+
           servicesTitle:"Үйлчилгээ",
           servicesSub:"Үйлчилгээг дарж дэлгэрэнгүйг үзээрэй — эрсдэл бууруулж, хурдыг нэмэгдүүлнэ.",
           tab1:"Тээвэр", tab2:"Хил дамнасан", tab3:"Баримт бичиг",
@@ -965,15 +1373,46 @@
           p3Title:"Баримт бичгийн дэмжлэг (урьдчилан сэргийлэх саатлыг бууруулна)",
           p3aTitle:"Маршрут бүрийн checklist", p3aText:"Дутуу/буруу баримтаас үүсэх эрсдэлийг багасгана.",
           p3bTitle:"Шалгалт, баталгаажуулалт", p3bText:"Жин, код, нэр — ачихаас өмнө баталгаажуулна.",
+
           svcCard1:"Үйлчилгээний хуудсыг үзэх", svcCard1Sub:"Интерактив дэлгэрэнгүй, үнийн санал, процесс.",
           svcCard2:"Хурдан санал", svcCard2Sub:"Маршрут + ачааны мэдээлэл илгээ — хурдан хариу өгнө.",
           svcCard3:"Тод харилцаа", svcCard3Sub:"Төөрөгдөлгүй — шат бүр дээр ойлгомжтой мэдэгдэл.",
+          tagPlanning:"Төлөвлөлт", tagCoordination:"Зохицуулалт", tagSpeed:"Хурд", tagRisk:"Эрсдэл", tagAccuracy:"Нарийвчлал", tagClarity:"Тодорхой",
+          tagExplore:"Судлах", tagUpdates:"Мэдээлэл", tagTrusted:"Итгэлтэй",
+
           coverageTitle:"Хамрах хүрээ",
           coverageSub:"Чип дээр дар — хамрах хүрээг товч тайлбарлана.",
           covCoreTitle:"Үндсэн чиглэл", covCoreTag:"МН ↔ ХН",
           covGlobalTitle:"Дэлхийн хамрах хүрээ", covGlobalTag:"Түншлэл",
           covChip1:"УБ ↔ Эрээний", covChip2:"Замын-Үүд ↔ Хятад", covChip3:"Төмөр зам / Авто сонголт",
           covChip4:"Гадаад pickup", covChip5:"Cross-trade", covChip6:"Олон шатны tracking",
+
+          globeTitle:"Хамрах хүрээний зураг",
+          globeSub:"Хөнгөн canvas globe. Чиглэл сонгоход trade lane тодорно.",
+          globeTag:"Интерактив",
+          route1:"МН ↔ ХН",
+          route2:"Ази ↔ Европ",
+          route3:"Дэлхийн сүлжээ",
+
+          learningTitle:"Суралцах хэрэгсэл",
+          learningSub:"Incoterms® 2020 харьцуулалт + хурдан CBM тооцоолуур.",
+
+          incTitle:"Incoterms® 2020 — хариуцлагын хуваарилалт",
+          incTag:"Хялбар дүрслэл",
+          incSub:"Нэр томьёо сонго. Timeline нь аль шатанд ХУДАЛДАГЧ/ХУДАЛДАН АВАГЧ хариуцахыг харуулна (гэрээгээрээ баталгаажуулна уу).",
+          tlSeller:"Худалдагч",
+          tlBuyer:"Худалдан авагч",
+          legendSeller:"Худалдагч хариуцна",
+          legendBuyer:"Худалдан авагч хариуцна",
+
+          cbmTitle:"CBM тооцоолуур",
+          cbmTag:"Шууд",
+          cbmSub:"Нэг хайрцгийн хэмжээс оруулаад, хайрцагны тоог нэм. Нэгжийг сольж болно.",
+          cbmL:"Урт", cbmW:"Өргөн", cbmH:"Өндөр", cbmC:"Хайрцаг", cbmUnit:"Нэгж",
+          uCM:"Сантиметр (cm)", uM:"Метр (m)", uIN:"Инч (in)",
+          cbmNote:"CBM = (Урт × Өргөн × Өндөр) × хайрцаг",
+          cbmHint:"Зөвлөгөө: Air freight-д volumetric weight нь ихэвчлэн cm³ / 6000 (carrier-ээс хамаарч өөр).",
+
           contactTitle:"Холбоо барих",
           contactSub:"Маршрут + ачаа + хугацаа илгээ — хурдан хариу өгнө.",
           contactBandTitle:"Үнийн санал хурдан авах уу?",
@@ -1009,6 +1448,20 @@
         }
       };
 
+      // Route notes for globe pills
+      const routeNotes = {
+        en: {
+          mngchn:"Core lanes focusing on Mongolia ↔ China: border handover, timing, clean docs.",
+          asiaeu:"Multi-leg lanes across Asia ↔ Europe via partner network (road/rail/ocean/air).",
+          global:"Flexible global lanes — pickup, cross-trade, and end-to-end coordination."
+        },
+        mn: {
+          mngchn:"Монгол ↔ Хятад: хил дээрх дамжуулалт, хугацаа, баримт бичгийн цэвэр зохицуулалт.",
+          asiaeu:"Ази ↔ Европ олон шаттай чиглэл — түншийн сүлжээгээр (авто/төмөр зам/усан/агаар).",
+          global:"Дэлхийн уян хатан сүлжээ — pickup, cross-trade, эхлэлээс төгсгөл хүртэл."
+        }
+      };
+
       function setLang(lang){
         localStorage.setItem("bs_lang", lang);
         document.documentElement.lang = (lang === "mn") ? "mn" : "en";
@@ -1019,6 +1472,9 @@
         document.getElementById("lang-en").classList.toggle("active", lang==="en");
         document.getElementById("lang-mn").classList.toggle("active", lang==="mn");
         refreshCoverageNotes(lang);
+        refreshRouteNote(lang);
+        refreshIncotermsText(lang);
+        refreshCBMLabels(lang);
       }
 
       function setTheme(theme){
@@ -1183,7 +1639,488 @@ Notes: ${notesTxt}`.trim();
         });
       }
 
-      // Boot
+      /* ---------------- NEW FEATURE: Animated Globe ---------------- */
+      function initGlobe(){
+        const canvas = document.getElementById("globe");
+        if(!canvas) return;
+        const ctx = canvas.getContext("2d", { alpha:true });
+
+        // HiDPI
+        function fit(){
+          const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+          const cssSize = canvas.getBoundingClientRect();
+          const s = Math.floor(Math.min(cssSize.width, cssSize.height));
+          canvas.width = Math.floor(s * dpr);
+          canvas.height = Math.floor(s * dpr);
+          ctx.setTransform(dpr,0,0,dpr,0,0);
+        }
+        fit();
+        window.addEventListener("resize", fit);
+
+        const state = {
+          route: localStorage.getItem("bs_route") || "mngchn",
+          t: 0
+        };
+
+        // Simple lat/lon points for visual anchors (not a “real map”, but feels like a globe)
+        const points = [
+          {name:"Ulaanbaatar", lat:47.9, lon:106.9},
+          {name:"Erenhot", lat:43.65, lon:111.98},
+          {name:"Beijing", lat:39.9, lon:116.4},
+          {name:"Tianjin", lat:39.1, lon:117.2},
+          {name:"Istanbul", lat:41.0, lon:28.9},
+          {name:"Frankfurt", lat:50.1, lon:8.6},
+          {name:"Singapore", lat:1.35, lon:103.8},
+          {name:"Busan", lat:35.1, lon:129.0}
+        ];
+
+        const routes = {
+          mngchn: [
+            ["Ulaanbaatar","Erenhot"],
+            ["Erenhot","Beijing"],
+            ["Beijing","Tianjin"]
+          ],
+          asiaeu: [
+            ["Busan","Singapore"],
+            ["Singapore","Istanbul"],
+            ["Istanbul","Frankfurt"]
+          ],
+          global: [
+            ["Ulaanbaatar","Singapore"],
+            ["Beijing","Frankfurt"],
+            ["Busan","Istanbul"]
+          ]
+        };
+
+        function project(lat, lon, rot){
+          // lat/lon to 3D unit sphere
+          const phi = (90 - lat) * Math.PI/180;
+          const theta = (lon + rot) * Math.PI/180;
+          const x = Math.sin(phi) * Math.cos(theta);
+          const y = Math.cos(phi);
+          const z = Math.sin(phi) * Math.sin(theta);
+          return {x,y,z};
+        }
+
+        function findPoint(name){
+          return points.find(p=>p.name===name);
+        }
+
+        function draw(){
+          const w = canvas.getBoundingClientRect().width;
+          const h = canvas.getBoundingClientRect().height;
+          const cx = w/2, cy = h/2;
+          const R = Math.min(w,h)*0.38;
+
+          ctx.clearRect(0,0,w,h);
+
+          // Back glow
+          const grd = ctx.createRadialGradient(cx, cy, R*0.2, cx, cy, R*1.25);
+          grd.addColorStop(0, "rgba(71,230,177,.14)");
+          grd.addColorStop(0.45, "rgba(200,155,60,.10)");
+          grd.addColorStop(1, "rgba(255,79,216,0)");
+          ctx.fillStyle = grd;
+          ctx.beginPath();
+          ctx.arc(cx,cy,R*1.25,0,Math.PI*2);
+          ctx.fill();
+
+          // Globe body
+          const g2 = ctx.createRadialGradient(cx - R*0.25, cy - R*0.25, R*0.2, cx, cy, R);
+          const dark = document.documentElement.getAttribute("data-theme")==="dark";
+          g2.addColorStop(0, dark ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.75)");
+          g2.addColorStop(1, dark ? "rgba(255,255,255,.03)" : "rgba(255,255,255,.38)");
+          ctx.fillStyle = g2;
+          ctx.strokeStyle = dark ? "rgba(255,255,255,.18)" : "rgba(11,28,45,.10)";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(cx,cy,R,0,Math.PI*2);
+          ctx.fill();
+          ctx.stroke();
+
+          // Lat lines
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(cx,cy,R,0,Math.PI*2);
+          ctx.clip();
+          ctx.strokeStyle = dark ? "rgba(255,255,255,.10)" : "rgba(11,28,45,.08)";
+          for(let i=-60;i<=60;i+=20){
+            const yy = cy + (i/90)*R*0.9;
+            ctx.beginPath();
+            ctx.ellipse(cx, yy, R*0.95, R*0.25, 0, 0, Math.PI*2);
+            ctx.stroke();
+          }
+          // Lon lines
+          for(let i=0;i<12;i++){
+            const ang = (i/12)*Math.PI*2 + state.t*0.15;
+            ctx.beginPath();
+            ctx.ellipse(cx, cy, R*Math.abs(Math.cos(ang)), R, 0, 0, Math.PI*2);
+            ctx.stroke();
+          }
+
+          // Draw points + routes
+          const rot = state.t*18; // degrees
+          const lane = routes[state.route] || [];
+
+          function to2D(p3){
+            const x = cx + p3.x * R;
+            const y = cy + p3.y * R;
+            const front = p3.z > 0;
+            const a = front ? 1 : 0.25;
+            return {x,y,front,a,z:p3.z};
+          }
+
+          // Routes
+          lane.forEach(([aName,bName], idx)=>{
+            const a = findPoint(aName), b = findPoint(bName);
+            if(!a||!b) return;
+
+            const A3 = project(a.lat,a.lon,rot);
+            const B3 = project(b.lat,b.lon,rot);
+
+            const A = to2D(A3), B = to2D(B3);
+            const alpha = Math.min(A.a, B.a);
+
+            // Curved arc
+            const mx = (A.x+B.x)/2;
+            const my = (A.y+B.y)/2 - R*0.18;
+            ctx.strokeStyle = `rgba(200,155,60,${0.25 + alpha*0.55})`;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(A.x,A.y);
+            ctx.quadraticCurveTo(mx,my,B.x,B.y);
+            ctx.stroke();
+
+            // Neon highlight
+            ctx.strokeStyle = `rgba(71,230,177,${0.12 + alpha*0.35})`;
+            ctx.lineWidth = 1.6;
+            ctx.beginPath();
+            ctx.moveTo(A.x,A.y);
+            ctx.quadraticCurveTo(mx,my,B.x,B.y);
+            ctx.stroke();
+
+            // Moving dot along arc
+            const tt = (state.t*0.28 + idx*0.22) % 1;
+            const qx = (1-tt)*(1-tt)*A.x + 2*(1-tt)*tt*mx + tt*tt*B.x;
+            const qy = (1-tt)*(1-tt)*A.y + 2*(1-tt)*tt*my + tt*tt*B.y;
+
+            ctx.fillStyle = `rgba(255,79,216,${0.35 + alpha*0.55})`;
+            ctx.beginPath();
+            ctx.arc(qx,qy,3.2,0,Math.PI*2);
+            ctx.fill();
+          });
+
+          // Points
+          points.forEach(p=>{
+            const P3 = project(p.lat,p.lon,rot);
+            const P = to2D(P3);
+            const r = P.front ? 3.6 : 2.2;
+            ctx.fillStyle = `rgba(74,111,165,${0.20 + P.a*0.70})`;
+            ctx.beginPath();
+            ctx.arc(P.x,P.y,r,0,Math.PI*2);
+            ctx.fill();
+
+            if(P.front){
+              ctx.strokeStyle = `rgba(255,79,216,${0.10 + P.a*0.25})`;
+              ctx.beginPath();
+              ctx.arc(P.x,P.y,r+5,0,Math.PI*2);
+              ctx.stroke();
+            }
+          });
+
+          ctx.restore();
+
+          state.t += 0.0125;
+          requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        // Route pills
+        const root = document.getElementById("routePills");
+        if(root){
+          root.addEventListener("click",(e)=>{
+            const pill = e.target.closest(".routePill");
+            if(!pill) return;
+            root.querySelectorAll(".routePill").forEach(x=>x.classList.remove("active"));
+            pill.classList.add("active");
+            state.route = pill.getAttribute("data-route");
+            localStorage.setItem("bs_route", state.route);
+            refreshRouteNote(localStorage.getItem("bs_lang") || "en");
+          });
+        }
+      }
+
+      function refreshRouteNote(lang){
+        const active = document.querySelector("#routePills .routePill.active");
+        const key = active ? active.getAttribute("data-route") : (localStorage.getItem("bs_route")||"mngchn");
+        const el = document.getElementById("routeNote");
+        if(el) el.textContent = (routeNotes[lang] && routeNotes[lang][key]) ? routeNotes[lang][key] : "";
+      }
+
+      /* ---------------- NEW FEATURE: Incoterms Visual ---------------- */
+      const incoterms = {
+        EXW: {
+          ratio: 12, // seller share %
+          en: {
+            title:"EXW — Ex Works",
+            desc:"Seller makes goods available at their premises. Buyer handles pickup, export, main carriage, import, and delivery.",
+            steps:[
+              ["Origin pickup","Buyer"],
+              ["Export clearance","Buyer"],
+              ["Main transport","Buyer"],
+              ["Import clearance","Buyer"],
+              ["Final delivery","Buyer"]
+            ]
+          },
+          mn: {
+            title:"EXW — Үйлдвэрээс (Ex Works)",
+            desc:"Худалдагч барааг өөрийн байрлал дээр бэлэн болгоно. Таталт, экспорт, үндсэн тээвэр, импорт, хүргэлтийг худалдан авагч хариуцна.",
+            steps:[
+              ["Эхлэл таталт","Худалдан авагч"],
+              ["Экспорт бүрдүүлэлт","Худалдан авагч"],
+              ["Үндсэн тээвэр","Худалдан авагч"],
+              ["Импорт бүрдүүлэлт","Худалдан авагч"],
+              ["Эцсийн хүргэлт","Худалдан авагч"]
+            ]
+          }
+        },
+        FOB: {
+          ratio: 35,
+          en: {
+            title:"FOB — Free On Board (Sea/Waterway)",
+            desc:"Seller delivers goods on board the vessel at the port of shipment. Buyer takes risk/cost after loading.",
+            steps:[
+              ["Origin pickup","Seller"],
+              ["Export clearance","Seller"],
+              ["Main transport","Buyer"],
+              ["Import clearance","Buyer"],
+              ["Final delivery","Buyer"]
+            ]
+          },
+          mn: {
+            title:"FOB — Усан онгоцонд хүргэн (Free On Board)",
+            desc:"Худалдагч барааг ачих боомтод онгоцонд ачиж өгнө. Ачсаны дараах эрсдэл/зардлыг худалдан авагч хариуцна.",
+            steps:[
+              ["Эхлэл таталт","Худалдагч"],
+              ["Экспорт бүрдүүлэлт","Худалдагч"],
+              ["Үндсэн тээвэр","Худалдан авагч"],
+              ["Импорт бүрдүүлэлт","Худалдан авагч"],
+              ["Эцсийн хүргэлт","Худалдан авагч"]
+            ]
+          }
+        },
+        CIF: {
+          ratio: 55,
+          en: {
+            title:"CIF — Cost, Insurance & Freight (Sea/Waterway)",
+            desc:"Seller arranges and pays ocean freight + minimum insurance to destination port. Risk typically transfers when loaded on vessel (Incoterms rules apply).",
+            steps:[
+              ["Origin pickup","Seller"],
+              ["Export clearance","Seller"],
+              ["Main transport","Seller"],
+              ["Import clearance","Buyer"],
+              ["Final delivery","Buyer"]
+            ]
+          },
+          mn: {
+            title:"CIF — Өртөг, даатгал, тээвэр (Cost, Insurance & Freight)",
+            desc:"Худалдагч далайн тээвэр болон хамгийн бага даатгалыг зохион байгуулж төлнө. Эрсдэл ихэвчлэн онгоцонд ачих үед шилжинэ (Incoterms журмаар).",
+            steps:[
+              ["Эхлэл таталт","Худалдагч"],
+              ["Экспорт бүрдүүлэлт","Худалдагч"],
+              ["Үндсэн тээвэр","Худалдагч"],
+              ["Импорт бүрдүүлэлт","Худалдан авагч"],
+              ["Эцсийн хүргэлт","Худалдан авагч"]
+            ]
+          }
+        },
+        DAP: {
+          ratio: 78,
+          en: {
+            title:"DAP — Delivered At Place",
+            desc:"Seller delivers to named place (ready for unloading). Buyer handles import clearance and duties/taxes unless agreed otherwise.",
+            steps:[
+              ["Origin pickup","Seller"],
+              ["Export clearance","Seller"],
+              ["Main transport","Seller"],
+              ["Import clearance","Buyer"],
+              ["Final delivery","Seller"]
+            ]
+          },
+          mn: {
+            title:"DAP — Тодорхой газарт хүргэж өгөх (Delivered At Place)",
+            desc:"Худалдагч нэрлэсэн газарт (буулгахад бэлэн) хүргэнэ. Импортын бүрдүүлэлт, татвар/хураамжийг худалдан авагч хариуцна (өөрөөр тохироогүй бол).",
+            steps:[
+              ["Эхлэл таталт","Худалдагч"],
+              ["Экспорт бүрдүүлэлт","Худалдагч"],
+              ["Үндсэн тээвэр","Худалдагч"],
+              ["Импорт бүрдүүлэлт","Худалдан авагч"],
+              ["Эцсийн хүргэлт","Худалдагч"]
+            ]
+          }
+        },
+        DDP: {
+          ratio: 95,
+          en: {
+            title:"DDP — Delivered Duty Paid",
+            desc:"Seller handles delivery including import clearance and duties/taxes (highest seller responsibility).",
+            steps:[
+              ["Origin pickup","Seller"],
+              ["Export clearance","Seller"],
+              ["Main transport","Seller"],
+              ["Import clearance","Seller"],
+              ["Final delivery","Seller"]
+            ]
+          },
+          mn: {
+            title:"DDP — Татвар төлсөн хүргэлт (Delivered Duty Paid)",
+            desc:"Худалдагч хүргэлтийг бүрэн хариуцна: импортын бүрдүүлэлт, татвар/хураамжийг хүртэл (хамгийн өндөр хариуцлага).",
+            steps:[
+              ["Эхлэл таталт","Худалдагч"],
+              ["Экспорт бүрдүүлэлт","Худалдагч"],
+              ["Үндсэн тээвэр","Худалдагч"],
+              ["Импорт бүрдүүлэлт","Худалдагч"],
+              ["Эцсийн хүргэлт","Худалдагч"]
+            ]
+          }
+        }
+      };
+
+      function initIncoterms(){
+        const row = document.getElementById("termRow");
+        if(!row) return;
+        row.addEventListener("click",(e)=>{
+          const b = e.target.closest(".termBtn");
+          if(!b) return;
+          row.querySelectorAll(".termBtn").forEach(x=>x.classList.remove("active"));
+          b.classList.add("active");
+          const term = b.getAttribute("data-term");
+          localStorage.setItem("bs_term", term);
+          renderTerm(term, localStorage.getItem("bs_lang") || "en");
+        });
+
+        const saved = localStorage.getItem("bs_term") || "EXW";
+        const btn = row.querySelector(`.termBtn[data-term="${saved}"]`);
+        if(btn){
+          row.querySelectorAll(".termBtn").forEach(x=>x.classList.remove("active"));
+          btn.classList.add("active");
+        }
+        renderTerm(saved, localStorage.getItem("bs_lang") || "en");
+      }
+
+      function renderTerm(term, lang){
+        const data = incoterms[term] || incoterms.EXW;
+        const segSeller = document.getElementById("segSeller");
+        const segBuyer = document.getElementById("segBuyer");
+        if(segSeller && segBuyer){
+          const s = Math.max(0, Math.min(100, data.ratio));
+          segSeller.style.width = s + "%";
+          segBuyer.style.width = (100 - s) + "%";
+        }
+
+        const steps = document.getElementById("termSteps");
+        if(steps){
+          steps.innerHTML = "";
+          const arr = data[lang]?.steps || data.en.steps;
+          arr.forEach(([name, who])=>{
+            const div = document.createElement("div");
+            div.className = "step";
+            const b = document.createElement("b");
+            b.textContent = name;
+            const sp = document.createElement("span");
+            sp.textContent = who;
+            div.appendChild(b);
+            div.appendChild(sp);
+            steps.appendChild(div);
+          });
+        }
+
+        // Update explanatory line for selected term (small but clear)
+        const panel = document.getElementById("termPanel");
+        if(panel){
+          // Insert or update a description paragraph under the timeline
+          let p = panel.querySelector("[data-term-desc]");
+          if(!p){
+            p = document.createElement("div");
+            p.setAttribute("data-term-desc","1");
+            p.style.marginTop = "10px";
+            p.style.color = "var(--muted)";
+            p.style.fontSize = "12.5px";
+            p.style.lineHeight = "1.45";
+            panel.appendChild(p);
+          }
+          const obj = data[lang] || data.en;
+          p.textContent = obj.title + " — " + obj.desc;
+        }
+      }
+
+      function refreshIncotermsText(lang){
+        const term = localStorage.getItem("bs_term") || "EXW";
+        renderTerm(term, lang);
+      }
+
+      /* ---------------- NEW FEATURE: CBM Calculator ---------------- */
+      function initCBM(){
+        const L = document.getElementById("cbmL");
+        const W = document.getElementById("cbmW");
+        const H = document.getElementById("cbmH");
+        const C = document.getElementById("cbmC");
+        const U = document.getElementById("cbmUnit");
+        if(!L||!W||!H||!C||!U) return;
+
+        const out = document.getElementById("cbmOut");
+        const each = document.getElementById("cbmEach");
+        const cft = document.getElementById("cbmCft");
+
+        function toMeters(v, unit){
+          const x = Number(v) || 0;
+          if(unit==="m") return x;
+          if(unit==="cm") return x / 100;
+          if(unit==="in") return x * 0.0254;
+          return x;
+        }
+
+        function calc(){
+          const unit = U.value;
+          const l = toMeters(L.value, unit);
+          const w = toMeters(W.value, unit);
+          const h = toMeters(H.value, unit);
+          const cartons = Math.max(1, Number(C.value) || 1);
+
+          const per = (l*w*h);
+          const total = per * cartons;
+
+          if(out) out.textContent = `${total.toFixed(3)} CBM`;
+          if(each) each.textContent = `Each: ${per.toFixed(3)} m³`;
+          if(cft){
+            const ft3 = total * 35.3146667;
+            cft.textContent = `${ft3.toFixed(2)} ft³`;
+          }
+        }
+
+        ["input","change"].forEach(ev=>{
+          L.addEventListener(ev, calc);
+          W.addEventListener(ev, calc);
+          H.addEventListener(ev, calc);
+          C.addEventListener(ev, calc);
+          U.addEventListener(ev, calc);
+        });
+
+        calc();
+      }
+
+      function refreshCBMLabels(lang){
+        // (labels are already handled by data-i18n) - this ensures option text updates correctly.
+        const unitSel = document.getElementById("cbmUnit");
+        if(!unitSel) return;
+        // Re-apply i18n for option text already done by setLang, but keep safe:
+        unitSel.querySelectorAll("option").forEach(opt=>{
+          const key = opt.getAttribute("data-i18n");
+          if(key && dict[lang] && dict[lang][key]) opt.textContent = dict[lang][key];
+        });
+      }
+
+      /* ---------------- Boot ---------------- */
       document.getElementById("lang-en").addEventListener("click", ()=>setLang("en"));
       document.getElementById("lang-mn").addEventListener("click", ()=>setLang("mn"));
       document.getElementById("theme-toggle").addEventListener("click", ()=>{
@@ -1199,9 +2136,17 @@ Notes: ${notesTxt}`.trim();
       initCardTilt();
       initDrawer();
 
+      // New features
+      initGlobe();
+      initIncoterms();
+      initCBM();
+
       // Load saved settings
       setTheme(localStorage.getItem("bs_theme") || "light");
       setLang(localStorage.getItem("bs_lang") || "en");
+
+      // Ensure route note & defaults
+      refreshRouteNote(localStorage.getItem("bs_lang") || "en");
     })();
   </script>
 </body>
