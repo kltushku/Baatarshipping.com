@@ -127,21 +127,20 @@
   </footer>
 
   <!-- SCROLL REVEAL SCRIPT (SAFE VERSION) -->
-  <script>
-    (function(){
-      if (window.__revealInit) return;
-      window.__revealInit = true;
+ <script>
+  (function(){
+    if (window.__bsRevealInit) return;
+    window.__bsRevealInit = true;
 
-      const els = document.querySelectorAll('.reveal');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('in');
-        });
-      }, { threshold: 0.15 });
+    const bsRevealTargets = document.querySelectorAll('.reveal');
 
-      els.forEach(el => io.observe(el));
-    })();
-  </script>
+    const bsRevealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in');
+      });
+    }, { threshold: 0.15 });
 
-</body>
-</html>
+    bsRevealTargets.forEach(el => bsRevealObserver.observe(el));
+  })();
+</script>
+
