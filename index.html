@@ -1,146 +1,863 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Baatar Shipping — Moving Trade Forward</title>
+  <meta name="description" content="Baatar Shipping — Mongolia ↔ China ↔ Global logistics coordination. Fast response, clear communication, trusted partners."/>
 
-  <meta name="description" content="Baatar Shipping — Mongolia ↔ China ↔ Global logistics. Reliable coordination, fast execution, trusted partners." />
+  <style>
+    :root{
+      --navy:#0b1c2d;
+      --navy2:#133457;
+      --gold:#c89b3c;
+      --steel:#4a6fa5;
+      --bg:#f3f6fb;
+      --card:#ffffff;
+      --text:#0b1c2d;
+      --muted:#5a6676;
+      --line:rgba(11,28,45,.10);
+      --shadow:0 18px 45px rgba(11,28,45,.12);
+      --shadow2:0 30px 90px rgba(11,28,45,.22);
+      --r:22px;
+      --max:1120px;
+    }
 
-  <!-- Main styles -->
-  <link rel="stylesheet" href="styles.css" />
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 600px at 10% -10%, rgba(200,155,60,.18), transparent 55%),
+        radial-gradient(900px 520px at 95% 0%, rgba(74,111,165,.16), transparent 55%),
+        var(--bg);
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:18px 18px 80px;}
+    .top{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(150%) blur(12px);
+      background: rgba(243,246,251,.70);
+      border-bottom:1px solid rgba(11,28,45,.08);
+    }
+    .topInner{
+      max-width:var(--max); margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{display:flex; flex-direction:column; gap:2px; line-height:1.05}
+    .brand b{letter-spacing:.10em; font-size:12px; text-transform:uppercase}
+    .brand span{font-size:12px; color:var(--muted)}
+    .nav{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition:transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .nav a:hover{
+      background:#fff;
+      border-color:rgba(11,28,45,.12);
+      transform: translateY(-1px);
+    }
+    .lang{
+      display:flex; gap:8px; align-items:center;
+      padding-left:4px;
+    }
+    .pillBtn{
+      border:1px solid rgba(11,28,45,.16);
+      background:#fff;
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:12px;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .pillBtn:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(11,28,45,.10)}
+    .pillBtn.active{border-color:rgba(200,155,60,.55); box-shadow:0 10px 22px rgba(200,155,60,.12)}
+
+    /* HERO */
+    .hero{
+      margin-top:26px;
+      border-radius:28px;
+      border:1px solid rgba(11,28,45,.10);
+      background:
+        radial-gradient(950px 420px at 10% 0%, rgba(200,155,60,.20), transparent 55%),
+        radial-gradient(900px 420px at 92% 15%, rgba(74,111,165,.18), transparent 55%),
+        linear-gradient(180deg,#ffffff 0%, #f6f9ff 100%);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      padding:44px 26px;
+      align-items:center;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px;
+      color:rgba(11,28,45,.70);
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+    .kdot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--steel), var(--gold));
+      box-shadow:0 12px 26px rgba(200,155,60,.22);
+    }
+    h1{
+      margin:10px 0 10px;
+      font-size: clamp(36px, 4.2vw, 58px);
+      letter-spacing:-.03em;
+      line-height:1.02;
+    }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      max-width:62ch;
+    }
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+    .chip{
+      font-size:12px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(11,28,45,.06);
+      border:1px solid rgba(11,28,45,.10);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      cursor:default;
+    }
+    .chip:hover{transform:translateY(-2px); box-shadow:0 14px 35px rgba(11,28,45,.12); border-color:rgba(200,155,60,.35)}
+    .heroCtas{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:650;
+      font-size:13px;
+      border:1px solid rgba(11,28,45,.18);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+    .btn.primary{background:var(--navy); border-color:transparent; color:#fff}
+    .btn.primary:hover{transform:translateY(-2px); box-shadow:0 18px 50px rgba(11,28,45,.20); filter:brightness(1.05)}
+    .btn.ghost{background:#fff; color:var(--text)}
+    .btn.ghost:hover{transform:translateY(-2px); box-shadow:0 18px 50px rgba(11,28,45,.12)}
+    .mini{
+      font-size:12px; color:rgba(11,28,45,.60); margin-top:10px;
+    }
+
+    /* Right visual */
+    .heroVisual{
+      border-radius:26px;
+      border:1px solid rgba(11,28,45,.10);
+      background:
+        radial-gradient(650px 280px at 15% 30%, rgba(200,155,60,.16), transparent 55%),
+        radial-gradient(650px 280px at 85% 20%, rgba(74,111,165,.16), transparent 55%),
+        linear-gradient(135deg,#ffffff 0%, #f3f6fb 100%);
+      box-shadow:0 18px 55px rgba(11,28,45,.10);
+      height:280px;
+      position:relative;
+      overflow:hidden;
+    }
+    .routeSvg{
+      position:absolute; inset:-10px;
+      opacity:.9;
+    }
+    .routeSvg path{
+      fill:none;
+      stroke: rgba(11,28,45,.28);
+      stroke-width: 2.2;
+      stroke-dasharray: 6 10;
+      animation: dash 9s linear infinite;
+    }
+    .routeSvg .glow{
+      stroke: rgba(200,155,60,.28);
+      stroke-width: 4.5;
+      filter: blur(1px);
+      opacity:.7;
+    }
+    .routeSvg .dot{
+      fill: var(--gold);
+      filter: drop-shadow(0 12px 22px rgba(200,155,60,.35));
+      animation: dotMove 6s ease-in-out infinite;
+    }
+    @keyframes dash{ to{ stroke-dashoffset:-260; } }
+    @keyframes dotMove{
+      0%{ transform:translate(0,0); opacity:.85 }
+      50%{ transform:translate(-18px,10px); opacity:1 }
+      100%{ transform:translate(0,0); opacity:.85 }
+    }
+    .badge{
+      position:absolute; left:16px; bottom:16px;
+      display:inline-flex; align-items:center; gap:10px;
+      background: rgba(255,255,255,.72);
+      border:1px solid rgba(11,28,45,.10);
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:12px;
+      color:rgba(11,28,45,.78);
+      backdrop-filter: blur(10px);
+    }
+    .badge .bDot{
+      width:9px; height:9px; border-radius:50%;
+      background: linear-gradient(135deg, var(--gold), var(--steel));
+    }
+
+    /* SECTIONS */
+    .section{margin-top:34px}
+    .sectionCard{
+      border-radius:28px;
+      border:1px solid rgba(11,28,45,.10);
+      background: rgba(255,255,255,.76);
+      box-shadow:0 16px 44px rgba(11,28,45,.08);
+      padding:24px;
+    }
+    .headRow{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    }
+    .headRow h2{margin:0; font-size:20px; letter-spacing:-.01em}
+    .sub{margin:6px 0 0; color:var(--muted); font-size:13px; max-width:70ch}
+
+    /* Tabs */
+    .tabs{
+      margin-top:16px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .tab{
+      border:1px solid rgba(11,28,45,.14);
+      background:#fff;
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:12px;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .tab:hover{transform:translateY(-2px); box-shadow:0 14px 30px rgba(11,28,45,.10)}
+    .tab.active{border-color:rgba(200,155,60,.55); box-shadow:0 14px 30px rgba(200,155,60,.12)}
+    .tabPanels{margin-top:16px}
+    .panel{
+      display:none;
+      border-radius:22px;
+      border:1px solid rgba(11,28,45,.10);
+      background: linear-gradient(180deg,#ffffff 0%, #f7f9fd 100%);
+      padding:18px;
+    }
+    .panel.active{display:block}
+    .panelGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+
+    /* Cards */
+    .cards{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+    .card{
+      position:relative;
+      border-radius:22px;
+      border:1px solid rgba(11,28,45,.10);
+      background: #fff;
+      padding:16px;
+      box-shadow:0 14px 34px rgba(11,28,45,.07);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; top:14px; left:14px;
+      width:38px; height:6px;
+      border-radius:999px;
+      background: linear-gradient(90deg, var(--gold), var(--steel));
+      opacity:.9;
+    }
+    .card:hover{
+      transform: translateY(-8px);
+      box-shadow: var(--shadow2);
+      border-color: rgba(200,155,60,.35);
+    }
+    .card h3{margin:14px 0 6px; font-size:14px}
+    .card p{margin:0; color:var(--muted); font-size:12.5px; line-height:1.45}
+    .card .meta{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:11px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(11,28,45,.10);
+      background: rgba(11,28,45,.04);
+      color: rgba(11,28,45,.72);
+    }
+    .cardLink{
+      text-decoration:none;
+      display:block;
+    }
+
+    /* Coverage chips */
+    .coverageGrid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .covCard{
+      border-radius:22px;
+      border:1px solid rgba(11,28,45,.10);
+      background:#fff;
+      padding:16px;
+      box-shadow:0 14px 34px rgba(11,28,45,.07);
+    }
+    .covTop{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .covCard h3{margin:0; font-size:14px}
+    .covChips{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .covChip{
+      cursor:pointer;
+      user-select:none;
+      font-size:12px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(11,28,45,.12);
+      background: rgba(11,28,45,.04);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .covChip:hover{transform: translateY(-2px); box-shadow:0 14px 28px rgba(11,28,45,.10)}
+    .covChip.active{
+      background: rgba(200,155,60,.16);
+      border-color: rgba(200,155,60,.50);
+      box-shadow:0 16px 34px rgba(200,155,60,.12);
+    }
+    .covNote{
+      margin-top:12px;
+      color: var(--muted);
+      font-size:12.5px;
+      min-height: 38px;
+    }
+
+    /* Contact band */
+    .band{
+      margin-top:18px;
+      border-radius:26px;
+      padding:18px;
+      background: linear-gradient(135deg, var(--navy), var(--navy2));
+      color:#fff;
+      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      box-shadow: var(--shadow);
+    }
+    .band b{font-size:14px}
+    .band span{font-size:12.5px; opacity:.92}
+    .band .btn{border:1px solid rgba(255,255,255,.16)}
+    .band .btn.primary{background:var(--gold); color:#111}
+    .band .btn.primary:hover{filter:brightness(1.03)}
+    .band .btn.ghost{background: rgba(255,255,255,.10); color:#fff}
+    .band .btn.ghost:hover{background: rgba(255,255,255,.16)}
+
+    footer{
+      margin-top:28px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      color:rgba(11,28,45,.60);
+      font-size:12px;
+    }
+
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in{ opacity:1; transform: translateY(0); }
+    .stagger > *{ opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in .stagger > *{ opacity:1; transform: translateY(0); }
+    .reveal.in .stagger > *:nth-child(1){ transition-delay:.05s }
+    .reveal.in .stagger > *:nth-child(2){ transition-delay:.14s }
+    .reveal.in .stagger > *:nth-child(3){ transition-delay:.23s }
+    .reveal.in .stagger > *:nth-child(4){ transition-delay:.32s }
+    .reveal.in .stagger > *:nth-child(5){ transition-delay:.41s }
+    .reveal.in .stagger > *:nth-child(6){ transition-delay:.50s }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr; padding:32px 18px}
+      .heroVisual{height:240px}
+      .cards{grid-template-columns:1fr}
+      .coverageGrid{grid-template-columns:1fr}
+      .panelGrid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="container topbar-inner">
+  <div class="top">
+    <div class="topInner">
       <div class="brand">
-        <div class="brand-name">BAATAR SHIPPING</div>
-        <div class="brand-tagline" data-i18n="tagline">Moving Trade Forward</div>
+        <b>BAATAR SHIPPING</b>
+        <span data-i18n="tagline">Moving Trade Forward</span>
       </div>
 
-      <nav class="nav">
+      <div class="nav" aria-label="Primary navigation">
         <a href="#services" data-i18n="navServices">Services</a>
         <a href="#coverage" data-i18n="navCoverage">Coverage</a>
         <a href="#contact" data-i18n="navContact">Contact</a>
-        <button id="lang-en">EN</button>
-        <button id="lang-mn">MN</button>
-      </nav>
-    </div>
-  </header>
+        <a href="about.html" data-i18n="navAbout">About</a>
+        <a href="services.html" data-i18n="navServicesPage">Services Page</a>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-text reveal">
-        <h1>Mongolia ↔ China ↔ Global Logistics</h1>
-        <p>
-          Reliable logistics coordination for cross-border and international trade —
-          clear communication, fast execution, trusted partners.
-        </p>
-
-        <div class="hero-pills">
-          <span class="pill">Fast response</span>
-          <span class="pill">Clear coordination</span>
-          <span class="pill">Trusted network</span>
-        </div>
-      </div>
-
-      <div class="hero-visual reveal">
-        <!-- simple visual block -->
-        <div class="hero-box">
-          <div class="arrow"></div>
+        <div class="lang">
+          <button class="pillBtn" id="lang-en" type="button">EN</button>
+          <button class="pillBtn" id="lang-mn" type="button">MN</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- SERVICES -->
-  <section class="section reveal" id="services">
-    <div class="container">
-      <h2 data-i18n="servicesTitle">Services</h2>
-      <p class="sub" data-i18n="servicesSub">
-        Practical logistics support for trade flows between Mongolia, China, and global markets.
-      </p>
+  <main class="wrap">
 
-      <div class="grid-3">
-        <div class="card">
-          <h3>Freight Coordination</h3>
-          <p>Route planning, partner alignment, and timeline control.</p>
+    <section class="hero reveal">
+      <div class="heroGrid">
+        <div>
+          <div class="kicker"><span class="kdot"></span> <span data-i18n="heroKicker">Cross-border logistics coordination</span></div>
+          <h1 data-i18n="heroTitle">Mongolia ↔ China ↔ Global Logistics</h1>
+          <p class="lead" data-i18n="heroSub">
+            Reliable logistics coordination for cross-border and international trade — clear communication, fast execution, trusted partners.
+          </p>
+
+          <div class="chips">
+            <span class="chip" data-i18n="chip1">Fast response</span>
+            <span class="chip" data-i18n="chip2">Clear coordination</span>
+            <span class="chip" data-i18n="chip3">Trusted network</span>
+          </div>
+
+          <div class="heroCtas">
+            <a class="btn primary" href="#contact" data-i18n="ctaPrimary">Request a quote</a>
+            <a class="btn ghost" href="https://wa.me/97699887055" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn ghost" href="viber://chat?number=%2B97699887055">Viber</a>
+          </div>
+
+          <div class="mini" data-i18n="heroMini">Practical, calm, dependable — built for long-term trade.</div>
         </div>
 
-        <div class="card">
-          <h3>Cross-border Execution</h3>
-          <p>Clean handover between Mongolia, China, and global partners.</p>
-        </div>
+        <div class="heroVisual" aria-hidden="true">
+          <svg class="routeSvg" viewBox="0 0 560 320" preserveAspectRatio="none">
+            <path class="glow" d="M30,250 C120,60 210,290 300,150 C360,70 440,80 530,40" />
+            <path d="M30,250 C120,60 210,290 300,150 C360,70 440,80 530,40" />
+            <circle class="dot" cx="300" cy="150" r="7"></circle>
+            <circle cx="30" cy="250" r="5" fill="rgba(74,111,165,.65)"></circle>
+            <circle cx="530" cy="40" r="5" fill="rgba(11,28,45,.55)"></circle>
+          </svg>
 
-        <div class="card">
-          <h3>Status & Communication</h3>
-          <p>Clear updates so you always know the next step.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COVERAGE -->
-  <section class="section reveal" id="coverage">
-    <div class="container">
-      <h2 data-i18n="coverageTitle">Coverage</h2>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Core Routes</h3>
-          <p>Mongolia ↔ China with reliable cross-border coordination.</p>
-        </div>
-
-        <div class="card">
-          <h3>Global Reach</h3>
-          <p>Extended coverage through trusted international partners.</p>
+          <div class="badge">
+            <span class="bDot"></span>
+            <span data-i18n="heroBadge">Mongolia ↔ China ↔ Global</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section class="section reveal" id="contact">
-    <div class="container">
-      <h2 data-i18n="contactTitle">Contact</h2>
-      <p class="sub" data-i18n="contactSub">
-        Message us on WhatsApp or Viber. Share your route, cargo details, and timeline — we reply quickly.
-      </p>
+    <!-- SERVICES -->
+    <section class="section reveal" id="services">
+      <div class="sectionCard">
+        <div class="headRow">
+          <div>
+            <h2 data-i18n="servicesTitle">Services</h2>
+            <p class="sub" data-i18n="servicesSub">Tap a service to see what’s included — designed to reduce risk and increase speed.</p>
+          </div>
+        </div>
 
-      <div class="cta-box">
-        <a href="https://wa.me/97699887055" target="_blank">WhatsApp</a>
-        <a href="viber://chat?number=%2B97699887055">Viber</a>
+        <div class="tabs" role="tablist" aria-label="Services tabs">
+          <button class="tab active" type="button" data-tab="t1" data-i18n="tab1">Freight</button>
+          <button class="tab" type="button" data-tab="t2" data-i18n="tab2">Cross-border</button>
+          <button class="tab" type="button" data-tab="t3" data-i18n="tab3">Documents</button>
+        </div>
+
+        <div class="tabPanels">
+          <div class="panel active" id="t1">
+            <b data-i18n="p1Title">Freight coordination (planning + control)</b>
+            <div class="panelGrid stagger">
+              <div class="card">
+                <h3 data-i18n="p1aTitle">Route options</h3>
+                <p data-i18n="p1aText">Choose the best route for cost, speed, and reliability.</p>
+                <div class="meta"><span class="tag">MNG ↔ CHN</span><span class="tag" data-i18n="tagPlanning">Planning</span></div>
+              </div>
+              <div class="card">
+                <h3 data-i18n="p1bTitle">Partner alignment</h3>
+                <p data-i18n="p1bText">Coordinate carriers and operators so handovers are smooth.</p>
+                <div class="meta"><span class="tag" data-i18n="tagCoordination">Coordination</span><span class="tag">Updates</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="t2">
+            <b data-i18n="p2Title">Cross-border execution (handover + exceptions)</b>
+            <div class="panelGrid stagger">
+              <div class="card">
+                <h3 data-i18n="p2aTitle">Border handover</h3>
+                <p data-i18n="p2aText">Clear responsibilities across the border to keep cargo moving.</p>
+                <div class="meta"><span class="tag">Handover</span><span class="tag" data-i18n="tagSpeed">Speed</span></div>
+              </div>
+              <div class="card">
+                <h3 data-i18n="p2bTitle">Issue handling</h3>
+                <p data-i18n="p2bText">If delays happen, we push a resolution plan fast.</p>
+                <div class="meta"><span class="tag" data-i18n="tagRisk">Risk</span><span class="tag">Status</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="t3">
+            <b data-i18n="p3Title">Documentation support (reduce preventable delays)</b>
+            <div class="panelGrid stagger">
+              <div class="card">
+                <h3 data-i18n="p3aTitle">Checklist by route</h3>
+                <p data-i18n="p3aText">Simple checklist to avoid missing or wrong docs.</p>
+                <div class="meta"><span class="tag">Docs</span><span class="tag" data-i18n="tagAccuracy">Accuracy</span></div>
+              </div>
+              <div class="card">
+                <h3 data-i18n="p3bTitle">Validation</h3>
+                <p data-i18n="p3bText">Weights, codes, names — confirm before shipment.</p>
+                <div class="meta"><span class="tag">Verification</span><span class="tag" data-i18n="tagClarity">Clarity</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cards stagger" style="margin-top:14px;">
+          <a class="card cardLink" href="services.html">
+            <h3 data-i18n="svcCard1">See full Services page</h3>
+            <p data-i18n="svcCard1Sub">Interactive details, quote shortcuts, and process overview.</p>
+            <div class="meta"><span class="tag">services.html</span><span class="tag" data-i18n="tagExplore">Explore</span></div>
+          </a>
+          <div class="card">
+            <h3 data-i18n="svcCard2">Fast quoting</h3>
+            <p data-i18n="svcCard2Sub">Send route + cargo details — we reply quickly with next steps.</p>
+            <div class="meta"><span class="tag">WhatsApp</span><span class="tag">Viber</span></div>
+          </div>
+          <div class="card">
+            <h3 data-i18n="svcCard3">Clean communication</h3>
+            <p data-i18n="svcCard3Sub">No confusion, no silence — clear updates at every stage.</p>
+            <div class="meta"><span class="tag" data-i18n="tagUpdates">Updates</span><span class="tag" data-i18n="tagTrusted">Trusted</span></div>
+          </div>
+        </div>
+
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>© 2026 Baatar Shipping</span>
-      <span>Moving Trade Forward</span>
-    </div>
-  </footer>
+    <!-- COVERAGE -->
+    <section class="section reveal" id="coverage">
+      <div class="sectionCard">
+        <div class="headRow">
+          <div>
+            <h2 data-i18n="coverageTitle">Coverage</h2>
+            <p class="sub" data-i18n="coverageSub">Tap a route chip. We’ll show what that coverage means.</p>
+          </div>
+        </div>
 
-  <!-- SCROLL REVEAL SCRIPT (SAFE VERSION) -->
- <script>
-  (function(){
-    if (window.__bsRevealInit) return;
-    window.__bsRevealInit = true;
+        <div class="coverageGrid stagger">
+          <div class="covCard">
+            <div class="covTop">
+              <h3 data-i18n="covCoreTitle">Core Routes</h3>
+              <span class="tag" data-i18n="covCoreTag">MNG ↔ CHN</span>
+            </div>
+            <div class="covChips" id="coreChips">
+              <div class="covChip active" data-note="core1" data-i18n="covChip1">UB ↔ Erenhot</div>
+              <div class="covChip" data-note="core2" data-i18n="covChip2">Zamiin-Uud ↔ China</div>
+              <div class="covChip" data-note="core3" data-i18n="covChip3">Rail / Road options</div>
+            </div>
+            <div class="covNote" id="coreNote"></div>
+          </div>
 
-    const bsRevealTargets = document.querySelectorAll('.reveal');
+          <div class="covCard">
+            <div class="covTop">
+              <h3 data-i18n="covGlobalTitle">Global Reach</h3>
+              <span class="tag" data-i18n="covGlobalTag">Partners</span>
+            </div>
+            <div class="covChips" id="globalChips">
+              <div class="covChip active" data-note="g1" data-i18n="covChip4">Overseas pickup</div>
+              <div class="covChip" data-note="g2" data-i18n="covChip5">Cross-trade</div>
+              <div class="covChip" data-note="g3" data-i18n="covChip6">Multi-leg tracking</div>
+            </div>
+            <div class="covNote" id="globalNote"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    const bsRevealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('in');
-      });
-    }, { threshold: 0.15 });
+    <!-- CONTACT -->
+    <section class="section reveal" id="contact">
+      <div class="sectionCard">
+        <div class="headRow">
+          <div>
+            <h2 data-i18n="contactTitle">Contact</h2>
+            <p class="sub" data-i18n="contactSub">Message us with route + cargo details + timeline. We reply quickly.</p>
+          </div>
+        </div>
 
-    bsRevealTargets.forEach(el => bsRevealObserver.observe(el));
-  })();
-</script>
+        <div class="band stagger">
+          <div>
+            <b data-i18n="contactBandTitle">Need a quick quote?</b><br/>
+            <span data-i18n="contactBandSub">WhatsApp or Viber — fastest response.</span>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="https://wa.me/97699887055" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn ghost" href="viber://chat?number=%2B97699887055">Viber</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <footer>
+      <div>© 2026 Baatar Shipping. <span data-i18n="rights">All rights reserved.</span></div>
+      <div data-i18n="tagline">Moving Trade Forward</div>
+    </footer>
+
+  </main>
+
+  <script>
+    (function(){
+      // -------- i18n ----------
+      const dict = {
+        en: {
+          tagline: "Moving Trade Forward",
+          navServices: "Services",
+          navCoverage: "Coverage",
+          navContact: "Contact",
+          navAbout: "About",
+          navServicesPage: "Services Page",
+          heroKicker: "Cross-border logistics coordination",
+          heroTitle: "Mongolia ↔ China ↔ Global Logistics",
+          heroSub: "Reliable logistics coordination for cross-border and international trade — clear communication, fast execution, trusted partners.",
+          chip1: "Fast response",
+          chip2: "Clear coordination",
+          chip3: "Trusted network",
+          ctaPrimary: "Request a quote",
+          heroMini: "Practical, calm, dependable — built for long-term trade.",
+          heroBadge: "Mongolia ↔ China ↔ Global",
+          servicesTitle: "Services",
+          servicesSub: "Tap a service to see what’s included — designed to reduce risk and increase speed.",
+          tab1: "Freight",
+          tab2: "Cross-border",
+          tab3: "Documents",
+          p1Title: "Freight coordination (planning + control)",
+          p1aTitle: "Route options",
+          p1aText: "Choose the best route for cost, speed, and reliability.",
+          p1bTitle: "Partner alignment",
+          p1bText: "Coordinate carriers and operators so handovers are smooth.",
+          p2Title: "Cross-border execution (handover + exceptions)",
+          p2aTitle: "Border handover",
+          p2aText: "Clear responsibilities across the border to keep cargo moving.",
+          p2bTitle: "Issue handling",
+          p2bText: "If delays happen, we push a resolution plan fast.",
+          p3Title: "Documentation support (reduce preventable delays)",
+          p3aTitle: "Checklist by route",
+          p3aText: "Simple checklist to avoid missing or wrong docs.",
+          p3bTitle: "Validation",
+          p3bText: "Weights, codes, names — confirm before shipment.",
+          svcCard1: "See full Services page",
+          svcCard1Sub: "Interactive details, quote shortcuts, and process overview.",
+          svcCard2: "Fast quoting",
+          svcCard2Sub: "Send route + cargo details — we reply quickly with next steps.",
+          svcCard3: "Clean communication",
+          svcCard3Sub: "No confusion, no silence — clear updates at every stage.",
+          coverageTitle: "Coverage",
+          coverageSub: "Tap a route chip. We’ll show what that coverage means.",
+          covCoreTitle: "Core Routes",
+          covCoreTag: "MNG ↔ CHN",
+          covGlobalTitle: "Global Reach",
+          covGlobalTag: "Partners",
+          covChip1: "UB ↔ Erenhot",
+          covChip2: "Zamiin-Uud ↔ China",
+          covChip3: "Rail / Road options",
+          covChip4: "Overseas pickup",
+          covChip5: "Cross-trade",
+          covChip6: "Multi-leg tracking",
+          contactTitle: "Contact",
+          contactSub: "Message us with route + cargo details + timeline. We reply quickly.",
+          contactBandTitle: "Need a quick quote?",
+          contactBandSub: "WhatsApp or Viber — fastest response.",
+          rights: "All rights reserved.",
+          tagPlanning: "Planning",
+          tagCoordination: "Coordination",
+          tagSpeed: "Speed",
+          tagRisk: "Risk",
+          tagAccuracy: "Accuracy",
+          tagClarity: "Clarity",
+          tagExplore: "Explore",
+          tagUpdates: "Updates",
+          tagTrusted: "Trusted"
+        },
+        mn: {
+          tagline: "Худалдааг урагшлуулна",
+          navServices: "Үйлчилгээ",
+          navCoverage: "Хамрах хүрээ",
+          navContact: "Холбоо барих",
+          navAbout: "Бидний тухай",
+          navServicesPage: "Үйлчилгээ (хуудас)",
+          heroKicker: "Хил дамнасан ложистикийн зохицуулалт",
+          heroTitle: "Монгол ↔ Хятад ↔ Дэлхий Ложистик",
+          heroSub: "Хил дамнасан болон олон улсын тээвэрт — ойлгомжтой харилцаа, хурдан гүйцэтгэл, найдвартай түншлэл.",
+          chip1: "Хурдан хариу",
+          chip2: "Тод зохицуулалт",
+          chip3: "Найдвартай сүлжээ",
+          ctaPrimary: "Үнийн санал авах",
+          heroMini: "Практик, тайван, найдвартай — урт хугацааны худалдаанд.",
+          heroBadge: "Монгол ↔ Хятад ↔ Дэлхий",
+          servicesTitle: "Үйлчилгээ",
+          servicesSub: "Үйлчилгээг дарж дэлгэрэнгүйг үзээрэй — эрсдэл бууруулж, хурдыг нэмэгдүүлэхээр бүтээгдсэн.",
+          tab1: "Тээвэр",
+          tab2: "Хил дамнасан",
+          tab3: "Баримт бичиг",
+          p1Title: "Тээврийн зохицуулалт (төлөвлөлт + хяналт)",
+          p1aTitle: "Маршрут сонголт",
+          p1aText: "Үнэ, хурд, найдвартай байдлаар хамгийн оновчтойг сонгоно.",
+          p1bTitle: "Түнш зохицуулалт",
+          p1bText: "Тээвэрлэгч, операторуудыг уялдуулж дамжуулалтыг жигд болгоно.",
+          p2Title: "Хил дамнасан гүйцэтгэл (дамжуулалт + асуудал шийдэлт)",
+          p2aTitle: "Хил дээрх дамжуулалт",
+          p2aText: "Үүрэг хариуцлагыг тодорхойлж тээврийг тасалдуулахгүй.",
+          p2bTitle: "Асуудал шийдвэрлэлт",
+          p2bText: "Саатал гарвал хурдан шийдвэрлэх төлөвлөгөө гаргана.",
+          p3Title: "Баримт бичгийн дэмжлэг (урьдчилан сэргийлэх саатлыг бууруулна)",
+          p3aTitle: "Маршрут бүрийн checklist",
+          p3aText: "Дутуу/буруу баримтаас үүсэх эрсдэлийг багасгана.",
+          p3bTitle: "Шалгалт, баталгаажуулалт",
+          p3bText: "Жин, код, нэр — ачихаас өмнө баталгаажуулна.",
+          svcCard1: "Үйлчилгээний хуудсыг үзэх",
+          svcCard1Sub: "Интерактив дэлгэрэнгүй, үнийн санал, процесс.",
+          svcCard2: "Хурдан санал",
+          svcCard2Sub: "Маршрут + ачааны мэдээлэл илгээ — хурдан хариу өгнө.",
+          svcCard3: "Тод харилцаа",
+          svcCard3Sub: "Төөрөгдөлгүй — шат бүр дээр ойлгомжтой мэдэгдэл.",
+          coverageTitle: "Хамрах хүрээ",
+          coverageSub: "Чип дээр дар — хамрах хүрээг товч тайлбарлана.",
+          covCoreTitle: "Үндсэн чиглэл",
+          covCoreTag: "МН ↔ ХН",
+          covGlobalTitle: "Дэлхийн хамрах хүрээ",
+          covGlobalTag: "Түншлэл",
+          covChip1: "УБ ↔ Эрээний",
+          covChip2: "Замын-Үүд ↔ Хятад",
+          covChip3: "Төмөр зам / Авто сонголт",
+          covChip4: "Гадаад pickup",
+          covChip5: "Cross-trade",
+          covChip6: "Олон шатны tracking",
+          contactTitle: "Холбоо барих",
+          contactSub: "Маршрут + ачаа + хугацаа илгээ — хурдан хариу өгнө.",
+          contactBandTitle: "Үнийн санал хурдан авах уу?",
+          contactBandSub: "WhatsApp эсвэл Viber — хамгийн хурдан.",
+          rights: "Бүх эрх хуулиар хамгаалагдсан.",
+          tagPlanning: "Төлөвлөлт",
+          tagCoordination: "Зохицуулалт",
+          tagSpeed: "Хурд",
+          tagRisk: "Эрсдэл",
+          tagAccuracy: "Нарийвчлал",
+          tagClarity: "Тод",
+          tagExplore: "Үзэх",
+          tagUpdates: "Мэдээлэл",
+          tagTrusted: "Найдвартай"
+        }
+      };
+
+      function setLang(lang){
+        localStorage.setItem("bs_lang", lang);
+        document.documentElement.lang = (lang === "mn") ? "mn" : "en";
+
+        document.querySelectorAll("[data-i18n]").forEach(el=>{
+          const key = el.getAttribute("data-i18n");
+          if(dict[lang] && dict[lang][key]) el.textContent = dict[lang][key];
+        });
+
+        document.getElementById("lang-en").classList.toggle("active", lang==="en");
+        document.getElementById("lang-mn").classList.toggle("active", lang==="mn");
+        refreshCoverageNotes(lang);
+      }
+
+      // -------- tabs ----------
+      function initTabs(){
+        const tabs = document.querySelectorAll(".tab");
+        tabs.forEach(btn=>{
+          btn.addEventListener("click", ()=>{
+            tabs.forEach(t=>t.classList.remove("active"));
+            document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+            btn.classList.add("active");
+            const id = btn.getAttribute("data-tab");
+            const panel = document.getElementById(id);
+            if(panel) panel.classList.add("active");
+          });
+        });
+      }
+
+      // -------- coverage chips ----------
+      const notes = {
+        en: {
+          core1:"Fast coordination for UB ↔ Erenhot flows: timing, partners, clean handover.",
+          core2:"Support for Zamiin-Uud border flows: docs, updates, exception handling.",
+          core3:"Choose rail or road based on cost/speed/reliability and cargo requirements.",
+          g1:"Overseas pickup coordination via partners — align timelines and handover steps.",
+          g2:"Cross-trade support when origin and destination are in different countries.",
+          g3:"Multi-leg tracking alignment so you always know the next step."
+        },
+        mn: {
+          core1:"УБ ↔ Эрээний чиглэлд: хугацаа, түнш, дамжуулалт — ойлгомжтой зохицуулалт.",
+          core2:"Замын-Үүд урсгал: баримт, мэдээлэл, асуудал шийдэлтийн дэмжлэг.",
+          core3:"Төмөр зам/авто — үнэ, хурд, найдвартай байдлаар сонголт гаргана.",
+          g1:"Гадаад pickup-ийг түншээр уялдуулж, хугацаа ба дамжуулалтыг тохируулна.",
+          g2:"Cross-trade — гарал/очих улс өөр үед дэмжлэг үзүүлнэ.",
+          g3:"Олон шатны tracking — дараагийн алхмыг үргэлж мэддэг байна."
+        }
+      };
+
+      function chipGroup(elId, noteId){
+        const root = document.getElementById(elId);
+        if(!root) return;
+        root.addEventListener("click", (e)=>{
+          const t = e.target.closest(".covChip");
+          if(!t) return;
+          root.querySelectorAll(".covChip").forEach(c=>c.classList.remove("active"));
+          t.classList.add("active");
+          const key = t.getAttribute("data-note");
+          const lang = localStorage.getItem("bs_lang") || "en";
+          const target = document.getElementById(noteId);
+          if(target) target.textContent = (notes[lang] && notes[lang][key]) ? notes[lang][key] : "";
+        });
+      }
+
+      function refreshCoverageNotes(lang){
+        const core = document.querySelector("#coreChips .covChip.active");
+        const glob = document.querySelector("#globalChips .covChip.active");
+        if(core) document.getElementById("coreNote").textContent = notes[lang][core.getAttribute("data-note")] || "";
+        if(glob) document.getElementById("globalNote").textContent = notes[lang][glob.getAttribute("data-note")] || "";
+      }
+
+      // -------- reveal (safe, no collisions) ----------
+      function initReveal(){
+        if(window.__bsRevealInit) return;
+        window.__bsRevealInit = true;
+
+        const targets = document.querySelectorAll(".reveal");
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(en=>{
+            if(en.isIntersecting) en.target.classList.add("in");
+          });
+        }, {threshold:0.14});
+        targets.forEach(t=>io.observe(t));
+      }
+
+      // -------- boot ----------
+      document.getElementById("lang-en").addEventListener("click", ()=>setLang("en"));
+      document.getElementById("lang-mn").addEventListener("click", ()=>setLang("mn"));
+
+      initTabs();
+      chipGroup("coreChips","coreNote");
+      chipGroup("globalChips","globalNote");
+      initReveal();
+
+      setLang(localStorage.getItem("bs_lang") || "en");
+    })();
+  </script>
+</body>
+</html>
