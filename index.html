@@ -15,6 +15,8 @@
 
       --pink:#ff4fd8;
       --mint:#47e6b1;
+      --cyan:#4de7ff;
+      --violet:#7a5cff;
       --bg:#f1f6ff;
 
       --card:#ffffff;
@@ -55,10 +57,37 @@
         radial-gradient(900px 520px at 95% 0%, rgba(74,111,165,.13), transparent 55%),
         var(--bg);
       transition: background .35s ease, color .25s ease;
+      overflow-x:hidden;
     }
 
     a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:18px 18px 90px;}
+    .wrap{max-width:var(--max); margin:0 auto; padding:18px 18px 92px; position:relative;}
+
+    /* animated ambient blobs */
+    .ambient{
+      position:fixed; inset:-20vh -20vw; z-index:-1; pointer-events:none;
+      opacity:.85;
+      filter: blur(22px);
+      transform: translateZ(0);
+    }
+    .blob{
+      position:absolute;
+      width:55vmax; height:55vmax;
+      border-radius: 999px;
+      mix-blend-mode: multiply;
+      opacity:.55;
+      animation: floaty 18s ease-in-out infinite;
+    }
+    [data-theme="dark"] .blob{ mix-blend-mode: screen; opacity:.35; }
+    .b1{ left:-10vmax; top:-8vmax; background: radial-gradient(circle at 30% 30%, rgba(255,79,216,.9), rgba(255,79,216,0) 60%); animation-duration: 20s; }
+    .b2{ right:-16vmax; top:-10vmax; background: radial-gradient(circle at 30% 30%, rgba(71,230,177,.9), rgba(71,230,177,0) 60%); animation-duration: 24s; }
+    .b3{ left:18vmax; bottom:-16vmax; background: radial-gradient(circle at 30% 30%, rgba(200,155,60,.85), rgba(200,155,60,0) 62%); animation-duration: 22s; }
+    .b4{ right:8vmax; bottom:-18vmax; background: radial-gradient(circle at 30% 30%, rgba(77,231,255,.85), rgba(77,231,255,0) 62%); animation-duration: 26s; }
+    @keyframes floaty{
+      0%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(3vmax,-2vmax) scale(1.05); }
+      100%{ transform: translate(0,0) scale(1); }
+    }
 
     /* TOP */
     .top{
@@ -128,31 +157,54 @@
 
     /* HERO */
     .hero{
-      margin-top:26px;
+      margin-top:22px;
       border-radius:28px;
       border:1px solid var(--line);
       background:
-        radial-gradient(950px 420px at 10% 0%, rgba(255,79,216,.16), transparent 55%),
-        radial-gradient(900px 420px at 92% 15%, rgba(71,230,177,.14), transparent 55%),
-        radial-gradient(900px 420px at 30% 0%, rgba(200,155,60,.16), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.88) 0%, rgba(245,248,255,.84) 100%);
+        radial-gradient(1050px 520px at 10% 0%, rgba(255,79,216,.18), transparent 55%),
+        radial-gradient(980px 520px at 92% 15%, rgba(71,230,177,.16), transparent 55%),
+        radial-gradient(980px 520px at 30% 0%, rgba(200,155,60,.16), transparent 55%),
+        radial-gradient(980px 520px at 65% 35%, rgba(77,231,255,.12), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.90) 0%, rgba(245,248,255,.86) 100%);
       box-shadow:var(--shadow);
       overflow:hidden;
       position:relative;
+      isolation:isolate;
     }
     [data-theme="dark"] .hero{
       background:
-        radial-gradient(950px 420px at 10% 0%, rgba(255,79,216,.16), transparent 55%),
-        radial-gradient(900px 420px at 92% 15%, rgba(71,230,177,.14), transparent 55%),
-        radial-gradient(900px 420px at 30% 0%, rgba(200,155,60,.14), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.04) 100%);
+        radial-gradient(1050px 520px at 10% 0%, rgba(255,79,216,.16), transparent 55%),
+        radial-gradient(980px 520px at 92% 15%, rgba(71,230,177,.14), transparent 55%),
+        radial-gradient(980px 520px at 30% 0%, rgba(200,155,60,.14), transparent 55%),
+        radial-gradient(980px 520px at 65% 35%, rgba(77,231,255,.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.05) 100%);
     }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-60px;
+      background:
+        radial-gradient(540px 240px at 10% 20%, rgba(122,92,255,.16), transparent 60%),
+        radial-gradient(520px 240px at 90% 10%, rgba(77,231,255,.14), transparent 60%),
+        radial-gradient(520px 240px at 70% 80%, rgba(255,79,216,.12), transparent 60%);
+      opacity:.85;
+      animation: heroShift 14s ease-in-out infinite;
+      pointer-events:none;
+      z-index:0;
+    }
+    @keyframes heroShift{
+      0%{ transform: translate(0,0) }
+      50%{ transform: translate(18px,-10px) }
+      100%{ transform: translate(0,0) }
+    }
+
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:22px;
       padding:44px 26px;
       align-items:center;
+      position:relative;
+      z-index:1;
     }
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
@@ -166,11 +218,11 @@
     }
     h1{
       margin:10px 0 10px;
-      font-size: clamp(36px, 4.2vw, 58px);
+      font-size: clamp(36px, 4.3vw, 60px);
       letter-spacing:-.03em;
       line-height:1.02;
     }
-    .lead{ margin:0; color:var(--muted); font-size:15px; max-width:62ch; }
+    .lead{ margin:0; color:var(--muted); font-size:15px; max-width:64ch; }
 
     .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
     .chip{
@@ -202,16 +254,22 @@
       position:relative;
       overflow:hidden;
       will-change: transform;
-      color: var(--text);
-      background: rgba(255,255,255,.85);
+      user-select:none;
     }
-    [data-theme="dark"] .btn{ background: rgba(255,255,255,.10); }
     .btn.primary{
       background: linear-gradient(135deg, var(--navy), var(--navy2));
       border-color:transparent;
       color:#fff;
     }
-    .btn.primary:hover{ transform:translateY(-2px); box-shadow:0 18px 50px rgba(11,28,45,.20); filter:brightness(1.05) }
+    [data-theme="dark"] .btn.primary{
+      background: linear-gradient(135deg, rgba(255,79,216,.24), rgba(71,230,177,.18));
+    }
+    .btn.primary:hover{ transform:translateY(-2px); box-shadow:0 18px 50px rgba(11,28,45,.20); filter:brightness(1.06) }
+    .btn.ghost{
+      background: rgba(255,255,255,.85);
+      color: var(--text);
+    }
+    [data-theme="dark"] .btn.ghost{ background: rgba(255,255,255,.10); }
     .btn.ghost:hover{ transform:translateY(-2px); box-shadow:0 18px 50px rgba(11,28,45,.12) }
 
     /* Ripple on click */
@@ -228,11 +286,17 @@
       pointer-events:none;
     }
     .btn:active::after{
-      width: 260px; height: 260px;
+      width: 280px; height: 280px;
       transition: width .35s ease, height .35s ease;
     }
 
-    .mini{ margin-top:10px; color:var(--muted); font-size:12.5px; }
+    .mini{
+      margin-top:14px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height:1.45;
+      max-width: 62ch;
+    }
 
     /* Right visual */
     .heroVisual{
@@ -242,22 +306,25 @@
         radial-gradient(650px 280px at 15% 30%, rgba(255,79,216,.12), transparent 55%),
         radial-gradient(650px 280px at 85% 20%, rgba(71,230,177,.12), transparent 55%),
         radial-gradient(650px 280px at 55% 30%, rgba(200,155,60,.12), transparent 55%),
-        linear-gradient(135deg, rgba(255,255,255,.92) 0%, rgba(243,246,251,.88) 100%);
+        radial-gradient(650px 280px at 40% 60%, rgba(77,231,255,.10), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.94) 0%, rgba(243,246,251,.90) 100%);
       box-shadow:0 18px 55px rgba(11,28,45,.10);
-      height:280px;
+      height:290px;
       position:relative;
       overflow:hidden;
+      transform: translateZ(0);
     }
     [data-theme="dark"] .heroVisual{
       background:
         radial-gradient(650px 280px at 15% 30%, rgba(255,79,216,.14), transparent 55%),
         radial-gradient(650px 280px at 85% 20%, rgba(71,230,177,.14), transparent 55%),
         radial-gradient(650px 280px at 55% 30%, rgba(200,155,60,.12), transparent 55%),
+        radial-gradient(650px 280px at 40% 60%, rgba(77,231,255,.10), transparent 55%),
         linear-gradient(135deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.05) 100%);
     }
 
-    .routeSvg{position:absolute; inset:-10px; opacity:.95}
-    .routeSvg .glow{ fill:none; stroke: rgba(200,155,60,.30); stroke-width: 5; filter: blur(1px); }
+    .routeSvg{position:absolute; inset:-10px; opacity:.96}
+    .routeSvg .glow{ fill:none; stroke: rgba(200,155,60,.32); stroke-width: 5; filter: blur(1px); }
     .routeSvg .main{
       fill:none;
       stroke: url(#routeGrad);
@@ -308,11 +375,11 @@
     [data-theme="dark"] .badge{ background: rgba(255,255,255,.08); }
     .badge .bDot{
       width:9px; height:9px; border-radius:50%;
-      background: linear-gradient(135deg, var(--gold), var(--steel));
+      background: linear-gradient(135deg, var(--gold), var(--cyan));
     }
 
     /* SECTIONS */
-    .section{margin-top:34px}
+    .section{margin-top:26px}
     .sectionCard{
       border-radius:28px;
       border:1px solid var(--line);
@@ -321,6 +388,7 @@
       padding:24px;
       position:relative;
       overflow:hidden;
+      transform: translateZ(0);
     }
     [data-theme="dark"] .sectionCard{
       background: rgba(255,255,255,.06);
@@ -329,17 +397,24 @@
       content:"";
       position:absolute; inset:-40px;
       background:
-        radial-gradient(500px 220px at 0% 0%, rgba(255,79,216,.10), transparent 60%),
-        radial-gradient(520px 240px at 100% 10%, rgba(71,230,177,.09), transparent 60%),
-        radial-gradient(420px 240px at 50% 0%, rgba(200,155,60,.08), transparent 60%);
+        radial-gradient(520px 240px at 0% 0%, rgba(255,79,216,.11), transparent 60%),
+        radial-gradient(560px 260px at 100% 10%, rgba(71,230,177,.10), transparent 60%),
+        radial-gradient(460px 260px at 50% 0%, rgba(200,155,60,.10), transparent 60%),
+        radial-gradient(520px 260px at 50% 85%, rgba(77,231,255,.09), transparent 60%);
       opacity:.9;
       pointer-events:none;
+      animation: cardGlow 18s ease-in-out infinite;
+    }
+    @keyframes cardGlow{
+      0%{ transform: translate(0,0); }
+      50%{ transform: translate(18px, -10px); }
+      100%{ transform: translate(0,0); }
     }
     .sectionCard > *{ position:relative; z-index:1; }
 
     .headRow{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap;}
     .headRow h2{margin:0; font-size:20px; letter-spacing:-.01em}
-    .sub{margin:6px 0 0; color:var(--muted); font-size:13px; max-width:70ch}
+    .sub{margin:6px 0 0; color:var(--muted); font-size:13px; max-width:74ch}
 
     /* Tabs */
     .tabs{ margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
@@ -392,9 +467,9 @@
     .card::before{
       content:"";
       position:absolute; top:14px; left:14px;
-      width:38px; height:6px;
+      width:44px; height:6px;
       border-radius:999px;
-      background: linear-gradient(90deg, var(--gold), var(--steel));
+      background: linear-gradient(90deg, var(--pink), var(--gold), var(--cyan));
       opacity:.9;
     }
     .card:hover{
@@ -419,13 +494,20 @@
     .cardLink{ text-decoration:none; display:block; }
 
     /* Coverage */
-    .coverageGrid{ margin-top:16px; display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    .coverageGrid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
     .covCard{
       border-radius:22px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.92);
       padding:16px;
       box-shadow:0 14px 34px rgba(11,28,45,.07);
+      position:relative;
+      overflow:hidden;
     }
     [data-theme="dark"] .covCard{ background: rgba(255,255,255,.06); }
     .covTop{display:flex; align-items:center; justify-content:space-between; gap:10px}
@@ -451,6 +533,283 @@
     }
     .covNote{ margin-top:12px; color: var(--muted); font-size:12.5px; min-height: 38px; }
 
+    /* Learning / Tools */
+    .learnGrid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:start;
+    }
+    .toolCard{
+      border-radius:22px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      padding:16px;
+      box-shadow:0 14px 34px rgba(11,28,45,.07);
+      position:relative;
+      overflow:hidden;
+    }
+    [data-theme="dark"] .toolCard{ background: rgba(255,255,255,.06); }
+
+    .toolCard::before{
+      content:"";
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(420px 220px at 15% 10%, rgba(255,79,216,.10), transparent 60%),
+        radial-gradient(420px 220px at 85% 25%, rgba(71,230,177,.10), transparent 60%),
+        radial-gradient(420px 220px at 55% 90%, rgba(77,231,255,.08), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .toolCard > *{ position:relative; z-index:1; }
+
+    /* Globe UI */
+    .globeRow{ display:flex; align-items:flex-end; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+    .globeWrap{
+      margin-top:12px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(11,28,45,.03);
+      position:relative;
+      overflow:hidden;
+      height: 320px;
+      display:grid;
+      place-items:center;
+      touch-action: none;
+    }
+    [data-theme="dark"] .globeWrap{
+      background: rgba(255,255,255,.04);
+    }
+    .globeWrap canvas{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+    .hoverLabel{
+      position:absolute;
+      transform: translate(-50%, -120%);
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(10px);
+      font-size:12px;
+      color: var(--text);
+      pointer-events:none;
+      display:none;
+      box-shadow:0 18px 45px rgba(11,28,45,.12);
+      white-space:nowrap;
+    }
+    [data-theme="dark"] .hoverLabel{
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 22px 70px rgba(0,0,0,.55);
+    }
+
+    .routePills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .routePill{
+      cursor:pointer; user-select:none;
+      font-size:12px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.74);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      color: var(--text);
+    }
+    [data-theme="dark"] .routePill{ background: rgba(255,255,255,.08); }
+    .routePill:hover{ transform: translateY(-2px); box-shadow:0 14px 28px rgba(11,28,45,.10) }
+    .routePill.active{
+      background: rgba(255,79,216,.12);
+      border-color: rgba(255,79,216,.30);
+      box-shadow:0 16px 34px rgba(255,79,216,.10);
+    }
+
+    .miniStats{
+      margin-top:12px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      padding:12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    [data-theme="dark"] .miniStats{ background: rgba(255,255,255,.06); }
+    .miniStats b{ font-size:12.5px; letter-spacing:-.01em; }
+    .miniStats .mut{ color: var(--muted); font-size:12px; line-height:1.35; }
+    .miniStats .statRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+    .miniStats .stat{
+      border:1px solid var(--line);
+      background: rgba(11,28,45,.03);
+      border-radius: 14px;
+      padding:8px 10px;
+      min-width: 140px;
+    }
+    [data-theme="dark"] .miniStats .stat{ background: rgba(255,255,255,.05); }
+    .miniStats .stat span{ display:block; color:var(--muted); font-size:11px; margin-bottom:2px; }
+    .miniStats .stat strong{ font-size:12.5px; }
+
+    /* Incoterms */
+    .termPanel{ margin-top:0; }
+    .termTitle{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+    .termTitle b{ font-size:14px }
+    .termExplain{ margin-top:8px; color:var(--muted); font-size:12.5px; line-height:1.45; }
+    .timeline{
+      margin-top:14px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.82);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    [data-theme="dark"] .timeline{ background: rgba(255,255,255,.06); }
+    .timeline::before{
+      content:"";
+      position:absolute; inset:-30px;
+      background:
+        radial-gradient(420px 200px at 10% 30%, rgba(255,79,216,.10), transparent 60%),
+        radial-gradient(420px 200px at 90% 20%, rgba(71,230,177,.08), transparent 60%),
+        radial-gradient(420px 200px at 50% 90%, rgba(200,155,60,.08), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+      animation: tlGlow 16s ease-in-out infinite;
+    }
+    @keyframes tlGlow{
+      0%{ transform: translate(0,0); }
+      50%{ transform: translate(12px,-8px); }
+      100%{ transform: translate(0,0); }
+    }
+    .timeline > *{ position:relative; z-index:1; }
+
+    .tlHead{ display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:11.5px; color:var(--muted); }
+    .bar{
+      margin-top:10px;
+      height: 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(11,28,45,.03);
+      overflow:hidden;
+      position:relative;
+    }
+    [data-theme="dark"] .bar{ background: rgba(255,255,255,.05); }
+    .seg{
+      height:100%;
+      float:left;
+      transition: width .45s cubic-bezier(.2,.9,.2,1);
+    }
+    .seg.seller{ background: linear-gradient(90deg, rgba(74,111,165,.80), rgba(77,231,255,.70)); }
+    .seg.buyer{ background: linear-gradient(90deg, rgba(255,79,216,.55), rgba(200,155,60,.62)); }
+
+    .legend{ margin-top:10px; display:flex; gap:12px; flex-wrap:wrap; color:var(--muted); font-size:11.5px; }
+    .lg{ display:inline-flex; gap:8px; align-items:center; }
+    .sw{ width:10px; height:10px; border-radius:50%; display:inline-block; }
+    .sw.seller{ background: rgba(74,111,165,.85); }
+    .sw.buyer{ background: rgba(255,79,216,.72); }
+
+    .steps{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .step{
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      padding:10px 12px;
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    [data-theme="dark"] .step{ background: rgba(255,255,255,.06); }
+    .step:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(11,28,45,.10);
+      border-color: rgba(200,155,60,.30);
+    }
+    .step b{ font-size:12px; letter-spacing:-.01em; }
+    .step span{ color:var(--muted); font-size:11.5px; white-space:nowrap; }
+
+    /* Incoterms matrix table */
+    #incTable th, #incTable td{ border-bottom:1px solid var(--line); }
+    #incTable th{
+      color: var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+    #incTable td{
+      padding:12px;
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    #incTable tbody tr{
+      transition: background .18s ease, transform .18s ease;
+    }
+    #incTable tbody tr:hover{
+      background: rgba(200,155,60,.08);
+    }
+    #incTable tbody tr:active{
+      transform: scale(.995);
+    }
+    #incTable .stickyTerm{
+      position:sticky; left:0;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      border-right: 1px solid var(--line);
+    }
+    [data-theme="dark"] #incTable .stickyTerm{
+      background: rgba(7,11,18,.70);
+    }
+    .incPill{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.70);
+      font-size:11px;
+      color: var(--text);
+    }
+    [data-theme="dark"] .incPill{ background: rgba(255,255,255,.08); }
+    .incPill.s{ border-color: rgba(74,111,165,.40); box-shadow: 0 10px 26px rgba(74,111,165,.10) inset; }
+    .incPill.b{ border-color: rgba(255,79,216,.32); box-shadow: 0 10px 26px rgba(255,79,216,.08) inset; }
+
+    /* CBM */
+    .calcGrid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .calcGrid .full{ grid-column: 1 / -1; }
+    .out{
+      margin-top:12px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      padding:12px;
+      display:flex; gap:10px; flex-wrap:wrap; align-items:stretch;
+    }
+    [data-theme="dark"] .out{ background: rgba(255,255,255,.06); }
+    .out .box{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:10px 12px;
+      background: rgba(11,28,45,.03);
+      min-width: 170px;
+      flex: 1;
+    }
+    [data-theme="dark"] .out .box{ background: rgba(255,255,255,.05); }
+    .out .box span{ display:block; color: var(--muted); font-size:11px; margin-bottom:3px; }
+    .out .box strong{ font-size:13px; }
+
     /* CONTACT BAND */
     .band{
       margin-top:18px;
@@ -460,7 +819,27 @@
       color:#fff;
       display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
       box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
     }
+    .band::before{
+      content:"";
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(420px 220px at 20% 30%, rgba(255,79,216,.35), transparent 60%),
+        radial-gradient(420px 220px at 80% 30%, rgba(71,230,177,.30), transparent 60%),
+        radial-gradient(420px 220px at 55% 90%, rgba(77,231,255,.22), transparent 60%);
+      opacity:.9;
+      animation: bandGlow 14s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes bandGlow{
+      0%{ transform: translate(0,0); }
+      50%{ transform: translate(14px,-8px); }
+      100%{ transform: translate(0,0); }
+    }
+    .band > *{ position:relative; z-index:1; }
+
     [data-theme="dark"] .band{
       background: linear-gradient(135deg, rgba(255,79,216,.22), rgba(71,230,177,.18));
       border:1px solid rgba(255,255,255,.12);
@@ -507,6 +886,7 @@
       background:
         radial-gradient(600px 300px at 10% 0%, rgba(255,79,216,.18), transparent 60%),
         radial-gradient(600px 300px at 90% 20%, rgba(71,230,177,.16), transparent 60%),
+        radial-gradient(600px 300px at 55% 90%, rgba(77,231,255,.12), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(245,248,255,.88) 100%);
       color: var(--text);
       box-shadow: -30px 0 120px rgba(0,0,0,.25);
@@ -519,6 +899,7 @@
       background:
         radial-gradient(600px 300px at 10% 0%, rgba(255,79,216,.18), transparent 60%),
         radial-gradient(600px 300px at 90% 20%, rgba(71,230,177,.16), transparent 60%),
+        radial-gradient(600px 300px at 55% 90%, rgba(77,231,255,.12), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.05) 100%);
     }
     .drawer.open{ transform: translateX(0); }
@@ -579,252 +960,48 @@
       margin-top:4px;
     }
 
-    /* ---------------- NEW: GLOBE + LEARNING + CBM ---------------- */
-    .learnGrid{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:14px;
-      align-items:stretch;
-    }
-
-    .globeCard{
-      border-radius:22px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.92);
-      padding:16px;
-      box-shadow:0 14px 34px rgba(11,28,45,.07);
-      overflow:hidden;
-      position:relative;
-    }
-    [data-theme="dark"] .globeCard{ background: rgba(255,255,255,.06); }
-
-    .globeTop{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      margin-bottom:10px;
-    }
-    .globeTop h3{margin:0; font-size:14px}
-    .globeHint{margin:6px 0 0; color:var(--muted); font-size:12.5px; max-width:58ch}
-    .globeWrap{
-      margin-top:10px;
-      border-radius:18px;
-      border:1px solid var(--line);
-      background:
-        radial-gradient(520px 240px at 15% 20%, rgba(255,79,216,.11), transparent 60%),
-        radial-gradient(520px 240px at 90% 20%, rgba(71,230,177,.10), transparent 60%),
-        radial-gradient(420px 240px at 55% 10%, rgba(200,155,60,.09), transparent 60%),
-        rgba(255,255,255,.55);
-      overflow:hidden;
-      position:relative;
-      aspect-ratio: 1 / 1;
-      display:flex; align-items:center; justify-content:center;
-    }
-    [data-theme="dark"] .globeWrap{ background: rgba(255,255,255,.05); }
-
-    #globe{
-      width:100%;
-      height:100%;
-      display:block;
-    }
-
-    .routePills{
-      display:flex; gap:8px; flex-wrap:wrap;
-      margin-top:10px;
-    }
-    .routePill{
-      font-size:12px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(11,28,45,.04);
-      cursor:pointer;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      user-select:none;
-    }
-    [data-theme="dark"] .routePill{ background: rgba(255,255,255,.06); }
-    .routePill:hover{ transform: translateY(-2px); box-shadow:0 14px 28px rgba(11,28,45,.10) }
-    .routePill.active{
-      background: rgba(200,155,60,.16);
-      border-color: rgba(200,155,60,.50);
-      box-shadow:0 16px 34px rgba(200,155,60,.12);
-    }
-
-    .incotermsGrid{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
-    .termRow{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top:10px;
-    }
-    .termBtn{
-      font-size:12px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.85);
-      cursor:pointer;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      color: var(--text);
-    }
-    [data-theme="dark"] .termBtn{ background: rgba(255,255,255,.08); }
-    .termBtn:hover{ transform: translateY(-2px); box-shadow:0 14px 28px rgba(11,28,45,.10) }
-    .termBtn.active{
-      background: rgba(71,230,177,.14);
-      border-color: rgba(71,230,177,.45);
-      box-shadow:0 16px 34px rgba(71,230,177,.10);
-    }
-
-    .termPanel{
-      border-radius:22px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.86);
-      padding:16px;
-    }
-    [data-theme="dark"] .termPanel{ background: rgba(255,255,255,.06); }
-
-    .termTitle{
-      display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap;
-    }
-    .termTitle b{font-size:14px}
-    .termTitle .tag{ margin:0; }
-
-    .termExplain{
-      margin:8px 0 0;
-      color: var(--muted);
-      font-size:12.5px;
-      line-height:1.45;
-      max-width:78ch;
-    }
-
-    .timeline{
-      margin-top:12px;
+    /* Tooltip for globe selection */
+    #globeTip{
+      position:absolute;
+      left:16px; top:16px;
+      max-width: 280px;
+      padding:12px 12px;
       border-radius:16px;
-      border:1px solid var(--line);
-      background: rgba(11,28,45,.03);
-      padding:12px;
-    }
-    [data-theme="dark"] .timeline{ background: rgba(255,255,255,.05); }
-
-    .tlHead{
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      font-size:11px; color: var(--muted);
-      margin-bottom:8px;
-    }
-
-    .bar{
-      height:12px;
-      border-radius:999px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.55);
-      display:flex;
-    }
-    [data-theme="dark"] .bar{ background: rgba(255,255,255,.06); }
-
-    .seg{ height:100%; }
-    .seg.seller{ background: linear-gradient(90deg, rgba(74,111,165,.65), rgba(200,155,60,.55)); }
-    .seg.buyer{ background: linear-gradient(90deg, rgba(255,79,216,.45), rgba(71,230,177,.40)); opacity:.92; }
-
-    .legend{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:10px; font-size:11px; color: var(--muted);
-    }
-    .lg{
-      display:inline-flex; align-items:center; gap:7px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.60);
-    }
-    [data-theme="dark"] .lg{ background: rgba(255,255,255,.06); }
-    .sw{width:10px;height:10px;border-radius:50%}
-    .sw.seller{ background: rgba(74,111,165,.75); }
-    .sw.buyer{ background: rgba(255,79,216,.55); }
-
-    .steps{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(5, minmax(0,1fr));
-      gap:8px;
-    }
-    .step{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:10px 10px;
-      background: rgba(255,255,255,.62);
-      min-height:66px;
-    }
-    [data-theme="dark"] .step{ background: rgba(255,255,255,.06); }
-    .step b{ font-size:11px; display:block; }
-    .step span{ font-size:11px; color: var(--muted); display:block; margin-top:4px; line-height:1.35; }
-
-    /* CBM */
-    .cbmGrid{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(6, minmax(0,1fr));
-      gap:10px;
-    }
-    .cbmGrid .full{ grid-column: 1 / -1; }
-    .cbmGrid .span2{ grid-column: span 2; }
-    .cbmGrid .span3{ grid-column: span 3; }
-    .cbmGrid .span1{ grid-column: span 1; }
-
-    .resultBox{
-      margin-top:12px;
-      border-radius:18px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.78);
-      padding:14px;
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 45px rgba(11,28,45,.12);
+      display:none;
     }
-    [data-theme="dark"] .resultBox{ background: rgba(255,255,255,.06); }
+    [data-theme="dark"] #globeTip{
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 22px 70px rgba(0,0,0,.55);
+    }
+    [data-theme="dark"] #tipClose{ background: rgba(255,255,255,.10) !important; }
 
-    .bigNum{
-      font-size:24px;
-      font-weight:800;
-      letter-spacing:-.02em;
-      background: linear-gradient(135deg, var(--navy), var(--steel));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    [data-theme="dark"] .bigNum{
-      background: linear-gradient(135deg, rgba(71,230,177,.85), rgba(255,79,216,.75));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .smallNums{
-      display:flex; gap:10px; flex-wrap:wrap;
-      color: var(--muted);
-      font-size:12px;
-    }
-    .smallNums .tag{ background: rgba(11,28,45,.03); }
-    [data-theme="dark"] .smallNums .tag{ background: rgba(255,255,255,.06); }
-
+    /* Responsive */
     @media (max-width: 980px){
       .heroGrid{grid-template-columns:1fr; padding:32px 18px}
-      .heroVisual{height:240px}
+      .heroVisual{height:260px}
       .cards{grid-template-columns:1fr}
       .coverageGrid{grid-template-columns:1fr}
       .panelGrid{grid-template-columns:1fr}
       .form{grid-template-columns:1fr}
-      .learnGrid{ grid-template-columns: 1fr; }
-      .steps{ grid-template-columns: 1fr; }
-      .cbmGrid{ grid-template-columns: 1fr 1fr; }
-      .cbmGrid .span2, .cbmGrid .span3, .cbmGrid .span1{ grid-column: auto; }
+      .learnGrid{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      .globeWrap{height:300px}
+      .calcGrid{grid-template-columns:1fr}
     }
   </style>
 </head>
 
 <body>
+  <div class="ambient" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+  </div>
 
   <div class="top">
     <div class="topInner">
@@ -852,7 +1029,7 @@
 
   <main class="wrap">
 
-    <section class="hero reveal">
+    <section class="hero reveal" id="home">
       <div class="heroGrid">
         <div>
           <div class="kicker"><span class="kdot"></span> <span data-i18n="heroKicker">Cross-border logistics coordination</span></div>
@@ -865,6 +1042,7 @@
             <span class="chip" data-i18n="chip1">Fast response</span>
             <span class="chip" data-i18n="chip2">Clear coordination</span>
             <span class="chip" data-i18n="chip3">Trusted network</span>
+            <span class="chip" data-i18n="chip4">Data-driven updates</span>
           </div>
 
           <div class="heroCtas">
@@ -873,7 +1051,9 @@
             <a class="btn ghost" href="viber://chat?number=%2B97699887055">Viber</a>
           </div>
 
-          <div class="mini" data-i18n="heroMini">Practical, calm, dependable — built for long-term trade.</div>
+          <div class="mini" data-i18n="heroMini">
+            Practical, calm, dependable — built for long-term trade.
+          </div>
         </div>
 
         <div class="heroVisual" aria-hidden="true">
@@ -934,7 +1114,7 @@
               <div class="card">
                 <h3 data-i18n="p1bTitle">Partner alignment</h3>
                 <p data-i18n="p1bText">Coordinate carriers and operators so handovers are smooth.</p>
-                <div class="meta"><span class="tag" data-i18n="tagCoordination">Coordination</span><span class="tag">Updates</span></div>
+                <div class="meta"><span class="tag" data-i18n="tagCoordination">Coordination</span><span class="tag" data-i18n="tagUpdates">Updates</span></div>
               </div>
             </div>
           </div>
@@ -945,12 +1125,12 @@
               <div class="card">
                 <h3 data-i18n="p2aTitle">Border handover</h3>
                 <p data-i18n="p2aText">Clear responsibilities across the border to keep cargo moving.</p>
-                <div class="meta"><span class="tag">Handover</span><span class="tag" data-i18n="tagSpeed">Speed</span></div>
+                <div class="meta"><span class="tag" data-i18n="tagHandover">Handover</span><span class="tag" data-i18n="tagSpeed">Speed</span></div>
               </div>
               <div class="card">
                 <h3 data-i18n="p2bTitle">Issue handling</h3>
                 <p data-i18n="p2bText">If delays happen, we push a resolution plan fast.</p>
-                <div class="meta"><span class="tag" data-i18n="tagRisk">Risk</span><span class="tag">Status</span></div>
+                <div class="meta"><span class="tag" data-i18n="tagRisk">Risk</span><span class="tag" data-i18n="tagStatus">Status</span></div>
               </div>
             </div>
           </div>
@@ -960,13 +1140,13 @@
             <div class="panelGrid stagger">
               <div class="card">
                 <h3 data-i18n="p3aTitle">Checklist by route</h3>
-                <p data-i18n="p3aText">Simple checklist to avoid missing or wrong docs.</p>
-                <div class="meta"><span class="tag">Docs</span><span class="tag" data-i18n="tagAccuracy">Accuracy</span></div>
+                <p data-i18n="p3aText">Simple checklist to avoid missing or incorrect documents.</p>
+                <div class="meta"><span class="tag" data-i18n="tagDocs">Docs</span><span class="tag" data-i18n="tagAccuracy">Accuracy</span></div>
               </div>
               <div class="card">
                 <h3 data-i18n="p3bTitle">Validation</h3>
                 <p data-i18n="p3bText">Weights, codes, names — confirm before shipment.</p>
-                <div class="meta"><span class="tag">Verification</span><span class="tag" data-i18n="tagClarity">Clarity</span></div>
+                <div class="meta"><span class="tag" data-i18n="tagVerification">Verification</span><span class="tag" data-i18n="tagClarity">Clarity</span></div>
               </div>
             </div>
           </div>
@@ -993,7 +1173,7 @@
       </div>
     </section>
 
-    <!-- COVERAGE (now includes animated globe) -->
+    <!-- COVERAGE -->
     <section class="section reveal" id="coverage">
       <div class="sectionCard">
         <div class="headRow">
@@ -1003,208 +1183,236 @@
           </div>
         </div>
 
-        <div class="learnGrid stagger" style="margin-top:16px;">
-          <!-- LEFT: your existing coverage cards -->
-          <div>
-            <div class="coverageGrid" style="margin-top:0;">
-              <div class="covCard">
-                <div class="covTop">
-                  <h3 data-i18n="covCoreTitle">Core Routes</h3>
-                  <span class="tag" data-i18n="covCoreTag">MNG ↔ CHN</span>
-                </div>
-                <div class="covChips" id="coreChips">
-                  <div class="covChip active" data-note="core1" data-i18n="covChip1">UB ↔ Erenhot</div>
-                  <div class="covChip" data-note="core2" data-i18n="covChip2">Zamiin-Uud ↔ China</div>
-                  <div class="covChip" data-note="core3" data-i18n="covChip3">Rail / Road options</div>
-                </div>
-                <div class="covNote" id="coreNote"></div>
-              </div>
-
-              <div class="covCard">
-                <div class="covTop">
-                  <h3 data-i18n="covGlobalTitle">Global Reach</h3>
-                  <span class="tag" data-i18n="covGlobalTag">Partners</span>
-                </div>
-                <div class="covChips" id="globalChips">
-                  <div class="covChip active" data-note="g1" data-i18n="covChip4">Overseas pickup</div>
-                  <div class="covChip" data-note="g2" data-i18n="covChip5">Cross-trade</div>
-                  <div class="covChip" data-note="g3" data-i18n="covChip6">Multi-leg tracking</div>
-                </div>
-                <div class="covNote" id="globalNote"></div>
-              </div>
+        <div class="coverageGrid stagger">
+          <div class="covCard">
+            <div class="covTop">
+              <h3 data-i18n="covCoreTitle">Core Routes</h3>
+              <span class="tag" data-i18n="covCoreTag">MNG ↔ CHN</span>
             </div>
+            <div class="covChips" id="coreChips">
+              <div class="covChip active" data-note="core1" data-i18n="covChip1">UB ↔ Erenhot</div>
+              <div class="covChip" data-note="core2" data-i18n="covChip2">Zamiin-Uud ↔ China</div>
+              <div class="covChip" data-note="core3" data-i18n="covChip3">Rail / Road options</div>
+            </div>
+            <div class="covNote" id="coreNote"></div>
           </div>
 
-          <!-- RIGHT: animated globe -->
-          <div class="globeCard">
-            <div class="globeTop">
-              <div>
-                <h3 data-i18n="globeTitle">Live Coverage Map</h3>
-                <div class="globeHint" data-i18n="globeSub">
-                  A lightweight animated globe. Select routes to highlight trade lanes.
-                </div>
-              </div>
-              <span class="tag" data-i18n="globeTag">Interactive</span>
+          <div class="covCard">
+            <div class="covTop">
+              <h3 data-i18n="covGlobalTitle">Global Reach</h3>
+              <span class="tag" data-i18n="covGlobalTag">Partners</span>
             </div>
-
-            <div class="globeWrap" id="globeWrap">
-  <canvas id="globe" width="640" height="640"></canvas>
-
-  <!-- Tooltip -->
-  <div id="globeTip" style="
-    position:absolute;
-    left:16px; top:16px;
-    max-width: 260px;
-    padding:12px 12px;
-    border-radius:16px;
-    border:1px solid var(--line);
-    background: rgba(255,255,255,.78);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 18px 45px rgba(11,28,45,.12);
-    display:none;
-  ">
-    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
-      <div>
-        <b id="tipTitle" style="font-size:13px; letter-spacing:-.01em;">City</b>
-        <div id="tipSub" style="margin-top:6px; color:var(--muted); font-size:12px; line-height:1.35;">
-          Tap a city point to see details
-        </div>
-      </div>
-      <button id="tipClose" type="button" style="
-        border:1px solid var(--line);
-        background: rgba(255,255,255,.72);
-        border-radius: 12px;
-        padding:6px 8px;
-        cursor:pointer;
-        color: var(--text);
-      ">✕</button>
-    </div>
-    <div id="tipMeta" style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-      <span class="tag" id="tipTag1">Lane</span>
-      <span class="tag" id="tipTag2">Hub</span>
-    </div>
-    <div style="margin-top:10px; color:var(--muted); font-size:11.5px;">
-      <span style="opacity:.9">Tip:</span> Drag to rotate • Tap to select
-    </div>
-  </div>
-</div>
-
-            <div class="routePills" id="routePills">
-              <div class="routePill active" data-route="mngchn" data-i18n="route1">MNG ↔ CHN</div>
-              <div class="routePill" data-route="asiaeu" data-i18n="route2">Asia ↔ EU</div>
-              <div class="routePill" data-route="global" data-i18n="route3">Global network</div>
+            <div class="covChips" id="globalChips">
+              <div class="covChip active" data-note="g1" data-i18n="covChip4">Overseas pickup</div>
+              <div class="covChip" data-note="g2" data-i18n="covChip5">Cross-trade</div>
+              <div class="covChip" data-note="g3" data-i18n="covChip6">Multi-leg tracking</div>
             </div>
-
-            <div class="covNote" id="routeNote" style="margin-top:10px;"></div>
+            <div class="covNote" id="globalNote"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- NEW: LEARNING (Incoterms + CBM) -->
+    <!-- LEARNING / TOOLS -->
     <section class="section reveal" id="learning">
       <div class="sectionCard">
         <div class="headRow">
           <div>
-            <h2 data-i18n="learningTitle">Learning Tools</h2>
-            <p class="sub" data-i18n="learningSub">Incoterms® 2020 comparison + quick CBM calculator for faster quoting.</p>
+            <h2 data-i18n="learnTitle">Coverage Map & Learning</h2>
+            <p class="sub" data-i18n="learnSub">Interactive globe (tap/drag), route builder, Incoterms® 2020 matrix, and a CBM calculator.</p>
           </div>
         </div>
 
-        <!-- Incoterms -->
-        <div class="incotermsGrid">
-          <div class="termPanel">
-            <div class="termTitle">
-              <b data-i18n="incTitle">Incoterms® 2020 — responsibility split</b>
-              <span class="tag" data-i18n="incTag">Clear visual</span>
-            </div>
-            <div class="termExplain" data-i18n="incSub">
-              Select a term. The timeline shows who handles each stage (Seller vs Buyer). Use this as a learning guide (always confirm contract specifics).
-            </div>
-
-            <div class="termRow" id="termRow">
-              <button class="termBtn active" type="button" data-term="EXW">EXW</button>
-              <button class="termBtn" type="button" data-term="FOB">FOB</button>
-              <button class="termBtn" type="button" data-term="CIF">CIF</button>
-              <button class="termBtn" type="button" data-term="DAP">DAP</button>
-              <button class="termBtn" type="button" data-term="DDP">DDP</button>
+        <div class="learnGrid stagger">
+          <!-- Globe + Route builder -->
+          <div class="toolCard">
+            <div class="globeRow">
+              <div>
+                <b data-i18n="globeTitle">Interactive globe</b>
+                <div class="sub" style="margin:6px 0 0;" data-i18n="globeSub">Hover for labels • Tap to select • Tap two cities to build a route</div>
+              </div>
+              <span class="tag" data-i18n="globeTag">Press / drag to rotate</span>
             </div>
 
-            <div class="timeline" id="termPanel">
-              <div class="tlHead">
-                <span data-i18n="tlSeller">Seller</span>
-                <span data-i18n="tlBuyer">Buyer</span>
+            <div class="routePills" id="routePills" aria-label="Preset lanes">
+              <div class="routePill active" data-route="mngchn" data-i18n="lane1">MNG ↔ CHN</div>
+              <div class="routePill" data-route="asiaeu" data-i18n="lane2">Asia ↔ Europe</div>
+              <div class="routePill" data-route="global" data-i18n="lane3">Global</div>
+            </div>
+
+            <div class="covNote" id="routeNote" style="margin-top:10px;"></div>
+
+            <div class="globeWrap" id="globeWrap">
+              <canvas id="globe" width="640" height="640" aria-label="Globe canvas"></canvas>
+              <div class="hoverLabel" id="hoverLabel"></div>
+
+              <!-- Tooltip -->
+              <div id="globeTip" aria-live="polite">
+                <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
+                  <div>
+                    <b id="tipTitle" style="font-size:13px; letter-spacing:-.01em;">City</b>
+                    <div id="tipSub" style="margin-top:6px; color:var(--muted); font-size:12px; line-height:1.35;">
+                      Tap a city point to see details
+                    </div>
+                  </div>
+                  <button id="tipClose" type="button" style="
+                    border:1px solid var(--line);
+                    background: rgba(255,255,255,.72);
+                    border-radius: 12px;
+                    padding:6px 8px;
+                    cursor:pointer;
+                    color: var(--text);
+                  " aria-label="Close tooltip">✕</button>
+                </div>
+                <div id="tipMeta" style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                  <span class="tag" id="tipTag1">Lane</span>
+                  <span class="tag" id="tipTag2">Hub</span>
+                </div>
+                <div style="margin-top:10px; color:var(--muted); font-size:11.5px;">
+                  <span style="opacity:.9" data-i18n="globeTipHint">Tip:</span> <span data-i18n="globeTipHint2">Drag to rotate • Tap to select</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="miniStats" id="laneStats">
+              <div>
+                <b data-i18n="laneStatsTitle">Selected lane</b>
+                <div class="mut" id="laneStatsSub" data-i18n="laneStatsSub">Tap two cities to build a custom lane. We’ll estimate distance and suggest a mode.</div>
+
+                <div class="statRow">
+                  <div class="stat">
+                    <span data-i18n="statCities">Cities</span>
+                    <strong id="statCities">—</strong>
+                  </div>
+                  <div class="stat">
+                    <span data-i18n="statDistance">Distance (approx.)</span>
+                    <strong id="statDistance">—</strong>
+                  </div>
+                  <div class="stat">
+                    <span data-i18n="statMode">Suggested mode</span>
+                    <strong id="statMode">—</strong>
+                  </div>
+                </div>
               </div>
 
-              <div class="bar" aria-label="Responsibility bar">
-                <div class="seg seller" id="segSeller" style="width:40%"></div>
-                <div class="seg buyer" id="segBuyer" style="width:60%"></div>
-              </div>
-
-              <div class="legend">
-                <span class="lg"><span class="sw seller"></span><span data-i18n="legendSeller">Seller handles</span></span>
-                <span class="lg"><span class="sw buyer"></span><span data-i18n="legendBuyer">Buyer handles</span></span>
-              </div>
-
-              <div class="steps" id="termSteps" aria-label="Steps breakdown">
-                <!-- Filled by JS -->
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="pillBtn" id="resetRoute" type="button" data-i18n="resetRoute">Reset</button>
+                <button class="pillBtn" id="swapRoute" type="button" data-i18n="swapRoute">Swap</button>
               </div>
             </div>
           </div>
 
-          <!-- CBM Calculator -->
-          <div class="termPanel">
-            <div class="termTitle">
-              <b data-i18n="cbmTitle">CBM Calculator</b>
-              <span class="tag" data-i18n="cbmTag">Instant</span>
-            </div>
-            <div class="termExplain" data-i18n="cbmSub">
-              Enter dimensions for one carton, then cartons count. Switch units as needed.
-            </div>
-
-            <div class="cbmGrid" id="cbmForm" style="margin-top:12px;">
-              <div class="span1">
-                <label data-i18n="cbmL">Length</label>
-                <input id="cbmL" type="number" inputmode="decimal" placeholder="0" />
-              </div>
-              <div class="span1">
-                <label data-i18n="cbmW">Width</label>
-                <input id="cbmW" type="number" inputmode="decimal" placeholder="0" />
-              </div>
-              <div class="span1">
-                <label data-i18n="cbmH">Height</label>
-                <input id="cbmH" type="number" inputmode="decimal" placeholder="0" />
-              </div>
-              <div class="span1">
-                <label data-i18n="cbmC">Cartons</label>
-                <input id="cbmC" type="number" inputmode="numeric" value="1" min="1"/>
+          <!-- Incoterms + CBM -->
+          <div class="toolCard">
+            <!-- Incoterms -->
+            <div class="termPanel">
+              <div class="termTitle">
+                <b data-i18n="incTitle">Incoterms® 2020 — responsibility split</b>
+                <span class="tag" data-i18n="incTag">Full matrix</span>
               </div>
 
-              <div class="span2">
-                <label data-i18n="cbmUnit">Unit</label>
-                <select id="cbmUnit">
-                  <option value="cm" data-i18n="uCM">Centimeters (cm)</option>
-                  <option value="m" data-i18n="uM">Meters (m)</option>
-                  <option value="in" data-i18n="uIN">Inches (in)</option>
+              <div class="termExplain" data-i18n="incSub">
+                Select a term. Timeline shows Seller vs Buyer across shipment stages. Use as a learning guide (always confirm contract specifics).
+              </div>
+
+              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                <select id="incFilter" style="max-width:220px;">
+                  <option value="all" data-i18n="incFilterAll">All terms (11)</option>
+                  <option value="any" data-i18n="incFilterAny">Any mode (7)</option>
+                  <option value="sea" data-i18n="incFilterSea">Sea / inland waterway (4)</option>
                 </select>
+
+                <input id="incSearch" type="text" placeholder="Search term (EXW, FOB, DDP...)" style="max-width:260px;" />
+                <span class="tag" id="incCount">11 terms</span>
               </div>
 
-              <div class="full resultBox">
-                <div>
-                  <div class="bigNum" id="cbmOut">0.000 CBM</div>
-                  <div class="smallNote" data-i18n="cbmNote">CBM = (L × W × H) × cartons</div>
-                </div>
-                <div class="smallNums">
-                  <span class="tag" id="cbmEach">Each: 0.000</span>
-                  <span class="tag" id="cbmCft">0.00 ft³</span>
-                </div>
+              <div style="margin-top:12px; overflow:auto; border-radius:18px; border:1px solid var(--line);">
+                <table id="incTable" style="width:100%; border-collapse:separate; border-spacing:0; font-size:12px;">
+                  <thead>
+                    <tr style="background: rgba(11,28,45,.03);">
+                      <th style="text-align:left; padding:12px; position:sticky; left:0; background: rgba(11,28,45,.03);" data-i18n="incColTerm">Term</th>
+                      <th style="text-align:left; padding:12px;" data-i18n="incColExport">Export</th>
+                      <th style="text-align:left; padding:12px;" data-i18n="incColMain">Main</th>
+                      <th style="text-align:left; padding:12px;" data-i18n="incColIns">Insurance</th>
+                      <th style="text-align:left; padding:12px;" data-i18n="incColImport">Import</th>
+                      <th style="text-align:left; padding:12px;" data-i18n="incColDuty">Duties/Tax</th>
+                      <th style="text-align:left; padding:12px;" data-i18n="incColFinal">Final Delivery</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
               </div>
 
-              <div class="full smallNote" data-i18n="cbmHint">
-                Tip: For air freight, volumetric weight is often based on cm³ / 6000 (carrier rules vary).
+              <div class="timeline" id="termPanel" style="margin-top:14px;">
+                <div class="tlHead">
+                  <span data-i18n="tlSeller">Seller</span>
+                  <span data-i18n="tlBuyer">Buyer</span>
+                </div>
+
+                <div class="bar" aria-label="Responsibility bar">
+                  <div class="seg seller" id="segSeller" style="width:40%"></div>
+                  <div class="seg buyer" id="segBuyer" style="width:60%"></div>
+                </div>
+
+                <div class="legend">
+                  <span class="lg"><span class="sw seller"></span><span data-i18n="legendSeller">Seller handles</span></span>
+                  <span class="lg"><span class="sw buyer"></span><span data-i18n="legendBuyer">Buyer handles</span></span>
+                </div>
+
+                <div class="steps" id="termSteps" aria-label="Steps breakdown"></div>
               </div>
             </div>
 
+            <!-- CBM -->
+            <div style="margin-top:16px;">
+              <div class="termTitle">
+                <b data-i18n="cbmTitle">CBM calculator</b>
+                <span class="tag" data-i18n="cbmTag">Volume</span>
+              </div>
+              <div class="termExplain" data-i18n="cbmSub">Enter carton size and quantity. We’ll calculate CBM and total volume.</div>
+
+              <div class="calcGrid">
+                <div>
+                  <label data-i18n="cbmUnit">Units</label>
+                  <select id="unitSel">
+                    <option value="cm" data-i18n="unitCm">Centimeters (cm)</option>
+                    <option value="in" data-i18n="unitIn">Inches (in)</option>
+                  </select>
+                </div>
+                <div>
+                  <label data-i18n="cbmCartons">Cartons</label>
+                  <input id="cartons" type="number" min="1" value="1" />
+                </div>
+
+                <div>
+                  <label data-i18n="cbmL">Length</label>
+                  <input id="len" type="number" min="0" step="0.01" placeholder="0" />
+                </div>
+                <div>
+                  <label data-i18n="cbmW">Width</label>
+                  <input id="wid" type="number" min="0" step="0.01" placeholder="0" />
+                </div>
+                <div class="full">
+                  <label data-i18n="cbmH">Height</label>
+                  <input id="hei" type="number" min="0" step="0.01" placeholder="0" />
+                </div>
+              </div>
+
+              <div class="out" aria-live="polite">
+                <div class="box">
+                  <span data-i18n="outPer">CBM per carton</span>
+                  <strong id="outPer">—</strong>
+                </div>
+                <div class="box">
+                  <span data-i18n="outTotal">Total CBM</span>
+                  <strong id="outTotal">—</strong>
+                </div>
+                <div class="box">
+                  <span data-i18n="outHint">Quick hint</span>
+                  <strong id="outHint">—</strong>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1251,7 +1459,7 @@
         <h3 data-i18n="drawerTitle">Request a quote</h3>
         <div class="drawerHint" data-i18n="drawerSub">Fill this in 30 seconds. We’ll reply quickly.</div>
       </div>
-      <button class="x" id="closeDrawer" type="button">✕</button>
+      <button class="x" id="closeDrawer" type="button" aria-label="Close">✕</button>
     </div>
 
     <form class="form" id="quoteForm">
@@ -1309,15 +1517,16 @@
 
   <script>
     (function(){
-      // ---------------- i18n ----------------
+      // ---------------- i18n (spell-checked EN + MN) ----------------
       const dict = {
         en: {
           tagline:"Moving Trade Forward",
           navServices:"Services", navCoverage:"Coverage", navLearning:"Learning", navContact:"Contact", navAbout:"About", navServicesPage:"Services Page",
+
           heroKicker:"Cross-border logistics coordination",
           heroTitle:"Mongolia ↔ China ↔ Global Logistics",
           heroSub:"Reliable logistics coordination for cross-border and international trade — clear communication, fast execution, trusted partners.",
-          chip1:"Fast response", chip2:"Clear coordination", chip3:"Trusted network",
+          chip1:"Fast response", chip2:"Clear coordination", chip3:"Trusted network", chip4:"Data-driven updates",
           ctaPrimary:"Request a quote",
           heroMini:"Practical, calm, dependable — built for long-term trade.",
           heroBadge:"Mongolia ↔ China ↔ Global",
@@ -1332,14 +1541,16 @@
           p2aTitle:"Border handover", p2aText:"Clear responsibilities across the border to keep cargo moving.",
           p2bTitle:"Issue handling", p2bText:"If delays happen, we push a resolution plan fast.",
           p3Title:"Documentation support (reduce preventable delays)",
-          p3aTitle:"Checklist by route", p3aText:"Simple checklist to avoid missing or wrong docs.",
+          p3aTitle:"Checklist by route", p3aText:"Simple checklist to avoid missing or incorrect documents.",
           p3bTitle:"Validation", p3bText:"Weights, codes, names — confirm before shipment.",
 
           svcCard1:"See full Services page", svcCard1Sub:"Interactive details, quote shortcuts, and process overview.",
           svcCard2:"Fast quoting", svcCard2Sub:"Send route + cargo details — we reply quickly with next steps.",
           svcCard3:"Clean communication", svcCard3Sub:"No confusion, no silence — clear updates at every stage.",
-          tagPlanning:"Planning", tagCoordination:"Coordination", tagSpeed:"Speed", tagRisk:"Risk", tagAccuracy:"Accuracy", tagClarity:"Clarity",
-          tagExplore:"Explore", tagUpdates:"Updates", tagTrusted:"Trusted",
+
+          tagPlanning:"Planning", tagCoordination:"Coordination", tagUpdates:"Updates", tagTrusted:"Trusted",
+          tagHandover:"Handover", tagSpeed:"Speed", tagRisk:"Risk", tagStatus:"Status",
+          tagDocs:"Docs", tagAccuracy:"Accuracy", tagVerification:"Verification", tagClarity:"Clarity", tagExplore:"Explore",
 
           coverageTitle:"Coverage",
           coverageSub:"Tap a route chip. We’ll show what that coverage means.",
@@ -1348,31 +1559,56 @@
           covChip1:"UB ↔ Erenhot", covChip2:"Zamiin-Uud ↔ China", covChip3:"Rail / Road options",
           covChip4:"Overseas pickup", covChip5:"Cross-trade", covChip6:"Multi-leg tracking",
 
-          globeTitle:"Live Coverage Map",
-          globeSub:"A lightweight animated globe. Select routes to highlight trade lanes.",
-          globeTag:"Interactive",
-          route1:"MNG ↔ CHN",
-          route2:"Asia ↔ EU",
-          route3:"Global network",
+          learnTitle:"Coverage Map & Learning",
+          learnSub:"Interactive globe (tap/drag), route builder, Incoterms® 2020 matrix, and a CBM calculator.",
 
-          learningTitle:"Learning Tools",
-          learningSub:"Incoterms® 2020 comparison + quick CBM calculator for faster quoting.",
+          globeTitle:"Interactive globe",
+          globeSub:"Hover for labels • Tap to select • Tap two cities to build a route",
+          globeTag:"Press / drag to rotate",
+          globeTipHint:"Tip:",
+          globeTipHint2:"Drag to rotate • Tap to select",
+
+          lane1:"MNG ↔ CHN", lane2:"Asia ↔ Europe", lane3:"Global",
+          laneStatsTitle:"Selected lane",
+          laneStatsSub:"Tap two cities to build a custom lane. We’ll estimate distance and suggest a mode.",
+          statCities:"Cities",
+          statDistance:"Distance (approx.)",
+          statMode:"Suggested mode",
+          resetRoute:"Reset",
+          swapRoute:"Swap",
 
           incTitle:"Incoterms® 2020 — responsibility split",
-          incTag:"Clear visual",
-          incSub:"Select a term. The timeline shows who handles each stage (Seller vs Buyer). Use this as a learning guide (always confirm contract specifics).",
+          incTag:"Full matrix",
+          incSub:"Select a term. Timeline shows Seller vs Buyer across shipment stages. Use as a learning guide (always confirm contract specifics).",
+          incFilterAll:"All terms (11)",
+          incFilterAny:"Any mode (7)",
+          incFilterSea:"Sea / inland waterway (4)",
+          incColTerm:"Term",
+          incColExport:"Export",
+          incColMain:"Main",
+          incColIns:"Insurance",
+          incColImport:"Import",
+          incColDuty:"Duties/Tax",
+          incColFinal:"Final Delivery",
+
           tlSeller:"Seller",
           tlBuyer:"Buyer",
           legendSeller:"Seller handles",
           legendBuyer:"Buyer handles",
 
-          cbmTitle:"CBM Calculator",
-          cbmTag:"Instant",
-          cbmSub:"Enter dimensions for one carton, then cartons count. Switch units as needed.",
-          cbmL:"Length", cbmW:"Width", cbmH:"Height", cbmC:"Cartons", cbmUnit:"Unit",
-          uCM:"Centimeters (cm)", uM:"Meters (m)", uIN:"Inches (in)",
-          cbmNote:"CBM = (L × W × H) × cartons",
-          cbmHint:"Tip: For air freight, volumetric weight is often based on cm³ / 6000 (carrier rules vary).",
+          cbmTitle:"CBM calculator",
+          cbmTag:"Volume",
+          cbmSub:"Enter carton size and quantity. We’ll calculate CBM and total volume.",
+          cbmUnit:"Units",
+          unitCm:"Centimeters (cm)",
+          unitIn:"Inches (in)",
+          cbmCartons:"Cartons",
+          cbmL:"Length",
+          cbmW:"Width",
+          cbmH:"Height",
+          outPer:"CBM per carton",
+          outTotal:"Total CBM",
+          outHint:"Quick hint",
 
           contactTitle:"Contact",
           contactSub:"Message us with route + cargo details + timeline. We reply quickly.",
@@ -1387,14 +1623,14 @@
           send:"Send request",
           privacy:"We only use this info to reply to your request."
         },
-
         mn: {
           tagline:"Худалдааг урагшлуулна",
           navServices:"Үйлчилгээ", navCoverage:"Хамрах хүрээ", navLearning:"Суралцах", navContact:"Холбоо барих", navAbout:"Бидний тухай", navServicesPage:"Үйлчилгээ (хуудас)",
+
           heroKicker:"Хил дамнасан ложистикийн зохицуулалт",
-          heroTitle:"Монгол ↔ Хятад ↔ Дэлхий Ложистик",
+          heroTitle:"Монгол ↔ Хятад ↔ Дэлхийн ложистик",
           heroSub:"Хил дамнасан болон олон улсын тээвэрт — ойлгомжтой харилцаа, хурдан гүйцэтгэл, найдвартай түншлэл.",
-          chip1:"Хурдан хариу", chip2:"Тод зохицуулалт", chip3:"Найдвартай сүлжээ",
+          chip1:"Хурдан хариу", chip2:"Тод зохицуулалт", chip3:"Найдвартай сүлжээ", chip4:"Мэдээлэлд суурилсан мэдэгдэл",
           ctaPrimary:"Үнийн санал авах",
           heroMini:"Практик, тайван, найдвартай — урт хугацааны худалдаанд.",
           heroBadge:"Монгол ↔ Хятад ↔ Дэлхий",
@@ -1404,7 +1640,7 @@
           tab1:"Тээвэр", tab2:"Хил дамнасан", tab3:"Баримт бичиг",
           p1Title:"Тээврийн зохицуулалт (төлөвлөлт + хяналт)",
           p1aTitle:"Маршрут сонголт", p1aText:"Үнэ, хурд, найдвартай байдлаар оновчтойг сонгоно.",
-          p1bTitle:"Түнш зохицуулалт", p1bText:"Дамжуулалтыг жигд болгохын тулд түншүүдийг уялдуулна.",
+          p1bTitle:"Түнш уялдаа", p1bText:"Дамжуулалтыг жигд болгохын тулд түншүүдийг уялдуулна.",
           p2Title:"Хил дамнасан гүйцэтгэл (дамжуулалт + асуудал шийдэлт)",
           p2aTitle:"Хил дээрх дамжуулалт", p2aText:"Хариуцлагыг тодорхойлж тээврийг тасалдуулахгүй.",
           p2bTitle:"Асуудал шийдвэрлэлт", p2bText:"Саатал гарвал хурдан шийдвэрлэх төлөвлөгөө гаргана.",
@@ -1415,41 +1651,68 @@
           svcCard1:"Үйлчилгээний хуудсыг үзэх", svcCard1Sub:"Интерактив дэлгэрэнгүй, үнийн санал, процесс.",
           svcCard2:"Хурдан санал", svcCard2Sub:"Маршрут + ачааны мэдээлэл илгээ — хурдан хариу өгнө.",
           svcCard3:"Тод харилцаа", svcCard3Sub:"Төөрөгдөлгүй — шат бүр дээр ойлгомжтой мэдэгдэл.",
-          tagPlanning:"Төлөвлөлт", tagCoordination:"Зохицуулалт", tagSpeed:"Хурд", tagRisk:"Эрсдэл", tagAccuracy:"Нарийвчлал", tagClarity:"Тодорхой",
-          tagExplore:"Судлах", tagUpdates:"Мэдээлэл", tagTrusted:"Итгэлтэй",
+
+          tagPlanning:"Төлөвлөлт", tagCoordination:"Уялдаа", tagUpdates:"Мэдэгдэл", tagTrusted:"Найдвартай",
+          tagHandover:"Дамжуулалт", tagSpeed:"Хурд", tagRisk:"Эрсдэл", tagStatus:"Статус",
+          tagDocs:"Баримт", tagAccuracy:"Нягт нямбай", tagVerification:"Шалгалт", tagClarity:"Тодорхой", tagExplore:"Судлах",
 
           coverageTitle:"Хамрах хүрээ",
           coverageSub:"Чип дээр дар — хамрах хүрээг товч тайлбарлана.",
           covCoreTitle:"Үндсэн чиглэл", covCoreTag:"МН ↔ ХН",
           covGlobalTitle:"Дэлхийн хамрах хүрээ", covGlobalTag:"Түншлэл",
           covChip1:"УБ ↔ Эрээний", covChip2:"Замын-Үүд ↔ Хятад", covChip3:"Төмөр зам / Авто сонголт",
-          covChip4:"Гадаад pickup", covChip5:"Cross-trade", covChip6:"Олон шатны tracking",
+          covChip4:"Гадаад pickup", covChip5:"Дамжин худалдаа", covChip6:"Олон шатны хяналт",
 
-          globeTitle:"Хамрах хүрээний зураг",
-          globeSub:"Хөнгөн canvas globe. Чиглэл сонгоход trade lane тодорно.",
-          globeTag:"Интерактив",
-          route1:"МН ↔ ХН",
-          route2:"Ази ↔ Европ",
-          route3:"Дэлхийн сүлжээ",
+          learnTitle:"Газрын зураг ба сургалт",
+          learnSub:"Интерактив глобус (дарж/чирч), маршрут үүсгэгч, Incoterms® 2020 матриц, CBM тооцоолуур.",
 
-          learningTitle:"Суралцах хэрэгсэл",
-          learningSub:"Incoterms® 2020 харьцуулалт + хурдан CBM тооцоолуур.",
+          globeTitle:"Интерактив глобус",
+          globeSub:"Хулганаар ойртуулж нэрийг харна • Дарж сонгоно • 2 хот дарж маршрут үүсгэнэ",
+          globeTag:"Дарж / чирч эргүүлнэ",
+          globeTipHint:"Зөвлөгөө:",
+          globeTipHint2:"Чирч эргүүл • Дарж сонго",
 
-          incTitle:"Incoterms® 2020 — хариуцлагын хуваарилалт",
-          incTag:"Хялбар дүрслэл",
-          incSub:"Нэр томьёо сонго. Timeline нь аль шатанд ХУДАЛДАГЧ/ХУДАЛДАН АВАГЧ хариуцахыг харуулна (гэрээгээрээ баталгаажуулна уу).",
+          lane1:"МН ↔ ХН", lane2:"Ази ↔ Европ", lane3:"Дэлхий",
+          laneStatsTitle:"Сонгосон маршрут",
+          laneStatsSub:"2 хот дарж маршрут үүсгэ. Зайг ойролцоогоор тооцоолж, тохиромжтой төрлийг санал болгоно.",
+          statCities:"Хотууд",
+          statDistance:"Зай (ойролцоо)",
+          statMode:"Санал болгох төрөл",
+          resetRoute:"Цэвэрлэх",
+          swapRoute:"Солих",
+
+          incTitle:"Incoterms® 2020 — хариуцлагын хуваарь",
+          incTag:"Бүрэн матриц",
+          incSub:"Нэр дээр дар. Timeline нь Худалдагч/Худалдан авагчийн хариуцлагыг үе шат бүрээр харуулна. (Гэрээний нөхцөлийг үргэлж баталгаажуул.)",
+          incFilterAll:"Бүх нэр (11)",
+          incFilterAny:"Бүх төрлийн тээвэр (7)",
+          incFilterSea:"Далай/дотоод усан зам (4)",
+          incColTerm:"Нэр",
+          incColExport:"Экспорт",
+          incColMain:"Үндсэн",
+          incColIns:"Даатгал",
+          incColImport:"Импорт",
+          incColDuty:"Татвар",
+          incColFinal:"Эцсийн хүргэлт",
+
           tlSeller:"Худалдагч",
           tlBuyer:"Худалдан авагч",
           legendSeller:"Худалдагч хариуцна",
           legendBuyer:"Худалдан авагч хариуцна",
 
           cbmTitle:"CBM тооцоолуур",
-          cbmTag:"Шууд",
-          cbmSub:"Нэг хайрцгийн хэмжээс оруулаад, хайрцагны тоог нэм. Нэгжийг сольж болно.",
-          cbmL:"Урт", cbmW:"Өргөн", cbmH:"Өндөр", cbmC:"Хайрцаг", cbmUnit:"Нэгж",
-          uCM:"Сантиметр (cm)", uM:"Метр (m)", uIN:"Инч (in)",
-          cbmNote:"CBM = (Урт × Өргөн × Өндөр) × хайрцаг",
-          cbmHint:"Зөвлөгөө: Air freight-д volumetric weight нь ихэвчлэн cm³ / 6000 (carrier-ээс хамаарч өөр).",
+          cbmTag:"Хэмжээ",
+          cbmSub:"Хайрцгийн хэмжээс ба тоо ширхэг оруул. CBM болон нийт хэмжээг гаргана.",
+          cbmUnit:"Нэгж",
+          unitCm:"Сантиметр (см)",
+          unitIn:"Инч (in)",
+          cbmCartons:"Хайрцаг (тоо)",
+          cbmL:"Урт",
+          cbmW:"Өргөн",
+          cbmH:"Өндөр",
+          outPer:"Нэг хайрцгийн CBM",
+          outTotal:"Нийт CBM",
+          outHint:"Товч зөвлөмж",
 
           contactTitle:"Холбоо барих",
           contactSub:"Маршрут + ачаа + хугацаа илгээ — хурдан хариу өгнө.",
@@ -1470,33 +1733,35 @@
       const notes = {
         en: {
           core1:"Fast coordination for UB ↔ Erenhot flows: timing, partners, clean handover.",
-          core2:"Support for Zamiin-Uud border flows: docs, updates, exception handling.",
-          core3:"Choose rail or road based on cost/speed/reliability and cargo requirements.",
+          core2:"Support for Zamiin-Uud border flows: documents, updates, exception handling.",
+          core3:"Choose rail or road based on cost, speed, reliability, and cargo requirements.",
           g1:"Overseas pickup coordination via partners — align timelines and handover steps.",
           g2:"Cross-trade support when origin and destination are in different countries.",
           g3:"Multi-leg tracking alignment so you always know the next step."
         },
         mn: {
           core1:"УБ ↔ Эрээний чиглэлд: хугацаа, түнш, дамжуулалт — ойлгомжтой зохицуулалт.",
-          core2:"Замын-Үүд урсгал: баримт, мэдээлэл, асуудал шийдэлтийн дэмжлэг.",
-          core3:"Төмөр зам/авто — үнэ, хурд, найдвартай байдлаар сонголт гаргана.",
+          core2:"Замын-Үүд урсгал: баримт, мэдээлэл, саатал/асуудлын шийдэлтийн дэмжлэг.",
+          core3:"Төмөр зам/авто — үнэ, хурд, найдвартай байдал, ачааны онцлогоор сонгоно.",
           g1:"Гадаад pickup-ийг түншээр уялдуулж, хугацаа ба дамжуулалтыг тохируулна.",
-          g2:"Cross-trade — гарал/очих улс өөр үед дэмжлэг үзүүлнэ.",
-          g3:"Олон шатны tracking — дараагийн алхмыг үргэлж мэддэг байна."
+          g2:"Дамжин худалдаа — гарал/очих улс өөр үед зохицуулалтын дэмжлэг.",
+          g3:"Олон шатны хяналт — дараагийн алхмыг үргэлж тодорхой байлгана."
         }
       };
 
-      // Route notes for globe pills
+      // Learning route note
       const routeNotes = {
         en: {
-          mngchn:"Core lanes focusing on Mongolia ↔ China: border handover, timing, clean docs.",
-          asiaeu:"Multi-leg lanes across Asia ↔ Europe via partner network (road/rail/ocean/air).",
-          global:"Flexible global lanes — pickup, cross-trade, and end-to-end coordination."
+          mngchn:"Core coverage: Ulaanbaatar ↔ Beijing ↔ Tianjin (plus border handover flows).",
+          asiaeU:"Lane example: Seoul ↔ Beijing ↔ Istanbul ↔ Berlin.",
+          asiaeu:"Lane example: Seoul ↔ Beijing ↔ Istanbul ↔ Berlin.",
+          global:"Global sample: Ulaanbaatar ↔ Seoul • Istanbul ↔ Cape Town • Seoul ↔ Melbourne • Berlin ↔ New York."
         },
         mn: {
-          mngchn:"Монгол ↔ Хятад: хил дээрх дамжуулалт, хугацаа, баримт бичгийн цэвэр зохицуулалт.",
-          asiaeu:"Ази ↔ Европ олон шаттай чиглэл — түншийн сүлжээгээр (авто/төмөр зам/усан/агаар).",
-          global:"Дэлхийн уян хатан сүлжээ — pickup, cross-trade, эхлэлээс төгсгөл хүртэл."
+          mngchn:"Үндсэн хамрах хүрээ: Улаанбаатар ↔ Бээжин ↔ Тяньжин (мөн хил дээрх дамжуулалтын урсгал).",
+          asiaeU:"Жишиг маршрут: Сөүл ↔ Бээжин ↔ Истанбул ↔ Берлин.",
+          asiaeu:"Жишиг маршрут: Сөүл ↔ Бээжин ↔ Истанбул ↔ Берлин.",
+          global:"Дэлхийн жишиг: УБ ↔ Сөүл • Истанбул ↔ Кейптаун • Сөүл ↔ Мельбурн • Берлин ↔ Нью-Йорк."
         }
       };
 
@@ -1512,7 +1777,8 @@
         refreshCoverageNotes(lang);
         refreshRouteNote(lang);
         refreshIncotermsText(lang);
-        refreshCBMLabels(lang);
+        refreshLaneStatsText(lang);
+        refreshCBMHint(lang);
       }
 
       function setTheme(theme){
@@ -1549,7 +1815,7 @@
           const key = t.getAttribute("data-note");
           const lang = localStorage.getItem("bs_lang") || "en";
           const target = document.getElementById(noteId);
-          if(target) target.textContent = notes[lang][key] || "";
+          if(target) target.textContent = (notes[lang] && notes[lang][key]) ? notes[lang][key] : "";
         });
       }
 
@@ -1558,6 +1824,14 @@
         const glob = document.querySelector("#globalChips .covChip.active");
         if(core) document.getElementById("coreNote").textContent = notes[lang][core.getAttribute("data-note")] || "";
         if(glob) document.getElementById("globalNote").textContent = notes[lang][glob.getAttribute("data-note")] || "";
+      }
+
+      // Route note in learning
+      function refreshRouteNote(lang){
+        const route = localStorage.getItem("bs_route") || "mngchn";
+        const el = document.getElementById("routeNote");
+        if(!el) return;
+        el.textContent = (routeNotes[lang] && routeNotes[lang][route]) ? routeNotes[lang][route] : "";
       }
 
       // Reveal
@@ -1677,414 +1951,229 @@ Notes: ${notesTxt}`.trim();
         });
       }
 
-      /* ---------------- NEW FEATURE: Animated Globe ---------------- */
-      function initGlobe(){
+      // ---------------- Globe + Route builder ----------------
+      const globeState = {
+        route: localStorage.getItem("bs_route") || "mngchn",
+        t: 0,
+        rotDrag: 0,
+        isDown: false,
+        downX: 0,
+        downRot: 0,
+        moved: false,
+        selectedCity: localStorage.getItem("bs_city") || "Ulaanbaatar",
+        // route builder:
+        pickA: localStorage.getItem("bs_pickA") || "",
+        pickB: localStorage.getItem("bs_pickB") || ""
+      };
 
-        function initGlobe(){
-  const canvas = document.getElementById("globe");
-  const wrap = document.getElementById("globeWrap");
-  if(!canvas || !wrap) return;
+      const cities = [
+        {name:"Ulaanbaatar", en:"Ulaanbaatar (UB)", mn:"Улаанбаатар (УБ)", lat:47.8864, lon:106.9057, kind:"Hub"},
+        {name:"Beijing",     en:"Beijing",          mn:"Бээжин",           lat:39.9042, lon:116.4074, kind:"Hub"},
+        {name:"Tianjin",     en:"Tianjin",          mn:"Тяньжин",          lat:39.0851, lon:117.1994, kind:"Port"},
+        {name:"Istanbul",    en:"Istanbul",         mn:"Истанбул",         lat:41.0082, lon:28.9784,  kind:"Hub"},
+        {name:"New York",    en:"New York",         mn:"Нью-Йорк",         lat:40.7128, lon:-74.0060, kind:"Hub"},
+        {name:"Berlin",      en:"Berlin",           mn:"Берлин",           lat:52.5200, lon:13.4050,  kind:"Hub"},
+        {name:"Seoul",       en:"Seoul",            mn:"Сөүл",             lat:37.5665, lon:126.9780, kind:"Hub"},
+        {name:"Cape Town",   en:"Cape Town",        mn:"Кейптаун",         lat:-33.9249, lon:18.4241, kind:"Port"},
+        {name:"Melbourne",   en:"Melbourne",        mn:"Мельбурн",         lat:-37.8136, lon:144.9631, kind:"Port"}
+      ];
 
-  const ctx = canvas.getContext("2d", { alpha:true });
+      const presetRoutes = {
+        mngchn: [
+          ["Ulaanbaatar","Beijing"],
+          ["Beijing","Tianjin"],
+          ["Ulaanbaatar","Tianjin"]
+        ],
+        asiaeU: [
+          ["Seoul","Beijing"],
+          ["Beijing","Istanbul"],
+          ["Istanbul","Berlin"]
+        ],
+        asiaeu: [
+          ["Seoul","Beijing"],
+          ["Beijing","Istanbul"],
+          ["Istanbul","Berlin"]
+        ],
+        global: [
+          ["Ulaanbaatar","Seoul"],
+          ["Istanbul","Cape Town"],
+          ["Seoul","Melbourne"],
+          ["Berlin","New York"]
+        ]
+      };
 
-  // Tooltip elements
-  const tip = document.getElementById("globeTip");
-  const tipTitle = document.getElementById("tipTitle");
-  const tipSub = document.getElementById("tipSub");
-  const tipTag1 = document.getElementById("tipTag1");
-  const tipTag2 = document.getElementById("tipTag2");
-  const tipClose = document.getElementById("tipClose");
+      function getLang(){ return localStorage.getItem("bs_lang") || "en"; }
 
-  tipClose?.addEventListener("click", ()=>{
-    tip.style.display = "none";
-  });
+      function findCity(name){ return cities.find(c=>c.name===name); }
 
-  // HiDPI fit
-  function fit(){
-    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-    const css = canvas.getBoundingClientRect();
-    const s = Math.floor(Math.min(css.width, css.height));
-    canvas.width = Math.floor(s * dpr);
-    canvas.height = Math.floor(s * dpr);
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-  }
-  fit();
-  window.addEventListener("resize", fit);
-
-  const state = {
-    route: localStorage.getItem("bs_route") || "mngchn",
-    t: 0,
-    rotDrag: 0,       // degrees
-    isDown: false,
-    downX: 0,
-    downRot: 0,
-    moved: false,
-    selectedCity: localStorage.getItem("bs_city") || "Ulaanbaatar"
-  };
-
-  // Cities (requested)
-  const points = [
-    {name:"Ulaanbaatar", labelEN:"Ulaanbaatar (UB)", labelMN:"Улаанбаатар (УБ)", lat:47.9, lon:106.9, kind:"Hub"},
-    {name:"Beijing",     labelEN:"Beijing",          labelMN:"Бээжин",         lat:39.9042, lon:116.4074, kind:"Hub"},
-    {name:"Tianjin",     labelEN:"Tianjin",          labelMN:"Тяньжин",        lat:39.0851, lon:117.1994, kind:"Port"},
-    {name:"Istanbul",    labelEN:"Istanbul",         labelMN:"Истанбул",       lat:41.0082, lon:28.9784,  kind:"Hub"},
-    {name:"New York",    labelEN:"New York",         labelMN:"Нью-Йорк",       lat:40.7128, lon:-74.0060, kind:"Hub"},
-    {name:"Berlin",      labelEN:"Berlin",           labelMN:"Берлин",         lat:52.5200, lon:13.4050,  kind:"Hub"},
-    {name:"Seoul",       labelEN:"Seoul",            labelMN:"Сөүл",           lat:37.5665, lon:126.9780, kind:"Hub"},
-    {name:"Cape Town",   labelEN:"Cape Town",        labelMN:"Кейптаун",       lat:-33.9249, lon:18.4241, kind:"Port"},
-    {name:"Melbourne",   labelEN:"Melbourne",        labelMN:"Мельбурн",       lat:-37.8136, lon:144.9631, kind:"Port"}
-  ];
-
-  // Lanes (simple demo lanes)
-  const routes = {
-    mngchn: [
-      ["Ulaanbaatar","Beijing"],
-      ["Beijing","Tianjin"],
-      ["Ulaanbaatar","Tianjin"]
-    ],
-    asiaeu: [
-      ["Seoul","Beijing"],
-      ["Beijing","Istanbul"],
-      ["Istanbul","Berlin"]
-    ],
-    global: [
-      ["Ulaanbaatar","Seoul"],
-      ["Berlin","New York"],
-      ["Istanbul","Cape Town"],
-      ["Seoul","Melbourne"]
-    ]
-  };
-
-  function findPoint(name){
-    return points.find(p=>p.name===name);
-  }
-
-  // lat/lon -> 3D unit sphere
-  function project3(lat, lon, rotDeg){
-    const phi = (90 - lat) * Math.PI/180;
-    const theta = (lon + rotDeg) * Math.PI/180;
-    const x = Math.sin(phi) * Math.cos(theta);
-    const y = Math.cos(phi);
-    const z = Math.sin(phi) * Math.sin(theta);
-    return {x,y,z};
-  }
-
-  // Store latest 2D projections so click can pick nearest point
-  let latest2D = [];
-
-  function showTip(cityName){
-    const lang = localStorage.getItem("bs_lang") || "en";
-    const p = findPoint(cityName);
-    if(!p || !tip) return;
-
-    const title = (lang==="mn") ? p.labelMN : p.labelEN;
-    tipTitle.textContent = title;
-    tipSub.textContent =
-      (lang==="mn")
-        ? `Координат: ${p.lat.toFixed(2)}, ${p.lon.toFixed(2)}`
-        : `Coordinates: ${p.lat.toFixed(2)}, ${p.lon.toFixed(2)}`;
-
-    tipTag1.textContent = (lang==="mn") ? "Сүлжээ" : "Lane";
-    tipTag2.textContent = (lang==="mn") ? p.kind==="Port" ? "Боомт" : "Төв цэг" : p.kind;
-
-    tip.style.display = "block";
-  }
-
-  function draw(){
-    const w = canvas.getBoundingClientRect().width;
-    const h = canvas.getBoundingClientRect().height;
-    const cx = w/2, cy = h/2;
-    const R = Math.min(w,h)*0.38;
-
-    ctx.clearRect(0,0,w,h);
-
-    // Background glow
-    const grd = ctx.createRadialGradient(cx, cy, R*0.2, cx, cy, R*1.25);
-    grd.addColorStop(0, "rgba(71,230,177,.14)");
-    grd.addColorStop(0.45, "rgba(200,155,60,.10)");
-    grd.addColorStop(1, "rgba(255,79,216,0)");
-    ctx.fillStyle = grd;
-    ctx.beginPath();
-    ctx.arc(cx,cy,R*1.25,0,Math.PI*2);
-    ctx.fill();
-
-    // Globe body
-    const dark = document.documentElement.getAttribute("data-theme")==="dark";
-    const g2 = ctx.createRadialGradient(cx - R*0.25, cy - R*0.25, R*0.2, cx, cy, R);
-    g2.addColorStop(0, dark ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.75)");
-    g2.addColorStop(1, dark ? "rgba(255,255,255,.03)" : "rgba(255,255,255,.38)");
-    ctx.fillStyle = g2;
-    ctx.strokeStyle = dark ? "rgba(255,255,255,.18)" : "rgba(11,28,45,.10)";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.arc(cx,cy,R,0,Math.PI*2);
-    ctx.fill();
-    ctx.stroke();
-
-    // Clip to globe for grid + lanes
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(cx,cy,R,0,Math.PI*2);
-    ctx.clip();
-
-    // Lat lines
-    ctx.strokeStyle = dark ? "rgba(255,255,255,.10)" : "rgba(11,28,45,.08)";
-    for(let i=-60;i<=60;i+=20){
-      const yy = cy + (i/90)*R*0.9;
-      ctx.beginPath();
-      ctx.ellipse(cx, yy, R*0.95, R*0.25, 0, 0, Math.PI*2);
-      ctx.stroke();
-    }
-    // Lon lines (animated)
-    for(let i=0;i<12;i++){
-      const ang = (i/12)*Math.PI*2 + state.t*0.15;
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, R*Math.abs(Math.cos(ang)), R, 0, 0, Math.PI*2);
-      ctx.stroke();
-    }
-
-    const rot = (state.t*18) + state.rotDrag;
-
-    // Convert 3D to 2D
-    function to2D(p3){
-      const x = cx + p3.x * R;
-      const y = cy + p3.y * R;
-      const front = p3.z > 0;
-      const a = front ? 1 : 0.20;
-      return {x,y,front,a,z:p3.z};
-    }
-
-    // Draw lanes
-    const lane = routes[state.route] || [];
-    lane.forEach(([aName,bName], idx)=>{
-      const a = findPoint(aName), b = findPoint(bName);
-      if(!a || !b) return;
-
-      const A = to2D(project3(a.lat,a.lon,rot));
-      const B = to2D(project3(b.lat,b.lon,rot));
-      const alpha = Math.min(A.a, B.a);
-
-      const mx = (A.x+B.x)/2;
-      const my = (A.y+B.y)/2 - R*0.18;
-
-      ctx.strokeStyle = `rgba(200,155,60,${0.20 + alpha*0.55})`;
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(A.x,A.y);
-      ctx.quadraticCurveTo(mx,my,B.x,B.y);
-      ctx.stroke();
-
-      ctx.strokeStyle = `rgba(71,230,177,${0.10 + alpha*0.30})`;
-      ctx.lineWidth = 1.6;
-      ctx.beginPath();
-      ctx.moveTo(A.x,A.y);
-      ctx.quadraticCurveTo(mx,my,B.x,B.y);
-      ctx.stroke();
-
-      // moving dot
-      const tt = (state.t*0.28 + idx*0.22) % 1;
-      const qx = (1-tt)*(1-tt)*A.x + 2*(1-tt)*tt*mx + tt*tt*B.x;
-      const qy = (1-tt)*(1-tt)*A.y + 2*(1-tt)*tt*my + tt*tt*B.y;
-
-      ctx.fillStyle = `rgba(255,79,216,${0.25 + alpha*0.60})`;
-      ctx.beginPath();
-      ctx.arc(qx,qy,3.2,0,Math.PI*2);
-      ctx.fill();
-    });
-
-    // Cities (store projected positions for click picking)
-    latest2D = points.map(p=>{
-      const P = to2D(project3(p.lat,p.lon,rot));
-      const isSel = (p.name === state.selectedCity);
-      const r = isSel ? (P.front ? 5.2 : 3.2) : (P.front ? 4.0 : 2.6);
-
-      // city dot
-      ctx.fillStyle = isSel
-        ? `rgba(200,155,60,${0.35 + P.a*0.65})`
-        : `rgba(74,111,165,${0.22 + P.a*0.70})`;
-
-      ctx.beginPath();
-      ctx.arc(P.x,P.y,r,0,Math.PI*2);
-      ctx.fill();
-
-      // city halo
-      if(P.front){
-        ctx.strokeStyle = isSel
-          ? `rgba(200,155,60,${0.16 + P.a*0.30})`
-          : `rgba(255,79,216,${0.08 + P.a*0.22})`;
-        ctx.beginPath();
-        ctx.arc(P.x,P.y,r+6,0,Math.PI*2);
-        ctx.stroke();
+      function haversineKm(a, b){
+        const R = 6371;
+        const dLat = (b.lat - a.lat) * Math.PI/180;
+        const dLon = (b.lon - a.lon) * Math.PI/180;
+        const s1 = Math.sin(dLat/2), s2 = Math.sin(dLon/2);
+        const u = s1*s1 + Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*s2*s2;
+        const c = 2 * Math.atan2(Math.sqrt(u), Math.sqrt(1-u));
+        return R * c;
       }
 
-      return {name:p.name, x:P.x, y:P.y, front:P.front, alpha:P.a};
-    });
-
-    ctx.restore();
-
-    // If tooltip is open, gently keep it anchored near selected city (when visible & front)
-    if(tip && tip.style.display !== "none"){
-      const target = latest2D.find(x=>x.name===state.selectedCity && x.front);
-      if(target){
-        // position inside wrap
-        const pad = 12;
-        const tw = 270; // approximate
-        const th = 130; // approximate
-        let left = target.x + 14;
-        let top = target.y - 12;
-
-        // clamp
-        left = Math.max(pad, Math.min(left, w - tw - pad));
-        top = Math.max(pad, Math.min(top, h - th - pad));
-
-        tip.style.left = left + "px";
-        tip.style.top = top + "px";
+      function suggestMode(km, a, b){
+        // simple heuristic for premium feel (not a promise)
+        const hasPort = (a.kind==="Port" || b.kind==="Port");
+        if(km < 800) return {en:"Road / Rail", mn:"Авто / Төмөр зам"};
+        if(km < 2500) return {en:"Rail + Road", mn:"Төмөр зам + Авто"};
+        if(hasPort && km >= 2500) return {en:"Sea + Inland", mn:"Далай + Дотоод"};
+        if(km >= 8000) return {en:"Air (urgent) / Sea (cost)", mn:"Агаар (яаралтай) / Далай (хэмнэлт)"};
+        return {en:"Multimodal", mn:"Олон төрлийн тээвэр"};
       }
-    }
 
-    state.t += 0.0125;
-    requestAnimationFrame(draw);
-  }
+      function refreshLaneStatsText(lang){
+        const sub = document.getElementById("laneStatsSub");
+        if(sub && dict[lang] && dict[lang].laneStatsSub) sub.textContent = dict[lang].laneStatsSub;
+      }
 
-  draw();
+      function updateLaneStats(){
+        const lang = getLang();
+        const aName = globeState.pickA;
+        const bName = globeState.pickB;
 
-  // Route pills
-  const root = document.getElementById("routePills");
-  if(root){
-    root.addEventListener("click",(e)=>{
-      const pill = e.target.closest(".routePill");
-      if(!pill) return;
-      root.querySelectorAll(".routePill").forEach(x=>x.classList.remove("active"));
-      pill.classList.add("active");
-      state.route = pill.getAttribute("data-route");
-      localStorage.setItem("bs_route", state.route);
-      refreshRouteNote(localStorage.getItem("bs_lang") || "en");
-    });
-  }
+        const sc = document.getElementById("statCities");
+        const sd = document.getElementById("statDistance");
+        const sm = document.getElementById("statMode");
 
-  // Drag rotate
-  wrap.addEventListener("pointerdown",(e)=>{
-    state.isDown = true;
-    state.downX = e.clientX;
-    state.downRot = state.rotDrag;
-    state.moved = false;
-    wrap.setPointerCapture?.(e.pointerId);
-  });
-
-  wrap.addEventListener("pointermove",(e)=>{
-    if(!state.isDown) return;
-    const dx = e.clientX - state.downX;
-    state.rotDrag = state.downRot + (dx * 0.25); // degrees per px
-    if(Math.abs(dx) > 6) state.moved = true;
-  });
-
-  wrap.addEventListener("pointerup",(e)=>{
-    state.isDown = false;
-
-    // Treat as click if not moved much
-    if(!state.moved){
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      // Pick nearest FRONT city within threshold
-      let best = null;
-      let bestD = Infinity;
-      latest2D.forEach(p=>{
-        if(!p.front) return;
-        const dx = p.x - x, dy = p.y - y;
-        const d = Math.sqrt(dx*dx + dy*dy);
-        if(d < bestD){
-          bestD = d;
-          best = p;
+        if(!aName || !bName){
+          sc.textContent = "—";
+          sd.textContent = "—";
+          sm.textContent = "—";
+          return;
         }
-      });
 
-      // threshold: scale with globe size
-      const thr = Math.max(14, rect.width * 0.045);
+        const a = findCity(aName), b = findCity(bName);
+        if(!a || !b){
+          sc.textContent = "—";
+          sd.textContent = "—";
+          sm.textContent = "—";
+          return;
+        }
 
-      if(best && bestD <= thr){
-        state.selectedCity = best.name;
-        localStorage.setItem("bs_city", best.name);
-        showTip(best.name);
-      } else {
-        // click empty -> hide tip
-        tip.style.display = "none";
+        const km = haversineKm(a,b);
+        const mode = suggestMode(km, a, b);
+        const aLabel = (lang==="mn") ? a.mn : a.en;
+        const bLabel = (lang==="mn") ? b.mn : b.en;
+
+        sc.textContent = `${aLabel} → ${bLabel}`;
+        sd.textContent = `${Math.round(km).toLocaleString()} km`;
+        sm.textContent = (lang==="mn") ? mode.mn : mode.en;
+
+        // also show tooltip for “selected”
+        globeState.selectedCity = bName;
+        localStorage.setItem("bs_city", globeState.selectedCity);
       }
-    }
 
-    state.moved = false;
-  });
+      function setPick(cityName){
+        if(!globeState.pickA){
+          globeState.pickA = cityName;
+          localStorage.setItem("bs_pickA", cityName);
+          return;
+        }
+        if(!globeState.pickB){
+          globeState.pickB = cityName;
+          localStorage.setItem("bs_pickB", cityName);
+          updateLaneStats();
+          return;
+        }
+        // both set -> start new with A = clicked
+        globeState.pickA = cityName;
+        globeState.pickB = "";
+        localStorage.setItem("bs_pickA", globeState.pickA);
+        localStorage.setItem("bs_pickB", "");
+        updateLaneStats();
+      }
 
-  // On load: show selected city tooltip once
-  setTimeout(()=>{
-    showTip(state.selectedCity);
-  }, 250);
-}
+      function resetPick(){
+        globeState.pickA = "";
+        globeState.pickB = "";
+        localStorage.setItem("bs_pickA","");
+        localStorage.setItem("bs_pickB","");
+        updateLaneStats();
+      }
 
+      function swapPick(){
+        const a = globeState.pickA;
+        globeState.pickA = globeState.pickB;
+        globeState.pickB = a;
+        localStorage.setItem("bs_pickA", globeState.pickA || "");
+        localStorage.setItem("bs_pickB", globeState.pickB || "");
+        updateLaneStats();
+      }
+
+      function initGlobe(){
         const canvas = document.getElementById("globe");
-        if(!canvas) return;
+        const wrap = document.getElementById("globeWrap");
+        const hoverLabel = document.getElementById("hoverLabel");
+        if(!canvas || !wrap || !hoverLabel) return;
+
         const ctx = canvas.getContext("2d", { alpha:true });
 
-        // HiDPI
+        // Tooltip elements
+        const tip = document.getElementById("globeTip");
+        const tipTitle = document.getElementById("tipTitle");
+        const tipSub = document.getElementById("tipSub");
+        const tipTag1 = document.getElementById("tipTag1");
+        const tipTag2 = document.getElementById("tipTag2");
+        const tipClose = document.getElementById("tipClose");
+        tipClose?.addEventListener("click", ()=> tip.style.display = "none");
+
+        // Buttons
+        document.getElementById("resetRoute")?.addEventListener("click", ()=>{
+          resetPick();
+          tip.style.display = "none";
+        });
+        document.getElementById("swapRoute")?.addEventListener("click", ()=>{
+          swapPick();
+        });
+
+        // HiDPI fit
         function fit(){
           const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-          const cssSize = canvas.getBoundingClientRect();
-          const s = Math.floor(Math.min(cssSize.width, cssSize.height));
-          canvas.width = Math.floor(s * dpr);
-          canvas.height = Math.floor(s * dpr);
+          const css = canvas.getBoundingClientRect();
+          canvas.width = Math.floor(css.width * dpr);
+          canvas.height = Math.floor(css.height * dpr);
           ctx.setTransform(dpr,0,0,dpr,0,0);
         }
         fit();
         window.addEventListener("resize", fit);
 
-        const state = {
-          route: localStorage.getItem("bs_route") || "mngchn",
-          t: 0
-        };
-
-        // Simple lat/lon points for visual anchors (not a “real map”, but feels like a globe)
-        const points = [
-          {name:"Ulaanbaatar", lat:47.9, lon:106.9},
-          {name:"Erenhot", lat:43.65, lon:111.98},
-          {name:"Beijing", lat:39.9, lon:116.4},
-          {name:"Tianjin", lat:39.1, lon:117.2},
-          {name:"Istanbul", lat:41.0, lon:28.9},
-          {name:"Frankfurt", lat:50.1, lon:8.6},
-          {name:"Singapore", lat:1.35, lon:103.8},
-          {name:"Busan", lat:35.1, lon:129.0}
-        ];
-
-        const routes = {
-          mngchn: [
-            ["Ulaanbaatar","Erenhot"],
-            ["Erenhot","Beijing"],
-            ["Beijing","Tianjin"]
-          ],
-          asiaeu: [
-            ["Busan","Singapore"],
-            ["Singapore","Istanbul"],
-            ["Istanbul","Frankfurt"]
-          ],
-          global: [
-            ["Ulaanbaatar","Singapore"],
-            ["Beijing","Frankfurt"],
-            ["Busan","Istanbul"]
-          ]
-        };
-
-        function project(lat, lon, rot){
-          // lat/lon to 3D unit sphere
+        function project3(lat, lon, rotDeg){
           const phi = (90 - lat) * Math.PI/180;
-          const theta = (lon + rot) * Math.PI/180;
+          const theta = (lon + rotDeg) * Math.PI/180;
           const x = Math.sin(phi) * Math.cos(theta);
           const y = Math.cos(phi);
           const z = Math.sin(phi) * Math.sin(theta);
           return {x,y,z};
         }
 
-        function findPoint(name){
-          return points.find(p=>p.name===name);
+        let latest2D = [];
+
+        function showTip(cityName){
+          const lang = getLang();
+          const c = findCity(cityName);
+          if(!c) return;
+
+          tipTitle.textContent = (lang==="mn") ? c.mn : c.en;
+          tipSub.textContent =
+            (lang==="mn")
+              ? `Координат: ${c.lat.toFixed(2)}, ${c.lon.toFixed(2)}`
+              : `Coordinates: ${c.lat.toFixed(2)}, ${c.lon.toFixed(2)}`;
+
+          const laneText = (lang==="mn") ? "Маршрут" : "Lane";
+          const kindText = (lang==="mn")
+            ? (c.kind==="Port" ? "Боомт" : "Төв цэг")
+            : c.kind;
+
+          tipTag1.textContent = laneText;
+          tipTag2.textContent = kindText;
+
+          tip.style.display = "block";
         }
 
         function draw(){
@@ -2095,20 +2184,21 @@ Notes: ${notesTxt}`.trim();
 
           ctx.clearRect(0,0,w,h);
 
-          // Back glow
-          const grd = ctx.createRadialGradient(cx, cy, R*0.2, cx, cy, R*1.25);
+          // Background glow
+          const grd = ctx.createRadialGradient(cx, cy, R*0.2, cx, cy, R*1.35);
           grd.addColorStop(0, "rgba(71,230,177,.14)");
-          grd.addColorStop(0.45, "rgba(200,155,60,.10)");
+          grd.addColorStop(0.35, "rgba(200,155,60,.10)");
+          grd.addColorStop(0.75, "rgba(77,231,255,.09)");
           grd.addColorStop(1, "rgba(255,79,216,0)");
           ctx.fillStyle = grd;
           ctx.beginPath();
-          ctx.arc(cx,cy,R*1.25,0,Math.PI*2);
+          ctx.arc(cx,cy,R*1.35,0,Math.PI*2);
           ctx.fill();
 
           // Globe body
-          const g2 = ctx.createRadialGradient(cx - R*0.25, cy - R*0.25, R*0.2, cx, cy, R);
           const dark = document.documentElement.getAttribute("data-theme")==="dark";
-          g2.addColorStop(0, dark ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.75)");
+          const g2 = ctx.createRadialGradient(cx - R*0.25, cy - R*0.25, R*0.2, cx, cy, R);
+          g2.addColorStop(0, dark ? "rgba(255,255,255,.10)" : "rgba(255,255,255,.82)");
           g2.addColorStop(1, dark ? "rgba(255,255,255,.03)" : "rgba(255,255,255,.38)");
           ctx.fillStyle = g2;
           ctx.strokeStyle = dark ? "rgba(255,255,255,.18)" : "rgba(11,28,45,.10)";
@@ -2118,11 +2208,13 @@ Notes: ${notesTxt}`.trim();
           ctx.fill();
           ctx.stroke();
 
-          // Lat lines
+          // Clip to globe for grid + lanes
           ctx.save();
           ctx.beginPath();
           ctx.arc(cx,cy,R,0,Math.PI*2);
           ctx.clip();
+
+          // Lat lines
           ctx.strokeStyle = dark ? "rgba(255,255,255,.10)" : "rgba(11,28,45,.08)";
           for(let i=-60;i<=60;i+=20){
             const yy = cy + (i/90)*R*0.9;
@@ -2130,87 +2222,138 @@ Notes: ${notesTxt}`.trim();
             ctx.ellipse(cx, yy, R*0.95, R*0.25, 0, 0, Math.PI*2);
             ctx.stroke();
           }
-          // Lon lines
+          // Lon lines (animated)
           for(let i=0;i<12;i++){
-            const ang = (i/12)*Math.PI*2 + state.t*0.15;
+            const ang = (i/12)*Math.PI*2 + globeState.t*0.15;
             ctx.beginPath();
             ctx.ellipse(cx, cy, R*Math.abs(Math.cos(ang)), R, 0, 0, Math.PI*2);
             ctx.stroke();
           }
 
-          // Draw points + routes
-          const rot = state.t*18; // degrees
-          const lane = routes[state.route] || [];
+          const rot = (globeState.t*18) + globeState.rotDrag;
 
           function to2D(p3){
             const x = cx + p3.x * R;
             const y = cy + p3.y * R;
             const front = p3.z > 0;
-            const a = front ? 1 : 0.25;
+            const a = front ? 1 : 0.18;
             return {x,y,front,a,z:p3.z};
           }
 
-          // Routes
+          // Draw preset lanes
+          const lane = presetRoutes[globeState.route] || [];
           lane.forEach(([aName,bName], idx)=>{
-            const a = findPoint(aName), b = findPoint(bName);
-            if(!a||!b) return;
+            const a = findCity(aName), b = findCity(bName);
+            if(!a || !b) return;
 
-            const A3 = project(a.lat,a.lon,rot);
-            const B3 = project(b.lat,b.lon,rot);
-
-            const A = to2D(A3), B = to2D(B3);
+            const A = to2D(project3(a.lat,a.lon,rot));
+            const B = to2D(project3(b.lat,b.lon,rot));
             const alpha = Math.min(A.a, B.a);
 
-            // Curved arc
             const mx = (A.x+B.x)/2;
             const my = (A.y+B.y)/2 - R*0.18;
-            ctx.strokeStyle = `rgba(200,155,60,${0.25 + alpha*0.55})`;
+
+            ctx.strokeStyle = `rgba(200,155,60,${0.18 + alpha*0.55})`;
             ctx.lineWidth = 3;
             ctx.beginPath();
             ctx.moveTo(A.x,A.y);
             ctx.quadraticCurveTo(mx,my,B.x,B.y);
             ctx.stroke();
 
-            // Neon highlight
-            ctx.strokeStyle = `rgba(71,230,177,${0.12 + alpha*0.35})`;
+            ctx.strokeStyle = `rgba(71,230,177,${0.08 + alpha*0.35})`;
             ctx.lineWidth = 1.6;
             ctx.beginPath();
             ctx.moveTo(A.x,A.y);
             ctx.quadraticCurveTo(mx,my,B.x,B.y);
             ctx.stroke();
 
-            // Moving dot along arc
-            const tt = (state.t*0.28 + idx*0.22) % 1;
+            const tt = (globeState.t*0.28 + idx*0.22) % 1;
             const qx = (1-tt)*(1-tt)*A.x + 2*(1-tt)*tt*mx + tt*tt*B.x;
             const qy = (1-tt)*(1-tt)*A.y + 2*(1-tt)*tt*my + tt*tt*B.y;
 
-            ctx.fillStyle = `rgba(255,79,216,${0.35 + alpha*0.55})`;
+            ctx.fillStyle = `rgba(255,79,216,${0.25 + alpha*0.65})`;
             ctx.beginPath();
             ctx.arc(qx,qy,3.2,0,Math.PI*2);
             ctx.fill();
           });
 
-          // Points
-          points.forEach(p=>{
-            const P3 = project(p.lat,p.lon,rot);
-            const P = to2D(P3);
-            const r = P.front ? 3.6 : 2.2;
-            ctx.fillStyle = `rgba(74,111,165,${0.20 + P.a*0.70})`;
+          // Draw custom route builder lane (if A & B set)
+          if(globeState.pickA && globeState.pickB){
+            const a = findCity(globeState.pickA), b = findCity(globeState.pickB);
+            if(a && b){
+              const A = to2D(project3(a.lat,a.lon,rot));
+              const B = to2D(project3(b.lat,b.lon,rot));
+              const alpha = Math.min(A.a, B.a);
+
+              const mx = (A.x+B.x)/2;
+              const my = (A.y+B.y)/2 - R*0.24;
+
+              ctx.strokeStyle = `rgba(77,231,255,${0.20 + alpha*0.65})`;
+              ctx.lineWidth = 4.2;
+              ctx.beginPath();
+              ctx.moveTo(A.x,A.y);
+              ctx.quadraticCurveTo(mx,my,B.x,B.y);
+              ctx.stroke();
+
+              ctx.strokeStyle = `rgba(255,79,216,${0.10 + alpha*0.40})`;
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.moveTo(A.x,A.y);
+              ctx.quadraticCurveTo(mx,my,B.x,B.y);
+              ctx.stroke();
+            }
+          }
+
+          // Cities (store for hover/click)
+          latest2D = cities.map(c=>{
+            const P = to2D(project3(c.lat,c.lon,rot));
+            const isSel = (c.name === globeState.selectedCity);
+            const isA = (c.name === globeState.pickA);
+            const isB = (c.name === globeState.pickB);
+
+            const r = isSel ? (P.front ? 5.4 : 3.3) : (P.front ? 4.1 : 2.6);
+
+            // Base dot
+            let dot = `rgba(74,111,165,${0.20 + P.a*0.75})`;
+            if(isA) dot = `rgba(200,155,60,${0.30 + P.a*0.70})`;
+            if(isB) dot = `rgba(77,231,255,${0.30 + P.a*0.70})`;
+            if(isSel && !isA && !isB) dot = `rgba(255,79,216,${0.30 + P.a*0.70})`;
+
+            ctx.fillStyle = dot;
             ctx.beginPath();
             ctx.arc(P.x,P.y,r,0,Math.PI*2);
             ctx.fill();
 
             if(P.front){
-              ctx.strokeStyle = `rgba(255,79,216,${0.10 + P.a*0.25})`;
+              ctx.strokeStyle = isA ? `rgba(200,155,60,${0.14 + P.a*0.35})`
+                : isB ? `rgba(77,231,255,${0.14 + P.a*0.35})`
+                : `rgba(255,79,216,${0.08 + P.a*0.22})`;
               ctx.beginPath();
-              ctx.arc(P.x,P.y,r+5,0,Math.PI*2);
+              ctx.arc(P.x,P.y,r+6,0,Math.PI*2);
               ctx.stroke();
             }
+
+            return {name:c.name, x:P.x, y:P.y, front:P.front, alpha:P.a};
           });
 
           ctx.restore();
 
-          state.t += 0.0125;
+          // Keep tooltip anchored near selected city (if visible)
+          if(tip && tip.style.display !== "none"){
+            const target = latest2D.find(p=>p.name===globeState.selectedCity && p.front);
+            if(target){
+              const pad = 10;
+              const tw = 300, th = 140;
+              let left = target.x + 14;
+              let top = target.y - 12;
+              left = Math.max(pad, Math.min(left, w - tw - pad));
+              top = Math.max(pad, Math.min(top, h - th - pad));
+              tip.style.left = left + "px";
+              tip.style.top = top + "px";
+            }
+          }
+
+          globeState.t += 0.0125;
           requestAnimationFrame(draw);
         }
 
@@ -2224,173 +2367,261 @@ Notes: ${notesTxt}`.trim();
             if(!pill) return;
             root.querySelectorAll(".routePill").forEach(x=>x.classList.remove("active"));
             pill.classList.add("active");
-            state.route = pill.getAttribute("data-route");
-            localStorage.setItem("bs_route", state.route);
-            refreshRouteNote(localStorage.getItem("bs_lang") || "en");
+            globeState.route = pill.getAttribute("data-route");
+            localStorage.setItem("bs_route", globeState.route);
+            refreshRouteNote(getLang());
           });
         }
+
+        // Hover labels
+        function showHover(name, x, y){
+          const lang = getLang();
+          const c = findCity(name);
+          if(!c) return;
+          hoverLabel.textContent = (lang==="mn") ? c.mn : c.en;
+          hoverLabel.style.left = x + "px";
+          hoverLabel.style.top = y + "px";
+          hoverLabel.style.display = "block";
+        }
+        function hideHover(){
+          hoverLabel.style.display = "none";
+        }
+
+        // Drag rotate + hover detection
+        wrap.addEventListener("pointerdown",(e)=>{
+          globeState.isDown = true;
+          globeState.downX = e.clientX;
+          globeState.downRot = globeState.rotDrag;
+          globeState.moved = false;
+          wrap.setPointerCapture?.(e.pointerId);
+        });
+
+        wrap.addEventListener("pointermove",(e)=>{
+          const rect = canvas.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          // hover nearest city (front) within threshold
+          let best = null, bestD = Infinity;
+          latest2D.forEach(p=>{
+            if(!p.front) return;
+            const dx = p.x - x, dy = p.y - y;
+            const d = Math.sqrt(dx*dx + dy*dy);
+            if(d < bestD){
+              bestD = d;
+              best = p;
+            }
+          });
+          const thr = Math.max(14, rect.width * 0.045);
+          if(best && bestD <= thr){
+            showHover(best.name, best.x, best.y);
+            wrap.style.cursor = "pointer";
+          } else {
+            hideHover();
+            wrap.style.cursor = globeState.isDown ? "grabbing" : "grab";
+          }
+
+          if(globeState.isDown){
+            const dx = e.clientX - globeState.downX;
+            globeState.rotDrag = globeState.downRot + (dx * 0.25);
+            if(Math.abs(dx) > 6) globeState.moved = true;
+          }
+        });
+
+        wrap.addEventListener("pointerleave", ()=>{
+          hideHover();
+          wrap.style.cursor = "grab";
+        });
+
+        wrap.addEventListener("pointerup",(e)=>{
+          globeState.isDown = false;
+
+          if(!globeState.moved){
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // pick nearest FRONT city
+            let best = null, bestD = Infinity;
+            latest2D.forEach(p=>{
+              if(!p.front) return;
+              const dx = p.x - x, dy = p.y - y;
+              const d = Math.sqrt(dx*dx + dy*dy);
+              if(d < bestD){
+                bestD = d;
+                best = p;
+              }
+            });
+            const thr = Math.max(14, rect.width * 0.045);
+
+            if(best && bestD <= thr){
+              globeState.selectedCity = best.name;
+              localStorage.setItem("bs_city", best.name);
+              showTip(best.name);
+
+              // route builder: tap two cities
+              setPick(best.name);
+              updateLaneStats();
+            } else {
+              tip.style.display = "none";
+            }
+          }
+
+          globeState.moved = false;
+        });
+
+        // initial cursor
+        wrap.style.cursor = "grab";
+
+        // initial UI state
+        refreshRouteNote(getLang());
+        updateLaneStats();
+        setTimeout(()=>{ showTip(globeState.selectedCity); }, 250);
       }
 
-      function refreshRouteNote(lang){
-        const active = document.querySelector("#routePills .routePill.active");
-        const key = active ? active.getAttribute("data-route") : (localStorage.getItem("bs_route")||"mngchn");
-        const el = document.getElementById("routeNote");
-        if(el) el.textContent = (routeNotes[lang] && routeNotes[lang][key]) ? routeNotes[lang][key] : "";
-      }
-
-      /* ---------------- NEW FEATURE: Incoterms Visual ---------------- */
+      // ---------------- Incoterms Full Matrix + Selected Term Visual ----------------
       const incoterms = {
-        EXW: {
-          ratio: 12, // seller share %
-          en: {
-            title:"EXW — Ex Works",
-            desc:"Seller makes goods available at their premises. Buyer handles pickup, export, main carriage, import, and delivery.",
-            steps:[
-              ["Origin pickup","Buyer"],
-              ["Export clearance","Buyer"],
-              ["Main transport","Buyer"],
-              ["Import clearance","Buyer"],
-              ["Final delivery","Buyer"]
-            ]
-          },
-          mn: {
-            title:"EXW — Үйлдвэрээс (Ex Works)",
-            desc:"Худалдагч барааг өөрийн байрлал дээр бэлэн болгоно. Таталт, экспорт, үндсэн тээвэр, импорт, хүргэлтийг худалдан авагч хариуцна.",
-            steps:[
-              ["Эхлэл таталт","Худалдан авагч"],
-              ["Экспорт бүрдүүлэлт","Худалдан авагч"],
-              ["Үндсэн тээвэр","Худалдан авагч"],
-              ["Импорт бүрдүүлэлт","Худалдан авагч"],
-              ["Эцсийн хүргэлт","Худалдан авагч"]
-            ]
-          }
+        EXW: { mode:"any", ratio:12,  m:{export:"B", main:"B", ins:"B", import:"B", duty:"B", final:"B"},
+          en:{ title:"EXW — Ex Works", desc:"Seller makes goods available at premises. Buyer handles almost everything.",
+            steps:[["Origin pickup","Buyer"],["Export clearance","Buyer"],["Main transport","Buyer"],["Import clearance","Buyer"],["Final delivery","Buyer"]] },
+          mn:{ title:"EXW — Үйлдвэрээс", desc:"Худалдагч барааг өөрийн байршил дээр бэлэн болгоно. Бусдыг худалдан авагч хариуцна.",
+            steps:[["Эхлэл таталт","Худалдан авагч"],["Экспорт бүрдүүлэлт","Худалдан авагч"],["Үндсэн тээвэр","Худалдан авагч"],["Импорт бүрдүүлэлт","Худалдан авагч"],["Эцсийн хүргэлт","Худалдан авагч"]] }
         },
-        FOB: {
-          ratio: 35,
-          en: {
-            title:"FOB — Free On Board (Sea/Waterway)",
-            desc:"Seller delivers goods on board the vessel at the port of shipment. Buyer takes risk/cost after loading.",
-            steps:[
-              ["Origin pickup","Seller"],
-              ["Export clearance","Seller"],
-              ["Main transport","Buyer"],
-              ["Import clearance","Buyer"],
-              ["Final delivery","Buyer"]
-            ]
-          },
-          mn: {
-            title:"FOB — Усан онгоцонд хүргэн (Free On Board)",
-            desc:"Худалдагч барааг ачих боомтод онгоцонд ачиж өгнө. Ачсаны дараах эрсдэл/зардлыг худалдан авагч хариуцна.",
-            steps:[
-              ["Эхлэл таталт","Худалдагч"],
-              ["Экспорт бүрдүүлэлт","Худалдагч"],
-              ["Үндсэн тээвэр","Худалдан авагч"],
-              ["Импорт бүрдүүлэлт","Худалдан авагч"],
-              ["Эцсийн хүргэлт","Худалдан авагч"]
-            ]
-          }
+        FCA: { mode:"any", ratio:35,  m:{export:"S", main:"B", ins:"B", import:"B", duty:"B", final:"B"},
+          en:{ title:"FCA — Free Carrier", desc:"Seller delivers to carrier at named place (often export cleared). Buyer handles main carriage onward.",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Buyer"],["Import clearance","Buyer"],["Final delivery","Buyer"]] },
+          mn:{ title:"FCA — Тээвэрлэгчид хүргэх", desc:"Худалдагч нэрлэсэн газарт тээвэрлэгчид хүргэнэ (ихэвчлэн экспорт хийгдсэн).",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдан авагч"],["Импорт бүрдүүлэлт","Худалдан авагч"],["Эцсийн хүргэлт","Худалдан авагч"]] }
         },
-        CIF: {
-          ratio: 55,
-          en: {
-            title:"CIF — Cost, Insurance & Freight (Sea/Waterway)",
-            desc:"Seller arranges and pays ocean freight + minimum insurance to destination port. Risk typically transfers when loaded on vessel (Incoterms rules apply).",
-            steps:[
-              ["Origin pickup","Seller"],
-              ["Export clearance","Seller"],
-              ["Main transport","Seller"],
-              ["Import clearance","Buyer"],
-              ["Final delivery","Buyer"]
-            ]
-          },
-          mn: {
-            title:"CIF — Өртөг, даатгал, тээвэр (Cost, Insurance & Freight)",
-            desc:"Худалдагч далайн тээвэр болон хамгийн бага даатгалыг зохион байгуулж төлнө. Эрсдэл ихэвчлэн онгоцонд ачих үед шилжинэ (Incoterms журмаар).",
-            steps:[
-              ["Эхлэл таталт","Худалдагч"],
-              ["Экспорт бүрдүүлэлт","Худалдагч"],
-              ["Үндсэн тээвэр","Худалдагч"],
-              ["Импорт бүрдүүлэлт","Худалдан авагч"],
-              ["Эцсийн хүргэлт","Худалдан авагч"]
-            ]
-          }
+        CPT: { mode:"any", ratio:55,  m:{export:"S", main:"S", ins:"B", import:"B", duty:"B", final:"B"},
+          en:{ title:"CPT — Carriage Paid To", desc:"Seller pays carriage to named place; risk transfers earlier per Incoterms rules.",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Seller"],["Import clearance","Buyer"],["Final delivery","Buyer"]] },
+          mn:{ title:"CPT — Тээврийн төлбөр төлсөн", desc:"Худалдагч нэрлэсэн газар хүртэл тээврийг төлнө (эрсдэл дүрэмд зааснаар эрт шилжинэ).",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдагч"],["Импорт бүрдүүлэлт","Худалдан авагч"],["Эцсийн хүргэлт","Худалдан авагч"]] }
         },
-        DAP: {
-          ratio: 78,
-          en: {
-            title:"DAP — Delivered At Place",
-            desc:"Seller delivers to named place (ready for unloading). Buyer handles import clearance and duties/taxes unless agreed otherwise.",
-            steps:[
-              ["Origin pickup","Seller"],
-              ["Export clearance","Seller"],
-              ["Main transport","Seller"],
-              ["Import clearance","Buyer"],
-              ["Final delivery","Seller"]
-            ]
-          },
-          mn: {
-            title:"DAP — Тодорхой газарт хүргэж өгөх (Delivered At Place)",
-            desc:"Худалдагч нэрлэсэн газарт (буулгахад бэлэн) хүргэнэ. Импортын бүрдүүлэлт, татвар/хураамжийг худалдан авагч хариуцна (өөрөөр тохироогүй бол).",
-            steps:[
-              ["Эхлэл таталт","Худалдагч"],
-              ["Экспорт бүрдүүлэлт","Худалдагч"],
-              ["Үндсэн тээвэр","Худалдагч"],
-              ["Импорт бүрдүүлэлт","Худалдан авагч"],
-              ["Эцсийн хүргэлт","Худалдагч"]
-            ]
-          }
+        CIP: { mode:"any", ratio:62,  m:{export:"S", main:"S", ins:"S", import:"B", duty:"B", final:"B"},
+          en:{ title:"CIP — Carriage & Insurance Paid To", desc:"Seller pays carriage + insurance to named place (typically stronger coverage than CIF).",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Seller"],["Insurance","Seller"],["Import clearance","Buyer"]] },
+          mn:{ title:"CIP — Тээвэр ба даатгал төлсөн", desc:"Худалдагч тээвэр + даатгалыг төлнө (ихэвчлэн CIF-ээс илүү хамрах хүрээтэй).",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдагч"],["Даатгал","Худалдагч"],["Импорт бүрдүүлэлт","Худалдан авагч"]] }
         },
-        DDP: {
-          ratio: 95,
-          en: {
-            title:"DDP — Delivered Duty Paid",
-            desc:"Seller handles delivery including import clearance and duties/taxes (highest seller responsibility).",
-            steps:[
-              ["Origin pickup","Seller"],
-              ["Export clearance","Seller"],
-              ["Main transport","Seller"],
-              ["Import clearance","Seller"],
-              ["Final delivery","Seller"]
-            ]
-          },
-          mn: {
-            title:"DDP — Татвар төлсөн хүргэлт (Delivered Duty Paid)",
-            desc:"Худалдагч хүргэлтийг бүрэн хариуцна: импортын бүрдүүлэлт, татвар/хураамжийг хүртэл (хамгийн өндөр хариуцлага).",
-            steps:[
-              ["Эхлэл таталт","Худалдагч"],
-              ["Экспорт бүрдүүлэлт","Худалдагч"],
-              ["Үндсэн тээвэр","Худалдагч"],
-              ["Импорт бүрдүүлэлт","Худалдагч"],
-              ["Эцсийн хүргэлт","Худалдагч"]
-            ]
-          }
+        DAP: { mode:"any", ratio:78,  m:{export:"S", main:"S", ins:"B", import:"B", duty:"B", final:"S"},
+          en:{ title:"DAP — Delivered At Place", desc:"Seller delivers to named place (ready for unloading). Buyer handles import clearance and duties/taxes.",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Seller"],["Import clearance","Buyer"],["Final delivery","Seller"]] },
+          mn:{ title:"DAP — Тодорхой газарт хүргэх", desc:"Худалдагч нэрлэсэн газарт хүргэнэ (буулгахад бэлэн). Импорт/татварыг худалдан авагч.",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдагч"],["Импорт бүрдүүлэлт","Худалдан авагч"],["Эцсийн хүргэлт","Худалдагч"]] }
+        },
+        DPU: { mode:"any", ratio:82,  m:{export:"S", main:"S", ins:"B", import:"B", duty:"B", final:"S"},
+          en:{ title:"DPU — Delivered at Place Unloaded", desc:"Seller delivers and unloads at named place. Buyer handles import clearance and duties/taxes.",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Seller"],["Unloading","Seller"],["Import clearance","Buyer"]] },
+          mn:{ title:"DPU — Буулгасан хүргэлт", desc:"Худалдагч нэрлэсэн газарт хүргэж буулгана. Импорт/татварыг худалдан авагч.",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдагч"],["Буулгалт","Худалдагч"],["Импорт бүрдүүлэлт","Худалдан авагч"]] }
+        },
+        DDP: { mode:"any", ratio:95,  m:{export:"S", main:"S", ins:"B", import:"S", duty:"S", final:"S"},
+          en:{ title:"DDP — Delivered Duty Paid", desc:"Seller handles delivery including import clearance and duties/taxes.",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Seller"],["Import clearance","Seller"],["Final delivery","Seller"]] },
+          mn:{ title:"DDP — Татвар төлсөн хүргэлт", desc:"Худалдагч импортын бүрдүүлэлт, татвар/хураамжийг хүртэл бүрэн хариуцна.",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдагч"],["Импорт бүрдүүлэлт","Худалдагч"],["Эцсийн хүргэлт","Худалдагч"]] }
+        },
+
+        // Sea / inland waterway only
+        FAS: { mode:"sea", ratio:30,  m:{export:"S", main:"B", ins:"B", import:"B", duty:"B", final:"B"},
+          en:{ title:"FAS — Free Alongside Ship", desc:"Seller places goods alongside vessel at port. Buyer handles loading and onward.",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Buyer"],["Import clearance","Buyer"],["Final delivery","Buyer"]] },
+          mn:{ title:"FAS — Онгоцны хажууд хүргэх", desc:"Худалдагч ачааг боомтод онгоцны хажууд тавина. Цаашдыг худалдан авагч.",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдан авагч"],["Импорт бүрдүүлэлт","Худалдан авагч"],["Эцсийн хүргэлт","Худалдан авагч"]] }
+        },
+        FOB: { mode:"sea", ratio:35,  m:{export:"S", main:"B", ins:"B", import:"B", duty:"B", final:"B"},
+          en:{ title:"FOB — Free On Board", desc:"Seller delivers on board vessel at port. Buyer handles main carriage onward.",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Buyer"],["Import clearance","Buyer"],["Final delivery","Buyer"]] },
+          mn:{ title:"FOB — Онгоцонд ачиж өгөх", desc:"Худалдагч ачааг онгоцонд ачиж өгнө. Цаашдыг худалдан авагч.",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдан авагч"],["Импорт бүрдүүлэлт","Худалдан авагч"],["Эцсийн хүргэлт","Худалдан авагч"]] }
+        },
+        CFR: { mode:"sea", ratio:55,  m:{export:"S", main:"S", ins:"B", import:"B", duty:"B", final:"B"},
+          en:{ title:"CFR — Cost & Freight", desc:"Seller pays freight to destination port (no insurance obligation).",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Seller"],["Import clearance","Buyer"],["Final delivery","Buyer"]] },
+          mn:{ title:"CFR — Өртөг ба тээвэр", desc:"Худалдагч очих боомт хүртэл тээврийн төлбөрийг төлнө (даатгал заавал биш).",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдагч"],["Импорт бүрдүүлэлт","Худалдан авагч"],["Эцсийн хүргэлт","Худалдан авагч"]] }
+        },
+        CIF: { mode:"sea", ratio:62,  m:{export:"S", main:"S", ins:"S", import:"B", duty:"B", final:"B"},
+          en:{ title:"CIF — Cost, Insurance & Freight", desc:"Seller pays freight + minimum insurance to destination port.",
+            steps:[["Origin pickup","Seller"],["Export clearance","Seller"],["Main transport","Seller"],["Insurance","Seller"],["Import clearance","Buyer"]] },
+          mn:{ title:"CIF — Өртөг, даатгал, тээвэр", desc:"Худалдагч тээвэр + хамгийн бага даатгалыг төлнө.",
+            steps:[["Эхлэл таталт","Худалдагч"],["Экспорт бүрдүүлэлт","Худалдагч"],["Үндсэн тээвэр","Худалдагч"],["Даатгал","Худалдагч"],["Импорт бүрдүүлэлт","Худалдан авагч"]] }
         }
       };
 
       function initIncoterms(){
-        const row = document.getElementById("termRow");
-        if(!row) return;
-        row.addEventListener("click",(e)=>{
-          const b = e.target.closest(".termBtn");
-          if(!b) return;
-          row.querySelectorAll(".termBtn").forEach(x=>x.classList.remove("active"));
-          b.classList.add("active");
-          const term = b.getAttribute("data-term");
+        const table = document.getElementById("incTable");
+        const tbody = table?.querySelector("tbody");
+        const filter = document.getElementById("incFilter");
+        const search = document.getElementById("incSearch");
+        const count = document.getElementById("incCount");
+        if(!table || !tbody || !filter || !search || !count) return;
+
+        const savedTerm = localStorage.getItem("bs_term") || "EXW";
+        renderTerm(savedTerm, getLang());
+
+        function pill(who){
+          const lang = getLang();
+          const cls = who==="S" ? "incPill s" : "incPill b";
+          const label = (lang==="mn")
+            ? (who==="S" ? "Худалдагч" : "Худалдан авагч")
+            : (who==="S" ? "Seller" : "Buyer");
+          return `<span class="${cls}">${label}</span>`;
+        }
+
+        function apply(){
+          const q = (search.value || "").trim().toUpperCase();
+          const f = filter.value;
+
+          const keys = Object.keys(incoterms).filter(k=>{
+            const t = incoterms[k];
+            const okFilter =
+              (f==="all") ||
+              (f==="any" && t.mode==="any") ||
+              (f==="sea" && t.mode==="sea");
+
+            const okSearch = !q || k.includes(q) || (t.en?.title || "").toUpperCase().includes(q);
+            return okFilter && okSearch;
+          });
+
+          count.textContent = `${keys.length} ${getLang()==="mn" ? "нэр" : "terms"}`;
+
+          tbody.innerHTML = keys.map(k=>{
+            const t = incoterms[k];
+            return `
+              <tr data-term="${k}" style="cursor:pointer;">
+                <td class="stickyTerm">${k}</td>
+                <td>${pill(t.m.export)}</td>
+                <td>${pill(t.m.main)}</td>
+                <td>${pill(t.m.ins)}</td>
+                <td>${pill(t.m.import)}</td>
+                <td>${pill(t.m.duty)}</td>
+                <td>${pill(t.m.final)}</td>
+              </tr>
+            `;
+          }).join("");
+        }
+
+        tbody.addEventListener("click",(e)=>{
+          const row = e.target.closest("tr[data-term]");
+          if(!row) return;
+          const term = row.getAttribute("data-term");
           localStorage.setItem("bs_term", term);
-          renderTerm(term, localStorage.getItem("bs_lang") || "en");
+          renderTerm(term, getLang());
+          document.getElementById("termPanel")?.scrollIntoView({behavior:"smooth", block:"nearest"});
         });
 
-        const saved = localStorage.getItem("bs_term") || "EXW";
-        const btn = row.querySelector(`.termBtn[data-term="${saved}"]`);
-        if(btn){
-          row.querySelectorAll(".termBtn").forEach(x=>x.classList.remove("active"));
-          btn.classList.add("active");
-        }
-        renderTerm(saved, localStorage.getItem("bs_lang") || "en");
+        filter.addEventListener("change", apply);
+        search.addEventListener("input", apply);
+
+        apply();
       }
 
       function renderTerm(term, lang){
         const data = incoterms[term] || incoterms.EXW;
+
         const segSeller = document.getElementById("segSeller");
         const segBuyer = document.getElementById("segBuyer");
         if(segSeller && segBuyer){
@@ -2416,10 +2647,8 @@ Notes: ${notesTxt}`.trim();
           });
         }
 
-        // Update explanatory line for selected term (small but clear)
         const panel = document.getElementById("termPanel");
         if(panel){
-          // Insert or update a description paragraph under the timeline
           let p = panel.querySelector("[data-term-desc]");
           if(!p){
             p = document.createElement("div");
@@ -2438,70 +2667,80 @@ Notes: ${notesTxt}`.trim();
       function refreshIncotermsText(lang){
         const term = localStorage.getItem("bs_term") || "EXW";
         renderTerm(term, lang);
+        // refresh matrix pills language by re-rendering
+        initIncoterms();
       }
 
-      /* ---------------- NEW FEATURE: CBM Calculator ---------------- */
+      // ---------------- CBM Calculator ----------------
       function initCBM(){
-        const L = document.getElementById("cbmL");
-        const W = document.getElementById("cbmW");
-        const H = document.getElementById("cbmH");
-        const C = document.getElementById("cbmC");
-        const U = document.getElementById("cbmUnit");
-        if(!L||!W||!H||!C||!U) return;
+        const unitSel = document.getElementById("unitSel");
+        const cartons = document.getElementById("cartons");
+        const len = document.getElementById("len");
+        const wid = document.getElementById("wid");
+        const hei = document.getElementById("hei");
+        const outPer = document.getElementById("outPer");
+        const outTotal = document.getElementById("outTotal");
+        const outHint = document.getElementById("outHint");
+        if(!unitSel || !cartons || !len || !wid || !hei || !outPer || !outTotal || !outHint) return;
 
-        const out = document.getElementById("cbmOut");
-        const each = document.getElementById("cbmEach");
-        const cft = document.getElementById("cbmCft");
+        function compute(){
+          const unit = unitSel.value;
+          const n = Math.max(1, Number(cartons.value || 1));
+          const L = Number(len.value || 0);
+          const W = Number(wid.value || 0);
+          const H = Number(hei.value || 0);
 
-        function toMeters(v, unit){
-          const x = Number(v) || 0;
-          if(unit==="m") return x;
-          if(unit==="cm") return x / 100;
-          if(unit==="in") return x * 0.0254;
-          return x;
-        }
-
-        function calc(){
-          const unit = U.value;
-          const l = toMeters(L.value, unit);
-          const w = toMeters(W.value, unit);
-          const h = toMeters(H.value, unit);
-          const cartons = Math.max(1, Number(C.value) || 1);
-
-          const per = (l*w*h);
-          const total = per * cartons;
-
-          if(out) out.textContent = `${total.toFixed(3)} CBM`;
-          if(each) each.textContent = `Each: ${per.toFixed(3)} m³`;
-          if(cft){
-            const ft3 = total * 35.3146667;
-            cft.textContent = `${ft3.toFixed(2)} ft³`;
+          if(L<=0 || W<=0 || H<=0){
+            outPer.textContent = "—";
+            outTotal.textContent = "—";
+            outHint.textContent = (getLang()==="mn") ? "Хэмжээсүүдийг оруулна уу." : "Enter carton dimensions.";
+            return;
           }
+
+          // convert to meters
+          let mL, mW, mH;
+          if(unit === "cm"){
+            mL = L/100; mW = W/100; mH = H/100;
+          }else{
+            // inches -> meters
+            mL = L*0.0254; mW = W*0.0254; mH = H*0.0254;
+          }
+
+          const per = mL*mW*mH;
+          const total = per*n;
+
+          outPer.textContent = `${per.toFixed(4)} m³`;
+          outTotal.textContent = `${total.toFixed(4)} m³`;
+
+          // quick hint heuristic
+          const lang = getLang();
+          let hintEn = "Small volume";
+          let hintMn = "Бага хэмжээ";
+          if(total >= 1 && total < 10){ hintEn = "LCL / consolidated might fit"; hintMn = "LCL / хам тээвэр тохиромжтой"; }
+          if(total >= 10 && total < 28){ hintEn = "Consider 20' container (rule of thumb)"; hintMn = "20' контейнер (ойролцоогоор)"; }
+          if(total >= 28){ hintEn = "Consider 40' container (rule of thumb)"; hintMn = "40' контейнер (ойролцоогоор)"; }
+
+          outHint.textContent = (lang==="mn") ? hintMn : hintEn;
         }
 
-        ["input","change"].forEach(ev=>{
-          L.addEventListener(ev, calc);
-          W.addEventListener(ev, calc);
-          H.addEventListener(ev, calc);
-          C.addEventListener(ev, calc);
-          U.addEventListener(ev, calc);
-        });
+        function onAny(){ compute(); }
 
-        calc();
+        unitSel.addEventListener("change", onAny);
+        cartons.addEventListener("input", onAny);
+        len.addEventListener("input", onAny);
+        wid.addEventListener("input", onAny);
+        hei.addEventListener("input", onAny);
+
+        compute();
       }
 
-      function refreshCBMLabels(lang){
-        // (labels are already handled by data-i18n) - this ensures option text updates correctly.
-        const unitSel = document.getElementById("cbmUnit");
-        if(!unitSel) return;
-        // Re-apply i18n for option text already done by setLang, but keep safe:
-        unitSel.querySelectorAll("option").forEach(opt=>{
-          const key = opt.getAttribute("data-i18n");
-          if(key && dict[lang] && dict[lang][key]) opt.textContent = dict[lang][key];
-        });
+      function refreshCBMHint(lang){
+        // recompute will update hint language
+        const len = document.getElementById("len");
+        if(len) len.dispatchEvent(new Event("input"));
       }
 
-      /* ---------------- Boot ---------------- */
+      // ---------------- Boot ----------------
       document.getElementById("lang-en").addEventListener("click", ()=>setLang("en"));
       document.getElementById("lang-mn").addEventListener("click", ()=>setLang("mn"));
       document.getElementById("theme-toggle").addEventListener("click", ()=>{
@@ -2516,8 +2755,6 @@ Notes: ${notesTxt}`.trim();
       initButtonMotion();
       initCardTilt();
       initDrawer();
-
-      // New features
       initGlobe();
       initIncoterms();
       initCBM();
@@ -2526,8 +2763,11 @@ Notes: ${notesTxt}`.trim();
       setTheme(localStorage.getItem("bs_theme") || "light");
       setLang(localStorage.getItem("bs_lang") || "en");
 
-      // Ensure route note & defaults
-      refreshRouteNote(localStorage.getItem("bs_lang") || "en");
+      // Ensure pills reflect saved route
+      const savedRoute = localStorage.getItem("bs_route") || "mngchn";
+      document.querySelectorAll("#routePills .routePill").forEach(p=>{
+        p.classList.toggle("active", p.getAttribute("data-route") === savedRoute);
+      });
     })();
   </script>
 </body>
