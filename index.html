@@ -3,8 +3,20 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
   <title>Baatar Shipping — Moving Trade Forward</title>
   <meta name="description" content="Baatar Shipping — Mongolia ↔ China ↔ Global logistics coordination. Fast response, clear communication, trusted partners."/>
+
+  <!-- Favicon / App Icons -->
+  <link rel="icon" type="image/png" href="assets/baatar-logo.png">
+  <link rel="apple-touch-icon" href="assets/baatar-logo.png">
+  <meta name="theme-color" content="#071a2c">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Baatar Shipping — Moving Trade Forward">
+  <meta property="og:description" content="Mongolia ↔ China ↔ Global logistics coordination — clear communication, fast execution, trusted partners.">
+  <meta property="og:image" content="assets/baatar-logo.png">
+  <meta property="og:type" content="website">
 
   <style>
     :root{
@@ -31,7 +43,6 @@
       --max:1320px;
     }
 
-    /* DARK MODE */
     [data-theme="dark"]{
       --bg:#050812;
       --card: rgba(255,255,255,.06);
@@ -66,7 +77,6 @@
       padding:18px 0 92px;
     }
 
-    /* Subtle stage to remove “awkward empty sides” */
     .stage{
       width:min(var(--max), 96vw);
       margin: 18px auto 0;
@@ -110,35 +120,51 @@
       gap:12px;
     }
 
-    .brand{
-      display:flex; align-items:flex-start; gap:12px;
-    }
-    .mark{
-      width:40px; height:40px;
-      border-radius:14px;
+    /* Brand with REAL logo */
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .logoWrap{
+      width:56px; height:56px; /* bigger logo */
+      border-radius:18px;
+      padding:8px;
       background:
-        radial-gradient(18px 18px at 28% 32%, rgba(255,79,216,.45), transparent 55%),
-        radial-gradient(20px 20px at 70% 22%, rgba(71,230,177,.35), transparent 60%),
-        radial-gradient(22px 22px at 60% 70%, rgba(200,155,60,.35), transparent 60%),
-        linear-gradient(135deg, rgba(7,26,44,.95), rgba(12,42,74,.92));
-      box-shadow: 0 16px 50px rgba(7,26,44,.18);
-      border:1px solid rgba(255,255,255,.22);
+        radial-gradient(60px 40px at 20% 10%, rgba(255,79,216,.18), transparent 60%),
+        radial-gradient(60px 40px at 80% 10%, rgba(71,230,177,.16), transparent 60%),
+        linear-gradient(135deg, rgba(7,26,44,.92), rgba(12,42,74,.90));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 18px 70px rgba(7,26,44,.18);
+      display:grid; place-items:center;
       position:relative;
       overflow:hidden;
     }
-    [data-theme="dark"] .mark{ border-color: rgba(255,255,255,.10); }
-    .mark::after{
+    [data-theme="dark"] .logoWrap{
+      border-color: rgba(255,255,255,.10);
+      box-shadow: 0 24px 100px rgba(0,0,0,.55);
+    }
+    .logoWrap::after{
       content:"";
       position:absolute; inset:-2px;
-      background: radial-gradient(160px 60px at 10% 0%, rgba(255,255,255,.20), transparent 60%);
-      transform: rotate(12deg);
+      background: radial-gradient(160px 60px at 10% 0%, rgba(255,255,255,.18), transparent 60%);
+      transform: rotate(14deg);
       pointer-events:none;
+    }
+    .logoImg{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border-radius: 12px;
+      background: rgba(255,255,255,.92); /* handles your logo’s white bg cleanly */
+      padding: 6px;
+      box-shadow: inset 0 0 0 1px rgba(7,26,44,.08);
+    }
+    [data-theme="dark"] .logoImg{
+      background: rgba(255,255,255,.92);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
     }
 
     .brandText{display:flex; flex-direction:column; line-height:1.02}
     .brandText b{
-      letter-spacing:.12em;
-      font-size:14px; /* bigger logo */
+      letter-spacing:.14em;
+      font-size:14px;
       text-transform:uppercase;
     }
     .brandText span{
@@ -180,10 +206,7 @@
       user-select:none;
     }
     [data-theme="dark"] .pillBtn{ background: rgba(255,255,255,.08); }
-    .pillBtn:hover{
-      transform:translateY(-1px);
-      box-shadow:0 12px 26px rgba(7,26,44,.10);
-    }
+    .pillBtn:hover{ transform:translateY(-1px); box-shadow:0 12px 26px rgba(7,26,44,.10); }
     .pillBtn.active{
       border-color: rgba(200,155,60,.55);
       box-shadow:0 12px 26px rgba(200,155,60,.12);
@@ -211,12 +234,26 @@
         linear-gradient(180deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.04) 100%);
     }
 
+    /* BIG subtle logo watermark in hero */
+    .heroWatermark{
+      position:absolute;
+      right:-40px; top:-40px;
+      width: 340px; height: 340px;
+      opacity: .06;
+      filter: blur(.2px);
+      transform: rotate(10deg);
+      pointer-events:none;
+    }
+    [data-theme="dark"] .heroWatermark{ opacity:.08; }
+
     .heroGrid{
       display:grid;
       grid-template-columns: 1.1fr .95fr;
       gap:22px;
       padding: 52px 28px 28px;
       align-items:center;
+      position:relative;
+      z-index:1;
     }
 
     .kicker{
@@ -298,7 +335,6 @@
     [data-theme="dark"] .btn.ghost{ background: rgba(255,255,255,.10); }
     .btn.ghost:hover{ transform:translateY(-2px); box-shadow:0 18px 50px rgba(7,26,44,.12) }
 
-    /* Ripple origin */
     .btn::after{
       content:"";
       position:absolute;
@@ -316,7 +352,7 @@
       transition: width .35s ease, height .35s ease;
     }
 
-    /* HERO VISUAL: Apple-style interactive globe card */
+    /* HERO VISUAL */
     .heroVisual{
       border-radius: 30px;
       border:1px solid var(--line);
@@ -345,9 +381,7 @@
       padding:14px 14px 10px;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .hvTitle{
-      display:flex; flex-direction:column; gap:2px;
-    }
+    .hvTitle{ display:flex; flex-direction:column; gap:2px; }
     .hvTitle b{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
     .hvTitle span{ font-size:12px; color:var(--muted); }
     .hvPills{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
@@ -373,11 +407,7 @@
       50%{ transform: scale(1.18); opacity:1 }
     }
 
-    .hvCanvasWrap{
-      position:relative;
-      flex:1;
-      padding: 4px 10px 12px;
-    }
+    .hvCanvasWrap{ position:relative; flex:1; padding: 4px 10px 12px; }
     canvas#heroGlobe{
       width:100%;
       height:100%;
@@ -400,9 +430,7 @@
     }
 
     .tooltip{
-      position:absolute;
-      pointer-events:none;
-      z-index:5;
+      position:absolute; pointer-events:none; z-index:5;
       transform: translate(-50%, -115%);
       padding:10px 12px;
       border-radius: 14px;
@@ -624,7 +652,6 @@
     }
     .covNote{ margin-top:12px; color: var(--muted); font-size:12.5px; min-height: 40px; line-height:1.5}
 
-    /* New: Coverage map + learning grid */
     .learnGrid{
       margin-top:14px;
       display:grid;
@@ -643,17 +670,8 @@
     }
     [data-theme="dark"] .panelCard{ background: rgba(255,255,255,.06); }
 
-    .panelCard h3{
-      margin:0;
-      font-size:14px;
-      letter-spacing:-.01em;
-    }
-    .panelCard .small{
-      margin:6px 0 0;
-      color: var(--muted);
-      font-size:12.5px;
-      line-height:1.55;
-    }
+    .panelCard h3{ margin:0; font-size:14px; letter-spacing:-.01em; }
+    .panelCard .small{ margin:6px 0 0; color: var(--muted); font-size:12.5px; line-height:1.55; }
 
     /* Route Builder */
     .rbTop{
@@ -692,13 +710,8 @@
       display:flex; align-items:center; gap:10px; flex-wrap:wrap;
       box-shadow: 0 18px 70px rgba(7,26,44,.20);
     }
-    .laneBig .s{
-      font-size:12px; opacity:.9;
-    }
-    .laneBig b{
-      font-size:13px;
-      letter-spacing:.01em;
-    }
+    .laneBig .s{ font-size:12px; opacity:.9; }
+    .laneBig b{ font-size:13px; letter-spacing:.01em; }
     .laneBig .actions{
       margin-left:auto;
       display:flex; gap:8px; flex-wrap:wrap;
@@ -715,7 +728,7 @@
     }
     .laneBig .actions button:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
 
-    /* Incoterms premium matrix */
+    /* Incoterms */
     .filters{
       display:flex; gap:10px; flex-wrap:wrap; align-items:center;
       margin-top:12px;
@@ -832,7 +845,7 @@
       line-height:1.5;
     }
 
-    /* CBM Calculator */
+    /* CBM */
     .cbmGrid{
       margin-top:12px;
       display:grid;
@@ -871,16 +884,9 @@
     }
     textarea{ resize: vertical; min-height: 90px; }
 
-    .row2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-    .row3{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:10px;
-    }
+    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .row3{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; }
+
     .calcOut{
       border-radius: 20px;
       border:1px solid var(--line);
@@ -902,7 +908,7 @@
     .kv span{ color: var(--muted); font-size:12.5px; }
     .kv b{ font-size:13px; letter-spacing:-.01em; }
 
-    /* CONTACT BAND */
+    /* Contact band */
     .band{
       margin-top:18px;
       border-radius: 28px;
@@ -932,7 +938,7 @@
       padding: 0 4px 18px;
     }
 
-    /* Reveal + Stagger */
+    /* Reveal */
     .reveal{ opacity:0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in{ opacity:1; transform: translateY(0); }
     .stagger > *{ opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
@@ -944,7 +950,7 @@
     .reveal.in .stagger > *:nth-child(5){ transition-delay:.41s }
     .reveal.in .stagger > *:nth-child(6){ transition-delay:.50s }
 
-    /* QUOTE DRAWER */
+    /* Drawer */
     .drawerOverlay{
       position:fixed; inset:0; z-index:200;
       background: rgba(0,0,0,.32);
@@ -985,6 +991,25 @@
     .drawerTop h3{ margin:0; font-size:16px; letter-spacing:-.01em; }
     .drawerHint{ color: var(--muted); font-size:12.5px; margin-top:-6px; }
 
+    .drawerBrandMini{
+      display:flex; align-items:center; gap:10px; margin-top:8px;
+      padding:10px 12px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.70);
+      backdrop-filter: blur(10px);
+    }
+    [data-theme="dark"] .drawerBrandMini{ background: rgba(255,255,255,.08); }
+    .drawerBrandMini img{
+      width:38px; height:38px; border-radius: 12px;
+      object-fit:contain;
+      background: rgba(255,255,255,.92);
+      padding:4px;
+      box-shadow: inset 0 0 0 1px rgba(7,26,44,.08);
+    }
+    .drawerBrandMini b{ font-size:12px; letter-spacing:.12em; }
+    .drawerBrandMini span{ font-size:12px; color:var(--muted); }
+
     .x{
       border:1px solid var(--line);
       background: rgba(255,255,255,.78);
@@ -997,11 +1022,7 @@
     [data-theme="dark"] .x{ background: rgba(255,255,255,.10); }
     .x:hover{ transform: translateY(-1px); box-shadow:0 16px 40px rgba(7,26,44,.12); }
 
-    .form{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
+    .form{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
     .form .full{ grid-column: 1 / -1; }
     .drawerCtas{ display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; }
     .smallNote{ color: var(--muted); font-size:12px; margin-top:4px; }
@@ -1018,6 +1039,7 @@
       .form{grid-template-columns:1fr}
       .row2,.row3{grid-template-columns:1fr}
       .lanePill{ left: 16px; right:16px; }
+      .heroWatermark{ width:260px; height:260px; right:-70px; top:-70px; }
     }
   </style>
 </head>
@@ -1027,7 +1049,9 @@
   <div class="top">
     <div class="topInner">
       <div class="brand">
-        <div class="mark" aria-hidden="true"></div>
+        <div class="logoWrap" aria-hidden="true">
+          <img class="logoImg" src="assets/baatar-logo.png" alt="Baatar Shipping logo">
+        </div>
         <div class="brandText">
           <b>BAATAR SHIPPING</b>
           <span data-i18n="tagline">Moving Trade Forward</span>
@@ -1057,6 +1081,7 @@
 
       <!-- HERO -->
       <section class="hero reveal" id="top">
+        <img class="heroWatermark" src="assets/baatar-logo.png" alt="" aria-hidden="true">
         <div class="heroGrid">
           <div>
             <div class="kicker"><span class="kdot"></span> <span data-i18n="heroKicker">Cross-border logistics coordination</span></div>
@@ -1234,7 +1259,6 @@
             </div>
           </div>
 
-          <!-- Coverage Map + Route Builder -->
           <div class="learnGrid" style="margin-top:14px;">
             <div class="panelCard">
               <h3 data-i18n="rbTitle">Route Builder</h3>
@@ -1307,9 +1331,7 @@
           </div>
 
           <div class="matrixWrap" style="margin-top:12px; overflow:auto;">
-            <table class="matrix" id="incMatrix" aria-label="Incoterms 2020 responsibility matrix">
-              <!-- built by JS -->
-            </table>
+            <table class="matrix" id="incMatrix" aria-label="Incoterms 2020 responsibility matrix"></table>
           </div>
 
           <div class="matrixFoot" data-i18n="incFoot">
@@ -1426,6 +1448,14 @@
       <div>
         <h3 data-i18n="drawerTitle">Request a quote</h3>
         <div class="drawerHint" data-i18n="drawerSub">Fill this in 30 seconds. We’ll reply quickly.</div>
+
+        <div class="drawerBrandMini" aria-hidden="true">
+          <img src="assets/baatar-logo.png" alt="">
+          <div style="display:flex; flex-direction:column; line-height:1.05;">
+            <b>BAATAR SHIPPING</b>
+            <span data-i18n="tagline">Moving Trade Forward</span>
+          </div>
+        </div>
       </div>
       <button class="x" id="closeDrawer" type="button">✕</button>
     </div>
@@ -1675,7 +1705,6 @@
         }
       };
 
-      // Coverage notes
       const notes = {
         en: {
           core1:"Fast coordination for UB ↔ Erenhot flows: timing, partners, clean handover.",
@@ -1695,24 +1724,20 @@
         }
       };
 
-      // ---------------- Globe + Cities ----------------
       const cities = [
         { id:"ub",        en:"Ulaanbaatar", mn:"Улаанбаатар", lat:47.918, lon:106.917 },
         { id:"beijing",   en:"Beijing",     mn:"Бээжин",      lat:39.904, lon:116.407 },
-        { id:"tianjin",   en:"Tianjin",     mn:"Тяньжин",     lat:39.084, lon:117.200 },
+        { id:"tianjin",   en:"Tianjin",     mn:"Тяньжин",     lat:39.084, lon:117.200 },  // fixed spelling
         { id:"istanbul",  en:"Istanbul",    mn:"Истанбул",    lat:41.008, lon:28.978  },
-        { id:"newyork",   en:"New York",    mn:"Нью-Йорк",    lat:40.713, lon:-74.006 },
+        { id:"newyork",   en:"New York",    mn:"Нью-Йорк",    lat:40.713, lon:-74.006 }, // fixed spacing
         { id:"berlin",    en:"Berlin",      mn:"Берлин",      lat:52.520, lon:13.405  },
         { id:"seoul",     en:"Seoul",       mn:"Сөүл",        lat:37.566, lon:126.978 },
-        { id:"capetown",  en:"Cape Town",   mn:"Кейптаун",    lat:-33.925,lon:18.424  },
+        { id:"capetown",  en:"Cape Town",   mn:"Кейптаун",    lat:-33.925,lon:18.424  }, // fixed spacing
         { id:"melbourne", en:"Melbourne",   mn:"Мельбурн",    lat:-37.813,lon:144.963 }
       ];
 
-      // Default lane
       let lane = ["ub","beijing","tianjin"];
 
-      // ---------------- Incoterms Matrix ----------------
-      // Responsibilities columns (simplified learning view)
       const incCols = [
         { key:"export",  en:"Export clearance", mn:"Экспортын гааль" },
         { key:"main",    en:"Main carriage",    mn:"Үндсэн тээвэр" },
@@ -1723,81 +1748,54 @@
         { key:"deliver", en:"Delivery point",   mn:"Хүргэлтийн цэг" }
       ];
 
-      // Who typically pays/does (learning simplification):
-      // seller / buyer / split / none
       const INC = [
-        { term:"EXW", group:"E", sea:false, row:{
-          export:"buyer", main:"buyer", risk:"buyer", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller"
-        }, note_en:"Seller makes goods available at premises. Buyer handles almost everything.",
-           note_mn:"Худалдагч өөрийн байранд бэлэн болгоно. Бараг бүхнийг худалдан авагч хариуцна." },
-
-        { term:"FCA", group:"F", sea:false, row:{
-          export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller"
-        }, note_en:"Seller delivers to carrier/point agreed. Buyer handles main carriage.",
-           note_mn:"Худалдагч тохирсон цэг/тээвэрлэгчид хүргэнэ. Үндсэн тээврийг худалдан авагч." },
-
-        { term:"FAS", group:"F", sea:true, row:{
-          export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller"
-        }, note_en:"Sea only. Seller places goods alongside vessel. Buyer handles loading & sea carriage.",
-           note_mn:"Зөвхөн далай. Худалдагч усан онгоцны хажууд тавина. Ачилт/далайн тээврийг худалдан авагч." },
-
-        { term:"FOB", group:"F", sea:true, row:{
-          export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller"
-        }, note_en:"Sea only. Seller loads on board. Risk transfers when on board.",
-           note_mn:"Зөвхөн далай. Худалдагч онгоцонд ачиж өгнө. Эрсдэл онгоцонд ачигдахад шилжинэ." },
-
-        { term:"CFR", group:"C", sea:true, row:{
-          export:"seller", main:"seller", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"split"
-        }, note_en:"Sea only. Seller pays sea carriage, risk transfers at loading (on board).",
-           note_mn:"Зөвхөн далай. Худалдагч далайн тээврийг төлнө, эрсдэл онгоцонд ачих үед шилжинэ." },
-
-        { term:"CIF", group:"C", sea:true, row:{
-          export:"seller", main:"seller", risk:"split", ins:"seller", import:"buyer", unload:"buyer", deliver:"split"
-        }, note_en:"Sea only. Like CFR but seller also provides minimum insurance.",
-           note_mn:"Зөвхөн далай. CFR-тэй адил боловч худалдагч хамгийн бага даатгал хийдэг." },
-
-        { term:"CPT", group:"C", sea:false, row:{
-          export:"seller", main:"seller", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"split"
-        }, note_en:"Seller pays carriage to named place; risk transfers to buyer when handed to carrier.",
-           note_mn:"Худалдагч нэрлэсэн цэг хүртэл тээврийг төлнө; эрсдэл тээвэрлэгчид шилжих үед худалдан авагч руу." },
-
-        { term:"CIP", group:"C", sea:false, row:{
-          export:"seller", main:"seller", risk:"split", ins:"seller", import:"buyer", unload:"buyer", deliver:"split"
-        }, note_en:"Like CPT but seller provides insurance (higher coverage than CIF typically).",
-           note_mn:"CPT-тэй адил боловч худалдагч даатгал хийдэг (ихэвчлэн CIF-ээс өндөр хамгаалалт)." },
-
-        { term:"DAP", group:"D", sea:false, row:{
-          export:"seller", main:"seller", risk:"seller", ins:"split", import:"buyer", unload:"buyer", deliver:"seller"
-        }, note_en:"Delivered at Place. Seller delivers ready for unloading at named place. Import is buyer.",
-           note_mn:"DAP: Худалдагч нэрлэсэн цэг дээр буулгахад бэлэн хүргэнэ. Импорт — худалдан авагч." },
-
-        { term:"DPU", group:"D", sea:false, row:{
-          export:"seller", main:"seller", risk:"seller", ins:"split", import:"buyer", unload:"seller", deliver:"seller"
-        }, note_en:"Delivered at Place Unloaded. Seller unloads at destination place. Import is buyer.",
-           note_mn:"DPU: Худалдагч очих газарт буулгаж өгнө. Импорт — худалдан авагч." },
-
-        { term:"DDP", group:"D", sea:false, row:{
-          export:"seller", main:"seller", risk:"seller", ins:"split", import:"seller", unload:"buyer", deliver:"seller"
-        }, note_en:"Delivered Duty Paid. Seller handles import clearance & duties (strongest seller obligation).",
-           note_mn:"DDP: Худалдагч импортын гааль, татвар/хураамжийг хариуцна (хамгийн өндөр үүрэг)." }
+        { term:"EXW", group:"E", sea:false, row:{ export:"buyer", main:"buyer", risk:"buyer", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller" },
+          note_en:"Seller makes goods available at premises. Buyer handles almost everything.",
+          note_mn:"Худалдагч өөрийн байранд бэлэн болгоно. Бараг бүхнийг худалдан авагч хариуцна." },
+        { term:"FCA", group:"F", sea:false, row:{ export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller" },
+          note_en:"Seller delivers to carrier/point agreed. Buyer handles main carriage.",
+          note_mn:"Худалдагч тохирсон цэг/тээвэрлэгчид хүргэнэ. Үндсэн тээврийг худалдан авагч." },
+        { term:"FAS", group:"F", sea:true, row:{ export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller" },
+          note_en:"Sea only. Seller places goods alongside vessel. Buyer handles loading & sea carriage.",
+          note_mn:"Зөвхөн далай. Худалдагч усан онгоцны хажууд тавина. Ачилт/далайн тээврийг худалдан авагч." },
+        { term:"FOB", group:"F", sea:true, row:{ export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller" },
+          note_en:"Sea only. Seller loads on board. Risk transfers when on board.",
+          note_mn:"Зөвхөн далай. Худалдагч онгоцонд ачиж өгнө. Эрсдэл онгоцонд ачигдахад шилжинэ." },
+        { term:"CFR", group:"C", sea:true, row:{ export:"seller", main:"seller", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"split" },
+          note_en:"Sea only. Seller pays sea carriage, risk transfers at loading (on board).",
+          note_mn:"Зөвхөн далай. Худалдагч далайн тээврийг төлнө, эрсдэл онгоцонд ачих үед шилжинэ." },
+        { term:"CIF", group:"C", sea:true, row:{ export:"seller", main:"seller", risk:"split", ins:"seller", import:"buyer", unload:"buyer", deliver:"split" },
+          note_en:"Sea only. Like CFR but seller also provides minimum insurance.",
+          note_mn:"Зөвхөн далай. CFR-тэй адил боловч худалдагч хамгийн бага даатгал хийдэг." },
+        { term:"CPT", group:"C", sea:false, row:{ export:"seller", main:"seller", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"split" },
+          note_en:"Seller pays carriage to named place; risk transfers to buyer when handed to carrier.",
+          note_mn:"Худалдагч нэрлэсэн цэг хүртэл тээврийг төлнө; эрсдэл тээвэрлэгчид шилжих үед худалдан авагч руу." },
+        { term:"CIP", group:"C", sea:false, row:{ export:"seller", main:"seller", risk:"split", ins:"seller", import:"buyer", unload:"buyer", deliver:"split" },
+          note_en:"Like CPT but seller provides insurance (higher coverage than CIF typically).",
+          note_mn:"CPT-тэй адил боловч худалдагч даатгал хийдэг (ихэвчлэн CIF-ээс өндөр хамгаалалт)." },
+        { term:"DAP", group:"D", sea:false, row:{ export:"seller", main:"seller", risk:"seller", ins:"split", import:"buyer", unload:"buyer", deliver:"seller" },
+          note_en:"Delivered at Place. Seller delivers ready for unloading at named place. Import is buyer.",
+          note_mn:"DAP: Худалдагч нэрлэсэн цэг дээр буулгахад бэлэн хүргэнэ. Импорт — худалдан авагч." },
+        { term:"DPU", group:"D", sea:false, row:{ export:"seller", main:"seller", risk:"seller", ins:"split", import:"buyer", unload:"seller", deliver:"seller" },
+          note_en:"Delivered at Place Unloaded. Seller unloads at destination place. Import is buyer.",
+          note_mn:"DPU: Худалдагч очих газарт буулгаж өгнө. Импорт — худалдан авагч." },
+        { term:"DDP", group:"D", sea:false, row:{ export:"seller", main:"seller", risk:"seller", ins:"split", import:"seller", unload:"buyer", deliver:"seller" },
+          note_en:"Delivered Duty Paid. Seller handles import clearance & duties (strongest seller obligation).",
+          note_mn:"DDP: Худалдагч импортын гааль, татвар/хураамжийг хариуцна (хамгийн өндөр үүрэг)." }
       ];
 
-      // ---------------- Helpers ----------------
       const $ = (q, el=document)=>el.querySelector(q);
       const $$ = (q, el=document)=>Array.from(el.querySelectorAll(q));
 
       function setLang(lang){
         localStorage.setItem("bs_lang", lang);
         document.documentElement.lang = (lang === "mn") ? "mn" : "en";
-
         $$("[data-i18n]").forEach(el=>{
           const key = el.getAttribute("data-i18n");
           if(dict[lang] && dict[lang][key]) el.textContent = dict[lang][key];
         });
-
         $("#lang-en").classList.toggle("active", lang==="en");
         $("#lang-mn").classList.toggle("active", lang==="mn");
-
         refreshCoverageNotes(lang);
         renderCityLegend(lang);
         renderRouteChips(lang);
@@ -1813,7 +1811,6 @@
         btn.textContent = (theme === "dark") ? "☀️" : "🌙";
       }
 
-      // Tabs
       function initTabs(){
         const tabs = $$(".tab");
         tabs.forEach(btn=>{
@@ -1828,7 +1825,6 @@
         });
       }
 
-      // Coverage chips
       function chipGroup(rootId, noteId){
         const root = document.getElementById(rootId);
         if(!root) return;
@@ -1851,20 +1847,14 @@
         if(glob) $("#globalNote").textContent = notes[lang][glob.getAttribute("data-note")] || "";
       }
 
-      // Reveal
       function initReveal(){
-        if(window.__bsRevealInit) return;
-        window.__bsRevealInit = true;
         const targets = $$(".reveal");
         const io = new IntersectionObserver((entries)=>{
-          entries.forEach(en=>{
-            if(en.isIntersecting) en.target.classList.add("in");
-          });
+          entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add("in"); });
         }, {threshold:0.14});
         targets.forEach(t=>io.observe(t));
       }
 
-      // Micro interactions: button pointer ripple origin
       function initButtonMotion(){
         $$(".btn").forEach(btn=>{
           btn.addEventListener("pointermove", (e)=>{
@@ -1877,7 +1867,6 @@
         });
       }
 
-      // Subtle card tilt
       function initCardTilt(){
         $$(".card").forEach(card=>{
           card.addEventListener("pointermove",(e)=>{
@@ -1888,13 +1877,11 @@
             const ry = (px - 0.5) * 8;
             card.style.transform = `translateY(-10px) rotateX(${rx}deg) rotateY(${ry}deg)`;
           });
-          card.addEventListener("pointerleave",()=>{
-            card.style.transform = "";
-          });
+          card.addEventListener("pointerleave",()=>{ card.style.transform = ""; });
         });
       }
 
-      // Quote drawer
+      // Drawer
       function initDrawer(){
         const overlay = $("#drawerOverlay");
         const drawer = $("#drawer");
@@ -1924,30 +1911,21 @@
         overlay.addEventListener("click", shut);
         document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") shut(); });
 
-        // WhatsApp/Viber message
         const form = $("#quoteForm");
         const wa = $("#sendWhatsApp");
         const vb = $("#sendViber");
 
         function buildMessage(){
           const data = new FormData(form);
-          const name = data.get("name") || "";
-          const company = data.get("company") || "";
-          const route = data.get("route") || "";
-          const cargo = data.get("cargo") || "";
-          const weight = data.get("weight") || "";
-          const timeline = data.get("timeline") || "";
-          const notesTxt = data.get("notes") || "";
-
           const msg =
 `Quote request — Baatar Shipping
-Name: ${name}
-Company: ${company}
-Route: ${route}
-Cargo: ${cargo}
-Weight/Volume: ${weight}
-Timeline: ${timeline}
-Notes: ${notesTxt}`.trim();
+Name: ${data.get("name") || ""}
+Company: ${data.get("company") || ""}
+Route: ${data.get("route") || ""}
+Cargo: ${data.get("cargo") || ""}
+Weight/Volume: ${data.get("weight") || ""}
+Timeline: ${data.get("timeline") || ""}
+Notes: ${data.get("notes") || ""}`.trim();
 
           return encodeURIComponent(msg);
         }
@@ -1968,7 +1946,7 @@ Notes: ${notesTxt}`.trim();
         });
       }
 
-      // ---------------- Route Builder UI ----------------
+      // Route builder
       function renderCityLegend(lang){
         const legend = $("#cityLegend");
         legend.innerHTML = "";
@@ -2009,8 +1987,7 @@ Notes: ${notesTxt}`.trim();
         $("#routeChips").addEventListener("click",(e)=>{
           const t = e.target.closest(".rbPill");
           if(!t) return;
-          const id = t.dataset.city;
-          toggleCityInLane(id);
+          toggleCityInLane(t.dataset.city);
         });
 
         $("#rbClear").addEventListener("click",()=>{
@@ -2019,7 +1996,6 @@ Notes: ${notesTxt}`.trim();
         });
 
         $("#rbShuffle").addEventListener("click",()=>{
-          // pick 3-5 random unique cities
           const pool = cities.map(c=>c.id);
           const n = 3 + Math.floor(Math.random()*3);
           const picked = [];
@@ -2057,20 +2033,15 @@ Notes: ${notesTxt}`.trim();
       function toggleCityInLane(id){
         if(lane.includes(id)){
           lane = lane.filter(x=>x!==id);
-          if(lane.length < 2){
-            // ensure at least 2 nodes so route looks good
-            lane = ["ub","beijing","tianjin"];
-          }
+          if(lane.length < 2) lane = ["ub","beijing","tianjin"];
         }else{
           lane = [...lane, id];
-          if(lane.length > 6){
-            lane.shift();
-          }
+          if(lane.length > 6) lane.shift();
         }
         syncLane();
       }
 
-      // ---------------- Toast (tiny) ----------------
+      // Toast
       let toastTO;
       function toast(msg){
         let t = document.getElementById("toast");
@@ -2104,7 +2075,7 @@ Notes: ${notesTxt}`.trim();
         }, 1400);
       }
 
-      // ---------------- Incoterms rendering ----------------
+      // Incoterms render
       function buildIncoterms(lang){
         const mode = $("#incMode").value;
         const grp = $("#incGroup").value;
@@ -2168,7 +2139,7 @@ Notes: ${notesTxt}`.trim();
         $("#incGroup").addEventListener("change", ()=>buildIncoterms(localStorage.getItem("bs_lang")||"en"));
       }
 
-      // ---------------- CBM Calculator ----------------
+      // CBM
       function initCBM(){
         const unitEl = $("#cbmUnit");
         const cartsEl = $("#cbmCartons");
@@ -2189,14 +2160,9 @@ Notes: ${notesTxt}`.trim();
           const L = num(lEl.value), W = num(wEl.value), H = num(hEl.value);
           const kg = num(kgEl.value);
 
-          // Convert to meters
           let l_m=0,w_m=0,h_m=0;
-          if(unit==="cm"){
-            l_m = L/100; w_m=W/100; h_m=H/100;
-          } else {
-            // inches to meters
-            l_m = L*0.0254; w_m=W*0.0254; h_m=H*0.0254;
-          }
+          if(unit==="cm"){ l_m = L/100; w_m=W/100; h_m=H/100; }
+          else { l_m = L*0.0254; w_m=W*0.0254; h_m=H*0.0254; }
 
           const per_m3 = l_m*w_m*h_m;
           const tot_m3 = per_m3*cartons;
@@ -2232,7 +2198,7 @@ Density: ${dens.textContent}`.trim();
         });
       }
 
-      // ---------------- Globe renderer (2-axis drag + inertia + zoom + hover labels) ----------------
+      // Globe (same as before, 2-axis drag + inertia + zoom + hover labels + click select + animated routes)
       let globeApi = null;
 
       function initGlobe(){
@@ -2243,8 +2209,8 @@ Density: ${dens.textContent}`.trim();
         const state = {
           dpr: Math.max(1, Math.min(2, window.devicePixelRatio || 1)),
           w: 0, h: 0,
-          yaw: -0.9,      // left-right
-          pitch: 0.22,    // up-down
+          yaw: -0.9,
+          pitch: 0.22,
           vyaw: 0, vpitch: 0,
           drag:false,
           lx:0, ly:0,
@@ -2257,7 +2223,6 @@ Density: ${dens.textContent}`.trim();
           stars: []
         };
 
-        // Precompute stars
         function seedStars(){
           state.stars = [];
           const n = 80;
@@ -2282,9 +2247,8 @@ Density: ${dens.textContent}`.trim();
         }
 
         function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
-
-        // 3D helpers
         function toRad(deg){ return deg*Math.PI/180; }
+
         function pointFromLatLon(lat, lon){
           const la = toRad(lat), lo = toRad(lon);
           const x = Math.cos(la)*Math.cos(lo);
@@ -2301,15 +2265,15 @@ Density: ${dens.textContent}`.trim();
           return { x: p.x, y: p.y*ca - p.z*sa, z: p.y*sa + p.z*ca };
         }
         function project(p){
-          // camera looking toward origin, z is depth
           const f = 1.75 / state.zoom;
-          const z = p.z + 2.4; // shift forward
+          const z = p.z + 2.4;
           const s = f / z;
           return { x: p.x*s, y: p.y*s, z: p.z, s };
         }
 
+        function getTheme(){ return localStorage.getItem("bs_theme") || "light"; }
+
         function bg(){
-          // subtle “Apple-like” dark glass inside canvas
           const g = ctx.createRadialGradient(state.w*0.62, state.h*0.32, 10, state.w*0.5, state.h*0.55, Math.max(state.w,state.h)*0.7);
           const dark = (getTheme()==="dark");
           if(dark){
@@ -2324,7 +2288,6 @@ Density: ${dens.textContent}`.trim();
           ctx.fillStyle = g;
           ctx.fillRect(0,0,state.w,state.h);
 
-          // stars
           ctx.save();
           ctx.globalCompositeOperation = "screen";
           for(const s of state.stars){
@@ -2338,7 +2301,7 @@ Density: ${dens.textContent}`.trim();
 
         function drawSphere(cx, cy, R){
           const dark = (getTheme()==="dark");
-          // glow
+
           ctx.save();
           ctx.globalCompositeOperation = "lighter";
           const glow = ctx.createRadialGradient(cx, cy, R*0.20, cx, cy, R*1.15);
@@ -2349,7 +2312,6 @@ Density: ${dens.textContent}`.trim();
           ctx.beginPath(); ctx.arc(cx, cy, R*1.12, 0, Math.PI*2); ctx.fill();
           ctx.restore();
 
-          // sphere shading
           const grad = ctx.createRadialGradient(cx - R*0.25, cy - R*0.30, R*0.20, cx, cy, R);
           if(dark){
             grad.addColorStop(0, "rgba(255,255,255,0.10)");
@@ -2363,12 +2325,10 @@ Density: ${dens.textContent}`.trim();
           ctx.fillStyle = grad;
           ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.fill();
 
-          // rim
           ctx.strokeStyle = dark ? "rgba(255,255,255,0.10)" : "rgba(7,26,44,0.10)";
           ctx.lineWidth = 1;
           ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
 
-          // subtle highlight
           ctx.save();
           ctx.globalCompositeOperation = "screen";
           ctx.fillStyle = dark ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.45)";
@@ -2382,11 +2342,9 @@ Density: ${dens.textContent}`.trim();
           const dark = (getTheme()==="dark");
           ctx.save();
           ctx.translate(cx, cy);
-
           ctx.strokeStyle = dark ? "rgba(255,255,255,0.10)" : "rgba(7,26,44,0.09)";
           ctx.lineWidth = 1;
 
-          // latitude lines
           for(let lat=-60; lat<=60; lat+=30){
             const pts = [];
             for(let lon=-180; lon<=180; lon+=6){
@@ -2405,7 +2363,6 @@ Density: ${dens.textContent}`.trim();
             }
           }
 
-          // longitude lines
           for(let lon=-150; lon<=150; lon+=30){
             const pts = [];
             for(let lat=-90; lat<=90; lat+=4){
@@ -2444,7 +2401,6 @@ Density: ${dens.textContent}`.trim();
               scale: pr.s
             });
           }
-          // draw back-to-front
           out.sort((a,b)=>a.z-b.z);
           return out;
         }
@@ -2459,7 +2415,6 @@ Density: ${dens.textContent}`.trim();
             const isSel = state.selected.has(c.id);
             const r = 4.2 + (isSel?2.0:0) * clamp(c.scale*1.2, 0.6, 1.3);
 
-            // glow
             ctx.save();
             ctx.globalCompositeOperation = "lighter";
             ctx.beginPath();
@@ -2468,20 +2423,17 @@ Density: ${dens.textContent}`.trim();
             ctx.fill();
             ctx.restore();
 
-            // core
             ctx.beginPath();
             ctx.fillStyle = isSel ? "rgba(200,155,60,0.95)" : (dark ? "rgba(255,255,255,0.72)" : "rgba(7,26,44,0.62)");
             ctx.arc(c.sx, c.sy, r, 0, Math.PI*2);
             ctx.fill();
 
-            // ring
             ctx.strokeStyle = isSel ? "rgba(255,79,216,0.40)" : "rgba(255,255,255,0.18)";
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.arc(c.sx, c.sy, r*1.9, 0, Math.PI*2);
             ctx.stroke();
 
-            // tiny label hint for selected (not all, so it stays clean)
             if(isSel){
               ctx.font = "600 11px ui-sans-serif, system-ui";
               ctx.fillStyle = dark ? "rgba(255,255,255,0.78)" : "rgba(7,26,44,0.78)";
@@ -2492,10 +2444,8 @@ Density: ${dens.textContent}`.trim();
         }
 
         function greatCirclePoints(a, b, steps=60){
-          // Interpolate on sphere using slerp
           const A = pointFromLatLon(a.lat, a.lon);
           const B = pointFromLatLon(b.lat, b.lon);
-          // dot
           let dot = A.x*B.x + A.y*B.y + A.z*B.z;
           dot = clamp(dot, -1, 1);
           const omega = Math.acos(dot);
@@ -2505,8 +2455,7 @@ Density: ${dens.textContent}`.trim();
             const t = i/steps;
             const s1 = Math.sin((1-t)*omega)/sinOmega;
             const s2 = Math.sin(t*omega)/sinOmega;
-            const p = { x:A.x*s1 + B.x*s2, y:A.y*s1 + B.y*s2, z:A.z*s1 + B.z*s2 };
-            pts.push(p);
+            pts.push({ x:A.x*s1 + B.x*s2, y:A.y*s1 + B.y*s2, z:A.z*s1 + B.z*s2 });
           }
           return pts;
         }
@@ -2514,17 +2463,11 @@ Density: ${dens.textContent}`.trim();
         function drawRoute(cx, cy, R){
           if(!state.route || state.route.length < 2) return;
           const dark = (getTheme()==="dark");
-
           const map = new Map(cities.map(c=>[c.id,c]));
           const ids = state.route.filter(id=>map.has(id));
           if(ids.length < 2) return;
 
-          ctx.save();
-          ctx.translate(0,0);
-
-          // animated dash offset
-          const dash = 10;
-          const gap = 10;
+          const dash = 10, gap = 10;
           const phase = (state.t*70) % (dash+gap);
 
           for(let i=0;i<ids.length-1;i++){
@@ -2532,17 +2475,15 @@ Density: ${dens.textContent}`.trim();
             const B = map.get(ids[i+1]);
             const pts = greatCirclePoints(A, B, 70);
 
-            // project points with current rotation
             const sp = [];
             for(const pp of pts){
               let p = rotY(pp, state.yaw);
               p = rotX(p, state.pitch);
               if(p.z < -0.26) { sp.push(null); continue; }
               const pr = project(p);
-              sp.push({ x: cx + pr.x*R, y: cy + pr.y*R, z:p.z });
+              sp.push({ x: cx + pr.x*R, y: cy + pr.y*R });
             }
 
-            // draw segments (skip behind)
             const grad = ctx.createLinearGradient(cx, cy, cx+R, cy-R);
             grad.addColorStop(0, "rgba(255,79,216,0.70)");
             grad.addColorStop(0.5, "rgba(200,155,60,0.72)");
@@ -2562,7 +2503,6 @@ Density: ${dens.textContent}`.trim();
             }
             ctx.stroke();
 
-            // glow pass
             ctx.setLineDash([]);
             ctx.globalCompositeOperation = "lighter";
             ctx.lineWidth = 7;
@@ -2577,8 +2517,20 @@ Density: ${dens.textContent}`.trim();
             ctx.stroke();
             ctx.globalCompositeOperation = "source-over";
           }
+        }
 
-          ctx.restore();
+        function pickCity(mx, my){
+          const cx = state.w*0.5;
+          const cy = state.h*0.56;
+          const R = Math.min(state.w, state.h) * 0.38;
+          const list = cityScreenPositions(cx, cy, R).filter(c=>c.vis);
+
+          let best=null, bd=9999;
+          for(const c of list){
+            const d = Math.hypot(mx - c.sx, my - c.sy);
+            if(d < 12 && d < bd){ best=c; bd=d; }
+          }
+          return best;
         }
 
         function draw(){
@@ -2589,12 +2541,8 @@ Density: ${dens.textContent}`.trim();
           const cy = state.h*0.56;
           const R = Math.min(state.w, state.h) * 0.38;
 
-          // auto rotate
-          if(state.auto && !state.drag){
-            state.vyaw += 0.0008;
-          }
+          if(state.auto && !state.drag){ state.vyaw += 0.0008; }
 
-          // inertia
           if(!state.drag){
             state.yaw += state.vyaw;
             state.pitch += state.vpitch;
@@ -2604,11 +2552,8 @@ Density: ${dens.textContent}`.trim();
 
           state.pitch = clamp(state.pitch, -1.05, 1.05);
 
-          // draw globe
           drawSphere(cx, cy, R);
           drawGraticules(cx, cy, R);
-
-          // route then cities
           drawRoute(cx, cy, R);
           drawCities(cx, cy, R);
 
@@ -2616,32 +2561,6 @@ Density: ${dens.textContent}`.trim();
           requestAnimationFrame(draw);
         }
 
-        function pickCity(mx, my){
-          const cx = state.w*0.5;
-          const cy = state.h*0.56;
-          const R = Math.min(state.w, state.h) * 0.38;
-          const list = cityScreenPositions(cx, cy, R).filter(c=>c.vis);
-
-          // nearest within radius
-          let best=null;
-          let bd=9999;
-          for(const c of list){
-            const dx = mx - c.sx;
-            const dy = my - c.sy;
-            const d = Math.hypot(dx,dy);
-            const hit = 12;
-            if(d < hit && d < bd){
-              best = c; bd = d;
-            }
-          }
-          return best;
-        }
-
-        function getTheme(){
-          return localStorage.getItem("bs_theme") || "light";
-        }
-
-        // pointer interaction
         canvas.addEventListener("pointerdown",(e)=>{
           canvas.setPointerCapture(e.pointerId);
           state.drag = true;
@@ -2652,7 +2571,6 @@ Density: ${dens.textContent}`.trim();
         canvas.addEventListener("pointermove",(e)=>{
           const mx = e.offsetX, my = e.offsetY;
 
-          // hover
           const hit = pickCity(mx, my);
           if(hit){
             state.hoverId = hit.id;
@@ -2660,7 +2578,7 @@ Density: ${dens.textContent}`.trim();
             tip.style.left = mx + "px";
             tip.style.top = my + "px";
             tip.classList.add("show");
-            tip.innerHTML = `<b>${lang==="mn"?hit.mn:hit.en}</b><div class="subt">${lang==="mn"?"Дарж маршрутад нэм":"Click to add/remove"}</div>`;
+            tip.innerHTML = `<b>${lang==="mn"?hit.mn:hit.en}</b><div class="subt">${lang==="mn"?"Дарж нэм/хас":"Click to add/remove"}</div>`;
           }else{
             state.hoverId = null;
             tip.classList.remove("show");
@@ -2672,7 +2590,6 @@ Density: ${dens.textContent}`.trim();
           state.lx = mx;
           state.ly = my;
 
-          // rotation
           state.yaw += dx * 0.006;
           state.pitch += dy * 0.004;
 
@@ -2680,14 +2597,11 @@ Density: ${dens.textContent}`.trim();
           state.vpitch = dy * 0.0007;
         });
 
-        function endDrag(){
-          state.drag = false;
-        }
+        function endDrag(){ state.drag = false; }
         canvas.addEventListener("pointerup", endDrag);
         canvas.addEventListener("pointercancel", endDrag);
         canvas.addEventListener("pointerleave", ()=>{ tip.classList.remove("show"); });
 
-        // click to select city, or toggle autorotate
         canvas.addEventListener("click",(e)=>{
           const hit = pickCity(e.offsetX, e.offsetY);
           if(hit){
@@ -2699,41 +2613,31 @@ Density: ${dens.textContent}`.trim();
           toast(state.auto ? "Auto-rotate on" : "Auto-rotate off");
         });
 
-        // zoom
         canvas.addEventListener("wheel",(e)=>{
           e.preventDefault();
           const delta = Math.sign(e.deltaY);
           state.zoom = clamp(state.zoom + delta*0.06, 0.85, 1.35);
         }, { passive:false });
 
-        // expose API
         globeApi = {
-          setRoute(ids){
-            state.route = [...ids];
-            state.selected = new Set(ids);
-          }
+          setRoute(ids){ state.route = [...ids]; state.selected = new Set(ids); }
         };
 
-        function globeSetRoute(ids){
-          globeApi?.setRoute(ids);
-        }
-        window.globeSetRoute = globeSetRoute;
+        window.globeSetRoute = (ids)=>globeApi?.setRoute(ids);
 
-        // init sizes
         const ro = new ResizeObserver(()=>resize());
         ro.observe(canvas);
         resize();
         requestAnimationFrame(draw);
 
-        // initial route
         globeApi.setRoute(lane);
       }
 
       function globeSetRoute(ids){
-        // placeholder replaced by initGlobe
+        window.globeSetRoute?.(ids);
       }
 
-      // ---------------- Boot ----------------
+      // Boot
       $("#lang-en").addEventListener("click", ()=>setLang("en"));
       $("#lang-mn").addEventListener("click", ()=>setLang("mn"));
       $("#theme-toggle").addEventListener("click", ()=>{
@@ -2753,22 +2657,11 @@ Density: ${dens.textContent}`.trim();
       initCBM();
       initGlobe();
 
-      // Load saved settings
       setTheme(localStorage.getItem("bs_theme") || "light");
       const lang = localStorage.getItem("bs_lang") || "en";
       setLang(lang);
-
-      // initial notes
       refreshCoverageNotes(lang);
-
-      // initial lane text
       updateHeroLanePill(lang);
-
-      // hero copy lane
-      $("#copyLaneBtn").addEventListener("click", ()=>{
-        const l = laneName(localStorage.getItem("bs_lang")||"en", lane);
-        navigator.clipboard?.writeText(l).then(()=>toast("Copied")).catch(()=>toast("Copy failed"));
-      });
     })();
   </script>
 </body>
