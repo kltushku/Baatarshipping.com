@@ -1,2668 +1,2125 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-
-  <title>Baatar Shipping — Moving Trade Forward</title>
-  <meta name="description" content="Baatar Shipping — Mongolia ↔ China ↔ Global logistics coordination. Fast response, clear communication, trusted partners."/>
-
-  <!-- Favicon / App Icons -->
-  <link rel="icon" type="image/png" href="assets/baatar-logo.png">
-  <link rel="apple-touch-icon" href="assets/baatar-logo.png">
-  <meta name="theme-color" content="#071a2c">
-
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="Baatar Shipping — Moving Trade Forward">
-  <meta property="og:description" content="Mongolia ↔ China ↔ Global logistics coordination — clear communication, fast execution, trusted partners.">
-  <meta property="og:image" content="assets/baatar-logo.png">
-  <meta property="og:type" content="website">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Baatar Shipping — Shipping, made easy.</title>
 
   <style>
     :root{
-      --navy:#071a2c;
-      --navy2:#0c2a4a;
-      --navy3:#103b66;
-      --gold:#c89b3c;
-      --steel:#4a6fa5;
-
-      --pink:#ff4fd8;
-      --mint:#47e6b1;
-      --ice:#cfe8ff;
-
-      --bg:#eef4ff;
-      --card:#ffffff;
-      --text:#071a2c;
-      --muted:#536273;
-      --line:rgba(7,26,44,.10);
-
-      --shadow:0 18px 45px rgba(7,26,44,.12);
-      --shadow2:0 34px 120px rgba(7,26,44,.22);
-
-      --r:22px;
-      --max:1320px;
+      --bg0:#050915;
+      --bg1:#060c1b;
+      --card:#0a1226cc;
+      --card2:#0b1430b8;
+      --stroke:#213055;
+      --stroke2:#2a3d6f;
+      --text:#eaf0ff;
+      --muted:#a8b6d8;
+      --muted2:#7f91be;
+      --brand:#7aa8ff;
+      --brand2:#56e0ff;
+      --accent:#b06bff;
+      --ok:#57f1b4;
+      --warn:#ffd27a;
+      --danger:#ff6b8a;
+      --shadow: 0 24px 70px rgba(0,0,0,.45);
+      --shadow2: 0 12px 28px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+      --navh: 76px;
+      --maxw: 1180px;
+      --blur: 16px;
+      --glass: blur(16px);
+      --ring: 0 0 0 1px rgba(122,168,255,.20), 0 0 0 3px rgba(86,224,255,.08);
+      --ring2: 0 0 0 1px rgba(255,255,255,.10), 0 0 0 3px rgba(176,107,255,.10);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
 
-    [data-theme="dark"]{
-      --bg:#050812;
-      --card: rgba(255,255,255,.06);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.62);
-      --line: rgba(255,255,255,.14);
-      --shadow:0 18px 55px rgba(0,0,0,.55);
-      --shadow2:0 40px 140px rgba(0,0,0,.72);
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Display", "SF Pro Text", Segoe UI, Roboto, Arial;
+      font-family:var(--sans);
       color:var(--text);
-      background:
-        radial-gradient(1400px 700px at 8% -15%, rgba(255,79,216,.18), transparent 60%),
-        radial-gradient(1300px 700px at 92% -10%, rgba(71,230,177,.16), transparent 58%),
-        radial-gradient(1100px 650px at 12% 110%, rgba(200,155,60,.10), transparent 62%),
-        radial-gradient(1000px 620px at 92% 105%, rgba(74,111,165,.14), transparent 60%),
-        linear-gradient(180deg, rgba(8,28,50,.06), transparent 35%),
-        var(--bg);
-      transition: background .35s ease, color .25s ease;
+      background: radial-gradient(1200px 900px at 20% -10%, rgba(86,224,255,.18), transparent 55%),
+                  radial-gradient(900px 700px at 100% 10%, rgba(176,107,255,.18), transparent 52%),
+                  radial-gradient(900px 900px at 40% 110%, rgba(122,168,255,.12), transparent 55%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      min-height:100dvh;
       overflow-x:hidden;
     }
 
-    a{color:inherit}
-    .wrap{
-      width:min(var(--max), 94vw);
-      margin:0 auto;
-      padding:18px 0 92px;
+    [data-theme="light"]{
+      --bg0:#f6f8ff;
+      --bg1:#ffffff;
+      --card:#ffffffcc;
+      --card2:#ffffffcc;
+      --stroke:#e6e9f6;
+      --stroke2:#d8def3;
+      --text:#0b1224;
+      --muted:#3c4b73;
+      --muted2:#516195;
+      --shadow: 0 24px 70px rgba(10,18,38,.12);
+      --shadow2: 0 12px 28px rgba(10,18,38,.10);
     }
 
-    .stage{
-      width:min(var(--max), 96vw);
-      margin: 18px auto 0;
-      border-radius: 34px;
-      border:1px solid var(--line);
-      background:
-        radial-gradient(1200px 700px at 0% 0%, rgba(12,42,74,.10), transparent 55%),
-        radial-gradient(1200px 700px at 100% 0%, rgba(16,59,102,.09), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.60));
-      box-shadow: 0 30px 140px rgba(7,26,44,.10);
-      overflow:hidden;
-    }
-    [data-theme="dark"] .stage{
-      background:
-        radial-gradient(1200px 700px at 0% 0%, rgba(255,79,216,.10), transparent 55%),
-        radial-gradient(1200px 700px at 100% 0%, rgba(71,230,177,.08), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
-      border-color: rgba(255,255,255,.10);
-      box-shadow: 0 40px 180px rgba(0,0,0,.45);
-    }
-
-    /* TOP */
-    .top{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter:saturate(160%) blur(14px);
-      background: rgba(244,248,255,.58);
-      border-bottom:1px solid rgba(7,26,44,.08);
-      transition: background .25s ease, border-color .25s ease;
-    }
-    [data-theme="dark"] .top{
-      background: rgba(5,8,18,.62);
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-    .topInner{
-      width:min(var(--max), 96vw);
-      margin:0 auto;
-      padding:14px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    /* Brand with REAL logo */
-    .brand{ display:flex; align-items:center; gap:12px; }
-    .logoWrap{
-      width:56px; height:56px; /* bigger logo */
-      border-radius:18px;
-      padding:8px;
-      background:
-        radial-gradient(60px 40px at 20% 10%, rgba(255,79,216,.18), transparent 60%),
-        radial-gradient(60px 40px at 80% 10%, rgba(71,230,177,.16), transparent 60%),
-        linear-gradient(135deg, rgba(7,26,44,.92), rgba(12,42,74,.90));
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow: 0 18px 70px rgba(7,26,44,.18);
-      display:grid; place-items:center;
-      position:relative;
-      overflow:hidden;
-    }
-    [data-theme="dark"] .logoWrap{
-      border-color: rgba(255,255,255,.10);
-      box-shadow: 0 24px 100px rgba(0,0,0,.55);
-    }
-    .logoWrap::after{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(160px 60px at 10% 0%, rgba(255,255,255,.18), transparent 60%);
-      transform: rotate(14deg);
+    /* Aurora film grain */
+    .grain{
       pointer-events:none;
-    }
-    .logoImg{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      border-radius: 12px;
-      background: rgba(255,255,255,.92); /* handles your logo’s white bg cleanly */
-      padding: 6px;
-      box-shadow: inset 0 0 0 1px rgba(7,26,44,.08);
-    }
-    [data-theme="dark"] .logoImg{
-      background: rgba(255,255,255,.92);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
+      position:fixed; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.18;
+      transform: translateZ(0);
     }
 
-    .brandText{display:flex; flex-direction:column; line-height:1.02}
-    .brandText b{
-      letter-spacing:.14em;
-      font-size:14px;
-      text-transform:uppercase;
+    .wrap{ width:min(var(--maxw), calc(100% - 44px)); margin:0 auto; }
+
+    /* Top Nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      background: linear-gradient(180deg, rgba(5,9,21,.70), rgba(5,9,21,.35));
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .brandText span{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:3px;
+    [data-theme="light"] header{
+      background: linear-gradient(180deg, rgba(246,248,255,.92), rgba(246,248,255,.72));
+      border-bottom:1px solid rgba(10,18,38,.08);
     }
 
     .nav{
-      display:flex; align-items:center; gap:8px;
-      flex-wrap:wrap; justify-content:flex-end;
+      height:var(--navh);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
     }
-    .nav a{
-      text-decoration:none;
-      font-size:13px;
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-      transition:transform .18s ease, background .18s ease, border-color .18s ease;
-    }
-    .nav a:hover{
-      background: rgba(255,255,255,.70);
-      border-color: var(--line);
-      transform: translateY(-1px);
-    }
-    [data-theme="dark"] .nav a:hover{ background: rgba(255,255,255,.08); }
 
-    .controls{display:flex; gap:8px; align-items:center; padding-left:4px;}
-    .pillBtn{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.78);
-      border-radius:999px;
-      padding:7px 10px;
-      font-size:12px;
-      cursor:pointer;
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      color: var(--text);
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none; color:var(--text);
       user-select:none;
     }
-    [data-theme="dark"] .pillBtn{ background: rgba(255,255,255,.08); }
-    .pillBtn:hover{ transform:translateY(-1px); box-shadow:0 12px 26px rgba(7,26,44,.10); }
-    .pillBtn.active{
-      border-color: rgba(200,155,60,.55);
-      box-shadow:0 12px 26px rgba(200,155,60,.12);
+    .brandMark{
+      width:12px; height:12px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--brand2), var(--brand));
+      box-shadow: 0 0 0 6px rgba(86,224,255,.08), 0 0 0 1px rgba(255,255,255,.12);
+    }
+    .brandText{
+      display:flex; flex-direction:column; line-height:1.05;
+    }
+    .brandText strong{ font-size:14px; letter-spacing:.06em; text-transform:uppercase; }
+    .brandText span{ font-size:12px; color:var(--muted); }
+
+    nav ul{
+      list-style:none; padding:0; margin:0;
+      display:flex; gap:8px; align-items:center;
+    }
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:13px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+    }
+    nav a:hover{
+      color:var(--text);
+      background: rgba(122,168,255,.10);
+      border-color: rgba(122,168,255,.18);
+      transform: translateY(-1px);
     }
 
-    /* HERO */
+    .navRight{
+      display:flex; align-items:center; gap:10px;
+    }
+
+    .btn, .chip, .seg button{
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      color:var(--text);
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:13px;
+      cursor:pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, opacity .18s ease;
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
+    }
+    [data-theme="light"] .btn, [data-theme="light"] .chip, [data-theme="light"] .seg button{
+      background: linear-gradient(180deg, rgba(10,18,38,.03), rgba(10,18,38,.01));
+      border-color: rgba(10,18,38,.10);
+      box-shadow: 0 1px 0 rgba(255,255,255,.7) inset;
+    }
+    .btn:hover, .chip:hover, .seg button:hover{ transform: translateY(-1px); border-color: rgba(86,224,255,.32); }
+    .btn:active, .chip:active, .seg button:active{ transform: translateY(0); opacity:.9; }
+
+    .iconBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; padding:0;
+    }
+    .btnPrimary{
+      border-color: rgba(86,224,255,.35);
+      background: radial-gradient(120% 120% at 20% 10%, rgba(86,224,255,.20), rgba(122,168,255,.12)) ,
+                  linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+      box-shadow: var(--shadow2);
+    }
+
+    .hamburger{
+      display:none;
+      width:42px; height:42px;
+    }
+    .hamburger span{
+      width:18px; height:2px; background: currentColor; display:block;
+      border-radius:2px; position:relative;
+    }
+    .hamburger span::before,.hamburger span::after{
+      content:""; position:absolute; left:0; width:18px; height:2px; background: currentColor; border-radius:2px;
+    }
+    .hamburger span::before{ top:-6px; }
+    .hamburger span::after{ top:6px; }
+
+    /* Mobile nav */
+    .mobileNav{
+      display:none;
+      padding:10px 0 16px;
+    }
+    .mobileNav a{ display:block; padding:12px 14px; border-radius:14px; }
+    .mobileNav a:hover{ background: rgba(122,168,255,.10); }
+
+    /* Sections */
+    main{ padding: 22px 0 70px; }
+    section{
+      scroll-margin-top: calc(var(--navh) + 18px);
+      padding: 34px 0;
+    }
+
     .hero{
-      margin: 18px auto 0;
-      border-radius: 34px;
-      border:1px solid var(--line);
-      background:
-        radial-gradient(1100px 520px at 10% 0%, rgba(255,79,216,.18), transparent 55%),
-        radial-gradient(1000px 520px at 90% 10%, rgba(71,230,177,.14), transparent 55%),
-        radial-gradient(900px 520px at 40% -5%, rgba(200,155,60,.14), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.88) 0%, rgba(245,248,255,.82) 100%);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      position:relative;
+      padding: 18px 0 22px;
     }
-    [data-theme="dark"] .hero{
-      background:
-        radial-gradient(1100px 520px at 10% 0%, rgba(255,79,216,.16), transparent 55%),
-        radial-gradient(1000px 520px at 90% 10%, rgba(71,230,177,.12), transparent 55%),
-        radial-gradient(900px 520px at 40% -5%, rgba(200,155,60,.12), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.04) 100%);
-    }
-
-    /* BIG subtle logo watermark in hero */
-    .heroWatermark{
-      position:absolute;
-      right:-40px; top:-40px;
-      width: 340px; height: 340px;
-      opacity: .06;
-      filter: blur(.2px);
-      transform: rotate(10deg);
-      pointer-events:none;
-    }
-    [data-theme="dark"] .heroWatermark{ opacity:.08; }
-
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.1fr .95fr;
-      gap:22px;
-      padding: 52px 28px 28px;
-      align-items:center;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+
+    .card{
       position:relative;
-      z-index:1;
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+    }
+    [data-theme="light"] .card{
+      border-color: rgba(10,18,38,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.68));
+    }
+
+    .cardInner{ padding: 22px; }
+
+    .glow{
+      position:absolute; inset:-40%;
+      background:
+        radial-gradient(500px 380px at 15% 25%, rgba(86,224,255,.22), transparent 55%),
+        radial-gradient(520px 420px at 85% 35%, rgba(176,107,255,.18), transparent 58%),
+        radial-gradient(540px 520px at 55% 90%, rgba(122,168,255,.12), transparent 60%);
+      filter: blur(2px);
+      opacity:.75;
+      pointer-events:none;
     }
 
     .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      font-size:12px; color:var(--muted);
-      letter-spacing:.05em; text-transform:uppercase;
+      display:flex; align-items:center; gap:10px;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.02em;
+      margin-bottom:10px;
     }
-    .kdot{
-      width:10px; height:10px; border-radius:50%;
-      background: linear-gradient(135deg, var(--steel), var(--gold));
-      box-shadow:0 14px 28px rgba(200,155,60,.22);
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color:var(--muted);
+      font-size:12px;
     }
+    [data-theme="light"] .pill{ background: rgba(10,18,38,.04); }
 
     h1{
-      margin:10px 0 10px;
-      font-size: clamp(40px, 4.6vw, 64px);
-      letter-spacing:-.04em;
-      line-height:1.01;
+      margin: 8px 0 10px;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height:1.03;
+      letter-spacing:-.02em;
     }
-    .lead{
+    .sub{
+      margin: 0 0 16px;
+      color:var(--muted);
+      font-size: 15px;
+      line-height:1.6;
+      max-width: 56ch;
+    }
+
+    .heroActions{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top: 14px;
+      align-items:center;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top: 18px;
+    }
+    .stat{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      padding: 12px;
+      min-height: 78px;
+    }
+    .stat strong{ display:block; font-size: 14px; }
+    .stat span{ display:block; font-size: 12px; color: var(--muted2); margin-top:6px; }
+
+    /* Globe card */
+    .globeWrap{
+      display:flex; flex-direction:column;
+      min-height: 420px;
+    }
+    .globeTop{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding: 14px 14px 0 14px;
+    }
+    .globeTitle{
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .globeTitle strong{ font-size:13px; letter-spacing:.06em; text-transform:uppercase; }
+    .globeTitle span{ font-size:12px; color:var(--muted); }
+    .globeStage{
+      position:relative;
+      margin: 12px 14px 14px;
+      flex:1;
+      border-radius: 20px;
+      border:1px solid rgba(255,255,255,.10);
+      background: radial-gradient(800px 450px at 30% 20%, rgba(86,224,255,.10), transparent 60%),
+                  radial-gradient(700px 520px at 90% 40%, rgba(176,107,255,.10), transparent 58%),
+                  linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.28));
+      overflow:hidden;
+      box-shadow: 0 18px 38px rgba(0,0,0,.35) inset;
+    }
+    [data-theme="light"] .globeStage{
+      background: radial-gradient(800px 450px at 30% 20%, rgba(86,224,255,.12), transparent 60%),
+                  radial-gradient(700px 520px at 90% 40%, rgba(176,107,255,.10), transparent 58%),
+                  linear-gradient(180deg, rgba(10,18,38,.04), rgba(10,18,38,.06));
+      box-shadow: 0 18px 38px rgba(10,18,38,.08) inset;
+    }
+    canvas#globe{
+      width:100%; height:100%;
+      display:block;
+    }
+
+    .labels{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:0;
+      transition: opacity .18s ease;
+    }
+    .globeStage:hover .labels{ opacity:1; }
+    .label{
+      position:absolute;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      color: var(--text);
+      padding: 6px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(5,9,21,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      white-space:nowrap;
+      box-shadow: 0 10px 22px rgba(0,0,0,.35);
+    }
+    [data-theme="light"] .label{
+      background: rgba(255,255,255,.75);
+      border-color: rgba(10,18,38,.10);
+      box-shadow: 0 10px 22px rgba(10,18,38,.12);
+    }
+
+    .routeUI{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      padding: 0 14px 14px;
+    }
+    .routeBox{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      padding: 12px;
+      min-height: 106px;
+    }
+    .routeBox h4{
+      margin:0 0 8px;
+      font-size: 12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color: var(--muted);
+    }
+    .chips{
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    .chip{
+      padding:8px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      border-color: rgba(255,255,255,.12);
+      background: rgba(0,0,0,.12);
+    }
+    .chip[data-active="true"]{
+      color: var(--text);
+      border-color: rgba(86,224,255,.40);
+      background: radial-gradient(120% 120% at 20% 10%, rgba(86,224,255,.18), rgba(122,168,255,.08));
+      box-shadow: var(--ring);
+    }
+
+    .lanePill{
+      margin-top: 10px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(86,224,255,.30);
+      background: rgba(86,224,255,.08);
+      font-size: 12px;
+      color: var(--text);
+      box-shadow: 0 10px 24px rgba(0,0,0,.22);
+    }
+    .laneDot{
+      width:8px; height:8px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--ok), var(--brand2));
+      box-shadow: 0 0 0 5px rgba(87,241,180,.10);
+    }
+
+    /* Section headings */
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+      margin-bottom: 14px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.01em;
+    }
+    .sectionHead p{
       margin:0;
       color:var(--muted);
-      font-size:15px;
-      max-width:64ch;
+      font-size: 13px;
+      max-width: 58ch;
       line-height:1.55;
     }
 
-    .mini{
-      margin-top:14px;
-      color: var(--muted);
-      font-size: 12.5px;
-      max-width: 60ch;
-      opacity:.95;
-    }
-
-    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
-    .chip{
-      font-size:12px;
-      padding:8px 12px;
-      border-radius:999px;
-      background: rgba(7,26,44,.06);
-      border:1px solid var(--line);
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      cursor:default;
-    }
-    [data-theme="dark"] .chip{ background: rgba(255,255,255,.06); }
-    .chip:hover{
-      transform:translateY(-2px);
-      box-shadow:0 16px 40px rgba(7,26,44,.12);
-      border-color:rgba(200,155,60,.35);
-    }
-
-    .heroCtas{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:12px 16px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:650;
-      font-size:13px;
-      border:1px solid var(--line);
-      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
-      position:relative;
-      overflow:hidden;
-      will-change: transform;
-      user-select:none;
-    }
-    .btn.primary{
-      background: linear-gradient(135deg, var(--navy), var(--navy2));
-      border-color:transparent;
-      color:#fff;
-      box-shadow: 0 18px 70px rgba(7,26,44,.20);
-    }
-    .btn.primary:hover{ transform:translateY(-2px); filter:brightness(1.06) }
-    .btn.ghost{
-      background: rgba(255,255,255,.80);
-      color: var(--text);
-    }
-    [data-theme="dark"] .btn.ghost{ background: rgba(255,255,255,.10); }
-    .btn.ghost:hover{ transform:translateY(-2px); box-shadow:0 18px 50px rgba(7,26,44,.12) }
-
-    .btn::after{
-      content:"";
-      position:absolute;
-      left: var(--rx, 50%);
-      top: var(--ry, 50%);
-      width: 0;
-      height: 0;
-      border-radius: 999px;
-      transform: translate(-50%, -50%);
-      background: rgba(255,255,255,.35);
-      pointer-events:none;
-    }
-    .btn:active::after{
-      width: 260px; height: 260px;
-      transition: width .35s ease, height .35s ease;
-    }
-
-    /* HERO VISUAL */
-    .heroVisual{
-      border-radius: 30px;
-      border:1px solid var(--line);
-      background:
-        radial-gradient(700px 380px at 15% 20%, rgba(16,59,102,.14), transparent 60%),
-        radial-gradient(700px 380px at 85% 20%, rgba(71,230,177,.12), transparent 60%),
-        radial-gradient(700px 380px at 55% 70%, rgba(255,79,216,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.85), rgba(245,248,255,.72));
-      box-shadow: 0 22px 80px rgba(7,26,44,.12);
-      height: 320px;
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-    [data-theme="dark"] .heroVisual{
-      background:
-        radial-gradient(700px 380px at 15% 20%, rgba(16,59,102,.20), transparent 60%),
-        radial-gradient(700px 380px at 85% 20%, rgba(71,230,177,.14), transparent 60%),
-        radial-gradient(700px 380px at 55% 70%, rgba(255,79,216,.12), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
-      box-shadow: 0 28px 110px rgba(0,0,0,.55);
-    }
-
-    .hvTop{
-      padding:14px 14px 10px;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-    }
-    .hvTitle{ display:flex; flex-direction:column; gap:2px; }
-    .hvTitle b{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
-    .hvTitle span{ font-size:12px; color:var(--muted); }
-    .hvPills{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-    .pill{
-      font-size:11px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(7,26,44,.05);
-      color: var(--text);
-      display:inline-flex; align-items:center; gap:8px;
-    }
-    [data-theme="dark"] .pill{ background: rgba(255,255,255,.06); }
-
-    .dotLive{
-      width:8px; height:8px; border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(71,230,177,1), rgba(71,230,177,.35));
-      box-shadow: 0 0 0 6px rgba(71,230,177,.15);
-      animation: livePulse 2.2s ease-in-out infinite;
-    }
-    @keyframes livePulse{
-      0%,100%{ transform: scale(1); opacity:.9 }
-      50%{ transform: scale(1.18); opacity:1 }
-    }
-
-    .hvCanvasWrap{ position:relative; flex:1; padding: 4px 10px 12px; }
-    canvas#heroGlobe{
-      width:100%;
-      height:100%;
-      display:block;
-      border-radius: 24px;
-      border:1px solid rgba(255,255,255,.16);
-      background:
-        radial-gradient(600px 260px at 60% 40%, rgba(7,26,44,.12), transparent 55%),
-        radial-gradient(500px 240px at 30% 60%, rgba(200,155,60,.10), transparent 55%),
-        radial-gradient(420px 220px at 70% 20%, rgba(255,79,216,.10), transparent 55%),
-        linear-gradient(180deg, rgba(7,26,44,.04), rgba(7,26,44,.02));
-    }
-    [data-theme="dark"] canvas#heroGlobe{
-      background:
-        radial-gradient(600px 260px at 60% 40%, rgba(0,0,0,.34), transparent 55%),
-        radial-gradient(500px 240px at 30% 60%, rgba(200,155,60,.12), transparent 55%),
-        radial-gradient(420px 220px at 70% 20%, rgba(255,79,216,.10), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.03));
-      border-color: rgba(255,255,255,.10);
-    }
-
-    .tooltip{
-      position:absolute; pointer-events:none; z-index:5;
-      transform: translate(-50%, -115%);
-      padding:10px 12px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.82);
-      box-shadow: 0 18px 70px rgba(7,26,44,.14);
-      color: var(--text);
-      font-size:12px;
-      opacity:0;
-      transition: opacity .12s ease, transform .12s ease;
-      white-space:nowrap;
-      backdrop-filter: blur(10px);
-    }
-    [data-theme="dark"] .tooltip{
-      background: rgba(10,14,22,.72);
-      border-color: rgba(255,255,255,.12);
-      box-shadow: 0 18px 80px rgba(0,0,0,.45);
-    }
-    .tooltip.show{ opacity:1; transform: translate(-50%, -135%); }
-    .tooltip b{ font-weight:800; }
-    .tooltip .subt{ color: var(--muted); margin-top:2px; font-size:11px; }
-
-    .lanePill{
-      position:absolute;
-      left: 22px;
-      bottom: 20px;
-      z-index:6;
-      display:flex; align-items:center; gap:10px;
-      padding:10px 12px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.22);
-      background:
-        radial-gradient(240px 80px at 10% 20%, rgba(255,79,216,.22), transparent 55%),
-        radial-gradient(240px 80px at 70% 20%, rgba(71,230,177,.18), transparent 55%),
-        linear-gradient(135deg, rgba(7,26,44,.84), rgba(12,42,74,.80));
-      color:#fff;
-      box-shadow: 0 18px 70px rgba(7,26,44,.22);
-      backdrop-filter: blur(10px);
-      max-width: calc(100% - 44px);
-    }
-    .lanePill .miniDot{
-      width:10px; height:10px; border-radius:50%;
-      background: linear-gradient(135deg, var(--gold), var(--mint));
-      box-shadow: 0 0 0 6px rgba(200,155,60,.14);
-    }
-    .lanePill span{
-      font-size:12px;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-    .lanePill button{
-      margin-left:auto;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.10);
-      color:#fff;
-      border-radius: 12px;
-      padding:7px 10px;
-      cursor:pointer;
-      transition: transform .16s ease, background .16s ease;
-      font-size:12px;
-    }
-    .lanePill button:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
-
-    /* SECTIONS */
-    .section{margin-top:24px}
-    .sectionCard{
-      border-radius: 30px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 18px 70px rgba(7,26,44,.08);
-      padding: 24px;
-      position:relative;
-      overflow:hidden;
-    }
-    [data-theme="dark"] .sectionCard{ background: rgba(255,255,255,.06); }
-
-    .sectionCard::before{
-      content:"";
-      position:absolute; inset:-60px;
-      background:
-        radial-gradient(600px 260px at 0% 0%, rgba(255,79,216,.10), transparent 60%),
-        radial-gradient(620px 260px at 100% 10%, rgba(71,230,177,.09), transparent 60%),
-        radial-gradient(520px 260px at 50% 0%, rgba(200,155,60,.08), transparent 60%),
-        radial-gradient(700px 360px at 50% 120%, rgba(16,59,102,.10), transparent 60%);
-      opacity:.95;
-      pointer-events:none;
-    }
-    .sectionCard > *{ position:relative; z-index:1; }
-
-    .headRow{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:14px; flex-wrap:wrap;
-    }
-    .headRow h2{margin:0; font-size:20px; letter-spacing:-.01em}
-    .sub{margin:6px 0 0; color:var(--muted); font-size:13px; max-width:80ch; line-height:1.55}
-
-    /* Tabs */
-    .tabs{ margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
-    .tab{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.78);
-      border-radius:999px;
-      padding:10px 12px;
-      font-size:12px;
-      cursor:pointer;
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      color: var(--text);
-      user-select:none;
-    }
-    [data-theme="dark"] .tab{ background: rgba(255,255,255,.08); }
-    .tab:hover{ transform:translateY(-2px); box-shadow:0 16px 40px rgba(7,26,44,.10) }
-    .tab.active{ border-color:rgba(200,155,60,.55); box-shadow:0 16px 40px rgba(200,155,60,.12) }
-
-    .tabPanels{margin-top:16px}
-    .panel{
-      display:none;
-      border-radius:24px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.82);
-      padding:18px;
-    }
-    [data-theme="dark"] .panel{ background: rgba(255,255,255,.06); }
-    .panel.active{display:block}
-    .panelGrid{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:12px; }
-
-    /* Cards */
-    .cards{
-      margin-top:16px;
+    /* Services */
+    .grid3{
       display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:14px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
-    .card{
+    .miniCard{
+      border-radius: 20px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      padding: 16px;
+      min-height: 160px;
       position:relative;
-      border-radius:24px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.90);
-      padding:16px;
-      box-shadow:0 18px 60px rgba(7,26,44,.07);
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
       overflow:hidden;
-      transform-style: preserve-3d;
-      will-change: transform;
     }
-    [data-theme="dark"] .card{ background: rgba(255,255,255,.06); }
-    .card::before{
+    .miniCard::after{
       content:"";
-      position:absolute; top:14px; left:14px;
-      width:42px; height:6px;
-      border-radius:999px;
-      background: linear-gradient(90deg, var(--gold), var(--steel), var(--mint));
-      opacity:.92;
-    }
-    .card:hover{
-      transform: translateY(-10px);
-      box-shadow: var(--shadow2);
-      border-color: rgba(200,155,60,.35);
-    }
-    .card h3{margin:14px 0 6px; font-size:14px}
-    .card p{margin:0; color:var(--muted); font-size:12.5px; line-height:1.5}
-    .card .meta{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap}
-
-    .tag{
-      font-size:11px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(7,26,44,.04);
-      color: var(--muted);
-      user-select:none;
-    }
-    [data-theme="dark"] .tag{ background: rgba(255,255,255,.06); }
-    .cardLink{ text-decoration:none; display:block; }
-
-    /* Coverage */
-    .coverageGrid{ margin-top:16px; display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
-    .covCard{
-      border-radius:24px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.86);
-      padding:16px;
-      box-shadow:0 18px 60px rgba(7,26,44,.07);
-      overflow:hidden;
-      position:relative;
-    }
-    [data-theme="dark"] .covCard{ background: rgba(255,255,255,.06); }
-    .covCard::after{
-      content:"";
-      position:absolute; inset:-40px;
-      background:
-        radial-gradient(520px 220px at 0% 0%, rgba(16,59,102,.10), transparent 60%),
-        radial-gradient(520px 220px at 100% 10%, rgba(71,230,177,.08), transparent 60%);
+      position:absolute; inset:-40%;
+      background: radial-gradient(500px 280px at 10% 30%, rgba(86,224,255,.10), transparent 58%),
+                  radial-gradient(520px 320px at 90% 40%, rgba(176,107,255,.08), transparent 62%);
       pointer-events:none;
-      opacity:.9;
+      opacity:.55;
     }
-    .covCard > *{ position:relative; z-index:1; }
-
-    .covTop{display:flex; align-items:center; justify-content:space-between; gap:10px}
-    .covCard h3{margin:0; font-size:14px}
-    .covChips{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
-    .covChip{
-      cursor:pointer;
-      user-select:none;
-      font-size:12px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(7,26,44,.04);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      color: var(--text);
-    }
-    [data-theme="dark"] .covChip{ background: rgba(255,255,255,.06); }
-    .covChip:hover{transform: translateY(-2px); box-shadow:0 16px 40px rgba(7,26,44,.10)}
-    .covChip.active{
-      background: rgba(200,155,60,.16);
-      border-color: rgba(200,155,60,.50);
-      box-shadow:0 18px 50px rgba(200,155,60,.12);
-    }
-    .covNote{ margin-top:12px; color: var(--muted); font-size:12.5px; min-height: 40px; line-height:1.5}
-
-    .learnGrid{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:14px;
-      align-items:start;
-    }
-    .panelCard{
-      border-radius: 26px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.82);
-      box-shadow: 0 18px 60px rgba(7,26,44,.06);
-      padding:16px;
-      overflow:hidden;
+    .miniCard h3{
+      margin:0 0 8px;
+      font-size: 16px;
       position:relative;
+      z-index:1;
     }
-    [data-theme="dark"] .panelCard{ background: rgba(255,255,255,.06); }
-
-    .panelCard h3{ margin:0; font-size:14px; letter-spacing:-.01em; }
-    .panelCard .small{ margin:6px 0 0; color: var(--muted); font-size:12.5px; line-height:1.55; }
-
-    /* Route Builder */
-    .rbTop{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      margin-top:10px;
+    .miniCard p{
+      margin:0;
+      color:var(--muted);
+      font-size: 13px;
+      line-height:1.6;
+      position:relative;
+      z-index:1;
     }
-    .rbPills{ display:flex; gap:8px; flex-wrap:wrap; }
-    .rbPill{
-      border:1px solid var(--line);
-      background: rgba(7,26,44,.04);
-      padding:8px 10px;
-      border-radius: 999px;
-      font-size:12px;
-      cursor:pointer;
-      user-select:none;
-      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
-    }
-    [data-theme="dark"] .rbPill{ background: rgba(255,255,255,.06); }
-    .rbPill:hover{ transform: translateY(-1px); box-shadow:0 14px 30px rgba(7,26,44,.10) }
-    .rbPill.active{
-      border-color: rgba(200,155,60,.55);
-      box-shadow:0 16px 38px rgba(200,155,60,.12);
-      background: rgba(200,155,60,.12);
-    }
-
-    .laneBig{
-      margin-top:12px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.18);
-      background:
-        radial-gradient(500px 160px at 10% 0%, rgba(255,79,216,.20), transparent 60%),
-        radial-gradient(500px 160px at 70% 0%, rgba(71,230,177,.16), transparent 60%),
-        linear-gradient(135deg, rgba(7,26,44,.92), rgba(12,42,74,.88));
-      color:#fff;
-      padding:12px;
-      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-      box-shadow: 0 18px 70px rgba(7,26,44,.20);
-    }
-    .laneBig .s{ font-size:12px; opacity:.9; }
-    .laneBig b{ font-size:13px; letter-spacing:.01em; }
-    .laneBig .actions{
-      margin-left:auto;
-      display:flex; gap:8px; flex-wrap:wrap;
-    }
-    .laneBig .actions button{
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.10);
-      color:#fff;
-      border-radius: 14px;
-      padding:8px 10px;
-      cursor:pointer;
-      transition: transform .16s ease, background .16s ease;
-      font-size:12px;
-    }
-    .laneBig .actions button:hover{ transform: translateY(-1px); background: rgba(255,255,255,.16); }
-
-    /* Incoterms */
-    .filters{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-top:12px;
-    }
-    .filters select{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.85);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 10px 12px;
-      font-size: 12px;
-      outline:none;
-    }
-    [data-theme="dark"] .filters select{ background: rgba(255,255,255,.08); }
-
-    .legend{
-      display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted); font-size:12px;
-    }
-    .lg{
-      display:flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border:1px solid var(--line);
-      background: rgba(7,26,44,.03);
-      border-radius: 999px;
-      user-select:none;
-    }
-    [data-theme="dark"] .lg{ background: rgba(255,255,255,.06); }
-    .sw{ width:10px; height:10px; border-radius: 4px; }
-    .sw.b{ background: rgba(71,230,177,.85); }
-    .sw.s{ background: rgba(255,79,216,.80); }
-    .sw.m{ background: rgba(200,155,60,.85); }
-    .sw.n{ background: rgba(74,111,165,.75); }
-
-    .matrixWrap{
-      margin-top:12px;
-      border-radius: 22px;
-      border:1px solid var(--line);
-      overflow:hidden;
-      background: rgba(255,255,255,.86);
-    }
-    [data-theme="dark"] .matrixWrap{ background: rgba(255,255,255,.06); }
-
-    .matrix{
-      width:100%;
-      border-collapse: separate;
-      border-spacing:0;
-      min-width: 860px;
-    }
-    .matrix th, .matrix td{
-      padding:10px 10px;
-      border-bottom:1px solid var(--line);
-      border-right:1px solid var(--line);
-      font-size:12px;
-      text-align:center;
-      background: transparent;
-    }
-    .matrix th{
-      position:sticky;
-      top:0;
-      z-index:2;
-      background:
-        radial-gradient(420px 140px at 20% 0%, rgba(255,79,216,.10), transparent 60%),
-        radial-gradient(420px 140px at 70% 0%, rgba(71,230,177,.08), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.92), rgba(245,248,255,.78));
-      font-weight:800;
-      letter-spacing:-.01em;
-    }
-    [data-theme="dark"] .matrix th{
-      background:
-        radial-gradient(420px 140px at 20% 0%, rgba(255,79,216,.12), transparent 60%),
-        radial-gradient(420px 140px at 70% 0%, rgba(71,230,177,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-    }
-    .matrix th:first-child, .matrix td:first-child{
-      position:sticky;
-      left:0;
-      z-index:3;
-      text-align:left;
-      font-weight:900;
-      letter-spacing:.02em;
-      background:
-        radial-gradient(420px 140px at 0% 0%, rgba(16,59,102,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.92), rgba(245,248,255,.78));
-    }
-    [data-theme="dark"] .matrix th:first-child,
-    [data-theme="dark"] .matrix td:first-child{
-      background:
-        radial-gradient(420px 140px at 0% 0%, rgba(16,59,102,.14), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-    }
-
-    .cell{
-      border-radius: 999px;
-      padding:7px 10px;
+    .miniTag{
+      margin-top: 12px;
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      min-width: 84px;
-      border:1px solid rgba(255,255,255,.20);
-      box-shadow: 0 12px 30px rgba(7,26,44,.08);
-      transition: transform .16s ease, filter .16s ease;
-      user-select:none;
+      gap:8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted2);
+      position:relative; z-index:1;
     }
-    .cell:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-    .cell.seller{ background: rgba(255,79,216,.16); border-color: rgba(255,79,216,.26); }
-    .cell.buyer{ background: rgba(71,230,177,.16); border-color: rgba(71,230,177,.26); }
-    .cell.split{ background: rgba(200,155,60,.14); border-color: rgba(200,155,60,.26); }
-    .cell.none{ background: rgba(74,111,165,.10); border-color: rgba(74,111,165,.20); color: var(--muted); box-shadow:none; }
+    .miniTag i{
+      width:9px; height:9px; border-radius:999px;
+      background: rgba(122,168,255,.75);
+      box-shadow: 0 0 0 5px rgba(122,168,255,.10);
+      display:inline-block;
+    }
 
-    .matrixFoot{
-      padding:12px;
-      color: var(--muted);
-      font-size:12.5px;
-      line-height:1.5;
+    /* Learn (Incoterms) */
+    .incotermsCard{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      overflow:hidden;
     }
+    .incTop{
+      padding: 16px 16px 12px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .seg{
+      display:inline-flex;
+      gap:6px;
+      padding:6px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+    }
+    [data-theme="light"] .seg{ background: rgba(10,18,38,.04); border-color: rgba(10,18,38,.10); }
+    .seg button{
+      padding:8px 10px;
+      border:1px solid transparent;
+      background: transparent;
+      box-shadow:none;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .seg button[data-active="true"]{
+      color: var(--text);
+      border-color: rgba(86,224,255,.35);
+      background: radial-gradient(120% 120% at 20% 10%, rgba(86,224,255,.18), rgba(122,168,255,.08));
+      box-shadow: var(--ring);
+    }
+
+    .legend{
+      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .lg{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.10);
+    }
+    [data-theme="light"] .lg{ background: rgba(10,18,38,.03); border-color: rgba(10,18,38,.10); }
+    .dot{
+      width:9px; height:9px; border-radius:999px;
+      display:inline-block;
+    }
+    .dot.seller{ background: rgba(87,241,180,.85); box-shadow: 0 0 0 5px rgba(87,241,180,.10); }
+    .dot.buyer{ background: rgba(255,210,122,.85); box-shadow: 0 0 0 5px rgba(255,210,122,.10); }
+
+    .matrixWrap{
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    table.matrix{
+      width:100%;
+      border-collapse:separate;
+      border-spacing: 0;
+      min-width: 920px;
+      font-size: 13px;
+    }
+    .matrix thead th{
+      position:sticky; top:0; z-index:2;
+      background: linear-gradient(180deg, rgba(5,9,21,.85), rgba(5,9,21,.60));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: var(--muted);
+      text-align:left;
+      padding: 12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    [data-theme="light"] .matrix thead th{
+      background: rgba(255,255,255,.92);
+      border-bottom:1px solid rgba(10,18,38,.08);
+    }
+    .matrix tbody td{
+      padding: 12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      color: var(--muted);
+      background: rgba(255,255,255,.01);
+      transition: background .14s ease, color .14s ease;
+    }
+    [data-theme="light"] .matrix tbody td{
+      border-bottom:1px solid rgba(10,18,38,.06);
+    }
+    .matrix tbody tr:hover td{
+      background: rgba(122,168,255,.06);
+      color: var(--text);
+    }
+    .matrix .term{
+      font-family: var(--mono);
+      color: var(--text);
+      letter-spacing:.03em;
+    }
+    .tagGroup{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.10);
+      font-size: 11px;
+      color: var(--muted2);
+    }
+    [data-theme="light"] .tagGroup{ background: rgba(10,18,38,.03); border-color: rgba(10,18,38,.10); }
+
+    .resp{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.10);
+      font-size: 12px;
+      color: var(--text);
+    }
+    [data-theme="light"] .resp{ background: rgba(10,18,38,.03); border-color: rgba(10,18,38,.10); }
+    .resp .who{
+      width:10px; height:10px; border-radius:999px;
+    }
+    .resp[data-who="seller"] .who{ background: rgba(87,241,180,.85); box-shadow: 0 0 0 5px rgba(87,241,180,.10); }
+    .resp[data-who="buyer"] .who{ background: rgba(255,210,122,.85); box-shadow: 0 0 0 5px rgba(255,210,122,.10); }
 
     /* CBM */
-    .cbmGrid{
-      margin-top:12px;
+    .formGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      align-items:start;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 12px;
+      align-items:stretch;
     }
-    .cbmBox{
-      border:1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(255,255,255,.82);
-      padding:14px;
-      box-shadow: 0 18px 60px rgba(7,26,44,.06);
+    .formCard{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      overflow:hidden;
     }
-    [data-theme="dark"] .cbmBox{ background: rgba(255,255,255,.06); }
-    label{ font-size:11px; color: var(--muted); display:block; margin:2px 0 6px; }
-    input, select, textarea{
-      width:100%;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.86);
-      color: var(--text);
+    .formCard .head{
+      padding: 16px 16px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .fields{
+      padding: 14px 16px 16px;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .field{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    label{
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing:.02em;
+    }
+    input, textarea, select{
       border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+      color: var(--text);
       padding: 12px 12px;
-      font-size:13px;
+      font-size: 14px;
       outline:none;
       transition: box-shadow .18s ease, border-color .18s ease, background .18s ease;
     }
-    [data-theme="dark"] input,
-    [data-theme="dark"] select,
-    [data-theme="dark"] textarea{
-      background: rgba(255,255,255,.08);
+    [data-theme="light"] input,[data-theme="light"] textarea,[data-theme="light"] select{
+      background: rgba(10,18,38,.03);
+      border-color: rgba(10,18,38,.10);
+      color: var(--text);
     }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(200,155,60,.55);
-      box-shadow:0 0 0 4px rgba(200,155,60,.18);
+    input:focus, textarea:focus, select:focus{
+      box-shadow: var(--ring2);
+      border-color: rgba(176,107,255,.35);
+      background: rgba(0,0,0,.18);
     }
-    textarea{ resize: vertical; min-height: 90px; }
-
-    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
-    .row3{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; }
-
-    .calcOut{
-      border-radius: 20px;
-      border:1px solid var(--line);
-      background:
-        radial-gradient(520px 180px at 20% 0%, rgba(255,79,216,.12), transparent 60%),
-        radial-gradient(520px 180px at 80% 0%, rgba(71,230,177,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.90), rgba(245,248,255,.80));
-      padding:14px;
-      min-height: 140px;
+    .results{
+      padding: 14px 16px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
-    [data-theme="dark"] .calcOut{
-      background:
-        radial-gradient(520px 180px at 20% 0%, rgba(255,79,216,.12), transparent 60%),
-        radial-gradient(520px 180px at 80% 0%, rgba(71,230,177,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-    }
-    .kv{ display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid var(--line); }
-    .kv:last-child{ border-bottom:0; }
-    .kv span{ color: var(--muted); font-size:12.5px; }
-    .kv b{ font-size:13px; letter-spacing:-.01em; }
-
-    /* Contact band */
-    .band{
-      margin-top:18px;
-      border-radius: 28px;
-      padding:18px;
-      background:
-        radial-gradient(700px 220px at 12% 0%, rgba(255,79,216,.22), transparent 60%),
-        radial-gradient(700px 220px at 88% 0%, rgba(71,230,177,.18), transparent 60%),
-        linear-gradient(135deg, var(--navy), var(--navy2));
-      color:#fff;
-      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
-      box-shadow: var(--shadow);
+    .resultBox{
+      border-radius: 18px;
       border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      padding: 14px;
     }
-    [data-theme="dark"] .band{
-      background:
-        radial-gradient(700px 220px at 12% 0%, rgba(255,79,216,.24), transparent 60%),
-        radial-gradient(700px 220px at 88% 0%, rgba(71,230,177,.20), transparent 60%),
-        linear-gradient(135deg, rgba(7,26,44,.80), rgba(12,42,74,.78));
-      border:1px solid rgba(255,255,255,.12);
+    .resultBox strong{
+      font-family: var(--mono);
+      font-size: 18px;
+      letter-spacing:.02em;
+    }
+    .resultBox span{
+      display:block;
+      margin-top:6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.45;
+    }
+
+    /* Contact */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .contactCard{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      padding: 16px;
+    }
+    .contactCard h3{ margin:0 0 10px; }
+    .contactCard p{ margin:0; color:var(--muted); line-height:1.6; font-size: 13px; }
+    .contactList{
+      margin-top: 12px;
+      display:grid; gap:10px;
+    }
+    .line{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.10);
+      font-size: 13px;
+      color: var(--muted);
     }
 
     footer{
-      margin-top:22px;
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      color:var(--muted);
-      font-size:12px;
-      padding: 0 4px 18px;
+      padding: 18px 0 26px;
+      color: var(--muted2);
+      font-size: 12px;
+      border-top:1px solid rgba(255,255,255,.08);
     }
 
-    /* Reveal */
-    .reveal{ opacity:0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in{ opacity:1; transform: translateY(0); }
-    .stagger > *{ opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in .stagger > *{ opacity:1; transform: translateY(0); }
-    .reveal.in .stagger > *:nth-child(1){ transition-delay:.05s }
-    .reveal.in .stagger > *:nth-child(2){ transition-delay:.14s }
-    .reveal.in .stagger > *:nth-child(3){ transition-delay:.23s }
-    .reveal.in .stagger > *:nth-child(4){ transition-delay:.32s }
-    .reveal.in .stagger > *:nth-child(5){ transition-delay:.41s }
-    .reveal.in .stagger > *:nth-child(6){ transition-delay:.50s }
-
-    /* Drawer */
+    /* Quote Drawer */
     .drawerOverlay{
-      position:fixed; inset:0; z-index:200;
-      background: rgba(0,0,0,.32);
-      backdrop-filter: blur(10px);
-      opacity:0;
-      pointer-events:none;
-      transition: opacity .25s ease;
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display:none;
+      z-index:80;
     }
-    .drawerOverlay.open{ opacity:1; pointer-events:auto; }
     .drawer{
-      position:fixed; top:0; right:0; height:100vh; width:min(480px, 92vw);
-      z-index:210;
-      transform: translateX(110%);
-      transition: transform .35s cubic-bezier(.2,.9,.2,1);
-      border-left:1px solid var(--line);
-      background:
-        radial-gradient(600px 300px at 10% 0%, rgba(255,79,216,.18), transparent 60%),
-        radial-gradient(600px 300px at 90% 20%, rgba(71,230,177,.16), transparent 60%),
-        radial-gradient(600px 300px at 50% 120%, rgba(16,59,102,.12), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(245,248,255,.88) 100%);
+      position:fixed;
+      top:0; right:0;
+      width:min(440px, 92vw);
+      height:100dvh;
+      background: linear-gradient(180deg, rgba(10,18,38,.92), rgba(10,18,38,.72));
+      border-left:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: -24px 0 80px rgba(0,0,0,.45);
+      transform: translateX(105%);
+      transition: transform .22s ease;
+      z-index:81;
+      display:flex; flex-direction:column;
+    }
+    [data-theme="light"] .drawer{
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.76));
+      border-left:1px solid rgba(10,18,38,.10);
+      box-shadow: -24px 0 80px rgba(10,18,38,.10);
+    }
+    .drawerHeader{
+      padding: 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .drawerHeader strong{ letter-spacing:-.01em; }
+    .drawerBody{ padding: 14px 16px 16px; overflow:auto; }
+    .drawerBody .field{ margin-bottom:10px; }
+    .drawerBody textarea{ min-height: 120px; resize: vertical; }
+
+    .toast{
+      position: fixed;
+      left:50%;
+      bottom: 22px;
+      transform: translate(-50%, 10px);
+      opacity: 0;
+      pointer-events:none;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(5,9,21,.65);
       color: var(--text);
-      box-shadow: -30px 0 140px rgba(0,0,0,.28);
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--shadow2);
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 120;
+      font-size: 13px;
     }
-    [data-theme="dark"] .drawer{
-      background:
-        radial-gradient(600px 300px at 10% 0%, rgba(255,79,216,.18), transparent 60%),
-        radial-gradient(600px 300px at 90% 20%, rgba(71,230,177,.16), transparent 60%),
-        radial-gradient(600px 300px at 50% 120%, rgba(16,59,102,.12), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.05) 100%);
-    }
-    .drawer.open{ transform: translateX(0); }
+    [data-theme="light"] .toast{ background: rgba(255,255,255,.80); border-color: rgba(10,18,38,.10); }
+    .toast.show{ opacity:1; transform: translate(-50%, 0); }
 
-    .drawerTop{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
-    .drawerTop h3{ margin:0; font-size:16px; letter-spacing:-.01em; }
-    .drawerHint{ color: var(--muted); font-size:12.5px; margin-top:-6px; }
-
-    .drawerBrandMini{
-      display:flex; align-items:center; gap:10px; margin-top:8px;
-      padding:10px 12px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.70);
-      backdrop-filter: blur(10px);
+    /* Motion preferences */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
     }
-    [data-theme="dark"] .drawerBrandMini{ background: rgba(255,255,255,.08); }
-    .drawerBrandMini img{
-      width:38px; height:38px; border-radius: 12px;
-      object-fit:contain;
-      background: rgba(255,255,255,.92);
-      padding:4px;
-      box-shadow: inset 0 0 0 1px rgba(7,26,44,.08);
-    }
-    .drawerBrandMini b{ font-size:12px; letter-spacing:.12em; }
-    .drawerBrandMini span{ font-size:12px; color:var(--muted); }
-
-    .x{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.78);
-      border-radius: 12px;
-      padding:8px 10px;
-      cursor:pointer;
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-      color: var(--text);
-    }
-    [data-theme="dark"] .x{ background: rgba(255,255,255,.10); }
-    .x:hover{ transform: translateY(-1px); box-shadow:0 16px 40px rgba(7,26,44,.12); }
-
-    .form{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
-    .form .full{ grid-column: 1 / -1; }
-    .drawerCtas{ display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; }
-    .smallNote{ color: var(--muted); font-size:12px; margin-top:4px; }
 
     /* Responsive */
     @media (max-width: 980px){
-      .heroGrid{grid-template-columns:1fr; padding:34px 18px 18px}
-      .heroVisual{height:320px}
-      .cards{grid-template-columns:1fr}
-      .coverageGrid{grid-template-columns:1fr}
-      .panelGrid{grid-template-columns:1fr}
-      .learnGrid{grid-template-columns:1fr}
-      .cbmGrid{grid-template-columns:1fr}
-      .form{grid-template-columns:1fr}
-      .row2,.row3{grid-template-columns:1fr}
-      .lanePill{ left: 16px; right:16px; }
-      .heroWatermark{ width:260px; height:260px; right:-70px; top:-70px; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .globeWrap{ min-height: 460px; }
+      .grid3{ grid-template-columns: 1fr; }
+      .formGrid{ grid-template-columns: 1fr; }
+      .contactGrid{ grid-template-columns: 1fr; }
+      nav ul{ display:none; }
+      .hamburger{ display:inline-flex; }
+      .mobileNav{ display:block; }
+    }
+
+    @media (max-width: 520px){
+      .stats{ grid-template-columns: 1fr; }
+      .routeUI{ grid-template-columns: 1fr; }
+      .fields{ grid-template-columns: 1fr; }
+      .brandText span{ display:none; }
     }
   </style>
 </head>
 
 <body>
+  <div class="grain" aria-hidden="true"></div>
 
-  <div class="top">
-    <div class="topInner">
-      <div class="brand">
-        <div class="logoWrap" aria-hidden="true">
-          <img class="logoImg" src="assets/baatar-logo.png" alt="Baatar Shipping logo">
-        </div>
-        <div class="brandText">
-          <b>BAATAR SHIPPING</b>
-          <span data-i18n="tagline">Moving Trade Forward</span>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Baatar Shipping home">
+          <span class="brandMark" aria-hidden="true"></span>
+          <span class="brandText">
+            <strong>Baatar Shipping</strong>
+            <span data-i18n="nav.tag">Logistics • Ocean • Air • Road</span>
+          </span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#services" data-i18n="nav.services">Services</a></li>
+            <li><a href="#coverage" data-i18n="nav.coverage">Coverage</a></li>
+            <li><a href="#learn" data-i18n="nav.learn">Learn</a></li>
+            <li><a href="#cbm" data-i18n="nav.cbm">CBM</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="navRight">
+          <button class="btn iconBtn" id="langBtn" type="button" aria-label="Toggle language">
+            <span style="font-family:var(--mono); font-size:12px;" id="langLabel">EN</span>
+          </button>
+          <button class="btn iconBtn" id="themeBtn" type="button" aria-label="Toggle dark mode">
+            <span aria-hidden="true" id="themeIcon">🌙</span>
+          </button>
+          <button class="btn btnPrimary" id="openQuote" type="button" data-i18n="nav.quote">Get a quote</button>
+
+          <button class="btn hamburger" id="menuBtn" type="button" aria-label="Open menu">
+            <span aria-hidden="true"></span>
+          </button>
         </div>
       </div>
 
-      <div class="nav" aria-label="Primary navigation">
-        <a href="#services" data-i18n="navServices">Services</a>
-        <a href="#coverage" data-i18n="navCoverage">Coverage</a>
-        <a href="#learning" data-i18n="navLearning">Incoterms</a>
-        <a href="#cbm" data-i18n="navCBM">CBM</a>
-        <a href="#contact" data-i18n="navContact">Contact</a>
-        <a href="about.html" data-i18n="navAbout">About</a>
-        <a href="services.html" data-i18n="navServicesPage">Services Page</a>
-
-        <div class="controls">
-          <button class="pillBtn" id="theme-toggle" type="button" title="Toggle dark mode">🌙</button>
-          <button class="pillBtn" id="lang-en" type="button">EN</button>
-          <button class="pillBtn" id="lang-mn" type="button">MN</button>
-        </div>
+      <div class="mobileNav" id="mobileNav" hidden>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#coverage" data-i18n="nav.coverage">Coverage</a>
+        <a href="#learn" data-i18n="nav.learn">Learn</a>
+        <a href="#cbm" data-i18n="nav.cbm">CBM</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="stage">
-    <main class="wrap">
-
-      <!-- HERO -->
-      <section class="hero reveal" id="top">
-        <img class="heroWatermark" src="assets/baatar-logo.png" alt="" aria-hidden="true">
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
         <div class="heroGrid">
+          <div class="card">
+            <div class="glow" aria-hidden="true"></div>
+            <div class="cardInner">
+              <div class="kicker">
+                <span class="pill" data-i18n="hero.pill">Premium logistics, built for speed & clarity</span>
+              </div>
+
+              <h1 data-i18n="hero.title">Shipping, made easy.</h1>
+              <p class="sub" data-i18n="hero.sub">
+                Clean execution from quote to delivery — with modern visibility, consistent communication, and lanes that actually move.
+              </p>
+
+              <div class="heroActions">
+                <a class="btn btnPrimary" href="#coverage" data-i18n="hero.cta1">Explore coverage</a>
+                <a class="btn" href="#learn" data-i18n="hero.cta2">Learn Incoterms 2020</a>
+                <button class="btn" type="button" id="openQuote2" data-i18n="hero.cta3">Request a quote</button>
+              </div>
+
+              <div class="stats" aria-label="Highlights">
+                <div class="stat">
+                  <strong data-i18n="hero.s1t">Door-to-door</strong>
+                  <span data-i18n="hero.s1s">Ocean • Air • Road with clean handoffs.</span>
+                </div>
+                <div class="stat">
+                  <strong data-i18n="hero.s2t">Lane-first planning</strong>
+                  <span data-i18n="hero.s2s">Pick cities → see the route instantly.</span>
+                </div>
+                <div class="stat">
+                  <strong data-i18n="hero.s3t">Transparent volume</strong>
+                  <span data-i18n="hero.s3s">CBM calculator, totals, and unit toggles.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card globeWrap" id="coverage">
+            <div class="glow" aria-hidden="true"></div>
+
+            <div class="globeTop">
+              <div class="globeTitle">
+                <strong data-i18n="globe.title">Interactive coverage globe</strong>
+                <span data-i18n="globe.sub">Drag to rotate • Scroll to zoom • Toggle auto-rotate</span>
+              </div>
+              <button class="btn" id="autoRotateBtn" type="button" aria-pressed="true">
+                <span id="autoRotateLabel" data-i18n="globe.auto">Auto</span>
+              </button>
+            </div>
+
+            <div class="globeStage" id="globeStage" aria-label="Interactive globe">
+              <canvas id="globe"></canvas>
+              <div class="labels" id="labels" aria-hidden="true"></div>
+            </div>
+
+            <div class="routeUI" aria-label="Route builder">
+              <div class="routeBox">
+                <h4 data-i18n="route.from">From</h4>
+                <div class="chips" id="fromChips"></div>
+              </div>
+              <div class="routeBox">
+                <h4 data-i18n="route.to">To</h4>
+                <div class="chips" id="toChips"></div>
+                <div id="lanePill" style="display:none;">
+                  <div class="lanePill">
+                    <span class="laneDot" aria-hidden="true"></span>
+                    <span id="laneText" data-i18n="route.selected">Selected lane</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="sectionHead">
           <div>
-            <div class="kicker"><span class="kdot"></span> <span data-i18n="heroKicker">Cross-border logistics coordination</span></div>
-            <h1 data-i18n="heroTitle">Mongolia ↔ China ↔ Global Logistics</h1>
-            <p class="lead" data-i18n="heroSub">
-              Reliable logistics coordination for cross-border and international trade — clear communication, fast execution, trusted partners.
+            <h2 data-i18n="services.h">Services</h2>
+            <p data-i18n="services.p">Modern logistics for predictable outcomes — fewer surprises, tighter updates, cleaner documentation.</p>
+          </div>
+          <span class="pill" data-i18n="services.pill">Ocean • Air • Road • Customs</span>
+        </div>
+
+        <div class="grid3">
+          <div class="miniCard">
+            <h3 data-i18n="services.c1t">Ocean freight</h3>
+            <p data-i18n="services.c1p">FCL/LCL planning with stable carrier options and clear cutoffs. Built for consistency.</p>
+            <div class="miniTag"><i></i><span data-i18n="services.c1m">Best for: cost-efficient lanes</span></div>
+          </div>
+
+          <div class="miniCard">
+            <h3 data-i18n="services.c2t">Air freight</h3>
+            <p data-i18n="services.c2p">Fast uplift when time matters — with clean paperwork and proactive communication.</p>
+            <div class="miniTag"><i></i><span data-i18n="services.c2m">Best for: urgent shipments</span></div>
+          </div>
+
+          <div class="miniCard">
+            <h3 data-i18n="services.c3t">Road & multimodal</h3>
+            <p data-i18n="services.c3p">Door moves with reliable handoffs. We plan the lane end-to-end, not piece by piece.</p>
+            <div class="miniTag"><i></i><span data-i18n="services.c3m">Best for: regional distribution</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="learn">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2 data-i18n="learn.h">Incoterms 2020 responsibility matrix</h2>
+            <p data-i18n="learn.p">Filter by group (E/F/C/D). Hover rows to highlight. Use the legend to read Buyer vs Seller responsibilities.</p>
+          </div>
+        </div>
+
+        <div class="incotermsCard">
+          <div class="incTop">
+            <div class="seg" role="tablist" aria-label="Incoterms filters">
+              <button type="button" class="segBtn" data-filter="ALL" data-active="true" role="tab" aria-selected="true">All</button>
+              <button type="button" class="segBtn" data-filter="E" role="tab" aria-selected="false">E</button>
+              <button type="button" class="segBtn" data-filter="F" role="tab" aria-selected="false">F</button>
+              <button type="button" class="segBtn" data-filter="C" role="tab" aria-selected="false">C</button>
+              <button type="button" class="segBtn" data-filter="D" role="tab" aria-selected="false">D</button>
+            </div>
+
+            <div class="legend" aria-label="Legend">
+              <span class="lg"><span class="dot seller" aria-hidden="true"></span><span data-i18n="learn.seller">Seller</span></span>
+              <span class="lg"><span class="dot buyer" aria-hidden="true"></span><span data-i18n="learn.buyer">Buyer</span></span>
+              <span class="lg"><span data-i18n="learn.tip">Tip: In C-terms seller pays main carriage, but risk may transfer earlier.</span></span>
+            </div>
+          </div>
+
+          <div class="matrixWrap">
+            <table class="matrix" aria-label="Incoterms matrix">
+              <thead>
+                <tr>
+                  <th data-i18n="learn.th.term">Term</th>
+                  <th data-i18n="learn.th.group">Group</th>
+                  <th data-i18n="learn.th.export">Export clearance</th>
+                  <th data-i18n="learn.th.main">Main carriage</th>
+                  <th data-i18n="learn.th.ins">Insurance</th>
+                  <th data-i18n="learn.th.import">Import clearance</th>
+                  <th data-i18n="learn.th.delivery">Final delivery</th>
+                  <th data-i18n="learn.th.risk">Risk transfers</th>
+                </tr>
+              </thead>
+              <tbody id="matrixBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cbm">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2 data-i18n="cbm.h">CBM calculator</h2>
+            <p data-i18n="cbm.p">Calculate volume per carton and total volume. Toggle cm/in. Clean numbers for fast quoting.</p>
+          </div>
+        </div>
+
+        <div class="formGrid">
+          <div class="formCard">
+            <div class="head">
+              <div class="globeTitle">
+                <strong data-i18n="cbm.in">Inputs</strong>
+                <span data-i18n="cbm.ins">Length × Width × Height + cartons</span>
+              </div>
+              <div class="seg" aria-label="Units">
+                <button type="button" class="unitBtn" data-unit="cm" data-active="true">cm</button>
+                <button type="button" class="unitBtn" data-unit="in" data-active="false">in</button>
+              </div>
+            </div>
+
+            <div class="fields">
+              <div class="field">
+                <label for="len" data-i18n="cbm.len">Length</label>
+                <input id="len" inputmode="decimal" placeholder="0" />
+              </div>
+              <div class="field">
+                <label for="wid" data-i18n="cbm.wid">Width</label>
+                <input id="wid" inputmode="decimal" placeholder="0" />
+              </div>
+              <div class="field">
+                <label for="hei" data-i18n="cbm.hei">Height</label>
+                <input id="hei" inputmode="decimal" placeholder="0" />
+              </div>
+              <div class="field">
+                <label for="ctn" data-i18n="cbm.ctn">Cartons</label>
+                <input id="ctn" inputmode="numeric" placeholder="1" value="1" />
+              </div>
+
+              <div class="field" style="grid-column:1 / -1;">
+                <button class="btn btnPrimary" type="button" id="calcBtn" data-i18n="cbm.calc">Calculate</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="formCard">
+            <div class="head">
+              <div class="globeTitle">
+                <strong data-i18n="cbm.out">Outputs</strong>
+                <span data-i18n="cbm.outs">CBM + total volume</span>
+              </div>
+              <span class="pill" id="unitPill">cm</span>
+            </div>
+
+            <div class="results">
+              <div class="resultBox">
+                <strong id="cbmEach">0.000</strong>
+                <span data-i18n="cbm.each">CBM per carton</span>
+              </div>
+              <div class="resultBox">
+                <strong id="cbmTotal">0.000</strong>
+                <span data-i18n="cbm.total">Total CBM (all cartons)</span>
+              </div>
+              <div class="resultBox">
+                <strong id="m3Total">0.000</strong>
+                <span data-i18n="cbm.m3">Total volume (m³)</span>
+              </div>
+              <span class="pill" data-i18n="cbm.note">Numbers are estimates. Final volume may vary by packing.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2 data-i18n="contact.h">Contact</h2>
+            <p data-i18n="contact.p">Tell us your lane, your cargo, and your timeline — we’ll respond with clear next steps.</p>
+          </div>
+        </div>
+
+        <div class="contactGrid">
+          <div class="contactCard">
+            <h3 data-i18n="contact.c1t">Fast quotes</h3>
+            <p data-i18n="contact.c1p">
+              Use the quote drawer to send cargo details. We’ll reply with routing options and transparent assumptions.
+            </p>
+            <div class="contactList">
+              <div class="line"><span data-i18n="contact.line1l">Typical reply time</span><span data-i18n="contact.line1r">Same business day</span></div>
+              <div class="line"><span data-i18n="contact.line2l">Operating hours</span><span data-i18n="contact.line2r">Mon–Fri</span></div>
+              <div class="line"><span data-i18n="contact.line3l">Style</span><span data-i18n="contact.line3r">Clear, lane-first, documented</span></div>
+            </div>
+            <div class="heroActions" style="margin-top:14px;">
+              <button class="btn btnPrimary" type="button" id="openQuote3" data-i18n="contact.cta">Open quote form</button>
+              <a class="btn" href="#services" data-i18n="contact.cta2">See services</a>
+            </div>
+          </div>
+
+          <div class="contactCard">
+            <h3 data-i18n="contact.c2t">Coverage highlights</h3>
+            <p data-i18n="contact.c2p">
+              Core lanes across Asia, Europe, North America, and Africa — with a preference for predictable execution.
             </p>
 
-            <div class="chips">
-              <span class="chip" data-i18n="chip1">Fast response</span>
-              <span class="chip" data-i18n="chip2">Clear coordination</span>
-              <span class="chip" data-i18n="chip3">Trusted network</span>
-              <span class="chip" data-i18n="chip4">Route clarity</span>
-            </div>
-
-            <div class="heroCtas">
-              <button class="btn primary" id="openQuote" type="button" data-i18n="ctaPrimary">Request a quote</button>
-              <a class="btn ghost" href="https://wa.me/97699887055" target="_blank" rel="noopener">WhatsApp</a>
-              <a class="btn ghost" href="viber://chat?number=%2B97699887055">Viber</a>
-              <a class="btn ghost" href="#coverage" data-i18n="ctaExplore">Explore routes</a>
-            </div>
-
-            <div class="mini" data-i18n="heroMini">
-              Practical, calm, dependable — built for long-term trade.
-            </div>
-          </div>
-
-          <div class="heroVisual">
-            <div class="hvTop">
-              <div class="hvTitle">
-                <b data-i18n="hvTitle">Global coverage</b>
-                <span data-i18n="hvSub">Drag to rotate • Click city • Scroll to zoom</span>
-              </div>
-              <div class="hvPills">
-                <div class="pill"><span class="dotLive"></span><span data-i18n="hvLive">Interactive</span></div>
-                <div class="pill" id="autoRotatePill" title="Click the globe background to toggle auto-rotate">⟲ <span data-i18n="hvAuto">Auto</span></div>
-              </div>
-            </div>
-
-            <div class="hvCanvasWrap">
-              <div class="tooltip" id="globeTip"><b>City</b><div class="subt">Click to add</div></div>
-              <canvas id="heroGlobe" aria-label="Interactive globe showing cities and routes"></canvas>
-
-              <div class="lanePill" id="heroLane">
-                <span class="miniDot" aria-hidden="true"></span>
-                <span id="heroLaneText">Selected lane: UB → Beijing → Tianjin</span>
-                <button type="button" id="copyLaneBtn" title="Copy lane">Copy</button>
-              </div>
+            <div class="contactList">
+              <div class="line"><span data-i18n="contact.city1">Ulaanbaatar</span><span>UB</span></div>
+              <div class="line"><span data-i18n="contact.city2">Beijing</span><span>PEK</span></div>
+              <div class="line"><span data-i18n="contact.city3">Tianjin</span><span>TSN</span></div>
+              <div class="line"><span data-i18n="contact.city4">Istanbul</span><span>IST</span></div>
+              <div class="line"><span data-i18n="contact.city5">New York</span><span>NYC</span></div>
+              <div class="line"><span data-i18n="contact.city6">Berlin</span><span>BER</span></div>
+              <div class="line"><span data-i18n="contact.city7">Seoul</span><span>SEL</span></div>
+              <div class="line"><span data-i18n="contact.city8">Cape Town</span><span>CPT</span></div>
+              <div class="line"><span data-i18n="contact.city9">Melbourne</span><span>MEL</span></div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SERVICES -->
-      <section class="section reveal" id="services">
-        <div class="sectionCard">
-          <div class="headRow">
-            <div>
-              <h2 data-i18n="servicesTitle">Services</h2>
-              <p class="sub" data-i18n="servicesSub">Tap a service to see what’s included — designed to reduce risk and increase speed.</p>
-            </div>
-          </div>
-
-          <div class="tabs" role="tablist" aria-label="Services tabs">
-            <button class="tab active" type="button" data-tab="t1" data-i18n="tab1">Freight</button>
-            <button class="tab" type="button" data-tab="t2" data-i18n="tab2">Cross-border</button>
-            <button class="tab" type="button" data-tab="t3" data-i18n="tab3">Documents</button>
-          </div>
-
-          <div class="tabPanels">
-            <div class="panel active" id="t1">
-              <b data-i18n="p1Title">Freight coordination (planning + control)</b>
-              <div class="panelGrid stagger">
-                <div class="card">
-                  <h3 data-i18n="p1aTitle">Route options</h3>
-                  <p data-i18n="p1aText">Choose the best route for cost, speed, and reliability.</p>
-                  <div class="meta"><span class="tag">MNG ↔ CHN</span><span class="tag" data-i18n="tagPlanning">Planning</span></div>
-                </div>
-                <div class="card">
-                  <h3 data-i18n="p1bTitle">Partner alignment</h3>
-                  <p data-i18n="p1bText">Coordinate carriers and operators so handovers are smooth.</p>
-                  <div class="meta"><span class="tag" data-i18n="tagCoordination">Coordination</span><span class="tag">Updates</span></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel" id="t2">
-              <b data-i18n="p2Title">Cross-border execution (handover + exceptions)</b>
-              <div class="panelGrid stagger">
-                <div class="card">
-                  <h3 data-i18n="p2aTitle">Border handover</h3>
-                  <p data-i18n="p2aText">Clear responsibilities across the border to keep cargo moving.</p>
-                  <div class="meta"><span class="tag">Handover</span><span class="tag" data-i18n="tagSpeed">Speed</span></div>
-                </div>
-                <div class="card">
-                  <h3 data-i18n="p2bTitle">Issue handling</h3>
-                  <p data-i18n="p2bText">If delays happen, we push a resolution plan fast.</p>
-                  <div class="meta"><span class="tag" data-i18n="tagRisk">Risk</span><span class="tag">Status</span></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel" id="t3">
-              <b data-i18n="p3Title">Documentation support (reduce preventable delays)</b>
-              <div class="panelGrid stagger">
-                <div class="card">
-                  <h3 data-i18n="p3aTitle">Checklist by route</h3>
-                  <p data-i18n="p3aText">Simple checklist to avoid missing or wrong docs.</p>
-                  <div class="meta"><span class="tag">Docs</span><span class="tag" data-i18n="tagAccuracy">Accuracy</span></div>
-                </div>
-                <div class="card">
-                  <h3 data-i18n="p3bTitle">Validation</h3>
-                  <p data-i18n="p3bText">Weights, codes, names — confirm before shipment.</p>
-                  <div class="meta"><span class="tag">Verification</span><span class="tag" data-i18n="tagClarity">Clarity</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cards stagger" style="margin-top:14px;">
-            <a class="card cardLink" href="services.html">
-              <h3 data-i18n="svcCard1">See full Services page</h3>
-              <p data-i18n="svcCard1Sub">Interactive details, quote shortcuts, and process overview.</p>
-              <div class="meta"><span class="tag">services.html</span><span class="tag" data-i18n="tagExplore">Explore</span></div>
-            </a>
-            <div class="card">
-              <h3 data-i18n="svcCard2">Fast quoting</h3>
-              <p data-i18n="svcCard2Sub">Send route + cargo details — we reply quickly with next steps.</p>
-              <div class="meta"><span class="tag">WhatsApp</span><span class="tag">Viber</span></div>
-            </div>
-            <div class="card">
-              <h3 data-i18n="svcCard3">Clean communication</h3>
-              <p data-i18n="svcCard3Sub">No confusion, no silence — clear updates at every stage.</p>
-              <div class="meta"><span class="tag" data-i18n="tagUpdates">Updates</span><span class="tag" data-i18n="tagTrusted">Trusted</span></div>
-            </div>
-          </div>
+    <footer>
+      <div class="wrap">
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <span>© <span id="year"></span> Baatar Shipping</span>
+          <span data-i18n="footer.note">Premium logistics experience • Built for GitHub Pages</span>
         </div>
-      </section>
+      </div>
+    </footer>
+  </main>
 
-      <!-- COVERAGE -->
-      <section class="section reveal" id="coverage">
-        <div class="sectionCard">
-          <div class="headRow">
-            <div>
-              <h2 data-i18n="coverageTitle">Coverage</h2>
-              <p class="sub" data-i18n="coverageSub">Tap a route chip. We’ll show what that coverage means.</p>
-            </div>
-          </div>
-
-          <div class="coverageGrid stagger">
-            <div class="covCard">
-              <div class="covTop">
-                <h3 data-i18n="covCoreTitle">Core Routes</h3>
-                <span class="tag" data-i18n="covCoreTag">MNG ↔ CHN</span>
-              </div>
-              <div class="covChips" id="coreChips">
-                <div class="covChip active" data-note="core1" data-i18n="covChip1">UB ↔ Erenhot</div>
-                <div class="covChip" data-note="core2" data-i18n="covChip2">Zamiin-Uud ↔ China</div>
-                <div class="covChip" data-note="core3" data-i18n="covChip3">Rail / Road options</div>
-              </div>
-              <div class="covNote" id="coreNote"></div>
-            </div>
-
-            <div class="covCard">
-              <div class="covTop">
-                <h3 data-i18n="covGlobalTitle">Global Reach</h3>
-                <span class="tag" data-i18n="covGlobalTag">Partners</span>
-              </div>
-              <div class="covChips" id="globalChips">
-                <div class="covChip active" data-note="g1" data-i18n="covChip4">Overseas pickup</div>
-                <div class="covChip" data-note="g2" data-i18n="covChip5">Cross-trade</div>
-                <div class="covChip" data-note="g3" data-i18n="covChip6">Multi-leg tracking</div>
-              </div>
-              <div class="covNote" id="globalNote"></div>
-            </div>
-          </div>
-
-          <div class="learnGrid" style="margin-top:14px;">
-            <div class="panelCard">
-              <h3 data-i18n="rbTitle">Route Builder</h3>
-              <div class="small" data-i18n="rbSub">Click cities (or click on the globe). Drag to rotate up/down + left/right. Routes animate on the globe.</div>
-
-              <div class="rbTop">
-                <div class="rbPills" id="routeChips"></div>
-                <div class="rbPills">
-                  <div class="rbPill" id="rbClear" data-i18n="rbClear">Clear</div>
-                  <div class="rbPill" id="rbShuffle" data-i18n="rbShuffle">Surprise</div>
-                </div>
-              </div>
-
-              <div class="laneBig" id="laneBig">
-                <div class="s" data-i18n="rbSelected">Selected lane</div>
-                <b id="laneText">UB → Beijing → Tianjin</b>
-                <div class="actions">
-                  <button type="button" id="copyLaneBtn2" data-i18n="copy">Copy</button>
-                  <button type="button" id="setHeroLaneBtn" data-i18n="useInHero">Use in hero</button>
-                </div>
-              </div>
-
-              <div class="small" style="margin-top:10px;" data-i18n="rbHint">
-                Tip: Click empty ocean to toggle auto-rotate. Scroll to zoom. Click a city again to remove.
-              </div>
-            </div>
-
-            <div class="panelCard">
-              <h3 data-i18n="covMiniTitle">City nodes</h3>
-              <div class="small" data-i18n="covMiniSub">We highlight these hubs for quick planning. (You can add more later.)</div>
-              <div class="legend" id="cityLegend"></div>
-              <div class="small" style="margin-top:10px;" data-i18n="covMiniNote">
-                Each node is clickable on the globe with hover labels.
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- INCOTERMS -->
-      <section class="section reveal" id="learning">
-        <div class="sectionCard">
-          <div class="headRow">
-            <div>
-              <h2 data-i18n="incTitle">Incoterms 2020 — Responsibility Matrix</h2>
-              <p class="sub" data-i18n="incSub">A premium “at-a-glance” comparison. Use filters for quick understanding, then confirm details on contracts.</p>
-            </div>
-          </div>
-
-          <div class="filters">
-            <select id="incMode">
-              <option value="all" data-i18n="incModeAll">All modes</option>
-              <option value="sea" data-i18n="incModeSea">Sea / inland waterway only</option>
-            </select>
-            <select id="incGroup">
-              <option value="all" data-i18n="incGroupAll">All groups</option>
-              <option value="E">Group E</option>
-              <option value="F">Group F</option>
-              <option value="C">Group C</option>
-              <option value="D">Group D</option>
-            </select>
-          </div>
-
-          <div class="legend">
-            <div class="lg"><span class="sw b"></span><span data-i18n="lgBuyer">Buyer</span></div>
-            <div class="lg"><span class="sw s"></span><span data-i18n="lgSeller">Seller</span></div>
-            <div class="lg"><span class="sw m"></span><span data-i18n="lgSplit">Split / depends</span></div>
-            <div class="lg"><span class="sw n"></span><span data-i18n="lgNA">Not typical / N/A</span></div>
-          </div>
-
-          <div class="matrixWrap" style="margin-top:12px; overflow:auto;">
-            <table class="matrix" id="incMatrix" aria-label="Incoterms 2020 responsibility matrix"></table>
-          </div>
-
-          <div class="matrixFoot" data-i18n="incFoot">
-            Note: This matrix is a simplified learning view. Incoterms define delivery point, transfer of risk, and cost allocation — always confirm contract terms, insurance requirements, and local regulations.
-          </div>
-        </div>
-      </section>
-
-      <!-- CBM -->
-      <section class="section reveal" id="cbm">
-        <div class="sectionCard">
-          <div class="headRow">
-            <div>
-              <h2 data-i18n="cbmTitle">CBM Calculator</h2>
-              <p class="sub" data-i18n="cbmSub">Enter carton size and quantity. Get CBM (m³) + cubic feet instantly.</p>
-            </div>
-          </div>
-
-          <div class="cbmGrid stagger">
-            <div class="cbmBox">
-              <div class="row2">
-                <div>
-                  <label data-i18n="cbmUnit">Units</label>
-                  <select id="cbmUnit">
-                    <option value="cm">cm</option>
-                    <option value="in">in</option>
-                  </select>
-                </div>
-                <div>
-                  <label data-i18n="cbmCartons">Cartons</label>
-                  <input id="cbmCartons" type="number" min="1" step="1" value="1"/>
-                </div>
-              </div>
-
-              <div class="row3" style="margin-top:10px;">
-                <div>
-                  <label data-i18n="cbmL">Length</label>
-                  <input id="cbmL" type="number" min="0" step="0.01" placeholder="0"/>
-                </div>
-                <div>
-                  <label data-i18n="cbmW">Width</label>
-                  <input id="cbmW" type="number" min="0" step="0.01" placeholder="0"/>
-                </div>
-                <div>
-                  <label data-i18n="cbmH">Height</label>
-                  <input id="cbmH" type="number" min="0" step="0.01" placeholder="0"/>
-                </div>
-              </div>
-
-              <div class="row2" style="margin-top:10px;">
-                <div>
-                  <label data-i18n="cbmWeight">Gross weight (optional)</label>
-                  <input id="cbmKg" type="number" min="0" step="0.01" placeholder="kg"/>
-                </div>
-                <div>
-                  <label data-i18n="cbmCopy">Copy results</label>
-                  <button class="btn ghost" id="cbmCopyBtn" type="button" style="width:100%;">Copy</button>
-                </div>
-              </div>
-
-              <div class="small" style="margin-top:10px;" data-i18n="cbmHint">
-                Tip: For air freight, volumetric weight is often used — ask us and we’ll help.
-              </div>
-            </div>
-
-            <div class="calcOut" id="cbmOut">
-              <div class="kv"><span data-i18n="cbmPer">Per carton volume</span><b id="perVol">—</b></div>
-              <div class="kv"><span data-i18n="cbmTotal">Total volume</span><b id="totVol">—</b></div>
-              <div class="kv"><span data-i18n="cbmCBM">Total CBM (m³)</span><b id="totCBM">—</b></div>
-              <div class="kv"><span data-i18n="cbmFT3">Total ft³</span><b id="totFT">—</b></div>
-              <div class="kv"><span data-i18n="cbmDensity">Density (kg/m³)</span><b id="dens">—</b></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section reveal" id="contact">
-        <div class="sectionCard">
-          <div class="headRow">
-            <div>
-              <h2 data-i18n="contactTitle">Contact</h2>
-              <p class="sub" data-i18n="contactSub">Message us with route + cargo details + timeline. We reply quickly.</p>
-            </div>
-          </div>
-
-          <div class="band stagger">
-            <div>
-              <b data-i18n="contactBandTitle">Need a quick quote?</b><br/>
-              <span data-i18n="contactBandSub">WhatsApp or Viber — fastest response.</span>
-            </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="btn primary" id="openQuote2" type="button" data-i18n="ctaPrimary">Request a quote</button>
-              <a class="btn ghost" href="https://wa.me/97699887055" target="_blank" rel="noopener">WhatsApp</a>
-              <a class="btn ghost" href="viber://chat?number=%2B97699887055">Viber</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        <div>© 2026 Baatar Shipping. <span data-i18n="rights">All rights reserved.</span></div>
-        <div data-i18n="tagline">Moving Trade Forward</div>
-      </footer>
-
-    </main>
-  </div>
-
-  <!-- QUOTE DRAWER -->
+  <!-- Quote Drawer -->
   <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
-
-  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Quote request form">
-    <div class="drawerTop">
-      <div>
-        <h3 data-i18n="drawerTitle">Request a quote</h3>
-        <div class="drawerHint" data-i18n="drawerSub">Fill this in 30 seconds. We’ll reply quickly.</div>
-
-        <div class="drawerBrandMini" aria-hidden="true">
-          <img src="assets/baatar-logo.png" alt="">
-          <div style="display:flex; flex-direction:column; line-height:1.05;">
-            <b>BAATAR SHIPPING</b>
-            <span data-i18n="tagline">Moving Trade Forward</span>
-          </div>
-        </div>
-      </div>
-      <button class="x" id="closeDrawer" type="button">✕</button>
+  <aside class="drawer" id="drawer" aria-label="Quote request drawer" aria-hidden="true">
+    <div class="drawerHeader">
+      <strong data-i18n="quote.h">Request a quote</strong>
+      <button class="btn iconBtn" type="button" id="closeQuote" aria-label="Close">✕</button>
     </div>
+    <div class="drawerBody">
+      <p style="margin:0 0 14px; color:var(--muted); font-size:13px; line-height:1.55;" data-i18n="quote.p">
+        Share your cargo + lane. This form creates a ready-to-send message you can copy, or open in email.
+      </p>
 
-    <form class="form" id="quoteForm">
-      <div>
-        <label data-i18n="fName">Name</label>
-        <input name="name" required placeholder="Your name"/>
+      <div class="field">
+        <label for="qName" data-i18n="quote.name">Name</label>
+        <input id="qName" placeholder="Your name" />
       </div>
-      <div>
-        <label data-i18n="fCompany">Company</label>
-        <input name="company" placeholder="Company (optional)"/>
+      <div class="field">
+        <label for="qCompany" data-i18n="quote.company">Company</label>
+        <input id="qCompany" placeholder="Company name" />
       </div>
-      <div class="full">
-        <label data-i18n="fRoute">Route</label>
-        <input name="route" required placeholder="Example: Ulaanbaatar → Erenhot → Tianjin"/>
+      <div class="field">
+        <label for="qEmail" data-i18n="quote.email">Email</label>
+        <input id="qEmail" inputmode="email" placeholder="name@company.com" />
       </div>
-      <div>
-        <label data-i18n="fCargo">Cargo</label>
-        <input name="cargo" required placeholder="Example: textiles / machinery"/>
+      <div class="field">
+        <label for="qLane" data-i18n="quote.lane">Lane (From → To)</label>
+        <input id="qLane" placeholder="e.g., Ulaanbaatar → Berlin" />
       </div>
-      <div>
-        <label data-i18n="fWeight">Weight / Volume</label>
-        <input name="weight" placeholder="Example: 12 tons / 40HQ"/>
-      </div>
-      <div>
-        <label data-i18n="fTimeline">Timeline</label>
-        <select name="timeline">
-          <option value="asap" data-i18n="t1">ASAP</option>
-          <option value="1w" data-i18n="t2">Within 1 week</option>
-          <option value="2w" data-i18n="t3">Within 2 weeks</option>
-          <option value="flex" data-i18n="t4">Flexible</option>
-        </select>
-      </div>
-      <div>
-        <label data-i18n="fContact">Preferred contact</label>
-        <select name="contact">
-          <option value="whatsapp">WhatsApp</option>
-          <option value="viber">Viber</option>
-          <option value="email">Email</option>
-        </select>
-      </div>
-      <div class="full">
-        <label data-i18n="fNotes">Notes</label>
-        <textarea name="notes" placeholder="Any special requirements?"></textarea>
+      <div class="field">
+        <label for="qCargo" data-i18n="quote.cargo">Cargo details</label>
+        <textarea id="qCargo" placeholder="Commodity, cartons/pallets, weight, dimensions, Incoterm, target dates..."></textarea>
       </div>
 
-      <div class="drawerCtas full">
-        <button class="btn primary" type="submit" data-i18n="send">Send request</button>
-        <a class="btn ghost" id="sendWhatsApp" href="#" target="_blank" rel="noopener">Send via WhatsApp</a>
-        <a class="btn ghost" id="sendViber" href="#">Send via Viber</a>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+        <button class="btn btnPrimary" type="button" id="copyQuote" data-i18n="quote.copy">Copy message</button>
+        <button class="btn" type="button" id="emailQuote" data-i18n="quote.emailBtn">Open email</button>
       </div>
 
-      <div class="smallNote full" data-i18n="privacy">We only use this info to reply to your request.</div>
-    </form>
+      <div class="pill" style="margin-top:14px;" data-i18n="quote.tip">
+        Tip: Include Incoterm + ready date + destination type (port/door).
+      </div>
+    </div>
   </aside>
 
-  <script>
-    (function(){
-      // ---------------- i18n ----------------
-      const dict = {
-        en: {
-          tagline:"Moving Trade Forward",
-          navServices:"Services", navCoverage:"Coverage", navLearning:"Incoterms", navCBM:"CBM", navContact:"Contact", navAbout:"About", navServicesPage:"Services Page",
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-          heroKicker:"Cross-border logistics coordination",
-          heroTitle:"Mongolia ↔ China ↔ Global Logistics",
-          heroSub:"Reliable logistics coordination for cross-border and international trade — clear communication, fast execution, trusted partners.",
-          chip1:"Fast response", chip2:"Clear coordination", chip3:"Trusted network", chip4:"Route clarity",
-          ctaPrimary:"Request a quote",
-          ctaExplore:"Explore routes",
-          heroMini:"Practical, calm, dependable — built for long-term trade.",
-          hvTitle:"Global coverage",
-          hvSub:"Drag to rotate • Click city • Scroll to zoom",
-          hvLive:"Interactive",
-          hvAuto:"Auto",
+  <script type="module">
+    // -----------------------
+    // i18n (EN/MN)
+    // -----------------------
+    const I18N = {
+      en: {
+        "nav.tag":"Logistics • Ocean • Air • Road",
+        "nav.services":"Services",
+        "nav.coverage":"Coverage",
+        "nav.learn":"Learn",
+        "nav.cbm":"CBM",
+        "nav.contact":"Contact",
+        "nav.quote":"Get a quote",
 
-          servicesTitle:"Services",
-          servicesSub:"Tap a service to see what’s included — designed to reduce risk and increase speed.",
-          tab1:"Freight", tab2:"Cross-border", tab3:"Documents",
-          p1Title:"Freight coordination (planning + control)",
-          p1aTitle:"Route options", p1aText:"Choose the best route for cost, speed, and reliability.",
-          p1bTitle:"Partner alignment", p1bText:"Coordinate carriers and operators so handovers are smooth.",
-          p2Title:"Cross-border execution (handover + exceptions)",
-          p2aTitle:"Border handover", p2aText:"Clear responsibilities across the border to keep cargo moving.",
-          p2bTitle:"Issue handling", p2bText:"If delays happen, we push a resolution plan fast.",
-          p3Title:"Documentation support (reduce preventable delays)",
-          p3aTitle:"Checklist by route", p3aText:"Simple checklist to avoid missing or wrong docs.",
-          p3bTitle:"Validation", p3bText:"Weights, codes, names — confirm before shipment.",
-          svcCard1:"See full Services page", svcCard1Sub:"Interactive details, quote shortcuts, and process overview.",
-          svcCard2:"Fast quoting", svcCard2Sub:"Send route + cargo details — we reply quickly with next steps.",
-          svcCard3:"Clean communication", svcCard3Sub:"No confusion, no silence — clear updates at every stage.",
-          tagPlanning:"Planning", tagCoordination:"Coordination", tagSpeed:"Speed", tagRisk:"Risk", tagAccuracy:"Accuracy", tagClarity:"Clarity", tagExplore:"Explore", tagUpdates:"Updates", tagTrusted:"Trusted",
+        "hero.pill":"Premium logistics, built for speed & clarity",
+        "hero.title":"Shipping, made easy.",
+        "hero.sub":"Clean execution from quote to delivery — with modern visibility, consistent communication, and lanes that actually move.",
+        "hero.cta1":"Explore coverage",
+        "hero.cta2":"Learn Incoterms 2020",
+        "hero.cta3":"Request a quote",
+        "hero.s1t":"Door-to-door",
+        "hero.s1s":"Ocean • Air • Road with clean handoffs.",
+        "hero.s2t":"Lane-first planning",
+        "hero.s2s":"Pick cities → see the route instantly.",
+        "hero.s3t":"Transparent volume",
+        "hero.s3s":"CBM calculator, totals, and unit toggles.",
 
-          coverageTitle:"Coverage",
-          coverageSub:"Tap a route chip. We’ll show what that coverage means.",
-          covCoreTitle:"Core Routes", covCoreTag:"MNG ↔ CHN",
-          covGlobalTitle:"Global Reach", covGlobalTag:"Partners",
-          covChip1:"UB ↔ Erenhot", covChip2:"Zamiin-Uud ↔ China", covChip3:"Rail / Road options",
-          covChip4:"Overseas pickup", covChip5:"Cross-trade", covChip6:"Multi-leg tracking",
+        "globe.title":"Interactive coverage globe",
+        "globe.sub":"Drag to rotate • Scroll to zoom • Toggle auto-rotate",
+        "globe.auto":"Auto",
 
-          rbTitle:"Route Builder",
-          rbSub:"Click cities (or click on the globe). Drag to rotate up/down + left/right. Routes animate on the globe.",
-          rbClear:"Clear",
-          rbShuffle:"Surprise",
-          rbSelected:"Selected lane",
-          rbHint:"Tip: Click empty ocean to toggle auto-rotate. Scroll to zoom. Click a city again to remove.",
-          copy:"Copy",
-          useInHero:"Use in hero",
+        "route.from":"From",
+        "route.to":"To",
+        "route.selected":"Selected lane",
 
-          covMiniTitle:"City nodes",
-          covMiniSub:"We highlight these hubs for quick planning. (You can add more later.)",
-          covMiniNote:"Each node is clickable on the globe with hover labels.",
+        "services.h":"Services",
+        "services.p":"Modern logistics for predictable outcomes — fewer surprises, tighter updates, cleaner documentation.",
+        "services.pill":"Ocean • Air • Road • Customs",
+        "services.c1t":"Ocean freight",
+        "services.c1p":"FCL/LCL planning with stable carrier options and clear cutoffs. Built for consistency.",
+        "services.c1m":"Best for: cost-efficient lanes",
+        "services.c2t":"Air freight",
+        "services.c2p":"Fast uplift when time matters — with clean paperwork and proactive communication.",
+        "services.c2m":"Best for: urgent shipments",
+        "services.c3t":"Road & multimodal",
+        "services.c3p":"Door moves with reliable handoffs. We plan the lane end-to-end, not piece by piece.",
+        "services.c3m":"Best for: regional distribution",
 
-          incTitle:"Incoterms 2020 — Responsibility Matrix",
-          incSub:"A premium “at-a-glance” comparison. Use filters for quick understanding, then confirm details on contracts.",
-          incModeAll:"All modes",
-          incModeSea:"Sea / inland waterway only",
-          incGroupAll:"All groups",
-          lgBuyer:"Buyer",
-          lgSeller:"Seller",
-          lgSplit:"Split / depends",
-          lgNA:"Not typical / N/A",
-          incFoot:"Note: This matrix is a simplified learning view. Incoterms define delivery point, transfer of risk, and cost allocation — always confirm contract terms, insurance requirements, and local regulations.",
+        "learn.h":"Incoterms 2020 responsibility matrix",
+        "learn.p":"Filter by group (E/F/C/D). Hover rows to highlight. Use the legend to read Buyer vs Seller responsibilities.",
+        "learn.seller":"Seller",
+        "learn.buyer":"Buyer",
+        "learn.tip":"Tip: In C-terms seller pays main carriage, but risk may transfer earlier.",
+        "learn.th.term":"Term",
+        "learn.th.group":"Group",
+        "learn.th.export":"Export clearance",
+        "learn.th.main":"Main carriage",
+        "learn.th.ins":"Insurance",
+        "learn.th.import":"Import clearance",
+        "learn.th.delivery":"Final delivery",
+        "learn.th.risk":"Risk transfers",
 
-          cbmTitle:"CBM Calculator",
-          cbmSub:"Enter carton size and quantity. Get CBM (m³) + cubic feet instantly.",
-          cbmUnit:"Units",
-          cbmCartons:"Cartons",
-          cbmL:"Length",
-          cbmW:"Width",
-          cbmH:"Height",
-          cbmWeight:"Gross weight (optional)",
-          cbmCopy:"Copy results",
-          cbmHint:"Tip: For air freight, volumetric weight is often used — ask us and we’ll help.",
-          cbmPer:"Per carton volume",
-          cbmTotal:"Total volume",
-          cbmCBM:"Total CBM (m³)",
-          cbmFT3:"Total ft³",
-          cbmDensity:"Density (kg/m³)",
+        "cbm.h":"CBM calculator",
+        "cbm.p":"Calculate volume per carton and total volume. Toggle cm/in. Clean numbers for fast quoting.",
+        "cbm.in":"Inputs",
+        "cbm.ins":"Length × Width × Height + cartons",
+        "cbm.len":"Length",
+        "cbm.wid":"Width",
+        "cbm.hei":"Height",
+        "cbm.ctn":"Cartons",
+        "cbm.calc":"Calculate",
+        "cbm.out":"Outputs",
+        "cbm.outs":"CBM + total volume",
+        "cbm.each":"CBM per carton",
+        "cbm.total":"Total CBM (all cartons)",
+        "cbm.m3":"Total volume (m³)",
+        "cbm.note":"Numbers are estimates. Final volume may vary by packing.",
 
-          contactTitle:"Contact",
-          contactSub:"Message us with route + cargo details + timeline. We reply quickly.",
-          contactBandTitle:"Need a quick quote?",
-          contactBandSub:"WhatsApp or Viber — fastest response.",
-          rights:"All rights reserved.",
+        "contact.h":"Contact",
+        "contact.p":"Tell us your lane, your cargo, and your timeline — we’ll respond with clear next steps.",
+        "contact.c1t":"Fast quotes",
+        "contact.c1p":"Use the quote drawer to send cargo details. We’ll reply with routing options and transparent assumptions.",
+        "contact.line1l":"Typical reply time",
+        "contact.line1r":"Same business day",
+        "contact.line2l":"Operating hours",
+        "contact.line2r":"Mon–Fri",
+        "contact.line3l":"Style",
+        "contact.line3r":"Clear, lane-first, documented",
+        "contact.cta":"Open quote form",
+        "contact.cta2":"See services",
+        "contact.c2t":"Coverage highlights",
+        "contact.c2p":"Core lanes across Asia, Europe, North America, and Africa — with a preference for predictable execution.",
+        "contact.city1":"Ulaanbaatar",
+        "contact.city2":"Beijing",
+        "contact.city3":"Tianjin",
+        "contact.city4":"Istanbul",
+        "contact.city5":"New York",
+        "contact.city6":"Berlin",
+        "contact.city7":"Seoul",
+        "contact.city8":"Cape Town",
+        "contact.city9":"Melbourne",
 
-          drawerTitle:"Request a quote",
-          drawerSub:"Fill this in 30 seconds. We’ll reply quickly.",
-          fName:"Name", fCompany:"Company", fRoute:"Route", fCargo:"Cargo", fWeight:"Weight / Volume", fTimeline:"Timeline", fContact:"Preferred contact", fNotes:"Notes",
-          t1:"ASAP", t2:"Within 1 week", t3:"Within 2 weeks", t4:"Flexible",
-          send:"Send request",
-          privacy:"We only use this info to reply to your request."
-        },
-        mn: {
-          tagline:"Худалдааг урагшлуулна",
-          navServices:"Үйлчилгээ", navCoverage:"Хамрах хүрээ", navLearning:"Incoterms", navCBM:"CBM", navContact:"Холбоо барих", navAbout:"Бидний тухай", navServicesPage:"Үйлчилгээ (хуудас)",
+        "footer.note":"Premium logistics experience • Built for GitHub Pages",
 
-          heroKicker:"Хил дамнасан ложистикийн зохицуулалт",
-          heroTitle:"Монгол ↔ Хятад ↔ Дэлхий Ложистик",
-          heroSub:"Хил дамнасан болон олон улсын тээвэрт — ойлгомжтой харилцаа, хурдан гүйцэтгэл, найдвартай түншлэл.",
-          chip1:"Хурдан хариу", chip2:"Тод зохицуулалт", chip3:"Найдвартай сүлжээ", chip4:"Маршрут тодорхой",
-          ctaPrimary:"Үнийн санал авах",
-          ctaExplore:"Чиглэлүүдийг үзэх",
-          heroMini:"Практик, тайван, найдвартай — урт хугацааны худалдаанд.",
-          hvTitle:"Дэлхийн хамрах хүрээ",
-          hvSub:"Чирж эргүүл • Хот дээр дар • Scroll — zoom",
-          hvLive:"Интерактив",
-          hvAuto:"Авто",
+        "quote.h":"Request a quote",
+        "quote.p":"Share your cargo + lane. This form creates a ready-to-send message you can copy, or open in email.",
+        "quote.name":"Name",
+        "quote.company":"Company",
+        "quote.email":"Email",
+        "quote.lane":"Lane (From → To)",
+        "quote.cargo":"Cargo details",
+        "quote.copy":"Copy message",
+        "quote.emailBtn":"Open email",
+        "quote.tip":"Tip: Include Incoterm + ready date + destination type (port/door)."
+      },
+      mn: {
+        "nav.tag":"Логистик • Далай • Агаар • Авто",
+        "nav.services":"Үйлчилгээ",
+        "nav.coverage":"Хамрах хүрээ",
+        "nav.learn":"Суралцах",
+        "nav.cbm":"CBM",
+        "nav.contact":"Холбоо барих",
+        "nav.quote":"Үнийн санал",
 
-          servicesTitle:"Үйлчилгээ",
-          servicesSub:"Үйлчилгээг дарж дэлгэрэнгүйг үзээрэй — эрсдэл бууруулж, хурдыг нэмэгдүүлнэ.",
-          tab1:"Тээвэр", tab2:"Хил дамнасан", tab3:"Баримт бичиг",
-          p1Title:"Тээврийн зохицуулалт (төлөвлөлт + хяналт)",
-          p1aTitle:"Маршрут сонголт", p1aText:"Үнэ, хурд, найдвартай байдлаар оновчтойг сонгоно.",
-          p1bTitle:"Түнш зохицуулалт", p1bText:"Дамжуулалтыг жигд болгохын тулд түншүүдийг уялдуулна.",
-          p2Title:"Хил дамнасан гүйцэтгэл (дамжуулалт + асуудал шийдэлт)",
-          p2aTitle:"Хил дээрх дамжуулалт", p2aText:"Хариуцлагыг тодорхойлж тээврийг тасалдуулахгүй.",
-          p2bTitle:"Асуудал шийдвэрлэлт", p2bText:"Саатал гарвал хурдан шийдвэрлэх төлөвлөгөө гаргана.",
-          p3Title:"Баримт бичгийн дэмжлэг (урьдчилан сэргийлэх саатлыг бууруулна)",
-          p3aTitle:"Маршрут бүрийн checklist", p3aText:"Дутуу/буруу баримтаас үүсэх эрсдэлийг багасгана.",
-          p3bTitle:"Шалгалт, баталгаажуулалт", p3bText:"Жин, код, нэр — ачихаас өмнө баталгаажуулна.",
-          svcCard1:"Үйлчилгээний хуудсыг үзэх", svcCard1Sub:"Интерактив дэлгэрэнгүй, үнийн санал, процесс.",
-          svcCard2:"Хурдан санал", svcCard2Sub:"Маршрут + ачааны мэдээлэл илгээ — хурдан хариу өгнө.",
-          svcCard3:"Тод харилцаа", svcCard3Sub:"Төөрөгдөлгүй — шат бүр дээр ойлгомжтой мэдэгдэл.",
-          tagPlanning:"Төлөвлөлт", tagCoordination:"Зохицуулалт", tagSpeed:"Хурд", tagRisk:"Эрсдэл", tagAccuracy:"Нягт", tagClarity:"Тод", tagExplore:"Үзэх", tagUpdates:"Мэдээлэл", tagTrusted:"Найдвартай",
+        "hero.pill":"Премиум логистик — хурд ба ойлгомжтой байдал",
+        "hero.title":"Тээвэрлэлтийг амархан болгоё.",
+        "hero.sub":"Үнийн санал → хүргэлт хүртэл цэгцтэй гүйцэтгэл. Орчин үеийн харагдац, тогтмол мэдээлэл, бодитоор хөдөлдөг шугамууд.",
+        "hero.cta1":"Хамрах хүрээг харах",
+        "hero.cta2":"Incoterms 2020 сурах",
+        "hero.cta3":"Үнийн санал авах",
+        "hero.s1t":"Хаалганаас-хаалга",
+        "hero.s1s":"Далай • Агаар • Авто — цэвэр дамжуулалттай.",
+        "hero.s2t":"Шугам төвтэй төлөвлөлт",
+        "hero.s2s":"Хот сонго → замыг шууд хар.",
+        "hero.s3t":"Эзлэхүүн тодорхой",
+        "hero.s3s":"CBM тооцоолуур, нийт дүн, нэгж солих.",
 
-          coverageTitle:"Хамрах хүрээ",
-          coverageSub:"Чип дээр дар — хамрах хүрээг товч тайлбарлана.",
-          covCoreTitle:"Үндсэн чиглэл", covCoreTag:"МН ↔ ХН",
-          covGlobalTitle:"Дэлхийн хамрах хүрээ", covGlobalTag:"Түншлэл",
-          covChip1:"УБ ↔ Эрээний", covChip2:"Замын-Үүд ↔ Хятад", covChip3:"Төмөр зам / Авто сонголт",
-          covChip4:"Гадаад pickup", covChip5:"Cross-trade", covChip6:"Олон шатны tracking",
+        "globe.title":"Интерактив хамрах хүрээ",
+        "globe.sub":"Чирж эргүүлнэ • Scroll-оор zoom • Auto эргэлт",
+        "globe.auto":"Auto",
 
-          rbTitle:"Route Builder",
-          rbSub:"Хот дээр дар (эсвэл globe дээр дар). Дээш/доош + баруун/зүүн чирж эргүүл. Маршрут хөдөлгөөнтөөр гарна.",
-          rbClear:"Цэвэрлэх",
-          rbShuffle:"Санамсаргүй",
-          rbSelected:"Сонгосон чиглэл",
-          rbHint:"Зөвлөгөө: Далай дээр дарж авто-эргүүлгийг асаах/унтраах. Scroll — zoom. Хот дээр дахин дарж хасна.",
-          copy:"Хуулах",
-          useInHero:"Hero-д хэрэглэх",
+        "route.from":"Хаанаас",
+        "route.to":"Хаашаа",
+        "route.selected":"Сонгосон шугам",
 
-          covMiniTitle:"Хотын цэгүүд",
-          covMiniSub:"Төлөвлөлтийг хурдлуулах гол цэгүүдийг харууллаа. (Дараа нь нэмэгдүүлж болно.)",
-          covMiniNote:"Хот бүр globe дээр hover label-тэй, дарж сонгоно.",
+        "services.h":"Үйлчилгээ",
+        "services.p":"Тогтвортой үр дүнд зориулсан орчин үеийн логистик — гэнэтийн зүйл багатай, мэдээлэл сайтай, бичиг баримт цэгцтэй.",
+        "services.pill":"Далай • Агаар • Авто • Гааль",
+        "services.c1t":"Далайн тээвэр",
+        "services.c1p":"FCL/LCL төлөвлөлт, тогтвортой сонголтууд, тодорхой cut-off. Тогтвортой гүйцэтгэл.",
+        "services.c1m":"Тохиромжтой: өртөг оновчтой шугам",
+        "services.c2t":"Агаарын тээвэр",
+        "services.c2p":"Яаралтай үед хурдан ачих — бичиг баримт, мэдээлэл цэвэр.",
+        "services.c2m":"Тохиромжтой: яаралтай ачаа",
+        "services.c3t":"Авто ба холимог",
+        "services.c3p":"Хаалга хүртэл найдвартай дамжуулалт. Бид бүх шугамыг бүхэлд нь төлөвлөнө.",
+        "services.c3m":"Тохиромжтой: бүс нутгийн түгээлт",
 
-          incTitle:"Incoterms 2020 — Хариуцлагын матриц",
-          incSub:"Нэг хараад ойлгох “premium” харьцуулалт. Шүүлтүүр ашиглаад хурдан ойлгож, гэрээндээ заавал баталгаажуулна.",
-          incModeAll:"Бүх тээврийн төрөл",
-          incModeSea:"Зөвхөн далай/дотоод усан зам",
-          incGroupAll:"Бүх бүлэг",
-          lgBuyer:"Худалдан авагч",
-          lgSeller:"Худалдагч",
-          lgSplit:"Хуваагдана",
-          lgNA:"Ердийн биш / байхгүй",
-          incFoot:"Анхаар: Энэ нь суралцах зориулалттай хялбарчилсан харагдац. Incoterms нь хүргэлтийн цэг, эрсдэлийн шилжилт, зардлын хуваарилалтыг тодорхойлдог — гэрээ, даатгал, орон нутгийн дүрэм журмыг заавал шалгана.",
+        "learn.h":"Incoterms 2020 хариуцлагын матриц",
+        "learn.p":"E/F/C/D бүлгээр шүүнэ. Мөр дээр хулгана аваачвал тодорно. Домгоор Buyer vs Seller-ийг уншина.",
+        "learn.seller":"Худалдагч",
+        "learn.buyer":"Худалдан авагч",
+        "learn.tip":"Зөвлөгөө: C нөхцөлд худалдагч үндсэн тээврийг төлж болох ч эрсдэл өмнө шилжиж болдог.",
+        "learn.th.term":"Нөхцөл",
+        "learn.th.group":"Бүлэг",
+        "learn.th.export":"Экспортын гааль",
+        "learn.th.main":"Үндсэн тээвэр",
+        "learn.th.ins":"Даатгал",
+        "learn.th.import":"Импортын гааль",
+        "learn.th.delivery":"Эцсийн хүргэлт",
+        "learn.th.risk":"Эрсдэл шилжих",
 
-          cbmTitle:"CBM Тооцоолуур",
-          cbmSub:"Хайрцгийн хэмжээ, тоог оруул — CBM (м³) + ft³ шууд гарна.",
-          cbmUnit:"Нэгж",
-          cbmCartons:"Хайрцаг (тоо)",
-          cbmL:"Урт",
-          cbmW:"Өргөн",
-          cbmH:"Өндөр",
-          cbmWeight:"Нийт жин (заавал биш)",
-          cbmCopy:"Үр дүн хуулах",
-          cbmHint:"Зөвлөгөө: Агаарын тээвэрт эзэлхүүний жин тооцдог тохиолдол бий — бид тусалъя.",
-          cbmPer:"Нэг хайрцгийн эзэлхүүн",
-          cbmTotal:"Нийт эзэлхүүн",
-          cbmCBM:"Нийт CBM (м³)",
-          cbmFT3:"Нийт ft³",
-          cbmDensity:"Нягтрал (кг/м³)",
+        "cbm.h":"CBM тооцоолуур",
+        "cbm.p":"Нэг хайрцаг ба нийт эзлэхүүнийг тооцоолно. cm/in сольж болно. Үнийн саналд бэлэн тоо.",
+        "cbm.in":"Оролт",
+        "cbm.ins":"Урт × Өргөн × Өндөр + хайрцаг",
+        "cbm.len":"Урт",
+        "cbm.wid":"Өргөн",
+        "cbm.hei":"Өндөр",
+        "cbm.ctn":"Хайрцаг",
+        "cbm.calc":"Тооцоолох",
+        "cbm.out":"Гаралт",
+        "cbm.outs":"CBM + нийт эзлэхүүн",
+        "cbm.each":"Нэг хайрцаг CBM",
+        "cbm.total":"Нийт CBM (бүх хайрцаг)",
+        "cbm.m3":"Нийт эзлэхүүн (м³)",
+        "cbm.note":"Тоо нь ойролцоо. Савлагаанаас хамаарч өөрчлөгдөж болно.",
 
-          contactTitle:"Холбоо барих",
-          contactSub:"Маршрут + ачаа + хугацаа илгээ — хурдан хариу өгнө.",
-          contactBandTitle:"Үнийн санал хурдан авах уу?",
-          contactBandSub:"WhatsApp эсвэл Viber — хамгийн хурдан.",
-          rights:"Бүх эрх хуулиар хамгаалагдсан.",
+        "contact.h":"Холбоо барих",
+        "contact.p":"Шугам, ачаа, хугацаагаа хэлээрэй — бид тодорхой дараагийн алхмаар хариу өгнө.",
+        "contact.c1t":"Түргэн үнийн санал",
+        "contact.c1p":"Quote form ашиглан ачааны мэдээллээ явуулаарай. Бид сонголт ба нөхцөлийг ил тод танилцуулна.",
+        "contact.line1l":"Хариу өгөх хугацаа",
+        "contact.line1r":"Ажлын өдөртөө",
+        "contact.line2l":"Ажиллах цаг",
+        "contact.line2r":"Дав–Баа",
+        "contact.line3l":"Хандлага",
+        "contact.line3r":"Тодорхой, шугам төвтэй, баримтжуулалттай",
+        "contact.cta":"Quote form нээх",
+        "contact.cta2":"Үйлчилгээ үзэх",
+        "contact.c2t":"Хамрах хүрээ",
+        "contact.c2p":"Ази, Европ, Хойд Америк, Африк даяар — тогтвортой гүйцэтгэлийг эрхэмлэнэ.",
+        "contact.city1":"Улаанбаатар",
+        "contact.city2":"Бээжин",
+        "contact.city3":"Тяньжин",
+        "contact.city4":"Истанбул",
+        "contact.city5":"Нью-Йорк",
+        "contact.city6":"Берлин",
+        "contact.city7":"Сөүл",
+        "contact.city8":"Кейптаун",
+        "contact.city9":"Мельбурн",
 
-          drawerTitle:"Үнийн санал авах",
-          drawerSub:"30 секундэд бөглө — хурдан хариу өгнө.",
-          fName:"Нэр", fCompany:"Байгууллага", fRoute:"Маршрут", fCargo:"Ачаа", fWeight:"Жин / Хэмжээ", fTimeline:"Хугацаа", fContact:"Холбогдох хэлбэр", fNotes:"Нэмэлт тэмдэглэл",
-          t1:"ЯАРАЛТАЙ", t2:"1 долоо хоногт", t3:"2 долоо хоногт", t4:"Уян хатан",
-          send:"Илгээх",
-          privacy:"Энэ мэдээллийг зөвхөн танд хариу өгөхөд ашиглана."
-        }
-      };
+        "footer.note":"Премиум логистикийн туршлага • GitHub Pages-д бэлэн",
 
-      const notes = {
-        en: {
-          core1:"Fast coordination for UB ↔ Erenhot flows: timing, partners, clean handover.",
-          core2:"Support for Zamiin-Uud border flows: documents, updates, exception handling.",
-          core3:"Choose rail or road based on cost/speed/reliability and cargo requirements.",
-          g1:"Overseas pickup coordination via partners — align timelines and handover steps.",
-          g2:"Cross-trade support when origin and destination are in different countries.",
-          g3:"Multi-leg tracking alignment so you always know the next step."
-        },
-        mn: {
-          core1:"УБ ↔ Эрээний чиглэлд: хугацаа, түнш, дамжуулалт — ойлгомжтой зохицуулалт.",
-          core2:"Замын-Үүд урсгал: баримт, мэдээлэл, асуудал шийдэлтийн дэмжлэг.",
-          core3:"Төмөр зам/авто — үнэ, хурд, найдвартай байдлаар сонголт гаргана.",
-          g1:"Гадаад pickup-ийг түншээр уялдуулж, хугацаа ба дамжуулалтыг тохируулна.",
-          g2:"Cross-trade — гарал/очих улс өөр үед дэмжлэг үзүүлнэ.",
-          g3:"Олон шатны tracking — дараагийн алхмыг үргэлж мэддэг байна."
-        }
-      };
-
-      const cities = [
-        { id:"ub",        en:"Ulaanbaatar", mn:"Улаанбаатар", lat:47.918, lon:106.917 },
-        { id:"beijing",   en:"Beijing",     mn:"Бээжин",      lat:39.904, lon:116.407 },
-        { id:"tianjin",   en:"Tianjin",     mn:"Тяньжин",     lat:39.084, lon:117.200 },  // fixed spelling
-        { id:"istanbul",  en:"Istanbul",    mn:"Истанбул",    lat:41.008, lon:28.978  },
-        { id:"newyork",   en:"New York",    mn:"Нью-Йорк",    lat:40.713, lon:-74.006 }, // fixed spacing
-        { id:"berlin",    en:"Berlin",      mn:"Берлин",      lat:52.520, lon:13.405  },
-        { id:"seoul",     en:"Seoul",       mn:"Сөүл",        lat:37.566, lon:126.978 },
-        { id:"capetown",  en:"Cape Town",   mn:"Кейптаун",    lat:-33.925,lon:18.424  }, // fixed spacing
-        { id:"melbourne", en:"Melbourne",   mn:"Мельбурн",    lat:-37.813,lon:144.963 }
-      ];
-
-      let lane = ["ub","beijing","tianjin"];
-
-      const incCols = [
-        { key:"export",  en:"Export clearance", mn:"Экспортын гааль" },
-        { key:"main",    en:"Main carriage",    mn:"Үндсэн тээвэр" },
-        { key:"risk",    en:"Risk transfer",    mn:"Эрсдэл шилжилт" },
-        { key:"ins",     en:"Insurance",        mn:"Даатгал" },
-        { key:"import",  en:"Import clearance", mn:"Импортын гааль" },
-        { key:"unload",  en:"Unloading",        mn:"Буулгалт" },
-        { key:"deliver", en:"Delivery point",   mn:"Хүргэлтийн цэг" }
-      ];
-
-      const INC = [
-        { term:"EXW", group:"E", sea:false, row:{ export:"buyer", main:"buyer", risk:"buyer", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller" },
-          note_en:"Seller makes goods available at premises. Buyer handles almost everything.",
-          note_mn:"Худалдагч өөрийн байранд бэлэн болгоно. Бараг бүхнийг худалдан авагч хариуцна." },
-        { term:"FCA", group:"F", sea:false, row:{ export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller" },
-          note_en:"Seller delivers to carrier/point agreed. Buyer handles main carriage.",
-          note_mn:"Худалдагч тохирсон цэг/тээвэрлэгчид хүргэнэ. Үндсэн тээврийг худалдан авагч." },
-        { term:"FAS", group:"F", sea:true, row:{ export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller" },
-          note_en:"Sea only. Seller places goods alongside vessel. Buyer handles loading & sea carriage.",
-          note_mn:"Зөвхөн далай. Худалдагч усан онгоцны хажууд тавина. Ачилт/далайн тээврийг худалдан авагч." },
-        { term:"FOB", group:"F", sea:true, row:{ export:"seller", main:"buyer", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"seller" },
-          note_en:"Sea only. Seller loads on board. Risk transfers when on board.",
-          note_mn:"Зөвхөн далай. Худалдагч онгоцонд ачиж өгнө. Эрсдэл онгоцонд ачигдахад шилжинэ." },
-        { term:"CFR", group:"C", sea:true, row:{ export:"seller", main:"seller", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"split" },
-          note_en:"Sea only. Seller pays sea carriage, risk transfers at loading (on board).",
-          note_mn:"Зөвхөн далай. Худалдагч далайн тээврийг төлнө, эрсдэл онгоцонд ачих үед шилжинэ." },
-        { term:"CIF", group:"C", sea:true, row:{ export:"seller", main:"seller", risk:"split", ins:"seller", import:"buyer", unload:"buyer", deliver:"split" },
-          note_en:"Sea only. Like CFR but seller also provides minimum insurance.",
-          note_mn:"Зөвхөн далай. CFR-тэй адил боловч худалдагч хамгийн бага даатгал хийдэг." },
-        { term:"CPT", group:"C", sea:false, row:{ export:"seller", main:"seller", risk:"split", ins:"buyer", import:"buyer", unload:"buyer", deliver:"split" },
-          note_en:"Seller pays carriage to named place; risk transfers to buyer when handed to carrier.",
-          note_mn:"Худалдагч нэрлэсэн цэг хүртэл тээврийг төлнө; эрсдэл тээвэрлэгчид шилжих үед худалдан авагч руу." },
-        { term:"CIP", group:"C", sea:false, row:{ export:"seller", main:"seller", risk:"split", ins:"seller", import:"buyer", unload:"buyer", deliver:"split" },
-          note_en:"Like CPT but seller provides insurance (higher coverage than CIF typically).",
-          note_mn:"CPT-тэй адил боловч худалдагч даатгал хийдэг (ихэвчлэн CIF-ээс өндөр хамгаалалт)." },
-        { term:"DAP", group:"D", sea:false, row:{ export:"seller", main:"seller", risk:"seller", ins:"split", import:"buyer", unload:"buyer", deliver:"seller" },
-          note_en:"Delivered at Place. Seller delivers ready for unloading at named place. Import is buyer.",
-          note_mn:"DAP: Худалдагч нэрлэсэн цэг дээр буулгахад бэлэн хүргэнэ. Импорт — худалдан авагч." },
-        { term:"DPU", group:"D", sea:false, row:{ export:"seller", main:"seller", risk:"seller", ins:"split", import:"buyer", unload:"seller", deliver:"seller" },
-          note_en:"Delivered at Place Unloaded. Seller unloads at destination place. Import is buyer.",
-          note_mn:"DPU: Худалдагч очих газарт буулгаж өгнө. Импорт — худалдан авагч." },
-        { term:"DDP", group:"D", sea:false, row:{ export:"seller", main:"seller", risk:"seller", ins:"split", import:"seller", unload:"buyer", deliver:"seller" },
-          note_en:"Delivered Duty Paid. Seller handles import clearance & duties (strongest seller obligation).",
-          note_mn:"DDP: Худалдагч импортын гааль, татвар/хураамжийг хариуцна (хамгийн өндөр үүрэг)." }
-      ];
-
-      const $ = (q, el=document)=>el.querySelector(q);
-      const $$ = (q, el=document)=>Array.from(el.querySelectorAll(q));
-
-      function setLang(lang){
-        localStorage.setItem("bs_lang", lang);
-        document.documentElement.lang = (lang === "mn") ? "mn" : "en";
-        $$("[data-i18n]").forEach(el=>{
-          const key = el.getAttribute("data-i18n");
-          if(dict[lang] && dict[lang][key]) el.textContent = dict[lang][key];
-        });
-        $("#lang-en").classList.toggle("active", lang==="en");
-        $("#lang-mn").classList.toggle("active", lang==="mn");
-        refreshCoverageNotes(lang);
-        renderCityLegend(lang);
-        renderRouteChips(lang);
-        renderLaneText(lang);
-        buildIncoterms(lang);
-        updateHeroLanePill(lang);
+        "quote.h":"Үнийн санал хүсэх",
+        "quote.p":"Ачаа + шугамаа бичээрэй. Энэ форм нь copy хийх эсвэл email-ээр нээхэд бэлэн мессеж үүсгэнэ.",
+        "quote.name":"Нэр",
+        "quote.company":"Компани",
+        "quote.email":"Имэйл",
+        "quote.lane":"Шугам (From → To)",
+        "quote.cargo":"Ачааны дэлгэрэнгүй",
+        "quote.copy":"Мессеж хуулах",
+        "quote.emailBtn":"Имэйл нээх",
+        "quote.tip":"Зөвлөгөө: Incoterm + бэлэн огноо + хүргэлтийн төрөл (порт/хаалга)-оо оруулаарай."
       }
-
-      function setTheme(theme){
-        localStorage.setItem("bs_theme", theme);
-        document.documentElement.setAttribute("data-theme", theme);
-        const btn = $("#theme-toggle");
-        btn.textContent = (theme === "dark") ? "☀️" : "🌙";
-      }
-
-      function initTabs(){
-        const tabs = $$(".tab");
-        tabs.forEach(btn=>{
-          btn.addEventListener("click", ()=>{
-            tabs.forEach(t=>t.classList.remove("active"));
-            $$(".panel").forEach(p=>p.classList.remove("active"));
-            btn.classList.add("active");
-            const id = btn.getAttribute("data-tab");
-            const panel = document.getElementById(id);
-            if(panel) panel.classList.add("active");
-          });
-        });
-      }
-
-      function chipGroup(rootId, noteId){
-        const root = document.getElementById(rootId);
-        if(!root) return;
-        root.addEventListener("click", (e)=>{
-          const t = e.target.closest(".covChip");
-          if(!t) return;
-          root.querySelectorAll(".covChip").forEach(c=>c.classList.remove("active"));
-          t.classList.add("active");
-          const key = t.getAttribute("data-note");
-          const lang = localStorage.getItem("bs_lang") || "en";
-          const target = document.getElementById(noteId);
-          if(target) target.textContent = notes[lang][key] || "";
-        });
-      }
-
-      function refreshCoverageNotes(lang){
-        const core = $("#coreChips .covChip.active");
-        const glob = $("#globalChips .covChip.active");
-        if(core) $("#coreNote").textContent = notes[lang][core.getAttribute("data-note")] || "";
-        if(glob) $("#globalNote").textContent = notes[lang][glob.getAttribute("data-note")] || "";
-      }
-
-      function initReveal(){
-        const targets = $$(".reveal");
-        const io = new IntersectionObserver((entries)=>{
-          entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add("in"); });
-        }, {threshold:0.14});
-        targets.forEach(t=>io.observe(t));
-      }
-
-      function initButtonMotion(){
-        $$(".btn").forEach(btn=>{
-          btn.addEventListener("pointermove", (e)=>{
-            const r = btn.getBoundingClientRect();
-            const x = ((e.clientX - r.left) / r.width) * 100;
-            const y = ((e.clientY - r.top) / r.height) * 100;
-            btn.style.setProperty("--rx", x + "%");
-            btn.style.setProperty("--ry", y + "%");
-          });
-        });
-      }
-
-      function initCardTilt(){
-        $$(".card").forEach(card=>{
-          card.addEventListener("pointermove",(e)=>{
-            const r = card.getBoundingClientRect();
-            const px = (e.clientX - r.left) / r.width;
-            const py = (e.clientY - r.top) / r.height;
-            const rx = (py - 0.5) * -6;
-            const ry = (px - 0.5) * 8;
-            card.style.transform = `translateY(-10px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-          });
-          card.addEventListener("pointerleave",()=>{ card.style.transform = ""; });
-        });
-      }
-
-      // Drawer
-      function initDrawer(){
-        const overlay = $("#drawerOverlay");
-        const drawer = $("#drawer");
-        const open1 = $("#openQuote");
-        const open2 = $("#openQuote2");
-        const close = $("#closeDrawer");
-
-        function open(){
-          overlay.classList.add("open");
-          drawer.classList.add("open");
-          overlay.setAttribute("aria-hidden","false");
-          drawer.setAttribute("aria-hidden","false");
-          document.body.style.overflow = "hidden";
-          setTimeout(()=>{ drawer.querySelector("input")?.focus(); }, 60);
-        }
-        function shut(){
-          overlay.classList.remove("open");
-          drawer.classList.remove("open");
-          overlay.setAttribute("aria-hidden","true");
-          drawer.setAttribute("aria-hidden","true");
-          document.body.style.overflow = "";
-        }
-
-        open1.addEventListener("click", open);
-        open2.addEventListener("click", open);
-        close.addEventListener("click", shut);
-        overlay.addEventListener("click", shut);
-        document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") shut(); });
-
-        const form = $("#quoteForm");
-        const wa = $("#sendWhatsApp");
-        const vb = $("#sendViber");
-
-        function buildMessage(){
-          const data = new FormData(form);
-          const msg =
-`Quote request — Baatar Shipping
-Name: ${data.get("name") || ""}
-Company: ${data.get("company") || ""}
-Route: ${data.get("route") || ""}
-Cargo: ${data.get("cargo") || ""}
-Weight/Volume: ${data.get("weight") || ""}
-Timeline: ${data.get("timeline") || ""}
-Notes: ${data.get("notes") || ""}`.trim();
-
-          return encodeURIComponent(msg);
-        }
-
-        function refreshLinks(){
-          const msg = buildMessage();
-          wa.href = `https://wa.me/97699887055?text=${msg}`;
-          vb.href = `viber://forward?text=${msg}`;
-        }
-
-        form.addEventListener("input", refreshLinks);
-        refreshLinks();
-
-        form.addEventListener("submit",(e)=>{
-          e.preventDefault();
-          refreshLinks();
-          window.open(wa.href, "_blank");
-        });
-      }
-
-      // Route builder
-      function renderCityLegend(lang){
-        const legend = $("#cityLegend");
-        legend.innerHTML = "";
-        cities.forEach(c=>{
-          const item = document.createElement("div");
-          item.className = "lg";
-          item.innerHTML = `<span class="sw n"></span><span>${lang==="mn"?c.mn:c.en}</span>`;
-          legend.appendChild(item);
-        });
-      }
-
-      function renderRouteChips(lang){
-        const wrap = $("#routeChips");
-        wrap.innerHTML = "";
-        cities.forEach(c=>{
-          const d = document.createElement("div");
-          d.className = "rbPill" + (lane.includes(c.id) ? " active":"");
-          d.textContent = (lang==="mn"?c.mn:c.en);
-          d.dataset.city = c.id;
-          wrap.appendChild(d);
-        });
-      }
-
-      function laneName(lang, ids){
-        const map = new Map(cities.map(c=>[c.id, (lang==="mn"?c.mn:c.en)]));
-        return ids.map(id=>map.get(id)||id).join(" → ");
-      }
-
-      function renderLaneText(lang){
-        $("#laneText").textContent = laneName(lang, lane);
-      }
-
-      function updateHeroLanePill(lang){
-        $("#heroLaneText").textContent = (lang==="mn" ? "Сонгосон чиглэл: " : "Selected lane: ") + laneName(lang, lane);
-      }
-
-      function initRouteBuilder(){
-        $("#routeChips").addEventListener("click",(e)=>{
-          const t = e.target.closest(".rbPill");
-          if(!t) return;
-          toggleCityInLane(t.dataset.city);
-        });
-
-        $("#rbClear").addEventListener("click",()=>{
-          lane = ["ub","beijing","tianjin"];
-          syncLane();
-        });
-
-        $("#rbShuffle").addEventListener("click",()=>{
-          const pool = cities.map(c=>c.id);
-          const n = 3 + Math.floor(Math.random()*3);
-          const picked = [];
-          while(picked.length < n){
-            const id = pool[Math.floor(Math.random()*pool.length)];
-            if(!picked.includes(id)) picked.push(id);
-          }
-          lane = picked;
-          syncLane();
-        });
-
-        $("#copyLaneBtn2").addEventListener("click", copyLane);
-        $("#copyLaneBtn").addEventListener("click", copyLane);
-
-        $("#setHeroLaneBtn").addEventListener("click", ()=>{
-          updateHeroLanePill(localStorage.getItem("bs_lang")||"en");
-          toast("Hero updated");
-        });
-
-        function copyLane(){
-          const lang = localStorage.getItem("bs_lang")||"en";
-          const txt = laneName(lang, lane);
-          navigator.clipboard?.writeText(txt).then(()=>toast(lang==="mn"?"Хуулав":"Copied")).catch(()=>toast("Copy failed"));
-        }
-      }
-
-      function syncLane(){
-        const lang = localStorage.getItem("bs_lang")||"en";
-        renderRouteChips(lang);
-        renderLaneText(lang);
-        updateHeroLanePill(lang);
-        globeSetRoute(lane);
-      }
-
-      function toggleCityInLane(id){
-        if(lane.includes(id)){
-          lane = lane.filter(x=>x!==id);
-          if(lane.length < 2) lane = ["ub","beijing","tianjin"];
-        }else{
-          lane = [...lane, id];
-          if(lane.length > 6) lane.shift();
-        }
-        syncLane();
-      }
-
-      // Toast
-      let toastTO;
-      function toast(msg){
-        let t = document.getElementById("toast");
-        if(!t){
-          t = document.createElement("div");
-          t.id = "toast";
-          t.style.position="fixed";
-          t.style.left="50%";
-          t.style.bottom="22px";
-          t.style.transform="translateX(-50%)";
-          t.style.padding="10px 12px";
-          t.style.borderRadius="14px";
-          t.style.border="1px solid rgba(255,255,255,.18)";
-          t.style.background="rgba(7,26,44,.85)";
-          t.style.color="#fff";
-          t.style.fontSize="12px";
-          t.style.boxShadow="0 18px 70px rgba(0,0,0,.35)";
-          t.style.backdropFilter="blur(10px)";
-          t.style.zIndex="999";
-          t.style.opacity="0";
-          t.style.transition="opacity .18s ease, transform .18s ease";
-          document.body.appendChild(t);
-        }
-        t.textContent = msg;
-        t.style.opacity="1";
-        t.style.transform="translateX(-50%) translateY(-4px)";
-        clearTimeout(toastTO);
-        toastTO = setTimeout(()=>{
-          t.style.opacity="0";
-          t.style.transform="translateX(-50%) translateY(0px)";
-        }, 1400);
-      }
-
-      // Incoterms render
-      function buildIncoterms(lang){
-        const mode = $("#incMode").value;
-        const grp = $("#incGroup").value;
-        const tbl = $("#incMatrix");
-
-        const cols = incCols.map(c=> (lang==="mn"?c.mn:c.en));
-        const header = `
-          <thead>
-            <tr>
-              <th style="min-width:120px;">${lang==="mn"?"Нэр":"Term"}</th>
-              ${cols.map(c=>`<th>${c}</th>`).join("")}
-            </tr>
-          </thead>
-        `;
-
-        const filtered = INC.filter(r=>{
-          if(mode==="sea" && !r.sea) return false;
-          if(grp!=="all" && r.group!==grp) return false;
-          return true;
-        });
-
-        const cell = (who)=>{
-          const cls = who==="seller"?"seller":who==="buyer"?"buyer":who==="split"?"split":"none";
-          const label = lang==="mn"
-            ? (who==="seller"?"Худалдагч":who==="buyer"?"Худалдан авагч":who==="split"?"Хуваагдана":"—")
-            : (who==="seller"?"Seller":who==="buyer"?"Buyer":who==="split"?"Split":"—");
-          return `<span class="cell ${cls}">${label}</span>`;
-        };
-
-        const body = `
-          <tbody>
-            ${filtered.map(r=>{
-              const note = (lang==="mn"?r.note_mn:r.note_en);
-              return `
-                <tr title="${escapeHtml(note)}">
-                  <td>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                      <div style="font-weight:950; font-size:12.5px; letter-spacing:.08em;">${r.term}</div>
-                      <span class="tag">Group ${r.group}</span>
-                      ${r.sea ? `<span class="tag">${lang==="mn"?"Далай":"Sea"}</span>` : `<span class="tag">${lang==="mn"?"Бүх":"All"}</span>`}
-                    </div>
-                  </td>
-                  ${incCols.map(c=>`<td>${cell(r.row[c.key])}</td>`).join("")}
-                </tr>
-              `;
-            }).join("")}
-          </tbody>
-        `;
-
-        tbl.innerHTML = header + body;
-      }
-
-      function escapeHtml(s){
-        return String(s).replace(/[&<>"']/g, (m)=>({
-          "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-        }[m]));
-      }
-
-      function initIncoterms(){
-        $("#incMode").addEventListener("change", ()=>buildIncoterms(localStorage.getItem("bs_lang")||"en"));
-        $("#incGroup").addEventListener("change", ()=>buildIncoterms(localStorage.getItem("bs_lang")||"en"));
-      }
-
-      // CBM
-      function initCBM(){
-        const unitEl = $("#cbmUnit");
-        const cartsEl = $("#cbmCartons");
-        const lEl = $("#cbmL"), wEl = $("#cbmW"), hEl = $("#cbmH");
-        const kgEl = $("#cbmKg");
-
-        const perVol = $("#perVol");
-        const totVol = $("#totVol");
-        const totCBM = $("#totCBM");
-        const totFT = $("#totFT");
-        const dens = $("#dens");
-
-        function num(v){ const n = parseFloat(v); return isFinite(n) ? n : 0; }
-
-        function calc(){
-          const unit = unitEl.value;
-          const cartons = Math.max(1, Math.round(num(cartsEl.value) || 1));
-          const L = num(lEl.value), W = num(wEl.value), H = num(hEl.value);
-          const kg = num(kgEl.value);
-
-          let l_m=0,w_m=0,h_m=0;
-          if(unit==="cm"){ l_m = L/100; w_m=W/100; h_m=H/100; }
-          else { l_m = L*0.0254; w_m=W*0.0254; h_m=H*0.0254; }
-
-          const per_m3 = l_m*w_m*h_m;
-          const tot_m3 = per_m3*cartons;
-          const ft3 = tot_m3 * 35.3146667;
-
-          perVol.textContent = per_m3>0 ? `${per_m3.toFixed(4)} m³` : "—";
-          totVol.textContent = tot_m3>0 ? `${tot_m3.toFixed(4)} m³` : "—";
-          totCBM.textContent = tot_m3>0 ? `${tot_m3.toFixed(4)}` : "—";
-          totFT.textContent = tot_m3>0 ? `${ft3.toFixed(2)}` : "—";
-
-          const density = (kg>0 && tot_m3>0) ? (kg/tot_m3) : 0;
-          dens.textContent = density>0 ? `${density.toFixed(1)}` : "—";
-        }
-
-        [unitEl,cartsEl,lEl,wEl,hEl,kgEl].forEach(el=>el.addEventListener("input", calc));
-        calc();
-
-        $("#cbmCopyBtn").addEventListener("click", ()=>{
-          calc();
-          const text =
-`CBM Calculator — Baatar Shipping
-Units: ${unitEl.value}
-Cartons: ${cartsEl.value}
-L×W×H: ${lEl.value}×${wEl.value}×${hEl.value}
-Per carton: ${perVol.textContent}
-Total m³: ${totVol.textContent}
-Total CBM: ${totCBM.textContent}
-Total ft³: ${totFT.textContent}
-Weight (kg): ${kgEl.value || "-"}
-Density: ${dens.textContent}`.trim();
-
-          navigator.clipboard?.writeText(text).then(()=>toast("Copied")).catch(()=>toast("Copy failed"));
-        });
-      }
-
-      // Globe (same as before, 2-axis drag + inertia + zoom + hover labels + click select + animated routes)
-      let globeApi = null;
-
-      function initGlobe(){
-        const canvas = $("#heroGlobe");
-        const tip = $("#globeTip");
-        const ctx = canvas.getContext("2d", { alpha:true });
-
-        const state = {
-          dpr: Math.max(1, Math.min(2, window.devicePixelRatio || 1)),
-          w: 0, h: 0,
-          yaw: -0.9,
-          pitch: 0.22,
-          vyaw: 0, vpitch: 0,
-          drag:false,
-          lx:0, ly:0,
-          zoom: 1.0,
-          auto: true,
-          hoverId: null,
-          selected: new Set(lane),
-          route: [...lane],
-          t: 0,
-          stars: []
-        };
-
-        function seedStars(){
-          state.stars = [];
-          const n = 80;
-          for(let i=0;i<n;i++){
-            state.stars.push({
-              x: Math.random(),
-              y: Math.random(),
-              r: 0.5 + Math.random()*1.6,
-              a: 0.18 + Math.random()*0.35
-            });
-          }
-        }
-        seedStars();
-
-        function resize(){
-          const r = canvas.getBoundingClientRect();
-          state.w = Math.max(320, r.width);
-          state.h = Math.max(220, r.height);
-          canvas.width = Math.floor(state.w * state.dpr);
-          canvas.height = Math.floor(state.h * state.dpr);
-          ctx.setTransform(state.dpr,0,0,state.dpr,0,0);
-        }
-
-        function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
-        function toRad(deg){ return deg*Math.PI/180; }
-
-        function pointFromLatLon(lat, lon){
-          const la = toRad(lat), lo = toRad(lon);
-          const x = Math.cos(la)*Math.cos(lo);
-          const y = Math.sin(la);
-          const z = Math.cos(la)*Math.sin(lo);
-          return {x,y,z};
-        }
-        function rotY(p, a){
-          const ca=Math.cos(a), sa=Math.sin(a);
-          return { x: p.x*ca + p.z*sa, y:p.y, z: -p.x*sa + p.z*ca };
-        }
-        function rotX(p, a){
-          const ca=Math.cos(a), sa=Math.sin(a);
-          return { x: p.x, y: p.y*ca - p.z*sa, z: p.y*sa + p.z*ca };
-        }
-        function project(p){
-          const f = 1.75 / state.zoom;
-          const z = p.z + 2.4;
-          const s = f / z;
-          return { x: p.x*s, y: p.y*s, z: p.z, s };
-        }
-
-        function getTheme(){ return localStorage.getItem("bs_theme") || "light"; }
-
-        function bg(){
-          const g = ctx.createRadialGradient(state.w*0.62, state.h*0.32, 10, state.w*0.5, state.h*0.55, Math.max(state.w,state.h)*0.7);
-          const dark = (getTheme()==="dark");
-          if(dark){
-            g.addColorStop(0, "rgba(255,255,255,0.06)");
-            g.addColorStop(0.6,"rgba(0,0,0,0.18)");
-            g.addColorStop(1, "rgba(0,0,0,0.26)");
-          }else{
-            g.addColorStop(0, "rgba(7,26,44,0.06)");
-            g.addColorStop(0.6,"rgba(7,26,44,0.03)");
-            g.addColorStop(1, "rgba(7,26,44,0.02)");
-          }
-          ctx.fillStyle = g;
-          ctx.fillRect(0,0,state.w,state.h);
-
-          ctx.save();
-          ctx.globalCompositeOperation = "screen";
-          for(const s of state.stars){
-            ctx.beginPath();
-            ctx.fillStyle = `rgba(255,255,255,${s.a})`;
-            ctx.arc(s.x*state.w, s.y*state.h, s.r, 0, Math.PI*2);
-            ctx.fill();
-          }
-          ctx.restore();
-        }
-
-        function drawSphere(cx, cy, R){
-          const dark = (getTheme()==="dark");
-
-          ctx.save();
-          ctx.globalCompositeOperation = "lighter";
-          const glow = ctx.createRadialGradient(cx, cy, R*0.20, cx, cy, R*1.15);
-          glow.addColorStop(0, dark ? "rgba(71,230,177,.10)" : "rgba(16,59,102,.10)");
-          glow.addColorStop(0.45, dark ? "rgba(255,79,216,.08)" : "rgba(71,230,177,.06)");
-          glow.addColorStop(1, "rgba(0,0,0,0)");
-          ctx.fillStyle = glow;
-          ctx.beginPath(); ctx.arc(cx, cy, R*1.12, 0, Math.PI*2); ctx.fill();
-          ctx.restore();
-
-          const grad = ctx.createRadialGradient(cx - R*0.25, cy - R*0.30, R*0.20, cx, cy, R);
-          if(dark){
-            grad.addColorStop(0, "rgba(255,255,255,0.10)");
-            grad.addColorStop(0.5,"rgba(255,255,255,0.06)");
-            grad.addColorStop(1, "rgba(255,255,255,0.02)");
-          }else{
-            grad.addColorStop(0, "rgba(255,255,255,0.95)");
-            grad.addColorStop(0.55,"rgba(245,248,255,0.90)");
-            grad.addColorStop(1, "rgba(235,242,255,0.82)");
-          }
-          ctx.fillStyle = grad;
-          ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.fill();
-
-          ctx.strokeStyle = dark ? "rgba(255,255,255,0.10)" : "rgba(7,26,44,0.10)";
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
-
-          ctx.save();
-          ctx.globalCompositeOperation = "screen";
-          ctx.fillStyle = dark ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.45)";
-          ctx.beginPath();
-          ctx.ellipse(cx - R*0.22, cy - R*0.28, R*0.46, R*0.30, -0.2, 0, Math.PI*2);
-          ctx.fill();
-          ctx.restore();
-        }
-
-        function drawGraticules(cx, cy, R){
-          const dark = (getTheme()==="dark");
-          ctx.save();
-          ctx.translate(cx, cy);
-          ctx.strokeStyle = dark ? "rgba(255,255,255,0.10)" : "rgba(7,26,44,0.09)";
-          ctx.lineWidth = 1;
-
-          for(let lat=-60; lat<=60; lat+=30){
-            const pts = [];
-            for(let lon=-180; lon<=180; lon+=6){
-              let p = pointFromLatLon(lat, lon);
-              p = rotY(p, state.yaw);
-              p = rotX(p, state.pitch);
-              if(p.z < -0.28) continue;
-              const pr = project(p);
-              pts.push(pr);
-            }
-            if(pts.length>2){
-              ctx.beginPath();
-              ctx.moveTo(pts[0].x*R, pts[0].y*R);
-              for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i].x*R, pts[i].y*R);
-              ctx.stroke();
-            }
-          }
-
-          for(let lon=-150; lon<=150; lon+=30){
-            const pts = [];
-            for(let lat=-90; lat<=90; lat+=4){
-              let p = pointFromLatLon(lat, lon);
-              p = rotY(p, state.yaw);
-              p = rotX(p, state.pitch);
-              if(p.z < -0.28) continue;
-              const pr = project(p);
-              pts.push(pr);
-            }
-            if(pts.length>2){
-              ctx.beginPath();
-              ctx.moveTo(pts[0].x*R, pts[0].y*R);
-              for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i].x*R, pts[i].y*R);
-              ctx.stroke();
-            }
-          }
-
-          ctx.restore();
-        }
-
-        function cityScreenPositions(cx, cy, R){
-          const out = [];
-          for(const c of cities){
-            let p = pointFromLatLon(c.lat, c.lon);
-            p = rotY(p, state.yaw);
-            p = rotX(p, state.pitch);
-            const behind = p.z < -0.20;
-            const pr = project(p);
-            out.push({
-              ...c,
-              sx: cx + pr.x*R,
-              sy: cy + pr.y*R,
-              z: p.z,
-              vis: !behind,
-              scale: pr.s
-            });
-          }
-          out.sort((a,b)=>a.z-b.z);
-          return out;
-        }
-
-        function drawCities(cx, cy, R){
-          const dark = (getTheme()==="dark");
-          const lang = localStorage.getItem("bs_lang")||"en";
-          const list = cityScreenPositions(cx, cy, R);
-
-          for(const c of list){
-            if(!c.vis) continue;
-            const isSel = state.selected.has(c.id);
-            const r = 4.2 + (isSel?2.0:0) * clamp(c.scale*1.2, 0.6, 1.3);
-
-            ctx.save();
-            ctx.globalCompositeOperation = "lighter";
-            ctx.beginPath();
-            ctx.fillStyle = isSel ? "rgba(200,155,60,0.30)" : "rgba(74,111,165,0.18)";
-            ctx.arc(c.sx, c.sy, r*2.2, 0, Math.PI*2);
-            ctx.fill();
-            ctx.restore();
-
-            ctx.beginPath();
-            ctx.fillStyle = isSel ? "rgba(200,155,60,0.95)" : (dark ? "rgba(255,255,255,0.72)" : "rgba(7,26,44,0.62)");
-            ctx.arc(c.sx, c.sy, r, 0, Math.PI*2);
-            ctx.fill();
-
-            ctx.strokeStyle = isSel ? "rgba(255,79,216,0.40)" : "rgba(255,255,255,0.18)";
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(c.sx, c.sy, r*1.9, 0, Math.PI*2);
-            ctx.stroke();
-
-            if(isSel){
-              ctx.font = "600 11px ui-sans-serif, system-ui";
-              ctx.fillStyle = dark ? "rgba(255,255,255,0.78)" : "rgba(7,26,44,0.78)";
-              const name = (lang==="mn"?c.mn:c.en);
-              ctx.fillText(name, c.sx + 10, c.sy - 10);
-            }
-          }
-        }
-
-        function greatCirclePoints(a, b, steps=60){
-          const A = pointFromLatLon(a.lat, a.lon);
-          const B = pointFromLatLon(b.lat, b.lon);
-          let dot = A.x*B.x + A.y*B.y + A.z*B.z;
-          dot = clamp(dot, -1, 1);
-          const omega = Math.acos(dot);
-          const sinOmega = Math.sin(omega) || 1e-6;
-          const pts = [];
-          for(let i=0;i<=steps;i++){
-            const t = i/steps;
-            const s1 = Math.sin((1-t)*omega)/sinOmega;
-            const s2 = Math.sin(t*omega)/sinOmega;
-            pts.push({ x:A.x*s1 + B.x*s2, y:A.y*s1 + B.y*s2, z:A.z*s1 + B.z*s2 });
-          }
-          return pts;
-        }
-
-        function drawRoute(cx, cy, R){
-          if(!state.route || state.route.length < 2) return;
-          const dark = (getTheme()==="dark");
-          const map = new Map(cities.map(c=>[c.id,c]));
-          const ids = state.route.filter(id=>map.has(id));
-          if(ids.length < 2) return;
-
-          const dash = 10, gap = 10;
-          const phase = (state.t*70) % (dash+gap);
-
-          for(let i=0;i<ids.length-1;i++){
-            const A = map.get(ids[i]);
-            const B = map.get(ids[i+1]);
-            const pts = greatCirclePoints(A, B, 70);
-
-            const sp = [];
-            for(const pp of pts){
-              let p = rotY(pp, state.yaw);
-              p = rotX(p, state.pitch);
-              if(p.z < -0.26) { sp.push(null); continue; }
-              const pr = project(p);
-              sp.push({ x: cx + pr.x*R, y: cy + pr.y*R });
-            }
-
-            const grad = ctx.createLinearGradient(cx, cy, cx+R, cy-R);
-            grad.addColorStop(0, "rgba(255,79,216,0.70)");
-            grad.addColorStop(0.5, "rgba(200,155,60,0.72)");
-            grad.addColorStop(1, "rgba(71,230,177,0.65)");
-
-            ctx.lineWidth = 2.4;
-            ctx.strokeStyle = grad;
-            ctx.setLineDash([dash, gap]);
-            ctx.lineDashOffset = -phase;
-
-            ctx.beginPath();
-            let started=false;
-            for(const p of sp){
-              if(!p){ started=false; continue; }
-              if(!started){ ctx.moveTo(p.x, p.y); started=true; }
-              else ctx.lineTo(p.x, p.y);
-            }
-            ctx.stroke();
-
-            ctx.setLineDash([]);
-            ctx.globalCompositeOperation = "lighter";
-            ctx.lineWidth = 7;
-            ctx.strokeStyle = dark ? "rgba(200,155,60,0.10)" : "rgba(7,26,44,0.06)";
-            ctx.beginPath();
-            started=false;
-            for(const p of sp){
-              if(!p){ started=false; continue; }
-              if(!started){ ctx.moveTo(p.x, p.y); started=true; }
-              else ctx.lineTo(p.x, p.y);
-            }
-            ctx.stroke();
-            ctx.globalCompositeOperation = "source-over";
-          }
-        }
-
-        function pickCity(mx, my){
-          const cx = state.w*0.5;
-          const cy = state.h*0.56;
-          const R = Math.min(state.w, state.h) * 0.38;
-          const list = cityScreenPositions(cx, cy, R).filter(c=>c.vis);
-
-          let best=null, bd=9999;
-          for(const c of list){
-            const d = Math.hypot(mx - c.sx, my - c.sy);
-            if(d < 12 && d < bd){ best=c; bd=d; }
-          }
-          return best;
-        }
-
-        function draw(){
-          ctx.clearRect(0,0,state.w,state.h);
-          bg();
-
-          const cx = state.w*0.5;
-          const cy = state.h*0.56;
-          const R = Math.min(state.w, state.h) * 0.38;
-
-          if(state.auto && !state.drag){ state.vyaw += 0.0008; }
-
-          if(!state.drag){
-            state.yaw += state.vyaw;
-            state.pitch += state.vpitch;
-            state.vyaw *= 0.94;
-            state.vpitch *= 0.92;
-          }
-
-          state.pitch = clamp(state.pitch, -1.05, 1.05);
-
-          drawSphere(cx, cy, R);
-          drawGraticules(cx, cy, R);
-          drawRoute(cx, cy, R);
-          drawCities(cx, cy, R);
-
-          state.t += 0.016;
-          requestAnimationFrame(draw);
-        }
-
-        canvas.addEventListener("pointerdown",(e)=>{
-          canvas.setPointerCapture(e.pointerId);
-          state.drag = true;
-          state.lx = e.offsetX;
-          state.ly = e.offsetY;
-        });
-
-        canvas.addEventListener("pointermove",(e)=>{
-          const mx = e.offsetX, my = e.offsetY;
-
-          const hit = pickCity(mx, my);
-          if(hit){
-            state.hoverId = hit.id;
-            const lang = localStorage.getItem("bs_lang")||"en";
-            tip.style.left = mx + "px";
-            tip.style.top = my + "px";
-            tip.classList.add("show");
-            tip.innerHTML = `<b>${lang==="mn"?hit.mn:hit.en}</b><div class="subt">${lang==="mn"?"Дарж нэм/хас":"Click to add/remove"}</div>`;
-          }else{
-            state.hoverId = null;
-            tip.classList.remove("show");
-          }
-
-          if(!state.drag) return;
-          const dx = mx - state.lx;
-          const dy = my - state.ly;
-          state.lx = mx;
-          state.ly = my;
-
-          state.yaw += dx * 0.006;
-          state.pitch += dy * 0.004;
-
-          state.vyaw = dx * 0.0009;
-          state.vpitch = dy * 0.0007;
-        });
-
-        function endDrag(){ state.drag = false; }
-        canvas.addEventListener("pointerup", endDrag);
-        canvas.addEventListener("pointercancel", endDrag);
-        canvas.addEventListener("pointerleave", ()=>{ tip.classList.remove("show"); });
-
-        canvas.addEventListener("click",(e)=>{
-          const hit = pickCity(e.offsetX, e.offsetY);
-          if(hit){
-            toggleCityInLane(hit.id);
-            state.selected = new Set(lane);
-            return;
-          }
-          state.auto = !state.auto;
-          toast(state.auto ? "Auto-rotate on" : "Auto-rotate off");
-        });
-
-        canvas.addEventListener("wheel",(e)=>{
-          e.preventDefault();
-          const delta = Math.sign(e.deltaY);
-          state.zoom = clamp(state.zoom + delta*0.06, 0.85, 1.35);
-        }, { passive:false });
-
-        globeApi = {
-          setRoute(ids){ state.route = [...ids]; state.selected = new Set(ids); }
-        };
-
-        window.globeSetRoute = (ids)=>globeApi?.setRoute(ids);
-
-        const ro = new ResizeObserver(()=>resize());
-        ro.observe(canvas);
-        resize();
-        requestAnimationFrame(draw);
-
-        globeApi.setRoute(lane);
-      }
-
-      function globeSetRoute(ids){
-        window.globeSetRoute?.(ids);
-      }
-
-      // Boot
-      $("#lang-en").addEventListener("click", ()=>setLang("en"));
-      $("#lang-mn").addEventListener("click", ()=>setLang("mn"));
-      $("#theme-toggle").addEventListener("click", ()=>{
-        const cur = localStorage.getItem("bs_theme") || "light";
-        setTheme(cur === "dark" ? "light" : "dark");
+    };
+
+    let lang = localStorage.getItem("bs_lang") || "en";
+    const langBtn = document.getElementById("langBtn");
+    const langLabel = document.getElementById("langLabel");
+
+    function applyI18n(){
+      document.documentElement.lang = lang === "mn" ? "mn" : "en";
+      langLabel.textContent = lang.toUpperCase();
+
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        const value = I18N[lang][key];
+        if (typeof value === "string") el.textContent = value;
       });
 
-      initTabs();
-      chipGroup("coreChips","coreNote");
-      chipGroup("globalChips","globalNote");
-      initReveal();
-      initButtonMotion();
-      initCardTilt();
-      initDrawer();
-      initRouteBuilder();
-      initIncoterms();
-      initCBM();
-      initGlobe();
+      // placeholders
+      const ph = {
+        qName: lang==="mn" ? "Таны нэр" : "Your name",
+        qCompany: lang==="mn" ? "Компанийн нэр" : "Company name",
+        qEmail: lang==="mn" ? "name@company.com" : "name@company.com",
+        qLane: lang==="mn" ? "ж., Улаанбаатар → Берлин" : "e.g., Ulaanbaatar → Berlin",
+        qCargo: lang==="mn" ? "Бараа, хайрцаг/паллет, жин, хэмжээ, Incoterm, огноо..." : "Commodity, cartons/pallets, weight, dimensions, Incoterm, target dates...",
+        len: "0", wid:"0", hei:"0", ctn:"1"
+      };
+      Object.entries(ph).forEach(([id,val])=>{
+        const el = document.getElementById(id);
+        if (el && el.tagName === "INPUT") el.placeholder = val;
+        if (el && el.tagName === "TEXTAREA") el.placeholder = val;
+      });
 
-      setTheme(localStorage.getItem("bs_theme") || "light");
-      const lang = localStorage.getItem("bs_lang") || "en";
-      setLang(lang);
-      refreshCoverageNotes(lang);
-      updateHeroLanePill(lang);
-    })();
+      // update lane pill label (keeps consistent)
+      updateLanePill();
+      renderIncoterms(); // update any text fragments derived from lang
+    }
+
+    langBtn.addEventListener("click", ()=>{
+      lang = (lang === "en") ? "mn" : "en";
+      localStorage.setItem("bs_lang", lang);
+      applyI18n();
+      showToast(lang === "mn" ? "Хэл солигдлоо" : "Language switched");
+    });
+
+    // -----------------------
+    // Theme toggle
+    // -----------------------
+    const themeBtn = document.getElementById("themeBtn");
+    const themeIcon = document.getElementById("themeIcon");
+    let theme = localStorage.getItem("bs_theme") || "dark";
+    function applyTheme(){
+      document.documentElement.setAttribute("data-theme", theme);
+      themeIcon.textContent = theme === "dark" ? "🌙" : "☀️";
+    }
+    themeBtn.addEventListener("click", ()=>{
+      theme = (theme === "dark") ? "light" : "dark";
+      localStorage.setItem("bs_theme", theme);
+      applyTheme();
+      showToast(theme === "dark" ? (lang==="mn" ? "Dark горим" : "Dark mode") : (lang==="mn" ? "Light горим" : "Light mode"));
+    });
+
+    // -----------------------
+    // Mobile nav
+    // -----------------------
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileNav = document.getElementById("mobileNav");
+    let mobileOpen = false;
+    menuBtn.addEventListener("click", ()=>{
+      mobileOpen = !mobileOpen;
+      mobileNav.hidden = !mobileOpen;
+    });
+    mobileNav.querySelectorAll("a").forEach(a=>{
+      a.addEventListener("click", ()=>{ mobileOpen=false; mobileNav.hidden=true; });
+    });
+
+    // -----------------------
+    // Toast
+    // -----------------------
+    const toast = document.getElementById("toast");
+    let toastTimer = null;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>toast.classList.remove("show"), 1600);
+    }
+
+    // -----------------------
+    // Quote drawer
+    // -----------------------
+    const drawer = document.getElementById("drawer");
+    const overlay = document.getElementById("drawerOverlay");
+    const openBtns = [document.getElementById("openQuote"), document.getElementById("openQuote2"), document.getElementById("openQuote3")].filter(Boolean);
+    const closeBtn = document.getElementById("closeQuote");
+
+    function openDrawer(){
+      overlay.style.display="block";
+      drawer.style.transform="translateX(0)";
+      overlay.setAttribute("aria-hidden","false");
+      drawer.setAttribute("aria-hidden","false");
+    }
+    function closeDrawer(){
+      drawer.style.transform="translateX(105%)";
+      overlay.setAttribute("aria-hidden","true");
+      drawer.setAttribute("aria-hidden","true");
+      setTimeout(()=>{ overlay.style.display="none"; }, 220);
+    }
+    openBtns.forEach(b=>b.addEventListener("click", openDrawer));
+    closeBtn.addEventListener("click", closeDrawer);
+    overlay.addEventListener("click", closeDrawer);
+    window.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeDrawer(); });
+
+    function buildQuoteMessage(){
+      const name = (document.getElementById("qName").value || "").trim();
+      const company = (document.getElementById("qCompany").value || "").trim();
+      const email = (document.getElementById("qEmail").value || "").trim();
+      const lane = (document.getElementById("qLane").value || "").trim();
+      const cargo = (document.getElementById("qCargo").value || "").trim();
+
+      if(lang==="mn"){
+        return [
+          "Сайн байна уу,",
+          "",
+          "Үнийн санал хүсэж байна.",
+          name ? `Нэр: ${name}` : null,
+          company ? `Компани: ${company}` : null,
+          email ? `Имэйл: ${email}` : null,
+          lane ? `Шугам: ${lane}` : null,
+          "",
+          "Ачааны мэдээлэл:",
+          cargo || "(дэлгэрэнгүй мэдээлэл оруулаагүй)",
+          "",
+          "Баярлалаа."
+        ].filter(Boolean).join("\n");
+      }
+      return [
+        "Hello,",
+        "",
+        "I’d like to request a shipping quote.",
+        name ? `Name: ${name}` : null,
+        company ? `Company: ${company}` : null,
+        email ? `Email: ${email}` : null,
+        lane ? `Lane: ${lane}` : null,
+        "",
+        "Cargo details:",
+        cargo || "(no details provided)",
+        "",
+        "Thank you."
+      ].filter(Boolean).join("\n");
+    }
+
+    document.getElementById("copyQuote").addEventListener("click", async ()=>{
+      const msg = buildQuoteMessage();
+      try{
+        await navigator.clipboard.writeText(msg);
+        showToast(lang==="mn" ? "Хууллаа" : "Copied");
+      }catch{
+        showToast(lang==="mn" ? "Хуулах боломжгүй" : "Copy failed");
+      }
+    });
+
+    document.getElementById("emailQuote").addEventListener("click", ()=>{
+      const msg = buildQuoteMessage();
+      const subject = encodeURIComponent(lang==="mn" ? "Baatar Shipping — Үнийн санал" : "Baatar Shipping — Quote request");
+      const body = encodeURIComponent(msg);
+      // Replace with your real business email anytime (no <img> required).
+      const to = "info@baatarshipping.com";
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+
+    // -----------------------
+    // Incoterms matrix data + render
+    // -----------------------
+    const INCOTERMS = [
+      { term:"EXW", group:"E", export:"buyer", main:"buyer", ins:"buyer", import:"buyer", delivery:"buyer", risk_en:"At seller’s premises (pickup)", risk_mn:"Худалдагчийн байранд (авах үед)" },
+      { term:"FCA", group:"F", export:"seller", main:"buyer", ins:"buyer", import:"buyer", delivery:"buyer", risk_en:"When handed to carrier (named place)", risk_mn:"Тээвэрлэгчид хүлээлгэн өгөх үед" },
+      { term:"FAS", group:"F", export:"seller", main:"buyer", ins:"buyer", import:"buyer", delivery:"buyer", risk_en:"Alongside vessel at port", risk_mn:"Боомт дээр хөлөг онгоцны хажууд" },
+      { term:"FOB", group:"F", export:"seller", main:"buyer", ins:"buyer", import:"buyer", delivery:"buyer", risk_en:"On board vessel at port", risk_mn:"Боомт дээр хөлөг дээр ачсан үед" },
+      { term:"CFR", group:"C", export:"seller", main:"seller", ins:"buyer", import:"buyer", delivery:"buyer", risk_en:"On board (port of shipment)", risk_mn:"Ачих боомт дээр хөлөг дээр ачсан үед" },
+      { term:"CIF", group:"C", export:"seller", main:"seller", ins:"seller", import:"buyer", delivery:"buyer", risk_en:"On board (port of shipment)", risk_mn:"Ачих боомт дээр хөлөг дээр ачсан үед" },
+      { term:"CPT", group:"C", export:"seller", main:"seller", ins:"buyer", import:"buyer", delivery:"buyer", risk_en:"Handed to first carrier", risk_mn:"Анхны тээвэрлэгчид хүлээлгэн өгөх үед" },
+      { term:"CIP", group:"C", export:"seller", main:"seller", ins:"seller", import:"buyer", delivery:"buyer", risk_en:"Handed to first carrier", risk_mn:"Анхны тээвэрлэгчид хүлээлгэн өгөх үед" },
+      { term:"DAP", group:"D", export:"seller", main:"seller", ins:"buyer", import:"buyer", delivery:"seller", risk_en:"At disposal at destination (before unloading)", risk_mn:"Очих газарт буулгалтаас өмнө" },
+      { term:"DPU", group:"D", export:"seller", main:"seller", ins:"buyer", import:"buyer", delivery:"seller", risk_en:"After unloading at destination", risk_mn:"Очих газарт буулгасны дараа" },
+      { term:"DDP", group:"D", export:"seller", main:"seller", ins:"buyer", import:"seller", delivery:"seller", risk_en:"At destination, duties paid", risk_mn:"Очих газарт, татвар төлөгдсөн" },
+    ];
+
+    let incFilter = "ALL";
+    const matrixBody = document.getElementById("matrixBody");
+
+    function respPill(who){
+      const label = (lang==="mn")
+        ? (who==="seller" ? "Худалдагч" : "Худалдан авагч")
+        : (who==="seller" ? "Seller" : "Buyer");
+      return `
+        <span class="resp" data-who="${who}">
+          <span class="who" aria-hidden="true"></span>
+          <span>${label}</span>
+        </span>
+      `;
+    }
+
+    function renderIncoterms(){
+      const rows = INCOTERMS
+        .filter(x => incFilter==="ALL" ? true : x.group===incFilter)
+        .map(x => {
+          const risk = (lang==="mn") ? x.risk_mn : x.risk_en;
+          return `
+            <tr data-group="${x.group}">
+              <td><span class="term">${x.term}</span></td>
+              <td><span class="tagGroup">${x.group}</span></td>
+              <td>${respPill(x.export)}</td>
+              <td>${respPill(x.main)}</td>
+              <td>${respPill(x.ins)}</td>
+              <td>${respPill(x.import)}</td>
+              <td>${respPill(x.delivery)}</td>
+              <td style="color:var(--muted);">${risk}</td>
+            </tr>
+          `;
+        }).join("");
+      matrixBody.innerHTML = rows || `<tr><td colspan="8" style="padding:16px; color:var(--muted);">${lang==="mn" ? "Үр дүн олдсонгүй." : "No results."}</td></tr>`;
+    }
+
+    document.querySelectorAll(".segBtn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        document.querySelectorAll(".segBtn").forEach(b=>b.dataset.active="false");
+        btn.dataset.active="true";
+        incFilter = btn.dataset.filter;
+        renderIncoterms();
+      });
+    });
+
+    // -----------------------
+    // CBM calculator
+    // -----------------------
+    let unit = "cm";
+    const unitPill = document.getElementById("unitPill");
+    const unitBtns = document.querySelectorAll(".unitBtn");
+
+    function setUnit(next){
+      unit = next;
+      unitBtns.forEach(b=>b.dataset.active = (b.dataset.unit === unit) ? "true" : "false");
+      unitPill.textContent = unit;
+      showToast(unit === "cm" ? (lang==="mn" ? "cm нэгж" : "cm units") : (lang==="mn" ? "in нэгж" : "in units"));
+    }
+    unitBtns.forEach(b=>b.addEventListener("click", ()=>setUnit(b.dataset.unit)));
+
+    function num(v){
+      const n = Number(String(v).replace(/,/g,".").trim());
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    function calcCBM(){
+      const L = num(document.getElementById("len").value);
+      const W = num(document.getElementById("wid").value);
+      const H = num(document.getElementById("hei").value);
+      const C = Math.max(1, Math.floor(num(document.getElementById("ctn").value) || 1));
+
+      if(!L || !W || !H){
+        showToast(lang==="mn" ? "Хэмжээг бүрэн оруулна уу" : "Please enter all dimensions");
+        return;
+      }
+
+      // Convert to meters
+      let lm = L, wm = W, hm = H;
+      if(unit === "cm"){
+        lm = L / 100; wm = W / 100; hm = H / 100;
+      }else{
+        // inches to meters
+        lm = L * 0.0254; wm = W * 0.0254; hm = H * 0.0254;
+      }
+
+      const eachM3 = lm * wm * hm;
+      const totalM3 = eachM3 * C;
+
+      // Display as "CBM" (which equals m^3)
+      const fmt = (x) => (Math.round(x * 1000) / 1000).toFixed(3);
+
+      document.getElementById("cbmEach").textContent = fmt(eachM3);
+      document.getElementById("cbmTotal").textContent = fmt(totalM3);
+      document.getElementById("m3Total").textContent = fmt(totalM3);
+
+      showToast(lang==="mn" ? "Тооцооллоо" : "Calculated");
+    }
+
+    document.getElementById("calcBtn").addEventListener("click", calcCBM);
+    ["len","wid","hei","ctn"].forEach(id=>{
+      document.getElementById(id).addEventListener("keydown", (e)=>{ if(e.key==="Enter") calcCBM(); });
+    });
+
+    // -----------------------
+    // Globe + Route builder (Three.js, single-file via CDN modules)
+    // -----------------------
+    import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
+    import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+
+    const globeCanvas = document.getElementById("globe");
+    const stage = document.getElementById("globeStage");
+    const labelsEl = document.getElementById("labels");
+
+    // City list (labels only; no visible dots by default)
+    const CITIES = [
+      { key:"UB",   name_en:"Ulaanbaatar", name_mn:"Улаанбаатар", lat:47.8864, lon:106.9057 },
+      { key:"PEK",  name_en:"Beijing",     name_mn:"Бээжин",     lat:39.9042, lon:116.4074 },
+      { key:"TSN",  name_en:"Tianjin",     name_mn:"Тяньжин",    lat:39.0842, lon:117.2000 },
+      { key:"IST",  name_en:"Istanbul",    name_mn:"Истанбул",   lat:41.0082, lon:28.9784 },
+      { key:"NYC",  name_en:"New York",    name_mn:"Нью-Йорк",   lat:40.7128, lon:-74.0060 },
+      { key:"BER",  name_en:"Berlin",      name_mn:"Берлин",     lat:52.5200, lon:13.4050 },
+      { key:"SEL",  name_en:"Seoul",       name_mn:"Сөүл",       lat:37.5665, lon:126.9780 },
+      { key:"CPT",  name_en:"Cape Town",   name_mn:"Кейптаун",   lat:-33.9249, lon:18.4241 },
+      { key:"MEL",  name_en:"Melbourne",   name_mn:"Мельбурн",   lat:-37.8136, lon:144.9631 },
+    ];
+
+    // chips use same list but present labels in current language
+    const fromChips = document.getElementById("fromChips");
+    const toChips = document.getElementById("toChips");
+    let fromCity = null;
+    let toCity = null;
+
+    function cityLabel(c){
+      return (lang==="mn") ? c.name_mn : c.name_en;
+    }
+
+    function renderChips(){
+      const mk = (c, kind)=> {
+        const active = (kind==="from" ? fromCity?.key : toCity?.key) === c.key;
+        return `<button class="chip" type="button" data-kind="${kind}" data-key="${c.key}" data-active="${active}">${cityLabel(c)}</button>`;
+      };
+      fromChips.innerHTML = CITIES.map(c=>mk(c,"from")).join("");
+      toChips.innerHTML = CITIES.map(c=>mk(c,"to")).join("");
+      [...fromChips.querySelectorAll(".chip"), ...toChips.querySelectorAll(".chip")].forEach(b=>{
+        b.addEventListener("click", ()=>{
+          const kind = b.dataset.kind;
+          const key = b.dataset.key;
+          const city = CITIES.find(x=>x.key===key);
+          if(kind==="from") fromCity = city;
+          else toCity = city;
+          renderChips();
+          updateRoute();
+          updateLanePill();
+        });
+      });
+    }
+
+    function updateLanePill(){
+      const pillWrap = document.getElementById("lanePill");
+      const laneText = document.getElementById("laneText");
+      if(fromCity && toCity){
+        pillWrap.style.display = "block";
+        const prefix = lang==="mn" ? "Сонгосон шугам:" : "Selected lane:";
+        laneText.textContent = `${prefix} ${cityLabel(fromCity)} → ${cityLabel(toCity)}`;
+      }else{
+        pillWrap.style.display = "none";
+      }
+    }
+
+    // Build label DOM nodes
+    const labelNodes = new Map();
+    function buildLabels(){
+      labelsEl.innerHTML = "";
+      labelNodes.clear();
+      for(const c of CITIES){
+        const div = document.createElement("div");
+        div.className = "label";
+        div.textContent = cityLabel(c);
+        labelsEl.appendChild(div);
+        labelNodes.set(c.key, div);
+      }
+    }
+
+    // Renderer / Scene
+    const renderer = new THREE.WebGLRenderer({ canvas: globeCanvas, antialias:true, alpha:true });
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.set(0, 0, 3.0);
+
+    // Soft lights (premium)
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    keyLight.position.set(3, 2, 4);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.45);
+    fillLight.position.set(-3, -1, 2);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.PointLight(0x88ccff, 0.8, 12);
+    rimLight.position.set(-2, 1.6, -3);
+    scene.add(rimLight);
+
+    // Stars (subtle)
+    const starGeo = new THREE.BufferGeometry();
+    const starCount = 700;
+    const starPos = new Float32Array(starCount * 3);
+    for(let i=0;i<starCount;i++){
+      const r = 18 + Math.random()*18;
+      const u = Math.random()*2-1;
+      const t = Math.random()*Math.PI*2;
+      const s = Math.sqrt(1-u*u);
+      starPos[i*3+0] = r * s * Math.cos(t);
+      starPos[i*3+1] = r * u;
+      starPos[i*3+2] = r * s * Math.sin(t);
+    }
+    starGeo.setAttribute("position", new THREE.BufferAttribute(starPos, 3));
+    const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.02, transparent:true, opacity:0.35 });
+    const stars = new THREE.Points(starGeo, starMat);
+    scene.add(stars);
+
+    // Procedural globe texture (single-file friendly)
+    function makeGlobeTexture(){
+      const size = 1024;
+      const c = document.createElement("canvas");
+      c.width = size; c.height = size;
+      const ctx = c.getContext("2d");
+
+      // ocean gradient
+      const g = ctx.createLinearGradient(0,0,size,size);
+      g.addColorStop(0, "#081234");
+      g.addColorStop(0.5, "#06102a");
+      g.addColorStop(1, "#0a1b3f");
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,size,size);
+
+      // subtle noise
+      const img = ctx.getImageData(0,0,size,size);
+      for(let i=0;i<img.data.length;i+=4){
+        const n = (Math.random()-0.5)*18;
+        img.data[i+0] = Math.min(255, Math.max(0, img.data[i+0] + n));
+        img.data[i+1] = Math.min(255, Math.max(0, img.data[i+1] + n));
+        img.data[i+2] = Math.min(255, Math.max(0, img.data[i+2] + n));
+      }
+      ctx.putImageData(img,0,0);
+
+      // lat/long lines (premium grid)
+      ctx.globalAlpha = 0.18;
+      ctx.strokeStyle = "#7aa8ff";
+      ctx.lineWidth = 1;
+      for(let y=0; y<=18; y++){
+        const yy = (y/18)*size;
+        ctx.beginPath();
+        ctx.moveTo(0, yy); ctx.lineTo(size, yy);
+        ctx.stroke();
+      }
+      for(let x=0; x<=36; x++){
+        const xx = (x/36)*size;
+        ctx.beginPath();
+        ctx.moveTo(xx, 0); ctx.lineTo(xx, size);
+        ctx.stroke();
+      }
+
+      // stylized land blobs (not accurate, but adds depth without external assets)
+      ctx.globalAlpha = 0.45;
+      ctx.fillStyle = "#1e4a3c";
+      function blob(cx, cy, r, s){
+        ctx.beginPath();
+        for(let a=0; a<Math.PI*2; a+=Math.PI/18){
+          const rr = r * (0.75 + Math.random()*0.55);
+          const x = cx + Math.cos(a)*rr;
+          const y = cy + Math.sin(a)*rr*s;
+          if(a===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        ctx.closePath();
+        ctx.fill();
+      }
+      blob(size*0.68, size*0.40, size*0.14, 0.85); // Eurasia-ish
+      blob(size*0.58, size*0.58, size*0.09, 0.95); // SEA-ish
+      blob(size*0.30, size*0.44, size*0.10, 0.90); // NA-ish
+      blob(size*0.35, size*0.68, size*0.08, 1.05); // SA-ish
+      blob(size*0.55, size*0.76, size*0.09, 0.85); // Africa-ish
+      blob(size*0.86, size*0.72, size*0.06, 0.90); // Aus-ish
+
+      // glow accents
+      ctx.globalAlpha = 0.22;
+      const g2 = ctx.createRadialGradient(size*0.25, size*0.25, 0, size*0.25, size*0.25, size*0.5);
+      g2.addColorStop(0, "#56e0ff");
+      g2.addColorStop(1, "transparent");
+      ctx.fillStyle = g2;
+      ctx.fillRect(0,0,size,size);
+
+      const tex = new THREE.CanvasTexture(c);
+      tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    const globeRadius = 1.0;
+    const globeGeo = new THREE.SphereGeometry(globeRadius, 96, 96);
+    const globeMat = new THREE.MeshStandardMaterial({
+      map: makeGlobeTexture(),
+      metalness: 0.08,
+      roughness: 0.85,
+      emissive: new THREE.Color(0x0b1430),
+      emissiveIntensity: 0.22
+    });
+    const globe = new THREE.Mesh(globeGeo, globeMat);
+    scene.add(globe);
+
+    // atmosphere
+    const atmoGeo = new THREE.SphereGeometry(globeRadius*1.02, 96, 96);
+    const atmoMat = new THREE.MeshBasicMaterial({
+      color: 0x56e0ff,
+      transparent:true,
+      opacity:0.08
+    });
+    const atmo = new THREE.Mesh(atmoGeo, atmoMat);
+    scene.add(atmo);
+
+    // Controls: 2-axis drag rotation + zoom; no pan
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enablePan = false;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.rotateSpeed = 0.55;
+    controls.minDistance = 2.1;
+    controls.maxDistance = 4.2;
+    controls.target.set(0,0,0);
+
+    // Auto-rotate toggle
+    let autoRotate = true;
+    const autoBtn = document.getElementById("autoRotateBtn");
+    autoBtn.addEventListener("click", ()=>{
+      autoRotate = !autoRotate;
+      autoBtn.setAttribute("aria-pressed", String(autoRotate));
+      autoBtn.style.borderColor = autoRotate ? "rgba(86,224,255,.40)" : "rgba(255,255,255,.12)";
+      showToast(autoRotate ? (lang==="mn" ? "Auto эргэлт: асаалттай" : "Auto-rotate: on") : (lang==="mn" ? "Auto эргэлт: унтраалттай" : "Auto-rotate: off"));
+    });
+
+    // Convert lat/lon to vector on sphere
+    function latLonToVec3(lat, lon, r=globeRadius){
+      const phi = (90 - lat) * (Math.PI/180);
+      const theta = (lon + 180) * (Math.PI/180);
+      const x = -r * Math.sin(phi) * Math.cos(theta);
+      const z =  r * Math.sin(phi) * Math.sin(theta);
+      const y =  r * Math.cos(phi);
+      return new THREE.Vector3(x,y,z);
+    }
+
+    // Labels projection each frame (only visible on hover via CSS)
+    const tmpV = new THREE.Vector3();
+    function updateLabels(){
+      const rect = stage.getBoundingClientRect();
+      for(const c of CITIES){
+        const el = labelNodes.get(c.key);
+        if(!el) continue;
+
+        // update label text on language switch
+        el.textContent = cityLabel(c);
+
+        const v = latLonToVec3(c.lat, c.lon, globeRadius * 1.01);
+        tmpV.copy(v).applyMatrix4(globe.matrixWorld);
+        tmpV.project(camera);
+
+        const x = (tmpV.x * 0.5 + 0.5) * rect.width;
+        const y = (-tmpV.y * 0.5 + 0.5) * rect.height;
+
+        // hide labels on back side
+        const camDir = camera.position.clone().normalize();
+        const dot = v.clone().normalize().dot(camDir);
+        const visible = dot > -0.05;
+
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.display = visible ? "block" : "none";
+      }
+    }
+
+    // Route line (animated dashed arc)
+    let routeLine = null;
+    let dashOffset = 0;
+
+    function makeArcPoints(aVec, bVec, steps=80){
+      // Great-circle-ish: create elevated midpoint for a premium arc look
+      const a = aVec.clone().normalize();
+      const b = bVec.clone().normalize();
+      const angle = a.angleTo(b);
+
+      const points = [];
+      for(let i=0;i<=steps;i++){
+        const t = i/steps;
+
+        // Slerp on unit sphere
+        const sinTotal = Math.sin(angle) || 1e-6;
+        const s1 = Math.sin((1-t)*angle)/sinTotal;
+        const s2 = Math.sin(t*angle)/sinTotal;
+        const p = a.clone().multiplyScalar(s1).add(b.clone().multiplyScalar(s2)).normalize();
+
+        // Elevation curve
+        const lift = 1 + 0.22 * Math.sin(Math.PI * t) * Math.min(1.0, angle/Math.PI);
+        p.multiplyScalar(globeRadius * lift);
+
+        points.push(p);
+      }
+      return points;
+    }
+
+    function setRoute(from, to){
+      if(routeLine){
+        scene.remove(routeLine);
+        routeLine.geometry.dispose();
+        routeLine.material.dispose();
+        routeLine = null;
+      }
+      if(!from || !to) return;
+
+      const a = latLonToVec3(from.lat, from.lon, globeRadius);
+      const b = latLonToVec3(to.lat, to.lon, globeRadius);
+      const pts = makeArcPoints(a, b, 96);
+      const geo = new THREE.BufferGeometry().setFromPoints(pts);
+
+      const mat = new THREE.LineDashedMaterial({
+        color: 0x56e0ff,
+        linewidth: 1,
+        scale: 1,
+        dashSize: 0.14,
+        gapSize: 0.10,
+        transparent:true,
+        opacity: 0.92
+      });
+
+      const line = new THREE.Line(geo, mat);
+      line.computeLineDistances();
+      routeLine = line;
+      scene.add(routeLine);
+      dashOffset = 0;
+    }
+
+    function updateRoute(){
+      if(fromCity && toCity){
+        setRoute(fromCity, toCity);
+        // also prefill quote lane
+        const qLane = document.getElementById("qLane");
+        if(qLane && !qLane.value.trim()){
+          qLane.value = `${cityLabel(fromCity)} → ${cityLabel(toCity)}`;
+        }
+      }else{
+        setRoute(null, null);
+      }
+    }
+
+    // Resize handling
+    function resize(){
+      const rect = stage.getBoundingClientRect();
+      const w = Math.max(10, rect.width);
+      const h = Math.max(10, rect.height);
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener("resize", resize);
+
+    // Animate
+    let last = performance.now();
+    function tick(now){
+      const dt = Math.min(0.05, (now-last)/1000);
+      last = now;
+
+      // auto rotate (subtle Apple-like motion)
+      if(autoRotate && !controls.dragging){
+        globe.rotation.y += dt * 0.24;
+        atmo.rotation.y += dt * 0.18;
+      }
+
+      // keep atmosphere aligned
+      atmo.rotation.x = globe.rotation.x;
+      atmo.rotation.z = globe.rotation.z;
+
+      // dashed animation
+      if(routeLine){
+        dashOffset -= dt * 0.75;
+        routeLine.material.dashOffset = dashOffset;
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+      updateLabels();
+      requestAnimationFrame(tick);
+    }
+
+    // Improve wheel zoom smoothness on trackpads
+    stage.addEventListener("wheel", (e)=>{ /* OrbitControls handles it */ }, { passive:true });
+
+    // -----------------------
+    // Init
+    // -----------------------
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    applyTheme();
+    renderIncoterms();
+    renderChips();
+    buildLabels();
+    applyI18n();
+
+    // initial sizing after layout
+    const ro = new ResizeObserver(()=>resize());
+    ro.observe(stage);
+    resize();
+    requestAnimationFrame(tick);
   </script>
 </body>
 </html>
