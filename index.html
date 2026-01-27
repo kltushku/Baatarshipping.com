@@ -1,943 +1,296 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark light" />
-  <title>Baatar Shipping — Coming Feb 15, 2026</title>
-  <meta name="description" content="Baatar Shipping — Website coming February 15, 2026. Play Snake while you wait." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Baatar Shipping — Coming Soon</title>
+<meta name="color-scheme" content="dark" />
 
-  <style>
-    :root{
-      --bg0:#050915;
-      --bg1:#060c1b;
-      --card:#0a1226cc;
-      --stroke:rgba(255,255,255,.12);
-      --text:#eaf0ff;
-      --muted:#a8b6d8;
-      --muted2:#7f91be;
-      --brand:#7aa8ff;
-      --brand2:#56e0ff;
-      --accent:#b06bff;
-      --ok:#57f1b4;
-      --danger:#ff6b8a;
-      --shadow: 0 24px 70px rgba(0,0,0,.45);
-      --shadow2: 0 12px 28px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 26px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg0:#f6f8ff;
-        --bg1:#ffffff;
-        --card:#ffffffcc;
-        --stroke:rgba(10,18,38,.10);
-        --text:#0b1224;
-        --muted:#3c4b73;
-        --muted2:#516195;
-        --shadow: 0 24px 70px rgba(10,18,38,.12);
-        --shadow2: 0 12px 28px rgba(10,18,38,.10);
-      }
-    }
-
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family:var(--sans);
-      color:var(--text);
-      background:
-        radial-gradient(1200px 900px at 20% -10%, rgba(86,224,255,.18), transparent 55%),
-        radial-gradient(900px 700px at 100% 10%, rgba(176,107,255,.18), transparent 52%),
-        radial-gradient(900px 900px at 40% 110%, rgba(122,168,255,.12), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      min-height:100dvh;
-      overflow-x:hidden;
-    }
-
-    .grain{
-      pointer-events:none;
-      position:fixed; inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
-      mix-blend-mode:overlay;
-      opacity:.16;
-      transform: translateZ(0);
-    }
-
-    .wrap{ width:min(1120px, calc(100% - 44px)); margin:0 auto; }
-    header{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: linear-gradient(180deg, rgba(5,9,21,.70), rgba(5,9,21,.35));
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    @media (prefers-color-scheme: light){
-      header{
-        background: linear-gradient(180deg, rgba(246,248,255,.92), rgba(246,248,255,.72));
-        border-bottom:1px solid rgba(10,18,38,.08);
-      }
-    }
-
-    .nav{
-      height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      text-decoration:none; color:var(--text);
-      user-select:none;
-    }
-    .brandMark{
-      width:12px; height:12px; border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, var(--brand2), var(--brand));
-      box-shadow: 0 0 0 6px rgba(86,224,255,.08), 0 0 0 1px rgba(255,255,255,.12);
-    }
-    .brandText{ line-height:1.05; }
-    .brandText strong{ display:block; font-size:14px; letter-spacing:.06em; text-transform:uppercase; }
-    .brandText span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
-
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background: rgba(0,0,0,.14);
-      color: var(--muted);
-      font-size:12px;
-      font-family:var(--mono);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
-      white-space:nowrap;
-    }
-    @media (prefers-color-scheme: light){
-      .pill{ background: rgba(10,18,38,.03); }
-    }
-
-    main{ padding: 22px 0 70px; }
-    .grid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:16px;
-      align-items:start;
-    }
-
-    .card{
-      border-radius: var(--radius2);
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      position:relative;
-    }
-    @media (prefers-color-scheme: light){
-      .card{ background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.68)); }
-    }
-
-    .glow{
-      position:absolute; inset:-40%;
-      background:
-        radial-gradient(560px 420px at 18% 22%, rgba(86,224,255,.22), transparent 55%),
-        radial-gradient(560px 420px at 82% 30%, rgba(176,107,255,.18), transparent 58%),
-        radial-gradient(560px 520px at 55% 90%, rgba(122,168,255,.12), transparent 60%);
-      opacity:.75;
-      pointer-events:none;
-      filter: blur(2px);
-    }
-
-    .inner{ padding:22px; position:relative; z-index:1; }
-    h1{
-      margin:8px 0 10px;
-      font-size: clamp(34px, 4.2vw, 56px);
-      line-height:1.03;
-      letter-spacing:-.02em;
-    }
-    .sub{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.6;
-      max-width: 62ch;
-    }
-
-    .meta{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 14px;
-      align-items:center;
-    }
-
-    .btn{
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      color:var(--text);
-      border-radius:999px;
-      padding:10px 12px;
-      font-size:13px;
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease, opacity .18s ease;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
-      user-select:none;
-    }
-    @media (prefers-color-scheme: light){
-      .btn{
-        background: linear-gradient(180deg, rgba(10,18,38,.03), rgba(10,18,38,.01));
-        box-shadow: 0 1px 0 rgba(255,255,255,.7) inset;
-      }
-    }
-    .btn:hover{ transform: translateY(-1px); border-color: rgba(86,224,255,.32); }
-    .btn:active{ transform: translateY(0); opacity:.9; }
-    .btnPrimary{
-      border-color: rgba(86,224,255,.35);
-      background: radial-gradient(120% 120% at 20% 10%, rgba(86,224,255,.20), rgba(122,168,255,.12)) ,
-                  linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
-      box-shadow: var(--shadow2);
-    }
-
-    .divider{
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
-      margin: 18px 0;
-    }
-    @media (prefers-color-scheme: light){
-      .divider{ background: linear-gradient(90deg, transparent, rgba(10,18,38,.12), transparent); }
-    }
-
-    .countdown{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:10px;
-      margin-top: 16px;
-    }
-    .tile{
-      border-radius: 18px;
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
-      padding: 12px;
-      min-height: 82px;
-    }
-    .tile strong{
-      display:block;
-      font-family: var(--mono);
-      font-size: 22px;
-      letter-spacing:.02em;
-    }
-    .tile span{
-      display:block;
-      margin-top:6px;
-      color: var(--muted2);
-      font-size: 12px;
-    }
-
-    /* Game */
-    .gameHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom: 10px;
-    }
-    .gameHead h2{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:-.01em;
-    }
-    .gameHead p{
-      margin:0;
-      color:var(--muted);
-      font-size: 12px;
-      line-height:1.45;
-      max-width: 58ch;
-    }
-
-    .gameStage{
-      border-radius: 20px;
-      border:1px solid var(--stroke);
-      background:
-        radial-gradient(800px 450px at 30% 20%, rgba(86,224,255,.10), transparent 60%),
-        radial-gradient(700px 520px at 90% 40%, rgba(176,107,255,.10), transparent 58%),
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.28));
-      overflow:hidden;
-      box-shadow: 0 18px 38px rgba(0,0,0,.35) inset;
-      position:relative;
-    }
-    @media (prefers-color-scheme: light){
-      .gameStage{
-        background:
-          radial-gradient(800px 450px at 30% 20%, rgba(86,224,255,.12), transparent 60%),
-          radial-gradient(700px 520px at 90% 40%, rgba(176,107,255,.10), transparent 58%),
-          linear-gradient(180deg, rgba(10,18,38,.04), rgba(10,18,38,.06));
-        box-shadow: 0 18px 38px rgba(10,18,38,.08) inset;
-      }
-    }
-
-    canvas#snake{
-      width:100%;
-      height:auto;
-      display:block;
-      aspect-ratio: 1 / 1;
-      image-rendering: pixelated;
-    }
-
-    .hud{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      margin-top: 12px;
-    }
-    .hudLeft{
-      display:flex; flex-wrap:wrap;
-      gap:10px; align-items:center;
-    }
-    .kbd{
-      font-family:var(--mono);
-      font-size:12px;
-      color:var(--muted);
-      border:1px solid var(--stroke);
-      border-radius:999px;
-      padding:8px 10px;
-      background: rgba(0,0,0,.12);
-    }
-    @media (prefers-color-scheme: light){ .kbd{ background: rgba(10,18,38,.03); } }
-
-    /* Leaderboard */
-    .lb{
-      margin-top: 14px;
-      border-radius: 20px;
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
-      padding: 14px;
-    }
-    .lbTop{
-      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      margin-bottom: 10px;
-    }
-    .lbTop strong{ font-size: 13px; letter-spacing:.06em; text-transform:uppercase; color: var(--muted); }
-    .lbList{
-      display:grid;
-      gap:10px;
-    }
-    .row{
-      display:grid;
-      grid-template-columns: 26px 1fr 60px;
-      gap:10px;
-      align-items:center;
-    }
-    .rank{
-      font-family:var(--mono);
-      color:var(--muted2);
-      font-size:12px;
-      text-align:right;
-    }
-    .barWrap{
-      height: 12px;
-      border-radius: 999px;
-      border: 1px solid var(--stroke);
-      background: rgba(0,0,0,.12);
-      overflow:hidden;
-      position:relative;
-    }
-    @media (prefers-color-scheme: light){ .barWrap{ background: rgba(10,18,38,.03); } }
-    .bar{
-      height:100%;
-      width: 0%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(86,224,255,.95), rgba(176,107,255,.85));
-      box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
-      transition: width .35s ease;
-    }
-    .score{
-      font-family:var(--mono);
-      font-size:12px;
-      color: var(--text);
-      text-align:right;
-    }
-    .mutedSmall{
-      color: var(--muted);
-      font-size: 12px;
-      line-height:1.45;
-    }
-
-    footer{
-      margin-top: 18px;
-      padding: 18px 0 26px;
-      color: var(--muted2);
-      font-size: 12px;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-    @media (prefers-color-scheme: light){
-      footer{ border-top:1px solid rgba(10,18,38,.08); }
-    }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-    @media (max-width: 520px){
-      .countdown{ grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; animation:none !important; }
-    }
-  </style>
+<style>
+:root{
+  --bg:#050915;
+  --card:#0b1430;
+  --stroke:#24335f;
+  --text:#eaf0ff;
+  --muted:#9fb0da;
+  --brand:#56e0ff;
+  --accent:#b06bff;
+  --radius:22px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:var(--sans);
+  background:
+    radial-gradient(900px 600px at 20% -10%, rgba(86,224,255,.18), transparent 60%),
+    radial-gradient(900px 600px at 100% 10%, rgba(176,107,255,.18), transparent 60%),
+    linear-gradient(180deg, #050915, #060c1b);
+  color:var(--text);
+}
+.wrap{max-width:1100px;margin:auto;padding:28px}
+header{
+  position:sticky;top:0;z-index:10;
+  backdrop-filter:blur(16px);
+  background:rgba(5,9,21,.7);
+  border-bottom:1px solid var(--stroke);
+}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  height:72px;
+}
+.brand{
+  display:flex;gap:12px;align-items:center;
+}
+.brandDot{
+  width:12px;height:12px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, var(--brand), #7aa8ff);
+  box-shadow:0 0 0 6px rgba(86,224,255,.15);
+}
+.brand strong{
+  letter-spacing:.08em;text-transform:uppercase;font-size:14px;
+}
+.hero{
+  padding:60px 0 30px;
+}
+.hero h1{
+  font-size:clamp(34px,5vw,56px);
+  margin:0 0 10px;
+}
+.hero p{
+  color:var(--muted);
+  max-width:620px;
+  line-height:1.6;
+}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px solid var(--stroke);
+  border-radius:var(--radius);
+  padding:22px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+}
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
+button{
+  background:radial-gradient(120% 120% at 20% 10%, rgba(86,224,255,.25), rgba(122,168,255,.12));
+  border:1px solid rgba(86,224,255,.4);
+  color:var(--text);
+  border-radius:999px;
+  padding:10px 14px;
+  cursor:pointer;
+}
+button.secondary{
+  background:rgba(255,255,255,.04);
+  border-color:var(--stroke);
+}
+.pill{
+  display:inline-flex;gap:8px;align-items:center;
+  border:1px solid var(--stroke);
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:12px;
+  color:var(--muted);
+}
+canvas{
+  width:100%;
+  aspect-ratio:1/1;
+  background:#020613;
+  border-radius:18px;
+  border:1px solid var(--stroke);
+}
+.lbRow{
+  display:grid;
+  grid-template-columns:28px 1fr 60px;
+  gap:10px;
+  align-items:center;
+}
+.bar{
+  height:10px;
+  background:linear-gradient(90deg, var(--brand), var(--accent));
+  border-radius:999px;
+}
+footer{
+  margin-top:40px;
+  border-top:1px solid var(--stroke);
+  padding:20px 0;
+  color:var(--muted);
+  font-size:12px;
+}
+</style>
 </head>
 
 <body>
-  <div class="grain" aria-hidden="true"></div>
 
-  <header>
-    <div class="wrap">
-      <div class="nav">
-        <a class="brand" href="#" aria-label="Baatar Shipping">
-          <span class="brandMark" aria-hidden="true"></span>
-          <span class="brandText">
-            <strong>Baatar Shipping</strong>
-            <span>Website coming — Feb 15, 2026</span>
-          </span>
-        </a>
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="brandDot"></div>
+      <strong>Baatar Shipping</strong>
+    </div>
+    <div class="pill">Launching Feb 15, 2026</div>
+  </div>
+</header>
 
-        <span class="pill" id="statusPill">Loading countdown…</span>
+<main class="wrap">
+  <section class="hero">
+    <h1>Shipping, made easy.</h1>
+    <p>
+      Our website is launching soon.  
+      While you wait, play Snake and compete on the global leaderboard.
+    </p>
+  </section>
+
+  <section class="grid">
+    <!-- GAME -->
+    <div class="card">
+      <canvas id="game" width="480" height="480"></canvas>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+        <button id="start">Start / Restart</button>
+        <button id="pause" class="secondary">Pause</button>
+        <span class="pill">Score: <b id="score">0</b></span>
       </div>
     </div>
-  </header>
 
-  <main>
-    <div class="wrap">
-      <div class="grid">
-
-        <!-- Left: Coming soon + contact -->
-        <section class="card" aria-label="Coming soon">
-          <div class="glow" aria-hidden="true"></div>
-          <div class="inner">
-            <div class="pill">Baatar Shipping LLC • Logistics & Shipping</div>
-            <h1>We’re launching soon.</h1>
-            <p class="sub">
-              Our new website goes live on <strong>February 15, 2026</strong>.
-              While you wait, play a quick Snake game and try to make the leaderboard.
-            </p>
-
-            <div class="countdown" aria-label="Countdown to launch">
-              <div class="tile"><strong id="d">—</strong><span>Days</span></div>
-              <div class="tile"><strong id="h">—</strong><span>Hours</span></div>
-              <div class="tile"><strong id="m">—</strong><span>Minutes</span></div>
-              <div class="tile"><strong id="s">—</strong><span>Seconds</span></div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="meta" aria-label="Contact details">
-              <a class="btn btnPrimary" href="tel:+97699100514" aria-label="Call Baatar Shipping">📞 +976 9910-0514</a>
-              <a class="btn" href="https://www.linkedin.com/company/baatar-shipping-llc/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn: Baatar Shipping LLC">
-                💼 LinkedIn: Baatar Shipping LLC
-              </a>
-              <button class="btn" id="copyContact" type="button" aria-label="Copy contact info">📋 Copy contact</button>
-            </div>
-
-            <p class="mutedSmall" style="margin-top:12px;">
-              Tip: on desktop use <span class="kbd">Arrow Keys</span>, on mobile swipe anywhere on the game area.
-            </p>
-          </div>
-        </section>
-
-        <!-- Right: Snake + leaderboard -->
-        <section class="card" aria-label="Snake game">
-          <div class="glow" aria-hidden="true"></div>
-          <div class="inner">
-            <div class="gameHead">
-              <div>
-                <h2>Snake</h2>
-                <p>Simple, fast, and addictive. Score increases with every food.</p>
-              </div>
-              <span class="pill">Highscores saved locally</span>
-            </div>
-
-            <div class="gameStage" id="gameStage" aria-label="Snake game stage">
-              <canvas id="snake" width="480" height="480" aria-label="Snake canvas"></canvas>
-            </div>
-
-            <div class="hud" aria-label="Game controls">
-              <div class="hudLeft">
-                <span class="pill">Score: <span id="score">0</span></span>
-                <span class="pill">Best: <span id="best">0</span></span>
-                <span class="kbd">Arrows / WASD</span>
-              </div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <button class="btn btnPrimary" id="startBtn" type="button">Start / Restart</button>
-                <button class="btn" id="pauseBtn" type="button" aria-pressed="false">Pause</button>
-                <button class="btn" id="resetLbBtn" type="button">Reset leaderboard</button>
-              </div>
-            </div>
-
-            <div class="lb" aria-label="Leaderboard">
-              <div class="lbTop">
-                <strong>Leaderboard (Top 10)</strong>
-                <span class="pill" id="lbHint">Finish a game to submit</span>
-              </div>
-              <div class="lbList" id="lbList"></div>
-            </div>
-          </div>
-        </section>
-
+    <!-- LEADERBOARD -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <strong style="letter-spacing:.08em;text-transform:uppercase;font-size:13px;color:var(--muted)">
+          Leaderboard
+        </strong>
+        <button id="refresh" class="secondary">Refresh</button>
       </div>
-
-      <footer>
-        <div class="wrap" style="width:100%; padding:0;">
-          <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-            <span>© <span id="year"></span> Baatar Shipping</span>
-            <span>Built for GitHub Pages • Single-file</span>
-          </div>
-        </div>
-      </footer>
-
+      <div id="leaderboard" style="display:grid;gap:10px"></div>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">
+        Scores are shared globally.
+      </p>
     </div>
-  </main>
+  </section>
+</main>
 
-  <script>
-    // ---------------------------
-    // Coming Soon Countdown
-    // ---------------------------
-    const LAUNCH_LOCAL = new Date(2026, 1, 15, 0, 0, 0); // Feb is month 1 (0-based)
-    const els = {
-      d: document.getElementById("d"),
-      h: document.getElementById("h"),
-      m: document.getElementById("m"),
-      s: document.getElementById("s"),
-      pill: document.getElementById("statusPill"),
-    };
+<footer class="wrap">
+  © <span id="year"></span> Baatar Shipping · +976 9910-0514 · LinkedIn: Baatar Shipping LLC
+</footer>
 
-    function pad2(n){ return String(n).padStart(2,"0"); }
+<!-- FIREBASE + GAME -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+import {
+  getFirestore, collection, addDoc, query, orderBy, limit, getDocs, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
-    function tickCountdown(){
-      const now = new Date();
-      const diff = LAUNCH_LOCAL - now;
+/* 🔥 PASTE YOUR FIREBASE CONFIG HERE 🔥 */
+const firebaseConfig = {
+  apiKey: "PASTE_HERE",
+  authDomain: "PASTE_HERE",
+  projectId: "PASTE_HERE",
+  storageBucket: "PASTE_HERE",
+  messagingSenderId: "PASTE_HERE",
+  appId: "PASTE_HERE"
+};
 
-      if(diff <= 0){
-        els.d.textContent = "0";
-        els.h.textContent = "00";
-        els.m.textContent = "00";
-        els.s.textContent = "00";
-        els.pill.textContent = "We are live!";
-        return;
-      }
-      const totalSec = Math.floor(diff / 1000);
-      const days = Math.floor(totalSec / 86400);
-      const hours = Math.floor((totalSec % 86400) / 3600);
-      const mins = Math.floor((totalSec % 3600) / 60);
-      const secs = totalSec % 60;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-      els.d.textContent = String(days);
-      els.h.textContent = pad2(hours);
-      els.m.textContent = pad2(mins);
-      els.s.textContent = pad2(secs);
-      els.pill.textContent = `Launch in ${days}d ${pad2(hours)}:${pad2(mins)}:${pad2(secs)}`;
-    }
-    tickCountdown();
-    setInterval(tickCountdown, 1000);
+/* ---------- LEADERBOARD ---------- */
+const lbEl = document.getElementById("leaderboard");
 
-    // Copy contact info
-    document.getElementById("copyContact").addEventListener("click", async ()=>{
-      const text = "Baatar Shipping — Coming Feb 15, 2026\nPhone: +976 9910-0514\nLinkedIn: Baatar Shipping LLC";
-      try{
-        await navigator.clipboard.writeText(text);
-        const pill = document.getElementById("statusPill");
-        const old = pill.textContent;
-        pill.textContent = "Copied contact ✓";
-        setTimeout(()=> pill.textContent = old, 1300);
-      }catch{
-        alert(text);
-      }
-    });
+async function loadLB(){
+  const q = query(collection(db,"snake_scores"), orderBy("score","desc"), limit(10));
+  const snap = await getDocs(q);
+  const rows = [];
+  snap.forEach(d=>rows.push(d.data()));
+  renderLB(rows);
+}
 
-    // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
+function renderLB(rows){
+  if(!rows.length){
+    lbEl.innerHTML = "<div class='pill'>No scores yet</div>";
+    return;
+  }
+  const max = rows[0].score || 1;
+  lbEl.innerHTML = rows.map((r,i)=>`
+    <div class="lbRow">
+      <div>#${i+1}</div>
+      <div><div class="bar" style="width:${(r.score/max)*100}%"></div></div>
+      <div>${r.name} · ${r.score}</div>
+    </div>
+  `).join("");
+}
 
-    // ---------------------------
-    // Snake + Leaderboard
-    // ---------------------------
-    const canvas = document.getElementById("snake");
-    const ctx = canvas.getContext("2d");
+/* ---------- SNAKE GAME ---------- */
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+const grid = 20;
+let snake, dir, food, score, loop, paused=false;
 
-    // High DPI for crispness
-    function fitCanvas(){
-      const stage = document.getElementById("gameStage");
-      const size = Math.floor(stage.clientWidth);
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
-      canvas.style.width = size + "px";
-      canvas.style.height = size + "px";
-      canvas.width = Math.floor(size * dpr);
-      canvas.height = Math.floor(size * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      draw(); // redraw after resize
-    }
-    window.addEventListener("resize", fitCanvas);
+function reset(){
+  snake=[{x:10,y:10}];
+  dir={x:1,y:0};
+  food={x:5,y:5};
+  score=0;
+  document.getElementById("score").textContent=0;
+}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const c=canvas.width/grid;
+  ctx.fillStyle="#56e0ff";
+  snake.forEach(s=>ctx.fillRect(s.x*c,s.y*c,c-2,c-2));
+  ctx.fillStyle="#ff6b8a";
+  ctx.fillRect(food.x*c,food.y*c,c-2,c-2);
+}
+function step(){
+  if(paused) return;
+  const h={...snake[0]};
+  h.x+=dir.x; h.y+=dir.y;
+  if(h.x<0||h.y<0||h.x>=grid||h.y>=grid||snake.some(s=>s.x===h.x&&s.y===h.y)){
+    end();
+    return;
+  }
+  snake.unshift(h);
+  if(h.x===food.x&&h.y===food.y){
+    score++;
+    document.getElementById("score").textContent=score;
+    food={x:Math.random()*grid|0,y:Math.random()*grid|0};
+  }else snake.pop();
+  draw();
+}
+function start(){
+  clearInterval(loop);
+  reset();
+  draw();
+  loop=setInterval(step,120);
+}
+async function end(){
+  clearInterval(loop);
+  const name=prompt("Name:","Player")||"Player";
+  await addDoc(collection(db,"snake_scores"),{
+    name:name.slice(0,12),
+    score,
+    created:serverTimestamp()
+  });
+  loadLB();
+}
 
-    // Game settings
-    const GRID = 20; // 20x20
-    let cell = 24;   // computed from stage size on draw
-    let running = false;
-    let paused = false;
-    let score = 0;
-    let best = 0;
+document.getElementById("start").onclick=start;
+document.getElementById("pause").onclick=()=>paused=!paused;
+document.getElementById("refresh").onclick=loadLB;
 
-    // Snake state
-    let snake = [];
-    let dir = {x: 1, y: 0};     // current direction
-    let nextDir = {x: 1, y: 0}; // queued direction
-    let food = {x: 10, y: 10};
-    let loopHandle = null;
-    let speedMs = 110;
+window.addEventListener("keydown",e=>{
+  if(e.key==="ArrowUp")dir={x:0,y:-1};
+  if(e.key==="ArrowDown")dir={x:0,y:1};
+  if(e.key==="ArrowLeft")dir={x:-1,y:0};
+  if(e.key==="ArrowRight")dir={x:1,y:0};
+});
 
-    // Leaderboard stored locally
-    const LB_KEY = "bs_snake_leaderboard_v1";
-    function loadLB(){
-      try{
-        const raw = localStorage.getItem(LB_KEY);
-        const arr = raw ? JSON.parse(raw) : [];
-        if(Array.isArray(arr)) return arr;
-      }catch{}
-      return [];
-    }
-    function saveLB(arr){
-      localStorage.setItem(LB_KEY, JSON.stringify(arr));
-    }
-    function getBestFromLB(){
-      const lb = loadLB();
-      return lb.length ? lb[0].score : 0;
-    }
+document.getElementById("year").textContent=new Date().getFullYear();
+loadLB();
+</script>
 
-    const scoreEl = document.getElementById("score");
-    const bestEl = document.getElementById("best");
-    const lbList = document.getElementById("lbList");
-    const lbHint = document.getElementById("lbHint");
-
-    function randCell(){
-      return Math.floor(Math.random() * GRID);
-    }
-    function same(a,b){ return a.x===b.x && a.y===b.y; }
-
-    function placeFood(){
-      let tries = 0;
-      do{
-        food = {x: randCell(), y: randCell()};
-        tries++;
-        if(tries > 200) break;
-      }while(snake.some(p => same(p, food)));
-    }
-
-    function resetGame(){
-      score = 0;
-      speedMs = 110;
-      snake = [{x: 8, y: 10},{x: 7, y: 10},{x: 6, y: 10}];
-      dir = {x: 1, y: 0};
-      nextDir = {x: 1, y: 0};
-      placeFood();
-      scoreEl.textContent = "0";
-      best = Math.max(best, getBestFromLB());
-      bestEl.textContent = String(best);
-      lbHint.textContent = "Finish a game to submit";
-      draw();
-    }
-
-    function submitScore(finalScore){
-      if(finalScore <= 0) return;
-
-      const nameDefault = "Player";
-      let name = prompt("Name for leaderboard (max 12):", nameDefault);
-      if(name === null) return; // cancelled
-      name = String(name).trim() || nameDefault;
-      name = name.slice(0, 12);
-
-      const entry = { name, score: finalScore, ts: Date.now() };
-      const lb = loadLB();
-      lb.push(entry);
-      lb.sort((a,b)=> b.score - a.score || a.ts - b.ts);
-      const top = lb.slice(0, 10);
-      saveLB(top);
-      renderLB();
-      best = getBestFromLB();
-      bestEl.textContent = String(best);
-    }
-
-    function renderLB(){
-      const lb = loadLB();
-      const max = lb.length ? lb[0].score : 1;
-
-      if(!lb.length){
-        lbList.innerHTML = `
-          <div class="mutedSmall">
-            No scores yet. Press <strong>Start</strong> and try to set the first record.
-          </div>
-        `;
-        return;
-      }
-
-      lbList.innerHTML = lb.map((e, i)=>{
-        const pct = Math.max(6, Math.round((e.score / max) * 100)); // minimum visible bar
-        return `
-          <div class="row">
-            <div class="rank">#${i+1}</div>
-            <div class="barWrap" aria-label="Score bar">
-              <div class="bar" style="width:${pct}%"></div>
-            </div>
-            <div class="score">${e.name} · ${e.score}</div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function draw(){
-      // Compute cell size based on displayed canvas size
-      const size = Math.floor(document.getElementById("gameStage").clientWidth);
-      cell = Math.floor(size / GRID);
-
-      // Clear
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-
-      // Background subtle grid
-      const w = GRID * cell;
-      const h = GRID * cell;
-
-      // Center grid if rounding causes slight mismatch
-      const offX = Math.floor((size - w) / 2);
-      const offY = Math.floor((size - h) / 2);
-
-      // Soft background
-      ctx.save();
-      ctx.translate(offX, offY);
-
-      // grid lines
-      ctx.globalAlpha = 0.35;
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(255,255,255,.08)";
-      for(let i=0;i<=GRID;i++){
-        ctx.beginPath();
-        ctx.moveTo(i*cell, 0);
-        ctx.lineTo(i*cell, h);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(0, i*cell);
-        ctx.lineTo(w, i*cell);
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 1;
-
-      // Food
-      ctx.fillStyle = "rgba(255,107,138,.95)";
-      ctx.shadowColor = "rgba(255,107,138,.35)";
-      ctx.shadowBlur = 16;
-      ctx.beginPath();
-      ctx.roundRect(food.x*cell+3, food.y*cell+3, cell-6, cell-6, Math.max(8, cell*0.3));
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
-      // Snake
-      for(let i=0;i<snake.length;i++){
-        const p = snake[i];
-        const t = i / Math.max(1, snake.length-1);
-        // head brighter, tail slightly dim
-        ctx.fillStyle = i===0 ? "rgba(86,224,255,.98)" : `rgba(122,168,255,${0.35 + (1-t)*0.45})`;
-        ctx.shadowColor = i===0 ? "rgba(86,224,255,.35)" : "transparent";
-        ctx.shadowBlur = i===0 ? 14 : 0;
-        ctx.beginPath();
-        ctx.roundRect(p.x*cell+2, p.y*cell+2, cell-4, cell-4, Math.max(8, cell*0.28));
-        ctx.fill();
-      }
-      ctx.shadowBlur = 0;
-
-      // Pause overlay
-      if(paused){
-        ctx.fillStyle = "rgba(0,0,0,.35)";
-        ctx.fillRect(0,0,w,h);
-        ctx.fillStyle = "rgba(255,255,255,.92)";
-        ctx.font = `600 ${Math.max(16, cell)}px ${getComputedStyle(document.body).fontFamily}`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("Paused", w/2, h/2);
-      }
-
-      ctx.restore();
-    }
-
-    // Game loop
-    function step(){
-      if(!running) return;
-      if(paused){
-        loopHandle = setTimeout(step, speedMs);
-        return;
-      }
-
-      // Apply queued direction (prevents double-turn issues)
-      dir = nextDir;
-
-      const head = snake[0];
-      const newHead = { x: head.x + dir.x, y: head.y + dir.y };
-
-      // Walls (wrap)
-      if(newHead.x < 0) newHead.x = GRID-1;
-      if(newHead.x >= GRID) newHead.x = 0;
-      if(newHead.y < 0) newHead.y = GRID-1;
-      if(newHead.y >= GRID) newHead.y = 0;
-
-      // Collision with self
-      if(snake.some((p, idx) => idx !== 0 && same(p, newHead))){
-        // Game over
-        running = false;
-        paused = false;
-        clearTimeout(loopHandle);
-        loopHandle = null;
-
-        lbHint.textContent = `Game over — score ${score}`;
-        draw();
-        setTimeout(()=> submitScore(score), 50);
-        return;
-      }
-
-      snake.unshift(newHead);
-
-      // Eat
-      if(same(newHead, food)){
-        score += 1;
-        scoreEl.textContent = String(score);
-
-        // Speed up slightly every 6 points (clamped)
-        if(score % 6 === 0) speedMs = Math.max(70, speedMs - 6);
-
-        placeFood();
-      }else{
-        snake.pop();
-      }
-
-      draw();
-      loopHandle = setTimeout(step, speedMs);
-    }
-
-    function start(){
-      clearTimeout(loopHandle);
-      loopHandle = null;
-      resetGame();
-      running = true;
-      paused = false;
-      document.getElementById("pauseBtn").setAttribute("aria-pressed", "false");
-      step();
-    }
-
-    function togglePause(){
-      if(!running) return;
-      paused = !paused;
-      document.getElementById("pauseBtn").setAttribute("aria-pressed", String(paused));
-      draw();
-    }
-
-    // Controls (keyboard)
-    function setDir(nx, ny){
-      // Prevent reverse direction
-      if(nx === -dir.x && ny === -dir.y) return;
-      nextDir = {x:nx, y:ny};
-    }
-    window.addEventListener("keydown", (e)=>{
-      const k = e.key.toLowerCase();
-      if(k === " "){
-        e.preventDefault();
-        togglePause();
-        return;
-      }
-      if(k === "enter"){
-        start();
-        return;
-      }
-      if(k === "arrowup" || k === "w") setDir(0,-1);
-      if(k === "arrowdown" || k === "s") setDir(0, 1);
-      if(k === "arrowleft" || k === "a") setDir(-1,0);
-      if(k === "arrowright" || k === "d") setDir( 1,0);
-    });
-
-    // Controls (touch swipe)
-    (function enableSwipe(){
-      const stage = document.getElementById("gameStage");
-      let startX=0, startY=0, active=false;
-
-      function onStart(x,y){
-        active = true;
-        startX = x; startY = y;
-      }
-      function onEnd(x,y){
-        if(!active) return;
-        active = false;
-        const dx = x - startX;
-        const dy = y - startY;
-        const ax = Math.abs(dx);
-        const ay = Math.abs(dy);
-        if(Math.max(ax, ay) < 18) return;
-
-        if(ax > ay){
-          setDir(dx > 0 ? 1 : -1, 0);
-        }else{
-          setDir(0, dy > 0 ? 1 : -1);
-        }
-      }
-
-      stage.addEventListener("touchstart", (e)=>{
-        const t = e.changedTouches[0];
-        onStart(t.clientX, t.clientY);
-      }, {passive:true});
-
-      stage.addEventListener("touchend", (e)=>{
-        const t = e.changedTouches[0];
-        onEnd(t.clientX, t.clientY);
-      }, {passive:true});
-    })();
-
-    // Buttons
-    document.getElementById("startBtn").addEventListener("click", start);
-    document.getElementById("pauseBtn").addEventListener("click", togglePause);
-    document.getElementById("resetLbBtn").addEventListener("click", ()=>{
-      if(confirm("Reset leaderboard? This only clears your local browser scores.")){
-        saveLB([]);
-        renderLB();
-        best = 0;
-        bestEl.textContent = "0";
-        lbHint.textContent = "Leaderboard reset";
-      }
-    });
-
-    // Init
-    best = getBestFromLB();
-    bestEl.textContent = String(best);
-    renderLB();
-    resetGame();
-    fitCanvas();
-
-    // Small polyfill for roundRect in older browsers
-    if(!CanvasRenderingContext2D.prototype.roundRect){
-      CanvasRenderingContext2D.prototype.roundRect = function(x,y,w,h,r){
-        r = Math.min(r, w/2, h/2);
-        this.beginPath();
-        this.moveTo(x+r, y);
-        this.arcTo(x+w, y, x+w, y+h, r);
-        this.arcTo(x+w, y+h, x, y+h, r);
-        this.arcTo(x, y+h, x, y, r);
-        this.arcTo(x, y, x+w, y, r);
-        this.closePath();
-        return this;
-      };
-    }
-  </script>
 </body>
 </html>
