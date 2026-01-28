@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baatar Shipping | Global Freight & Logistics</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand">
+          <span class="brand-mark">BS</span>
+          <div>
+            <p class="brand-name">Baatar Shipping</p>
+            <p class="brand-tag">Global Freight & Logistics</p>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="#services">Services</a>
+          <a href="#network">Network</a>
+          <a href="#quote">Instant Quote</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Trusted by 120+ regional partners</p>
+            <h1>Move cargo fast with a shipping team that never sleeps.</h1>
+            <p class="hero-copy">
+              Baatar Shipping connects Mongolia, Central Asia, and global trade
+              lanes with dependable air, sea, and overland logistics. Track every
+              milestone with one dedicated operations desk.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#quote">Get a live quote</a>
+              <a class="btn ghost" href="#services">Explore services</a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <h3>48 hrs</h3>
+                <p>Average export clearance</p>
+              </div>
+              <div>
+                <h3>18 hubs</h3>
+                <p>Cross-border consolidation</p>
+              </div>
+              <div>
+                <h3>24/7</h3>
+                <p>Operations support</p>
+              </div>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h2>Live shipment visibility</h2>
+            <p>
+              Share tracking updates, customs status, and milestone alerts from a
+              single Baatar Shipping control tower.
+            </p>
+            <ul>
+              <li>Multi-modal milestone tracking</li>
+              <li>Dedicated customs specialists</li>
+              <li>Automated ETA notifications</li>
+            </ul>
+            <div class="hero-card-footer">
+              <span>Platform status</span>
+              <span class="status">Operational</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Services</p>
+              <h2>Logistics built for heavy industry, retail, and urgent freight.</h2>
+            </div>
+            <p class="section-copy">
+              Flexible booking, consolidation, and managed customs for cargo that
+              cannot wait. Our teams design routes around your deadlines and cost
+              goals.
+            </p>
+          </div>
+          <div class="cards">
+            <article class="card">
+              <h3>Air Freight</h3>
+              <p>Priority uplift out of Ulaanbaatar, Frankfurt, and Seoul.</p>
+              <span>Best for time-critical cargo</span>
+            </article>
+            <article class="card">
+              <h3>Ocean Freight</h3>
+              <p>Reliable FCL/LCL options with temperature control solutions.</p>
+              <span>Best for large volume shipments</span>
+            </article>
+            <article class="card">
+              <h3>Overland Transport</h3>
+              <p>Cross-border trucking with satellite tracking and escorts.</p>
+              <span>Best for regional distribution</span>
+            </article>
+            <article class="card">
+              <h3>Customs & Compliance</h3>
+              <p>Export documentation, bonded storage, and duty optimization.</p>
+              <span>Best for regulated cargo</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="network" class="section alt">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Network</p>
+              <h2>Connected corridors across Asia and Europe.</h2>
+            </div>
+            <p class="section-copy">
+              Baatar Shipping manages routes that keep critical goods moving,
+              including mining equipment, FMCG, and high-value electronics.
+            </p>
+          </div>
+          <div class="timeline">
+            <div>
+              <h4>Origin intake</h4>
+              <p>Ulaanbaatar, Darkhan, Erdenet</p>
+            </div>
+            <div>
+              <h4>Cross-border hubs</h4>
+              <p>Hohhot, Tianjin, Urumqi</p>
+            </div>
+            <div>
+              <h4>Global gateways</h4>
+              <p>Seoul, Frankfurt, Rotterdam</p>
+            </div>
+            <div>
+              <h4>Last-mile delivery</h4>
+              <p>Dedicated fleet with white glove handling</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="quote" class="section">
+        <div class="container quote-grid">
+          <div>
+            <p class="eyebrow">Instant Quote</p>
+            <h2>Get an estimated shipment cost in under a minute.</h2>
+            <p class="section-copy">
+              Share your origin, destination, cargo weight, and mode. We will
+              calculate a ballpark estimate and connect you with a specialist.
+            </p>
+            <div class="quote-result" id="quoteResult">
+              <h3>Estimated total</h3>
+              <p class="quote-value" id="quoteValue">$0</p>
+              <p class="quote-meta" id="quoteMeta">Complete the form to begin.</p>
+            </div>
+          </div>
+          <form class="quote-form" id="quoteForm">
+            <label>
+              Origin
+              <input type="text" name="origin" placeholder="Ulaanbaatar, MN" required />
+            </label>
+            <label>
+              Destination
+              <input type="text" name="destination" placeholder="Rotterdam, NL" required />
+            </label>
+            <label>
+              Cargo weight (kg)
+              <input type="number" name="weight" min="0" step="1" placeholder="2500" required />
+            </label>
+            <label>
+              Mode
+              <select name="mode">
+                <option value="road">Overland</option>
+                <option value="sea">Ocean</option>
+                <option value="air">Air</option>
+              </select>
+            </label>
+            <button class="btn primary" type="submit">Calculate estimate</button>
+            <p class="form-note">
+              Final pricing may vary based on customs clearance, fuel surcharges,
+              and special handling requirements.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section id="contact" class="section alt">
+        <div class="container contact-grid">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Speak with a logistics specialist today.</h2>
+            <p class="section-copy">
+              Email <a href="mailto:ops@baatarshipping.com">ops@baatarshipping.com</a>
+              or call +976 (11) 123-456 to reach our 24/7 control tower.
+            </p>
+          </div>
+          <div class="contact-card">
+            <h3>Operations desk</h3>
+            <p>Level 6, Sükhbaatar District, Ulaanbaatar</p>
+            <p>Mon - Sun · 24/7</p>
+            <p>Live updates available via WhatsApp and WeChat.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <p>© 2024 Baatar Shipping. All rights reserved.</p>
+        <div class="footer-links">
+          <span>ISO 9001 certified</span>
+          <span>Security-vetted carriers</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
